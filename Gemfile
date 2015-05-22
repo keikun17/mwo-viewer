@@ -3,6 +3,7 @@
 source 'http://rubygems.org'
 
 gem "middleman", "~>3.3.10"
+gem "middleman-api", "~> 0.2.0"
 gem 'haml'
 
 # Live-reloading plugin

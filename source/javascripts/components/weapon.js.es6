@@ -1,4 +1,4 @@
-class Weapon extends React.Component {
+export default class Weapon extends React.Component {
   constructor(props) {
     super(props);
     this.state = {name: props.name};

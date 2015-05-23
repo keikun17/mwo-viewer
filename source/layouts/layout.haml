@@ -8,5 +8,13 @@
     %title MWO Viewer
     = stylesheet_link_tag "normalize", "all"
     = javascript_include_tag  "all"
+    = javascript_include_tag "https://fb.me/JSXTransformer-0.13.3.js"
   %body{:class => page_classes}
-    = yield
+    Hello po nasa layout ako
+    #app
+      = yield
+
+    %script{:type => "text/jsx:harmony=true", :src => "javascripts/components/weapon.js"}
+    %script{:type => "text/jsx:harmony=true", :src => "javascripts/components/hat.js"}
+    %script{:type => "text/jsx:harmony=true", :src => "javascripts/components/person.js"}
+    %script{:type => "text/jsx", :src => "javascripts/app.js"}

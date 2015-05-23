@@ -10,6 +10,9 @@ gem 'haml'
 gem "middleman-livereload", "~> 3.3.0"
 gem "middleman-gh-pages"
 
+# ES6 support
+gem "middleman-es6", github: "vast/middleman-es6"
+
 # Stylesheet gems
 gem 'middleman-autoprefixer'
 

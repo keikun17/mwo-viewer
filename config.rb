@@ -56,6 +56,9 @@ set :images_dir, 'images'
 # Activate middleman-api for serving json api
 activate :api
 
+# Activate ES6 support from 'middleman-es6' gem
+activate :es6
+
 
 # Active autoprefixer from 'middleman-autoprefixer' gem
 

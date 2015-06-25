@@ -5,6 +5,11 @@ var Armory = React.createClass({
       return <Weapon weapon={weapon}/>
     });
 
-    return <armory>{weapons}</armory>
+    return <armory>
+      <h1>
+        Armory
+      </h1>
+      {weapons}
+      </armory>
   }
 });

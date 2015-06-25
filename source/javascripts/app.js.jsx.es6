@@ -1,13 +1,20 @@
 //= require components/weapons_list
+//= require components/mech_viewer
 //= require components/armory
 //= require components/weapon
+//= require components/mech
 
 
 var mountnode = document.getElementById('app');
 
 
 var run = function(){
-  React.render(<Armory weapons_list={weapons_list}/>, mountnode);
+  React.render(
+    <MechViewer>
+      <Mech/>
+      <Armory weapons_list={weapons_list}/>
+    </MechViewer>, mountnode
+  );
 
 };
 

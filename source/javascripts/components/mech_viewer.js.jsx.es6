@@ -11,7 +11,7 @@ var MechViewer = React.createClass({
     // WebkitFlexDirection: 'row'
 
   },
-  
+
   render: function(){
     return <mechviewer style={this.styles}>
       <Mech/>

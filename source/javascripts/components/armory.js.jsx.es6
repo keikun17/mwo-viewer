@@ -1,7 +1,8 @@
 var Armory = React.createClass({
 
   styles: {
-    flex: '1 0 0'
+    flex: '1 0 0',
+    border: '1px solid black'
 
   },
 

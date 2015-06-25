@@ -3,6 +3,8 @@
 //= require components/armory
 //= require components/weapon
 //= require components/mech
+//= require components/info
+//= require components/equipment
 
 
 var mountnode = document.getElementById('app');
@@ -11,8 +13,6 @@ var mountnode = document.getElementById('app');
 var run = function(){
   React.render(
     <MechViewer>
-      <Mech/>
-      <Armory weapons_list={weapons_list}/>
     </MechViewer>, mountnode
   );
 

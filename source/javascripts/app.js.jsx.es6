@@ -3,10 +3,11 @@
 //= require components/weapon
 
 
-var app = document.getElementById('app');
+var mountnode = document.getElementById('app');
+
 
 var run = function(){
-  React.render(<Armory weapons_list={weapons_list}/>, app);
+  React.render(<Armory weapons_list={weapons_list}/>, mountnode);
 
 };
 

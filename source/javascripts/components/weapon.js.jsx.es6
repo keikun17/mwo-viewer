@@ -4,7 +4,10 @@ var Weapon = React.createClass({
     display: 'inline-block',
     borderRadius: '4px',
     backgroundColor: '#e67e22',
-    padding: '10px 55px'
+    padding: '10px 5px',
+    marginTop: '3px',
+    width: '200px',
+    textAlign: 'center'
   },
 
   render: function(){

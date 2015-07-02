@@ -50,7 +50,7 @@
 	'use strict';
 	
 	var React = __webpack_require__(/*! react */ 1);
-	var MechViewer = __webpack_require__(/*! ./components/mech_viewer */ 160);
+	var MechViewer = __webpack_require__(/*! ./components/mech_viewer */ 157);
 	
 	var mountnode = document.getElementById('app');
 	
@@ -20908,54 +20908,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 157 */,
-/* 158 */
-/*!**************************************************!*\
-  !*** ./source/javascripts/components/weapon.jsx ***!
-  \**************************************************/
-/***/ function(module, exports) {
-
-	'use strict';
-	
-	var Weapon = React.createClass({
-	  displayName: 'Weapon',
-	
-	  styles: {
-	    display: 'inline-block',
-	    borderRadius: '4px',
-	    backgroundColor: '#e67e22',
-	    padding: '10px 5px',
-	    marginTop: '3px',
-	    width: '200px',
-	    textAlign: 'center'
-	  },
-	
-	  render: function render() {
-	    return React.createElement(
-	      'weapon',
-	      { style: this.styles },
-	      this.props.weapon.name
-	    );
-	  }
-	});
-	
-	module.exports = Weapon;
-
-/***/ },
-/* 159 */
-/*!********************************************************!*\
-  !*** ./source/javascripts/components/weapons_list.jsx ***!
-  \********************************************************/
-/***/ function(module, exports) {
-
-	'use strict';
-	
-	var weapons_list = [{ id: 123, name: 'Small Laser' }, { id: 123, name: 'Medium Laser' }, { id: 123, name: 'Large Laser' }, { id: 123, name: 'Large Pulse Laser' }, { id: 123, name: 'Clan ER Large Laser' }];
-	
-	module.exports = weapons_list;
-
-/***/ },
-/* 160 */
+/* 157 */
 /*!*******************************************************!*\
   !*** ./source/javascripts/components/mech_viewer.jsx ***!
   \*******************************************************/
@@ -20964,9 +20917,9 @@
 	'use strict';
 	
 	var React = __webpack_require__(/*! react */ 1);
-	var Mech = __webpack_require__(/*! ./mech */ 162);
+	var Mech = __webpack_require__(/*! ./mech */ 158);
 	var Armory = __webpack_require__(/*! ./armory */ 161);
-	var weapons_list = __webpack_require__(/*! ./weapons_list */ 159);
+	var weapons_list = __webpack_require__(/*! ./weapons_list */ 163);
 	
 	var MechViewer = React.createClass({
 	  displayName: 'MechViewer',
@@ -20997,47 +20950,7 @@
 	// WebkitFlexDirection: 'row'
 
 /***/ },
-/* 161 */
-/*!**************************************************!*\
-  !*** ./source/javascripts/components/armory.jsx ***!
-  \**************************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	var Weapon = __webpack_require__(/*! ./weapon */ 158);
-	
-	var Armory = React.createClass({
-	  displayName: 'Armory',
-	
-	  styles: {
-	    flex: '1 0 0',
-	    border: '1px solid black'
-	
-	  },
-	
-	  render: function render() {
-	    var weapons = this.props.weapons_list.map(function (weapon, index, weapons_list) {
-	      return React.createElement(Weapon, { weapon: weapon });
-	    });
-	
-	    return React.createElement(
-	      'armory',
-	      { style: this.styles },
-	      React.createElement(
-	        'h1',
-	        null,
-	        'Armory'
-	      ),
-	      weapons
-	    );
-	  }
-	});
-	
-	module.exports = Armory;
-
-/***/ },
-/* 162 */
+/* 158 */
 /*!************************************************!*\
   !*** ./source/javascripts/components/mech.jsx ***!
   \************************************************/
@@ -21045,8 +20958,8 @@
 
 	'use strict';
 	
-	var Info = __webpack_require__(/*! ./info */ 163);
-	var Equipment = __webpack_require__(/*! ./equipment */ 164);
+	var Info = __webpack_require__(/*! ./info */ 159);
+	var Equipment = __webpack_require__(/*! ./equipment */ 160);
 	
 	var Mech = React.createClass({
 	  displayName: 'Mech',
@@ -21070,7 +20983,7 @@
 	module.exports = Mech;
 
 /***/ },
-/* 163 */
+/* 159 */
 /*!************************************************!*\
   !*** ./source/javascripts/components/info.jsx ***!
   \************************************************/
@@ -21133,7 +21046,7 @@
 	module.exports = Info;
 
 /***/ },
-/* 164 */
+/* 160 */
 /*!*****************************************************!*\
   !*** ./source/javascripts/components/equipment.jsx ***!
   \*****************************************************/
@@ -21170,6 +21083,92 @@
 	});
 	
 	module.exports = Equipment;
+
+/***/ },
+/* 161 */
+/*!**************************************************!*\
+  !*** ./source/javascripts/components/armory.jsx ***!
+  \**************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var Weapon = __webpack_require__(/*! ./weapon */ 162);
+	
+	var Armory = React.createClass({
+	  displayName: 'Armory',
+	
+	  styles: {
+	    flex: '1 0 0',
+	    border: '1px solid black'
+	
+	  },
+	
+	  render: function render() {
+	    var weapons = this.props.weapons_list.map(function (weapon, index, weapons_list) {
+	      return React.createElement(Weapon, { weapon: weapon });
+	    });
+	
+	    return React.createElement(
+	      'armory',
+	      { style: this.styles },
+	      React.createElement(
+	        'h1',
+	        null,
+	        'Armory'
+	      ),
+	      weapons
+	    );
+	  }
+	});
+	
+	module.exports = Armory;
+
+/***/ },
+/* 162 */
+/*!**************************************************!*\
+  !*** ./source/javascripts/components/weapon.jsx ***!
+  \**************************************************/
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	var Weapon = React.createClass({
+	  displayName: 'Weapon',
+	
+	  styles: {
+	    display: 'inline-block',
+	    borderRadius: '4px',
+	    backgroundColor: '#e67e22',
+	    padding: '10px 5px',
+	    marginTop: '3px',
+	    width: '200px',
+	    textAlign: 'center'
+	  },
+	
+	  render: function render() {
+	    return React.createElement(
+	      'weapon',
+	      { style: this.styles },
+	      this.props.weapon.name
+	    );
+	  }
+	});
+	
+	module.exports = Weapon;
+
+/***/ },
+/* 163 */
+/*!********************************************************!*\
+  !*** ./source/javascripts/components/weapons_list.jsx ***!
+  \********************************************************/
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	var weapons_list = [{ id: 123, name: 'Small Laser' }, { id: 123, name: 'Medium Laser' }, { id: 123, name: 'Large Laser' }, { id: 123, name: 'Large Pulse Laser' }, { id: 123, name: 'Clan ER Large Laser' }];
+	
+	module.exports = weapons_list;
 
 /***/ }
 /******/ ]);

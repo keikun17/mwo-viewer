@@ -46,13 +46,14 @@
 
 	'use strict';
 
-	var something = __webpack_require__(1);
-	var Weapon = __webpack_require__(2);
-	var weapons_list = __webpack_require__(3);
-	var MechViewer = __webpack_require__(4);
-	var Armory = __webpack_require__(5);
+	var something = __webpack_require__(2);
+	var Weapon = __webpack_require__(3);
+	var weapons_list = __webpack_require__(4);
+	var MechViewer = __webpack_require__(5);
+	var Armory = __webpack_require__(1);
 	var Mech = __webpack_require__(6);
 	var Info = __webpack_require__(7);
+	var Equipment = __webpack_require__(8);
 
 	console.log(something);
 
@@ -70,88 +71,6 @@
 
 /***/ },
 /* 1 */
-/***/ function(module, exports) {
-
-	"use strict";
-
-	module.exports = "Som,etjhing";
-
-/***/ },
-/* 2 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	var Weapon = React.createClass({
-	  displayName: 'Weapon',
-
-	  styles: {
-	    display: 'inline-block',
-	    borderRadius: '4px',
-	    backgroundColor: '#e67e22',
-	    padding: '10px 5px',
-	    marginTop: '3px',
-	    width: '200px',
-	    textAlign: 'center'
-	  },
-
-	  render: function render() {
-	    return React.createElement(
-	      'weapon',
-	      { style: this.styles },
-	      this.props.weapon.name
-	    );
-	  }
-	});
-
-	module.exports = Weapon;
-
-/***/ },
-/* 3 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	var weapons_list = [{ id: 123, name: 'Small Laser' }, { id: 123, name: 'Medium Laser' }, { id: 123, name: 'Large Laser' }, { id: 123, name: 'Large Pulse Laser' }, { id: 123, name: 'Clan ER Large Laser' }];
-
-	module.exports = weapons_list;
-
-/***/ },
-/* 4 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	var MechViewer = React.createClass({
-	  displayName: 'MechViewer',
-
-	  //
-	  // styles: Stylesheet.create({
-	  //   display: 'flex'
-	  // }),
-
-	  styles: {
-	    // display: '-webkit-flex',
-	    display: 'flex',
-	    flexDirection: 'row'
-	  },
-
-	  render: function render() {
-	    return React.createElement(
-	      'mechviewer',
-	      { style: this.styles },
-	      React.createElement(Mech, null),
-	      React.createElement(Armory, { weapons_list: weapons_list })
-	    );
-	  }
-
-	});
-
-	module.exports = MechViewer;
-	// WebkitFlexDirection: 'row'
-
-/***/ },
-/* 5 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -184,6 +103,88 @@
 	});
 
 	module.exports = Armory;
+
+/***/ },
+/* 2 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	module.exports = "Som,etjhing";
+
+/***/ },
+/* 3 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	var Weapon = React.createClass({
+	  displayName: 'Weapon',
+
+	  styles: {
+	    display: 'inline-block',
+	    borderRadius: '4px',
+	    backgroundColor: '#e67e22',
+	    padding: '10px 5px',
+	    marginTop: '3px',
+	    width: '200px',
+	    textAlign: 'center'
+	  },
+
+	  render: function render() {
+	    return React.createElement(
+	      'weapon',
+	      { style: this.styles },
+	      this.props.weapon.name
+	    );
+	  }
+	});
+
+	module.exports = Weapon;
+
+/***/ },
+/* 4 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	var weapons_list = [{ id: 123, name: 'Small Laser' }, { id: 123, name: 'Medium Laser' }, { id: 123, name: 'Large Laser' }, { id: 123, name: 'Large Pulse Laser' }, { id: 123, name: 'Clan ER Large Laser' }];
+
+	module.exports = weapons_list;
+
+/***/ },
+/* 5 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	var MechViewer = React.createClass({
+	  displayName: 'MechViewer',
+
+	  //
+	  // styles: Stylesheet.create({
+	  //   display: 'flex'
+	  // }),
+
+	  styles: {
+	    // display: '-webkit-flex',
+	    display: 'flex',
+	    flexDirection: 'row'
+	  },
+
+	  render: function render() {
+	    return React.createElement(
+	      'mechviewer',
+	      { style: this.styles },
+	      React.createElement(Mech, null),
+	      React.createElement(Armory, { weapons_list: weapons_list })
+	    );
+	  }
+
+	});
+
+	module.exports = MechViewer;
+	// WebkitFlexDirection: 'row'
 
 /***/ },
 /* 6 */
@@ -271,6 +272,42 @@
 	});
 
 	module.exports = Info;
+
+/***/ },
+/* 8 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	var Equipment = React.createClass({
+	  displayName: 'Equipment',
+
+	  styles: {
+	    flex: '1 0 0',
+	    border: '1px solid purple'
+	  },
+	  render: function render() {
+	    return React.createElement(
+	      'equipments',
+	      { style: this.styles },
+	      'Equipments go here',
+	      React.createElement(
+	        'div',
+	        null,
+	        'Internal Heatsinks ',
+	        React.createElement('input', { type: 'number', value: '10' })
+	      ),
+	      React.createElement(
+	        'div',
+	        null,
+	        'External Heatsinks ',
+	        React.createElement('input', { type: 'number', value: '0' })
+	      )
+	    );
+	  }
+	});
+
+	module.exports = Equipment;
 
 /***/ }
 /******/ ]);

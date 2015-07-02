@@ -16,3 +16,5 @@ var Equipment = React.createClass({
     </equipments>
   }
 })
+
+module.exports  = Equipment;

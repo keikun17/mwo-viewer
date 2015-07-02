@@ -1,9 +1,6 @@
 var React = require('react');
 var Weapon = require('./components/weapon');
-var weapons_list = require('./components/weapons_list');
 var MechViewer = require('./components/mech_viewer');
-var Armory = require('./components/armory');
-var Mech = require('./components/mech');
 var Info = require('./components/info');
 var Equipment = require('./components/equipment');
 
@@ -17,6 +14,7 @@ var run = function(){
   );
 
 };
+
 
 if (window.addEventListener) {
   window.addEventListener('DOMContentLoaded', run);

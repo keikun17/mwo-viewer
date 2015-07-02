@@ -1,4 +1,10 @@
+var React = require('react');
+var Mech = require('./mech');
+var Armory = require('./armory');
+var weapons_list = require('./weapons_list');
+
 var MechViewer = React.createClass({
+
   //
   // styles: Stylesheet.create({
   //   display: 'flex'

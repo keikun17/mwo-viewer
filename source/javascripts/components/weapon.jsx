@@ -14,3 +14,5 @@ var Weapon = React.createClass({
     return <weapon style={this.styles}>{this.props.weapon.name}</weapon>
   }
 });
+
+module.exports = Weapon

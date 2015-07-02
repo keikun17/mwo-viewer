@@ -12,3 +12,5 @@ var Mech = React.createClass({
     </mech>
   }
 })
+
+module.exports = Mech;

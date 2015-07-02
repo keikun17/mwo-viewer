@@ -17,3 +17,5 @@ var Info = React.createClass({
     </info>
   }
 })
+
+module.exports = Info;

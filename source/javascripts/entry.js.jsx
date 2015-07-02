@@ -1,7 +1,10 @@
-var something = require('./components/something.js')
-var Weapon = require('./components/weapon')
-var weapons_list = require('./components/weapons_list')
-var MechViewer = require('./components/mech_viewer')
+var something = require('./components/something.js');
+var Weapon = require('./components/weapon');
+var weapons_list = require('./components/weapons_list');
+var MechViewer = require('./components/mech_viewer');
+var Armory = require('./components/armory');
+var Mech = require('./components/mech');
+var Info = require('./components/info');
 
 console.log(something)
 

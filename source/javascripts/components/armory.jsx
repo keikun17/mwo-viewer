@@ -19,3 +19,5 @@ var Armory = React.createClass({
       </armory>
   }
 });
+
+module.exports = Armory;

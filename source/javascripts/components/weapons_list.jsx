@@ -6,3 +6,4 @@ var weapons_list = [
   {id: 123, name: 'Clan ER Large Laser'}
 ] ;
 
+module.exports = weapons_list

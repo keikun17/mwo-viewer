@@ -20,3 +20,5 @@ var MechViewer = React.createClass({
   }
 
 })
+
+module.exports = MechViewer;

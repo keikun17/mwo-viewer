@@ -50,10 +50,7 @@
 	'use strict';
 	
 	var React = __webpack_require__(/*! react */ 1);
-	var Weapon = __webpack_require__(/*! ./components/weapon */ 158);
 	var MechViewer = __webpack_require__(/*! ./components/mech_viewer */ 160);
-	var Info = __webpack_require__(/*! ./components/info */ 163);
-	var Equipment = __webpack_require__(/*! ./components/equipment */ 164);
 	
 	var mountnode = document.getElementById('app');
 	
@@ -21004,9 +21001,11 @@
 /*!**************************************************!*\
   !*** ./source/javascripts/components/armory.jsx ***!
   \**************************************************/
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
+	
+	var Weapon = __webpack_require__(/*! ./weapon */ 158);
 	
 	var Armory = React.createClass({
 	  displayName: 'Armory',
@@ -21042,9 +21041,12 @@
 /*!************************************************!*\
   !*** ./source/javascripts/components/mech.jsx ***!
   \************************************************/
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
+	
+	var Info = __webpack_require__(/*! ./info */ 163);
+	var Equipment = __webpack_require__(/*! ./equipment */ 164);
 	
 	var Mech = React.createClass({
 	  displayName: 'Mech',

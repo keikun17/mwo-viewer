@@ -1,3 +1,5 @@
+var Weapon = require('./weapon');
+
 var Armory = React.createClass({
 
   styles: {

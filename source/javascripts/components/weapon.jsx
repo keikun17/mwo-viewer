@@ -1,7 +1,7 @@
 
 var Weapon = React.createClass({
   styles: {
-    display: 'inline-block',
+    display: 'block',
     borderRadius: '4px',
     backgroundColor: '#e67e22',
     padding: '10px 5px',

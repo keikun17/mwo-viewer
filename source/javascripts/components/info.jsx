@@ -1,3 +1,5 @@
+var MapInfo = require('./map_info')
+
 var Info = React.createClass({
   styles: {
     flex: '1 0 0',
@@ -13,7 +15,7 @@ var Info = React.createClass({
       <div>Ghost heat of previous shot</div>
       <div>Total damage : 0</div>
       <div>DPS (elapsed time) : 0 (2m3s)</div>
-      <div>Map : Terra Therma (-2s coolrate, -10 heat capacity)</div>
+      <MapInfo />
     </info>
   }
 })

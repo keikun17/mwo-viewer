@@ -20987,9 +20987,11 @@
 /*!************************************************!*\
   !*** ./source/javascripts/components/info.jsx ***!
   \************************************************/
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
+	
+	var MapInfo = __webpack_require__(/*! ./map_info */ 164);
 	
 	var Info = React.createClass({
 	  displayName: 'Info',
@@ -21034,11 +21036,7 @@
 	        null,
 	        'DPS (elapsed time) : 0 (2m3s)'
 	      ),
-	      React.createElement(
-	        'div',
-	        null,
-	        'Map : Terra Therma (-2s coolrate, -10 heat capacity)'
-	      )
+	      React.createElement(MapInfo, null)
 	    );
 	  }
 	});
@@ -21169,6 +21167,38 @@
 	var weapons_list = [{ id: 123, name: 'Small Laser' }, { id: 123, name: 'Medium Laser' }, { id: 123, name: 'Large Laser' }, { id: 123, name: 'Large Pulse Laser' }, { id: 123, name: 'Clan ER Large Laser' }];
 	
 	module.exports = weapons_list;
+
+/***/ },
+/* 164 */
+/*!****************************************************!*\
+  !*** ./source/javascripts/components/map_info.jsx ***!
+  \****************************************************/
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	var MapInfo = React.createClass({
+	  displayName: "MapInfo",
+	
+	  render: function render() {
+	    return React.createElement(
+	      "div",
+	      null,
+	      "Map ",
+	      React.createElement(
+	        "select",
+	        { type: "text" },
+	        React.createElement(
+	          "option",
+	          null,
+	          " Terra Therma (-2s coolrate, -10 heat capacity) "
+	        )
+	      )
+	    );
+	  }
+	});
+	
+	module.exports = MapInfo;
 
 /***/ }
 /******/ ]);

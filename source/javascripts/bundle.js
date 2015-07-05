@@ -21104,7 +21104,7 @@
 	
 	  render: function render() {
 	    var weapons = this.props.weapons_list.map(function (weapon, index, weapons_list) {
-	      return React.createElement(Weapon, { weapon: weapon });
+	      return React.createElement(Weapon, { weapon: weapon, key: index });
 	    });
 	
 	    var laser_weapons = weapons.select;

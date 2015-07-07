@@ -8,6 +8,8 @@ var Weapon = React.createClass({
     color: '#e67e22',
     cursor: 'pointer',
     // backgroundColor: 'transparent',
+    // fontFamily: "'Open Sans Condensed', sans-serif",
+    fontFamily: "'Roboto', sans-serif",
     padding: '10px 5px',
     marginTop: '3px',
     minWidth: '100px',

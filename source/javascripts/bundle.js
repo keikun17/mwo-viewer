@@ -20998,14 +20998,19 @@
 	
 	  styles: {
 	    flex: '1 0 0',
-	    border: '1px solid blue'
+	    border: '1px solid blue',
+	    paddingLeft: '10px'
 	
 	  },
 	  render: function render() {
 	    return React.createElement(
 	      'info',
 	      { style: this.styles },
-	      'Mech stats and info go here',
+	      React.createElement(
+	        'h1',
+	        null,
+	        'Info'
+	      ),
 	      React.createElement(
 	        'div',
 	        null,
@@ -21056,6 +21061,7 @@
 	  displayName: 'Equipment',
 	
 	  styles: {
+	    paddingLeft: '10px',
 	    flex: '1 0 0',
 	    border: '1px solid purple'
 	  },
@@ -21063,7 +21069,11 @@
 	    return React.createElement(
 	      'equipments',
 	      { style: this.styles },
-	      'Equipments go here',
+	      React.createElement(
+	        'h1',
+	        null,
+	        'Equipments'
+	      ),
 	      React.createElement(
 	        'div',
 	        null,
@@ -21143,6 +21153,8 @@
 	    color: '#e67e22',
 	    cursor: 'pointer',
 	    // backgroundColor: 'transparent',
+	    // fontFamily: "'Open Sans Condensed', sans-serif",
+	    fontFamily: '\'Roboto\', sans-serif',
 	    padding: '10px 5px',
 	    marginTop: '3px',
 	    minWidth: '100px',

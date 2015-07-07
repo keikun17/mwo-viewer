@@ -20992,6 +20992,7 @@
 	'use strict';
 	
 	var MapInfo = __webpack_require__(/*! ./map_info */ 164);
+	var CurrentHeat = __webpack_require__(/*! ./heat/current */ 165);
 	
 	var Info = React.createClass({
 	  displayName: 'Info',
@@ -21000,8 +21001,8 @@
 	    flex: '1 0 0',
 	    border: '1px solid blue',
 	    paddingLeft: '10px'
-	
 	  },
+	
 	  render: function render() {
 	    return React.createElement(
 	      'info',
@@ -21011,6 +21012,7 @@
 	        null,
 	        'Info'
 	      ),
+	      React.createElement(CurrentHeat, null),
 	      React.createElement(
 	        'div',
 	        null,
@@ -21217,6 +21219,41 @@
 	});
 	
 	module.exports = MapInfo;
+
+/***/ },
+/* 165 */
+/*!********************************************************!*\
+  !*** ./source/javascripts/components/heat/current.jsx ***!
+  \********************************************************/
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	var CurrentHeat = React.createClass({
+	  displayName: "CurrentHeat",
+	
+	  styles: {},
+	
+	  render: function render() {
+	    return React.createElement(
+	      "current_heat",
+	      null,
+	      React.createElement(
+	        "valoo",
+	        null,
+	        "32"
+	      ),
+	      React.createElement(
+	        "label",
+	        null,
+	        "Current Heat"
+	      )
+	    );
+	  }
+	
+	});
+	
+	module.exports = CurrentHeat;
 
 /***/ }
 /******/ ]);

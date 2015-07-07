@@ -20918,8 +20918,8 @@
 	
 	var React = __webpack_require__(/*! react */ 1);
 	var Mech = __webpack_require__(/*! ./mech */ 158);
-	var Armory = __webpack_require__(/*! ./armory */ 161);
-	var weapons_list = __webpack_require__(/*! ./weapons_list */ 163);
+	var Armory = __webpack_require__(/*! ./armory */ 163);
+	var weapons_list = __webpack_require__(/*! ./weapons_list */ 165);
 	
 	var MechViewer = React.createClass({
 	  displayName: 'MechViewer',
@@ -20959,7 +20959,7 @@
 	'use strict';
 	
 	var Info = __webpack_require__(/*! ./info */ 159);
-	var Equipment = __webpack_require__(/*! ./equipment */ 160);
+	var Equipment = __webpack_require__(/*! ./equipment */ 162);
 	
 	var Mech = React.createClass({
 	  displayName: 'Mech',
@@ -20991,8 +20991,8 @@
 
 	'use strict';
 	
-	var MapInfo = __webpack_require__(/*! ./map_info */ 164);
-	var CurrentHeat = __webpack_require__(/*! ./heat/current */ 165);
+	var MapInfo = __webpack_require__(/*! ./map_info */ 160);
+	var CurrentHeat = __webpack_require__(/*! ./heat/current */ 161);
 	
 	var Info = React.createClass({
 	  displayName: 'Info',
@@ -21052,6 +21052,104 @@
 
 /***/ },
 /* 160 */
+/*!****************************************************!*\
+  !*** ./source/javascripts/components/map_info.jsx ***!
+  \****************************************************/
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	var MapInfo = React.createClass({
+	  displayName: "MapInfo",
+	
+	  render: function render() {
+	    return React.createElement(
+	      "div",
+	      null,
+	      "Map ",
+	      React.createElement(
+	        "select",
+	        { type: "text" },
+	        React.createElement(
+	          "option",
+	          null,
+	          " Terra Therma (-2s coolrate, -10 heat capacity) "
+	        )
+	      )
+	    );
+	  }
+	});
+	
+	module.exports = MapInfo;
+
+/***/ },
+/* 161 */
+/*!********************************************************!*\
+  !*** ./source/javascripts/components/heat/current.es6 ***!
+  \********************************************************/
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+	
+	var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) subClass.__proto__ = superClass; }
+	
+	var CurrentHeat = (function (_React$Component) {
+	  function CurrentHeat(props) {
+	    _classCallCheck(this, CurrentHeat);
+	
+	    _get(Object.getPrototypeOf(CurrentHeat.prototype), "constructor", this).call(this, props);
+	
+	    // override the state unique to the class here
+	    this.state = {};
+	  }
+	
+	  _inherits(CurrentHeat, _React$Component);
+	
+	  _createClass(CurrentHeat, [{
+	    key: "getStyle",
+	    value: function getStyle() {
+	      return {
+	        textAlign: "center"
+	      };
+	    }
+	  }, {
+	    key: "render",
+	    value: function render() {
+	      return React.createElement(
+	        "current_heat",
+	        { style: this.getStyle() },
+	        React.createElement(
+	          "span",
+	          { className: "info-value" },
+	          "32"
+	        ),
+	        React.createElement(
+	          "span",
+	          { className: "info-label" },
+	          "Current Heat"
+	        )
+	      );
+	    }
+	  }]);
+	
+	  return CurrentHeat;
+	})(React.Component);
+	
+	exports["default"] = CurrentHeat;
+	module.exports = exports["default"];
+
+/***/ },
+/* 162 */
 /*!*****************************************************!*\
   !*** ./source/javascripts/components/equipment.jsx ***!
   \*****************************************************/
@@ -21095,7 +21193,7 @@
 	module.exports = Equipment;
 
 /***/ },
-/* 161 */
+/* 163 */
 /*!**************************************************!*\
   !*** ./source/javascripts/components/armory.jsx ***!
   \**************************************************/
@@ -21103,7 +21201,7 @@
 
 	'use strict';
 	
-	var Weapon = __webpack_require__(/*! ./weapon */ 162);
+	var Weapon = __webpack_require__(/*! ./weapon */ 164);
 	
 	var Armory = React.createClass({
 	  displayName: 'Armory',
@@ -21137,7 +21235,7 @@
 	module.exports = Armory;
 
 /***/ },
-/* 162 */
+/* 164 */
 /*!**************************************************!*\
   !*** ./source/javascripts/components/weapon.jsx ***!
   \**************************************************/
@@ -21176,7 +21274,7 @@
 	module.exports = Weapon;
 
 /***/ },
-/* 163 */
+/* 165 */
 /*!********************************************************!*\
   !*** ./source/javascripts/components/weapons_list.jsx ***!
   \********************************************************/
@@ -21187,73 +21285,6 @@
 	var weapons_list = [{ id: 123, name: 'Small Laser' }, { id: 123, name: 'Medium Laser' }, { id: 123, name: 'Large Laser' }, { id: 123, name: 'Large Pulse Laser' }, { id: 123, name: 'Clan ER Large Laser' }];
 	
 	module.exports = weapons_list;
-
-/***/ },
-/* 164 */
-/*!****************************************************!*\
-  !*** ./source/javascripts/components/map_info.jsx ***!
-  \****************************************************/
-/***/ function(module, exports) {
-
-	"use strict";
-	
-	var MapInfo = React.createClass({
-	  displayName: "MapInfo",
-	
-	  render: function render() {
-	    return React.createElement(
-	      "div",
-	      null,
-	      "Map ",
-	      React.createElement(
-	        "select",
-	        { type: "text" },
-	        React.createElement(
-	          "option",
-	          null,
-	          " Terra Therma (-2s coolrate, -10 heat capacity) "
-	        )
-	      )
-	    );
-	  }
-	});
-	
-	module.exports = MapInfo;
-
-/***/ },
-/* 165 */
-/*!********************************************************!*\
-  !*** ./source/javascripts/components/heat/current.jsx ***!
-  \********************************************************/
-/***/ function(module, exports) {
-
-	"use strict";
-	
-	var CurrentHeat = React.createClass({
-	  displayName: "CurrentHeat",
-	
-	  styles: {},
-	
-	  render: function render() {
-	    return React.createElement(
-	      "current_heat",
-	      null,
-	      React.createElement(
-	        "valoo",
-	        null,
-	        "32"
-	      ),
-	      React.createElement(
-	        "label",
-	        null,
-	        "Current Heat"
-	      )
-	    );
-	  }
-	
-	});
-	
-	module.exports = CurrentHeat;
 
 /***/ }
 /******/ ]);

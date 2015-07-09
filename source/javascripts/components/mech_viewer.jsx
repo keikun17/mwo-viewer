@@ -3,28 +3,23 @@ var Mech = require('./mech');
 var Armory = require('./armory');
 var weapons_list = require('./weapons_list');
 
-var MechViewer = React.createClass({
+class MechViewer extends React.Component {
 
-  //
-  // styles: Stylesheet.create({
-  //   display: 'flex'
-  // }),
+  getStyle() {
+    return {
+      // display: '-webkit-flex',
+      display: 'flex',
+      flexDirection: 'row',
+      // WebkitFlexDirection: 'row'
+    }
+  }
 
-  styles: {
-    // display: '-webkit-flex',
-    display: 'flex',
-    flexDirection: 'row',
-    // WebkitFlexDirection: 'row'
-
-  },
-
-  render: function(){
-    return <mechviewer style={this.styles}>
+  render() {
+    return <mechviewer style={this.getStyle()}>
       <Mech/>
       <Armory weapons_list={weapons_list}/>
     </mechviewer>
   }
+}
 
-})
-
-module.exports = MechViewer;
+export default MechViewer

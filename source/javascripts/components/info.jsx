@@ -13,9 +13,6 @@ var Info = React.createClass({
       <h1>Info</h1>
       <CurrentHeat/>
       <DamageMeter />
-
-      <div>Total damage : 0</div>
-      <div>DPS (elapsed time) : 0 (2m3s)</div>
       <MapInfo />
     </info>
   }

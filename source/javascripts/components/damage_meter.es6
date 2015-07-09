@@ -4,7 +4,9 @@ class DamageMeter extends React.Component {
 
     this.state = {
       damage_previous: 12,
-      damage_total: 120
+      damage_total: 120,
+      dps: 21,
+      elapsed_time: 55
     }
   }
 
@@ -25,6 +27,14 @@ class DamageMeter extends React.Component {
          <span className="info-value-divider">/</span>
          <span className="info-value">{this.state.damage_total}</span>
          <span className="info-label">Previous / Total</span>
+       </div>
+
+       <div className="info">
+         <span className="info-title">DPS</span>
+         <span className="info-value">{this.state.dps}</span>
+         <span className="info-value-divider">/</span>
+         <span className="info-value">{this.state.elapsed_time}s</span>
+         <span className="info-label">DPS / Elapsed</span>
        </div>
 
      </damage_meter>

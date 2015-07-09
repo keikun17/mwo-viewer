@@ -5,7 +5,6 @@ var Armory = React.createClass({
   styles: {
     paddingLeft: '10px',
     flex: '1 0 0',
-    border: '1px solid black'
   },
 
   render: function(){

@@ -2,7 +2,6 @@ var Equipment = React.createClass({
   styles: {
     paddingLeft: '10px',
     flex: '1 0 0',
-    border: '1px solid purple'
   },
   render: function(){
     return <equipments style={this.styles}>

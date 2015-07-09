@@ -20910,7 +20910,7 @@
 /***/ },
 /* 157 */
 /*!*******************************************************!*\
-  !*** ./source/javascripts/components/mech_viewer.jsx ***!
+  !*** ./source/javascripts/components/mech_viewer.es6 ***!
   \*******************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
@@ -20987,8 +20987,7 @@
 	
 	  styles: {
 	    display: 'flex',
-	    flex: '3 0 0',
-	    border: '1px solid black'
+	    flex: '3 0 0'
 	  },
 	
 	  render: function render() {
@@ -21020,7 +21019,6 @@
 	
 	  styles: {
 	    flex: '1 0 0',
-	    border: '1px solid blue',
 	    paddingLeft: '10px'
 	  },
 	
@@ -21034,16 +21032,6 @@
 	        'Info'
 	      ),
 	      React.createElement(CurrentHeat, null),
-	      React.createElement(
-	        'div',
-	        null,
-	        'Current Heat / Threshold : 30/100'
-	      ),
-	      React.createElement(
-	        'div',
-	        null,
-	        'Cooling time (cooling rate) : 10s (3/s)'
-	      ),
 	      React.createElement(
 	        'div',
 	        null,
@@ -21131,7 +21119,12 @@
 	    _get(Object.getPrototypeOf(CurrentHeat.prototype), "constructor", this).call(this, props);
 	
 	    // override the state unique to the class here
-	    this.state = {};
+	    this.state = {
+	      value: 42,
+	      capacity: 100,
+	      time_to_zero: 10,
+	      cool_rate: 4.2
+	    };
 	  }
 	
 	  _inherits(CurrentHeat, _React$Component);
@@ -21140,7 +21133,7 @@
 	    key: "getStyle",
 	    value: function getStyle() {
 	      return {
-	        textAlign: "center"
+	        display: "inline-block"
 	      };
 	    }
 	  }, {
@@ -21150,14 +21143,53 @@
 	        "current_heat",
 	        { style: this.getStyle() },
 	        React.createElement(
-	          "span",
-	          { className: "info-value" },
-	          "32"
+	          "div",
+	          { className: "info" },
+	          React.createElement(
+	            "span",
+	            { className: "info-value" },
+	            this.state.value
+	          ),
+	          React.createElement(
+	            "span",
+	            { className: "info-value-divider" },
+	            "/"
+	          ),
+	          React.createElement(
+	            "span",
+	            { className: "info-value" },
+	            this.state.capacity
+	          ),
+	          React.createElement(
+	            "span",
+	            { className: "info-label" },
+	            "Heat / Capacity"
+	          )
 	        ),
 	        React.createElement(
-	          "span",
-	          { className: "info-label" },
-	          "Current Heat"
+	          "div",
+	          { className: "info" },
+	          React.createElement(
+	            "span",
+	            { className: "info-value" },
+	            this.state.time_to_zero,
+	            "s"
+	          ),
+	          React.createElement(
+	            "span",
+	            { className: "info-value-divider" },
+	            "/"
+	          ),
+	          React.createElement(
+	            "span",
+	            { className: "info-value" },
+	            this.state.cool_rate
+	          ),
+	          React.createElement(
+	            "span",
+	            { className: "info-label" },
+	            "Timer to cool / Cool Rate"
+	          )
 	        )
 	      );
 	    }
@@ -21183,8 +21215,7 @@
 	
 	  styles: {
 	    paddingLeft: '10px',
-	    flex: '1 0 0',
-	    border: '1px solid purple'
+	    flex: '1 0 0'
 	  },
 	  render: function render() {
 	    return React.createElement(
@@ -21229,8 +21260,7 @@
 	
 	  styles: {
 	    paddingLeft: '10px',
-	    flex: '1 0 0',
-	    border: '1px solid black'
+	    flex: '1 0 0'
 	  },
 	
 	  render: function render() {

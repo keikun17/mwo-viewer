@@ -1,5 +1,6 @@
 var MapInfo = require('./map_info')
 var CurrentHeat = require('./heat/current');
+var DamageMeter = require('./damage_meter')
 
 var Info = React.createClass({
   styles: {
@@ -11,9 +12,8 @@ var Info = React.createClass({
     return <info style={this.styles}>
       <h1>Info</h1>
       <CurrentHeat/>
+      <DamageMeter />
 
-      <div>Ghost heat total</div>
-      <div>Ghost heat of previous shot</div>
       <div>Total damage : 0</div>
       <div>DPS (elapsed time) : 0 (2m3s)</div>
       <MapInfo />

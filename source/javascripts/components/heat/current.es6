@@ -22,17 +22,19 @@ class CurrentHeat extends React.Component {
       <current_heat style={this.getStyle()}>
 
         <div className="info">
+          <span className="info-title">Heat</span>
           <span className="info-value">{this.state.value}</span>
           <span className="info-value-divider">/</span>
           <span className="info-value">{this.state.capacity}</span>
-          <span className="info-label">Heat / Capacity</span>
+          <span className="info-label">Current / Capacity</span>
         </div>
 
         <div className="info">
+          <span className="info-title">Cooldown</span>
           <span className="info-value">{this.state.time_to_zero}s</span>
           <span className="info-value-divider">/</span>
           <span className="info-value">{this.state.cool_rate}</span>
-          <span className="info-label">Timer to cool / Cool Rate</span>
+          <span className="info-label">Time / Rate</span>
         </div>
       </current_heat>
 

@@ -7,7 +7,10 @@ class CurrentHeat extends React.Component {
       value: 42,
       capacity: 100,
       time_to_zero: 10,
-      cool_rate: 4.2
+      cool_rate: 4.2,
+      ghost_heat_previous: 20,
+      ghost_heat_total: 130
+
     };
   }
 
@@ -36,6 +39,15 @@ class CurrentHeat extends React.Component {
           <span className="info-value">{this.state.cool_rate}</span>
           <span className="info-label">Time / Rate</span>
         </div>
+
+        <div className="info">
+          <span className="info-title">Ghost Heat</span>
+          <span className="info-value">{this.state.ghost_heat_previous}</span>
+          <span className="info-value-divider">/</span>
+          <span className="info-value">{this.state.ghost_heat_total}</span>
+          <span className="info-label">Previous / Total</span>
+        </div>
+
       </current_heat>
 
     );

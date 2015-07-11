@@ -6,11 +6,13 @@ var Equipment = React.createClass({
   render: function(){
     return <equipments style={this.styles}>
       <h1>Equipments</h1>
-      <div>
-        Internal Heatsinks <input type="number" value="10"/>
+      <div className="equipment">
+        <label>Internal Heatsinks</label>
+        <input type="number" value="10"/>
       </div>
       <div>
-        External Heatsinks <input type="number" value="0"/>
+        <label>External Heatsinks</label>
+        <input type="number" value="0"/>
       </div>
     </equipments>
   }

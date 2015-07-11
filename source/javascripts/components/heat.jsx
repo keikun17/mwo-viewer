@@ -6,8 +6,6 @@ class CurrentHeat extends React.Component {
     this.state = {
       value: 42,
       capacity: 100,
-      time_to_zero: 10,
-      cool_rate: 4.2,
       ghost_heat_previous: 20,
       ghost_heat_total: 130
 
@@ -32,13 +30,6 @@ class CurrentHeat extends React.Component {
           <span className="info-label">Current / Capacity</span>
         </div>
 
-        <div className="info">
-          <span className="info-title">Cooldown</span>
-          <span className="info-value">{this.state.time_to_zero}s</span>
-          <span className="info-value-divider">/</span>
-          <span className="info-value">{this.state.cool_rate}</span>
-          <span className="info-label">Time / Rate</span>
-        </div>
 
         <div className="info">
           <span className="info-title">Ghost Heat</span>

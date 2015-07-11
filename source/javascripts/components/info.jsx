@@ -1,6 +1,7 @@
 var MapInfo = require('./map_info')
-var CurrentHeat = require('./heat/current');
+var Heat = require('./heat');
 var DamageMeter = require('./damage_meter')
+var Cooldown = require('./cooldown')
 
 var Info = React.createClass({
   styles: {
@@ -11,7 +12,8 @@ var Info = React.createClass({
   render: function(){
     return <info style={this.styles}>
       <h1>Info</h1>
-      <CurrentHeat/>
+      <Heat/>
+      <Cooldown/>
       <DamageMeter />
       <MapInfo />
     </info>

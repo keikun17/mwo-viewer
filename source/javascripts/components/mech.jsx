@@ -1,3 +1,4 @@
+var React = require('react');
 var Info = require('./info');
 var Equipment = require('./equipment');
 

@@ -1,3 +1,4 @@
+var React = require('react');
 class Cooldown extends React.Component {
   constructor(props) {
     super(props);

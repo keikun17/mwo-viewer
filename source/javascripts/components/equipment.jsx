@@ -1,3 +1,4 @@
+var React = require('react');
 var Heatsink = require('./heatsink')
 
 var Equipment = React.createClass({

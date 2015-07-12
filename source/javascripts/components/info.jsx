@@ -1,3 +1,4 @@
+var React = require('react');
 var MapInfo = require('./map_info')
 var Heat = require('./heat');
 var DamageMeter = require('./damage_meter')

@@ -56,16 +56,6 @@ set :images_dir, 'images'
 # Activate 'middleman-api' gem for serving json api
 activate :api
 
-# Activate ES6 support from 'middleman-es6' gem
-activate :es6
-
-# Activate middleman react from 'middleman-react' gem
-activate :react do |config|
-  config.harmony = true
-  # config.strip_types = true
-end
-
-
 # Active autoprefixer from 'middleman-autoprefixer' gem
 
 activate :autoprefixer do
@@ -100,6 +90,6 @@ after_configuration do
 
 
   # Spockets loading react-source from https://github.com/plasticine/middleman-react
-  sprockets.append_path File.dirname(::React::Source.bundled_path_for('react.js'))
+  # sprockets.append_path File.dirname(::React::Source.bundled_path_for('react.js'))
 
 end

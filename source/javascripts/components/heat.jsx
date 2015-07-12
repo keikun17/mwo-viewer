@@ -1,3 +1,5 @@
+var React = require('react');
+
 class CurrentHeat extends React.Component {
   constructor(props) {
     super(props);

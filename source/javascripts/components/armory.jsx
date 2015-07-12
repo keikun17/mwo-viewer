@@ -1,3 +1,4 @@
+var React = require('react');
 var Weapon = require('./weapon');
 
 var Armory = React.createClass({

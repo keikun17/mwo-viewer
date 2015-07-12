@@ -10,11 +10,6 @@ gem 'haml'
 gem "middleman-livereload", "~> 3.3.0"
 gem "middleman-gh-pages"
 
-# React
-gem "middleman-react", tag: '0.13.1' # gem tag is also react version tag
-# ES6 support
-gem "middleman-es6", github: "vast/middleman-es6"
-
 # Stylesheet gems
 gem 'middleman-autoprefixer'
 

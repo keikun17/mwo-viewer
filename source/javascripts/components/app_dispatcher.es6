@@ -1,7 +1,19 @@
 import React from 'react'
 import {Dispatcher} from 'flux';
 
-var equipmentDispatcher = new Dispatcher();
+var appDispatcher = new Dispatcher();
 
-module.exports = equipmentDispatcher
+class AppDispatcher extends Dispatcher {
 
+  handleAction(action) {
+    this.dispatch({
+      source: 'VIEW_ACTION',
+      action: action
+    });
+
+  }
+}
+
+let _AppDispatcher = new AppDispatcher();
+
+export default _AppDispatcher

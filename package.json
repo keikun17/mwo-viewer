@@ -11,6 +11,8 @@
     "webpack": "^1.10.0"
   },
   "devDependencies": {
+    "event-emitter": "^0.3.3",
+    "object-assign": "^3.0.0",
     "react": "^0.13.3",
     "react-dispatcher": "^0.2.1"
   }

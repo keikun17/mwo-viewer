@@ -4,6 +4,9 @@ var Armory = require('./armory');
 var weapons_list = require('./weapons_list');
 var equipmentDispatcher = require('./dispatchers/equipment_dispatcher')
 
+var EventEmitter = require('event-emitter')
+var assign = require('object-assign')
+
 class MechViewer extends React.Component {
 
   getStyle() {

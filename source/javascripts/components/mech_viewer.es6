@@ -1,11 +1,13 @@
 import React from 'react';
+import EventEmitter from 'event-emitter';
+
 import Mech from './mech';
 import Armory from './armory';
 import weapons_list from './weapons_list';
-import appDispatcher from './app_dispatcher'
+import appDispatcher from './app_dispatcher';
 
-
-var EventEmitter = require('event-emitter')
+// stores
+import HeatsinkStore from './stores/heatsink_store';
 
 class MechViewer extends React.Component {
 

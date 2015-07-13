@@ -12,7 +12,7 @@
   },
   "devDependencies": {
     "event-emitter": "^0.3.3",
-    "object-assign": "^3.0.0",
+    "flux": "^2.0.3",
     "react": "^0.13.3",
     "react-dispatcher": "^0.2.1"
   }

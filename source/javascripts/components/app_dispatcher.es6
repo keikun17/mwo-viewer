@@ -1,5 +1,5 @@
-var React = require('react');
-var Dispatcher = require('react-dispatcher')
+import React from 'react'
+import {Dispatcher} from 'flux';
 
 var equipmentDispatcher = new Dispatcher();
 

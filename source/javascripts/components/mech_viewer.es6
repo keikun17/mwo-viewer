@@ -1,11 +1,11 @@
-var React = require('react');
-var Mech = require('./mech');
-var Armory = require('./armory');
-var weapons_list = require('./weapons_list');
-var equipmentDispatcher = require('./dispatchers/equipment_dispatcher')
+import React from 'react';
+import Mech from './mech';
+import Armory from './armory';
+import weapons_list from './weapons_list';
+import appDispatcher from './app_dispatcher'
+
 
 var EventEmitter = require('event-emitter')
-var assign = require('object-assign')
 
 class MechViewer extends React.Component {
 

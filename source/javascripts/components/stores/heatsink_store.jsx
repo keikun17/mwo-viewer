@@ -10,7 +10,7 @@ let data = {
 }
 
 
-var CHANGE_EVENT = 'CHANGE'
+var CHANGE = 'HEATSINK_UPDATE_COUNT'
 
 /*
  * Update the Store's heatsink count
@@ -32,19 +32,19 @@ class HeatsinkStore extends EventEmitter {
   // move this to store base class
   emitChange() {
     console.log("Dito ko sa emitchange sa loob ng heatsink_store")
-    this.emit(CHANGE_EVENT);
+    this.emit(CHANGE);
   }
 
   // move this to store base class
   addChangeListener(callback) {
     console.log("heatsink_store.addChangelistener called para pag may changes sa store, mapopropagate sa react components itong callback na to :")
     console.log(callback)
-    this.emit(CHANGE_EVENT, callback);
+    this.on(CHANGE, callback);
   }
 
   // move this to store base class
   removeChangeListener(callback) {
-    this.emit(CHANGE_EVENT, callback);
+    this.removeListener(CHANGE, callback);
   }
 
 }
@@ -54,11 +54,12 @@ let _HeatsinkStore = new HeatsinkStore();
 export default _HeatsinkStore;
 
 // register the actions of this store
+console.log('registering the heatsink_store actions');
 AppDispatcher.register((payload) => {
   console.log("Received the message from an action from the view");
-  let action = payload.action;
+  let action_type = payload.action_type;
 
-  switch(action.type) {
+  switch(action_type) {
     case HeatsinkConstants.HEATSINK_UPDATE_COUNT:
       data.internal_heatsinks = payload.heatsink.internal_heatsinks;
       data.external_heatsinks = payload.heatsink.external_heatsinks;

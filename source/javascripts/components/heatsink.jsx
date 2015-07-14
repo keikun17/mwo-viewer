@@ -1,5 +1,7 @@
 var React = require('react');
-import HeatsinkStore from './stores/heatsink_store'
+import HeatsinkStore from './stores/heatsink_store';
+import HeatsinkAction from './actions/heatsink_actions';
+
 class Heatsink extends React.Component {
   constructor(props) {
     super(props)
@@ -38,10 +40,17 @@ class Heatsink extends React.Component {
   }
 
   _onChange(event) {
-    window.xevent = event
-    window.xthis = this
-    this.setState({ value: this.state.value })
-    console.log("ano gagawin")
+    window.xevent = event;
+    window.xthis = this;
+
+    HeatsinkAction.handleViewAction({
+      internal_heatsinks: this.state.internal_heatsinks, 
+      external_heatsinks: this.state.external_heatsinks
+    });
+
+    // this.setState({ value: this.state.value })
+
+    // console.log("ano gagawin")
   }
 }
 

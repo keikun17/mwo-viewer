@@ -20,7 +20,7 @@ class Heatsink extends React.Component {
           <div className="equipment">
             <label>Internal Heatsinks</label>
             <input type="number"
-              onChange={this._onChange}
+              onChange={this._onChange.bind(this)}
             />
           </div>
         </internal_heatsink>

@@ -1,7 +1,6 @@
 var React = require('react');
 import HeatsinkAction from './actions/heatsink_actions';
 import AppDispatcher from './app_dispatcher';
-import HeatsinkConstants from './constants/heatsink_constants';
 
 class Heatsink extends React.Component {
   constructor(props) {
@@ -40,8 +39,7 @@ class Heatsink extends React.Component {
     console.log("The current state is:")
     console.log(this.state)
 
-    HeatsinkAction.handleViewAction({
-      action_type: HeatsinkConstants.HEATSINK_UPDATE_COUNT,
+    HeatsinkAction.update_count({
       internal_heatsinks: this.state.internal_heatsinks,
       external_heatsinks: this.state.external_heatsinks
     });

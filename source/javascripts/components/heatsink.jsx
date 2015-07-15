@@ -13,7 +13,7 @@ class Heatsink extends React.Component {
   }
 
   componentDidMount() {
-    HeatsinkStore.addChangeListener(this._onChange)
+    HeatsinkStore.addChangeListener(this._onChange.bind(this))
   }
 
 

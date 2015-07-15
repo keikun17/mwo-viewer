@@ -1,7 +1,7 @@
 var React = require('react');
-import HeatsinkStore from './stores/heatsink_store';
 import HeatsinkAction from './actions/heatsink_actions';
 import AppDispatcher from './app_dispatcher';
+import HeatsinkConstants from './constants/heatsink_constants';
 
 class Heatsink extends React.Component {
   constructor(props) {
@@ -12,11 +12,6 @@ class Heatsink extends React.Component {
       external_heatsinks: this.props.external_heatsinks || 5
     }
   }
-
-  componentDidMount() {
-    HeatsinkStore.addChangeListener(this._onChange.bind(this))
-  }
-
 
   render() {
     return (

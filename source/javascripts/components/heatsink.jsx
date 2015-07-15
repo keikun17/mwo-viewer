@@ -1,6 +1,7 @@
 var React = require('react');
 import HeatsinkStore from './stores/heatsink_store';
 import HeatsinkAction from './actions/heatsink_actions';
+import AppDispatcher from './app_dispatcher';
 
 class Heatsink extends React.Component {
   constructor(props) {
@@ -43,8 +44,8 @@ class Heatsink extends React.Component {
     window.xevent = event;
     window.xthis = this;
 
-    HeatsinkAction.handleViewAction({
-      internal_heatsinks: this.state.internal_heatsinks, 
+    AppDispatcher.handleViewAction({
+      internal_heatsinks: this.state.internal_heatsinks,
       external_heatsinks: this.state.external_heatsinks
     });
 

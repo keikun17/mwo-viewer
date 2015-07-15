@@ -4,9 +4,9 @@ import AppDispatcher from '../app_dispatcher';
 import HeatsinkConstants from '../constants/heatsink_constants'
 
 
-let data = {
+var data = {
   internal_heatsinks: 8,
-  externa_heatsink: 4
+  external_heatsinks: 4
 }
 
 
@@ -32,6 +32,8 @@ class HeatsinkStore extends EventEmitter {
   // move this to store base class
   emitChange() {
     console.log("Dito ko sa emitchange sa loob ng heatsink_store")
+    console.log("Final Step : Here, we update the heatsink info cooldown an capacity with the updated data : ")
+    console.log(data)
     this.emit(CHANGE);
   }
 
@@ -54,23 +56,26 @@ let _HeatsinkStore = new HeatsinkStore();
 export default _HeatsinkStore;
 
 // register the actions of this store
-console.log('registering the heatsink_store actions');
+console.log("Step 0. : Registering the heatsink_store actions. Aabangan natin yung 'HEATSINK_UPDATE_COUNT' dispatch");
 AppDispatcher.register((payload) => {
-  console.log("Received the message from an action from the {view => dispatcher} with the payload:");
+  console.log("Step 3. [Dispatcher] Received a dispatch order from the {heatsink_component => heatsink_action} with the payload:");
   console.log(payload)
 
   var action_type = payload.action_type;
 
   switch(action_type) {
     case HeatsinkConstants.HEATSINK_UPDATE_COUNT:
-      console.log("GOOD! Update heatsink info!")
+      console.log("Step 4. [Dispatcher] Recognized that the dispatch order's 'HEATSINK_UPDATE_COUNT' action_type exists")
+      console.log("... Updating the data record")
       data.internal_heatsinks = payload.heatsink.internal_heatsinks;
       data.external_heatsinks = payload.heatsink.external_heatsinks;
+      console.log("... data is now :")
+      console.log(data);
       _HeatsinkStore.emitChange();
       break;
 
     default:
-      console.log("Falls through the dispatcher.. the action type is: " + action_type)
+      console.log("[Step 4. FAILED] Falls through the dispatcher.. the action type is: " + action_type)
       break;
   }
 })

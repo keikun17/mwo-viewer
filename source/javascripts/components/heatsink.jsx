@@ -39,6 +39,9 @@ class Heatsink extends React.Component {
     console.log("Step 1. I am in the heatsink component. Detected input field change")
     console.log("The current state is:")
     console.log(this.state)
+    this.setState({
+      internal_heatsinks: event.target.value
+    })
 
     HeatsinkAction.update_count({
       internal_heatsinks: this.state.internal_heatsinks,

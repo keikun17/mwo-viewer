@@ -11,7 +11,7 @@ var HeatsinkActions = {
    * @param {object} heatsink
    */
   handleViewAction: function(heatsink) {
-    console.log("i am in heatsink_actions. dispatching the 'UPDATE_COUNT' action type with the ff 'heatsink' payload : ")
+    console.log("Step 2. i am in heatsink_actions. dispatching the 'UPDATE_COUNT' action type with the ff 'heatsink' payload received from the view: ")
     console.log(heatsink);
     AppDispatcher.dispatch({
       action_type: HeatsinkConstants.HEATSINK_UPDATE_COUNT,

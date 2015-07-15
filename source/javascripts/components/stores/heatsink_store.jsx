@@ -56,17 +56,21 @@ export default _HeatsinkStore;
 // register the actions of this store
 console.log('registering the heatsink_store actions');
 AppDispatcher.register((payload) => {
-  console.log("Received the message from an action from the view");
-  let action_type = payload.action_type;
+  console.log("Received the message from an action from the {view => dispatcher} with the payload:");
+  console.log(payload)
+
+  var action_type = payload.action_type;
 
   switch(action_type) {
     case HeatsinkConstants.HEATSINK_UPDATE_COUNT:
+      console.log("GOOD! Update heatsink info!")
       data.internal_heatsinks = payload.heatsink.internal_heatsinks;
       data.external_heatsinks = payload.heatsink.external_heatsinks;
       _HeatsinkStore.emitChange();
       break;
 
     default:
+      console.log("Falls through the dispatcher.. the action type is: " + action_type)
       break;
   }
 })

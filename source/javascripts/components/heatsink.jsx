@@ -32,21 +32,19 @@ class Heatsink extends React.Component {
         </external_heatsink>
       </heatsink>
     )
-
   }
 
   _onChange(event) {
-    window.xevent = event;
-    window.xthis = this;
+    console.log("--- START ----")
+    console.log("Step 1. I am in the heatsink component. Detected input field change")
+    console.log("The current state is:")
+    console.log(this.state)
 
-    AppDispatcher.handleViewAction({
+    HeatsinkAction.handleViewAction({
+      action_type: HeatsinkConstants.HEATSINK_UPDATE_COUNT,
       internal_heatsinks: this.state.internal_heatsinks,
       external_heatsinks: this.state.external_heatsinks
     });
-
-    // this.setState({ value: this.state.value })
-
-    // console.log("ano gagawin")
   }
 }
 

@@ -6,9 +6,6 @@ import Armory from './armory';
 import weapons_list from './weapons_list';
 import appDispatcher from './app_dispatcher';
 
-// stores
-import HeatsinkStore from './stores/heatsink_store';
-
 class MechViewer extends React.Component {
 
   getStyle() {

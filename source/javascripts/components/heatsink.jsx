@@ -13,6 +13,10 @@ class Heatsink extends React.Component {
     }
   }
 
+  componentDidMount() {
+    this.updateStore()
+  }
+
   render() {
     return (
       <heatsink>
@@ -39,15 +43,22 @@ class Heatsink extends React.Component {
     console.log("Step 1. I am in the heatsink component. Detected input field change")
     console.log("The current state is:")
     console.log(this.state)
+
     this.setState({
       internal_heatsinks: event.target.value
     })
 
+    this.updateStore()
+
+  }
+
+  updateStore() {
     HeatsinkAction.update_count({
       internal_heatsinks: this.state.internal_heatsinks,
       external_heatsinks: this.state.external_heatsinks
     });
   }
+
 }
 
 Heatsink.propTypes = {

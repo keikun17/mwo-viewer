@@ -25,7 +25,7 @@ function update(updates) {
 class HeatsinkStore extends EventEmitter {
 
   // move this to store base class
-  getState() {
+  getHeatsinkCount() {
     return data
   }
 
@@ -67,11 +67,11 @@ AppDispatcher.register((payload) => {
     case HeatsinkConstants.HEATSINK_UPDATE_COUNT:
       console.log("Step 4. [Dispatcher] Recognized that the dispatch order's 'HEATSINK_UPDATE_COUNT' action_type exists")
       console.log("... Updating the data record")
-      data.internal_heatsinks = payload.heatsink.internal_heatsinks;
-      data.external_heatsinks = payload.heatsink.external_heatsinks;
+      data.internal_heatsinks = parseInt(payload.heatsink.internal_heatsinks)
+      data.external_heatsinks = parseInt(payload.heatsink.external_heatsinks)
       console.log("... data is now :")
-      console.log(data);
-      _HeatsinkStore.emitChange();
+      console.log(data)
+      _HeatsinkStore.emitChange()
       break;
 
     default:

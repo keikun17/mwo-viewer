@@ -24,6 +24,7 @@ class Heatsink extends React.Component {
           <div className="equipment">
             <label>Internal Heatsinks</label>
             <input type="number"
+              value={this.state.internal_heatsinks}
               onChange={this._onChange.bind(this)}
             />
           </div>

@@ -7,15 +7,19 @@ class Heatsink extends React.Component {
   constructor(props) {
     super(props)
 
-    this.store = HeatsinkStore.getHeatsinkCount()
+    this.store_data = HeatsinkStore.getHeatsinkCount()
     this.state = {
-      internal_heatsinks: this.store.internal_heatsinks,
-      external_heatsinks: this.store.external_heatsinks
+      internal_heatsinks: this.store_data.internal_heatsinks,
+      external_heatsinks: this.store_data.external_heatsinks
     }
   }
 
   componentDidMount() {
-    this.updateStore()
+    HeatsinkStore.addChangeListener(this.onStoreChange.bind(this))
+  }
+
+  onStoreChange(){
+    this.setState(HeatsinkStore.getHeatsinkCount())
   }
 
   render() {
@@ -27,7 +31,7 @@ class Heatsink extends React.Component {
             <input type="number"
               ref="internal_heatsinks"
               value={this.state.internal_heatsinks}
-              onChange={this._onChange.bind(this)}
+              onChange={this._onInternalChange.bind(this)}
             />
           </div>
         </internal_heatsink>
@@ -38,7 +42,7 @@ class Heatsink extends React.Component {
             <input type="number"
               ref="external_heatsinks"
               value={this.state.external_heatsinks}
-              onChange={this._onChange.bind(this)}
+              onChange={this._onExternalChange.bind(this)}
             />
           </div>
         </external_heatsink>
@@ -46,23 +50,31 @@ class Heatsink extends React.Component {
     )
   }
 
-  _onChange(event) {
+  _onInternalChange(event) {
     console.log("--- START ----")
     console.log("Step 1. I am in the heatsink component. Detected input field change")
-    this.setState({
-      internal_heatsinks: React.findDOMNode(this.refs.internal_heatsinks).value,
-      external_heatsinks: React.findDOMNode(this.refs.external_heatsinks).value
-    })
+    console.log("value is")
+    console.log(event.target.value)
 
-    this.updateStore()
+    this.store_update_heatsink_count('internal_heatsinks', event.target.value)
 
   }
 
-  updateStore() {
-    HeatsinkAction.update_count({
-      internal_heatsinks: this.state.internal_heatsinks,
-      external_heatsinks: this.state.external_heatsinks
-    });
+  _onExternalChange(event) {
+    console.log("--- START ----")
+    console.log("Step 1. I am in the heatsink component. Detected input field change")
+    console.log("value is")
+    console.log(event.target.value)
+
+    this.store_update_heatsink_count('external_heatsinks', event.target.value)
+
+  }
+
+  store_update_heatsink_count(heatsink_location, amount) {
+    var payload = {}
+    payload.heatsink_location = heatsink_location
+    payload.amount = amount
+    HeatsinkAction.update_heatsink_count(payload);
   }
 
 }

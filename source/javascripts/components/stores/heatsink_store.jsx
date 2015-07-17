@@ -67,8 +67,8 @@ AppDispatcher.register((payload) => {
     case HeatsinkConstants.HEATSINK_UPDATE_COUNT:
       console.log("Step 4. [Dispatcher] Recognized that the dispatch order's 'HEATSINK_UPDATE_COUNT' action_type exists")
       console.log("... Updating the data record")
-      data.internal_heatsinks = parseInt(payload.heatsink.internal_heatsinks)
-      data.external_heatsinks = parseInt(payload.heatsink.external_heatsinks)
+
+      data[payload.heatsink.heatsink_location] = parseInt(payload.heatsink.amount)
       console.log("... data is now :")
       console.log(data)
       _HeatsinkStore.emitChange()

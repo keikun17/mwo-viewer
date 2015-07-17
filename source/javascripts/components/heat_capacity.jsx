@@ -17,7 +17,7 @@ class CurrentHeat extends React.Component {
   }
 
   componentDidMount() {
-    this.store = HeatsinkStore
+    this.store = HeatsinkStore.getHeatsinkCount()
     this.store.addChangeListener(this.onStoreChange.bind(this))
     console.log("heatsinks are")
     console.log(this.store.heatsinks)
@@ -41,8 +41,15 @@ class CurrentHeat extends React.Component {
 
     var base_capacity = 30
     console.log(base_capacity)
-    console.log(this.store.getHeatsinkCount())
-    var capacity = base_capacity + (this.store.getHeatsinkCount().internal_heatsinks * 1)
+    heatsink_capacity_modifier = 1
+
+    console.log(this.store.internal_heatsinks * heatsink_capacity_modifier)
+    console.log(this.store.external_heatsinks * heatsink_capacity_modifier)
+
+    var internal_capacity = this.store.internal_heatsinks * heatsink_capacity_modifier
+    var external_capacity = this.store.external_heatsinks * heatsink_capacity_modifier
+
+    var capacity = base_capacity + internal_capacity + external_capacity
 
     this.setState({
       value: 66,

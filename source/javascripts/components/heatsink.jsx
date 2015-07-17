@@ -25,6 +25,7 @@ class Heatsink extends React.Component {
           <div className="equipment">
             <label>Internal Heatsinks</label>
             <input type="number"
+              ref="internal_heatsinks"
               value={this.state.internal_heatsinks}
               onChange={this._onChange.bind(this)}
             />
@@ -34,6 +35,11 @@ class Heatsink extends React.Component {
         <external_heatsink>
           <div className="equipment">
             <label>External Heatsinks</label>
+            <input type="number"
+              ref="external_heatsinks"
+              value={this.state.external_heatsinks}
+              onChange={this._onChange.bind(this)}
+            />
           </div>
         </external_heatsink>
       </heatsink>
@@ -43,11 +49,9 @@ class Heatsink extends React.Component {
   _onChange(event) {
     console.log("--- START ----")
     console.log("Step 1. I am in the heatsink component. Detected input field change")
-    console.log("The current state is:")
-    console.log(this.state)
-
     this.setState({
-      internal_heatsinks: event.target.value
+      internal_heatsinks: React.findDOMNode(this.refs.internal_heatsinks).value,
+      external_heatsinks: React.findDOMNode(this.refs.external_heatsinks).value
     })
 
     this.updateStore()

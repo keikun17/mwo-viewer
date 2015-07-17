@@ -5,7 +5,7 @@ import HeatsinkConstants from '../constants/heatsink_constants'
 
 
 var data = {
-  internal_heatsinks: 8,
+  internal_heatsinks: 10,
   external_heatsinks: 4
 }
 

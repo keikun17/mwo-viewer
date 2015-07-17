@@ -7,9 +7,10 @@ class Heatsink extends React.Component {
   constructor(props) {
     super(props)
 
+    this.store = HeatsinkStore.getHeatsinkCount()
     this.state = {
-      internal_heatsinks: this.props.internal_heatsinks || 8,
-      external_heatsinks: this.props.external_heatsinks || 5
+      internal_heatsinks: this.store.internal_heatsinks,
+      external_heatsinks: this.store.external_heatsinks
     }
   }
 

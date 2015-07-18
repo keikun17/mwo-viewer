@@ -12,7 +12,6 @@ class CurrentHeat extends React.Component {
       capacity: 100,
       ghost_heat_previous: 20,
       ghost_heat_total: 130
-
     };
   }
 
@@ -24,8 +23,6 @@ class CurrentHeat extends React.Component {
   }
 
   onStoreChange() {
-
-
     // All mechs require a minimum 10 heat sinks to function
     // Engines come with 1 HS built in for every 25 rating up to the 250 engines
     // Standard or XL engine has no impact on this

@@ -102,8 +102,8 @@ class Heatsink extends React.Component {
 
 }
 
-Heatsink.propTypes = {
-  internal_heatsinks: React.PropTypes.integer
-}
+// Heatsink.propTypes = {
+//   internal_heatsinks: React.PropTypes.integer
+// }
 
 export default Heatsink

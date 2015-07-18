@@ -41,13 +41,17 @@ class CurrentHeat extends React.Component {
 
     var base_capacity = 30
     console.log(base_capacity)
-    var heatsink_capacity_modifier = 1
 
-    console.log(this.store_data.internal_heatsinks * heatsink_capacity_modifier)
-    console.log(this.store_data.external_heatsinks * heatsink_capacity_modifier)
+    if(this.store_data.double_heatsinks) {
+      var internal_heatsink_capacity_modifier = 2
+      var external_heastink_capacity_modifier = 1.4
+    } else {
+      var internal_heatsink_capacity_modifier = 1
+      var external_heatsink_capacity_modifier = 1
+    }
 
-    var internal_capacity = this.store_data.internal_heatsinks * heatsink_capacity_modifier
-    var external_capacity = this.store_data.external_heatsinks * heatsink_capacity_modifier
+    var internal_capacity = this.store_data.internal_heatsinks * internal_heatsink_capacity_modifier
+    var external_capacity = this.store_data.external_heatsinks * external_heatsink_capacity_modifier
 
     var capacity = base_capacity + internal_capacity + external_capacity
 

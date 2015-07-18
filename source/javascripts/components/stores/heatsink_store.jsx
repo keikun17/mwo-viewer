@@ -76,7 +76,7 @@ AppDispatcher.register((payload) => {
       break;
 
     case HeatsinkConstants.HEATSINK_TOGGLE_TYPE:
-      data.heatsink_type = !data.heatsink_type
+      data.double_heatsinks = !data.double_heatsinks
       _HeatsinkStore.emitChange()
       break
 

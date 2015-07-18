@@ -7,24 +7,39 @@ class Heatsink extends React.Component {
   constructor(props) {
     super(props)
 
-    this.store_data = HeatsinkStore.getHeatsinkCount()
+    this.store_data = HeatsinkStore.get_new_data()
     this.state = {
       internal_heatsinks: this.store_data.internal_heatsinks,
-      external_heatsinks: this.store_data.external_heatsinks
+      external_heatsinks: this.store_data.external_heatsinks,
+      double_heatsinks: this.store_data.heatsink_type
     }
   }
 
   componentDidMount() {
     HeatsinkStore.addChangeListener(this.onStoreChange.bind(this))
+    HeatsinkStore.addChangeListener(this.onStoreChange.bind(this))
   }
 
   onStoreChange(){
-    this.setState(HeatsinkStore.getHeatsinkCount())
+    this.setState(HeatsinkStore.get_new_data())
   }
+
+
 
   render() {
     return (
       <heatsink>
+        <internal_heatsink>
+          <div className="equipment">
+            <label>Double Heatsinks</label>
+            <input type="checkbox"
+              ref="double_heatsinks"
+              value={this.state.double_heatsinks}
+              onChange={this._onHeatsinkTypeChange.bind(this)}
+            />
+          </div>
+        </internal_heatsink>
+
         <internal_heatsink>
           <div className="equipment">
             <label>Internal Heatsinks</label>
@@ -50,6 +65,10 @@ class Heatsink extends React.Component {
     )
   }
 
+  _onHeatsinkTypeChange(event) {
+    this.store_toggle_heatsink_type()
+  }
+
   _onInternalChange(event) {
     console.log("--- START ----")
     console.log("Step 1. I am in the heatsink component. Detected input field change")
@@ -68,6 +87,10 @@ class Heatsink extends React.Component {
 
     this.store_update_heatsink_count('external_heatsinks', event.target.value)
 
+  }
+
+  store_toggle_heatsink_type() {
+    HeatsinkAction.toggle_heatsink_type();
   }
 
   store_update_heatsink_count(heatsink_location, amount) {

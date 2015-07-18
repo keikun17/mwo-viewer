@@ -18,8 +18,16 @@ var HeatsinkActions = {
       action_type: HeatsinkConstants.HEATSINK_UPDATE_COUNT,
       heatsink: heatsink
     })
+  },
+
+  toggle_heatsink_type: function() {
+    AppDispatcher.dispatch({
+      action_type: HeatsinkConstants.HEATSINK_TOGGLE_TYPE
+    })
   }
 
 }
+
+
 
 export default HeatsinkActions

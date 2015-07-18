@@ -6,7 +6,8 @@ import HeatsinkConstants from '../constants/heatsink_constants'
 
 var data = {
   internal_heatsinks: 10,
-  external_heatsinks: 4
+  external_heatsinks: 4,
+  double_heatsinks: false
 }
 
 
@@ -25,7 +26,7 @@ function update(updates) {
 class HeatsinkStore extends EventEmitter {
 
   // move this to store base class
-  getHeatsinkCount() {
+  get_new_data() {
     return data
   }
 
@@ -73,6 +74,11 @@ AppDispatcher.register((payload) => {
       console.log(data)
       _HeatsinkStore.emitChange()
       break;
+
+    case HeatsinkConstants.HEATSINK_TOGGLE_TYPE:
+      data.heatsink_type = !data.heatsink_type
+      _HeatsinkStore.emitChange()
+      break
 
     default:
       console.log("[Step 4. FAILED] Falls through the dispatcher.. the action type is: " + action_type)

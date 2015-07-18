@@ -17,7 +17,7 @@ class CurrentHeat extends React.Component {
   }
 
   componentDidMount() {
-    this.store_data = HeatsinkStore.getHeatsinkCount()
+    this.store_data = HeatsinkStore.get_new_data()
     HeatsinkStore.addChangeListener(this.onStoreChange.bind(this))
     console.log("heatsinks are")
     console.log(this.store_data.heatsinks)

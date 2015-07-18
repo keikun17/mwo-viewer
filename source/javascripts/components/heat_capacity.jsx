@@ -40,20 +40,22 @@ class CurrentHeat extends React.Component {
     // Any [DHS] manually added to the engine count as Visible
 
     var base_capacity = 30
-    console.log(base_capacity)
+    var internal_heatsink_capacity_modifier = 0
+    var external_heatsink_capacity_modifier = 0
 
     if(this.store_data.double_heatsinks) {
-      var internal_heatsink_capacity_modifier = 2
-      var external_heastink_capacity_modifier = 1.4
+      internal_heatsink_capacity_modifier = 2
+      external_heatsink_capacity_modifier = 1.4
     } else {
-      var internal_heatsink_capacity_modifier = 1
-      var external_heatsink_capacity_modifier = 1
+      internal_heatsink_capacity_modifier = 1
+      external_heatsink_capacity_modifier = 1
     }
 
     var internal_capacity = this.store_data.internal_heatsinks * internal_heatsink_capacity_modifier
     var external_capacity = this.store_data.external_heatsinks * external_heatsink_capacity_modifier
 
     var capacity = base_capacity + internal_capacity + external_capacity
+    console.log("CAPACITY IS #{capacity}")
 
     this.setState({
       value: 66,

@@ -2,6 +2,7 @@ import AppDispatcher from '../app_dispatcher.es6';
 import HeatsinkConstants from '../constants/heatsink_constants.es6';
 import Heatsink from '../heatsink'
 import HeatsinkStore from '../stores/heatsink_store'
+import CooldownAction from '../actions/cooldown_actions.jsx'
 
 var HeatsinkActions = {
   /**
@@ -14,7 +15,7 @@ var HeatsinkActions = {
 
     var new_data = {}
 
-    new_data[heatsink['heatsink_location']] = heatsink['amount']
+    new_data[heatsink['heatsink_location']] = parseInt(heatsink['amount'])
     console.log("NEW DATA IS ")
     console.log(new_data)
 
@@ -22,6 +23,10 @@ var HeatsinkActions = {
       action_type: HeatsinkConstants.HEATSINK_UPDATE_COUNT,
       new_data: new_data
     })
+
+
+    CooldownAction.update_store()
+
   },
 
   toggle_heatsink_type: function() {

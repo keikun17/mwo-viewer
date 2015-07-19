@@ -69,8 +69,8 @@ AppDispatcher.register((payload) => {
       console.log("... Updating the data record")
 
       // data[payload.new_data.heatsink_location] = parseInt(payload.new_data.amount)
-      console.log("... data is now :")
-      console.log(data)
+      console.log("... replacing old data with new data :")
+      console.log(payload.new_data)
 
       update(payload.new_data)
       _HeatsinkStore.emitChange()

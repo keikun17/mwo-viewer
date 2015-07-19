@@ -69,8 +69,6 @@ class Heatsink extends React.Component {
   _onInternalChange(event) {
     console.log("--- START ----")
     console.log("Step 1. I am in the heatsink component. Detected input field change")
-    console.log("value is")
-    console.log(event.target.value)
 
     this.store_update_heatsink_count('internal_heatsinks', event.target.value)
 
@@ -79,8 +77,6 @@ class Heatsink extends React.Component {
   _onExternalChange(event) {
     console.log("--- START ----")
     console.log("Step 1. I am in the heatsink component. Detected input field change")
-    console.log("value is")
-    console.log(event.target.value)
 
     this.store_update_heatsink_count('external_heatsinks', event.target.value)
 

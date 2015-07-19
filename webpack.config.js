@@ -14,7 +14,7 @@ module.exports = {
       {
         test: /\.(jsx|js|es6)$/,
         exclude: /(node_modules|bower_components)/,
-        loader: "babel", query: {optional: [], stage: 0} // optional: ['runtime']
+        loader: "babel", query: {optional: ['runtime'], stage: 0} // optional: ['runtime']
       },
 
       // Coffeescript

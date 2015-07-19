@@ -17,14 +17,11 @@ class Heatsink extends React.Component {
 
   componentDidMount() {
     HeatsinkStore.addChangeListener(this.onStoreChange.bind(this))
-    HeatsinkStore.addChangeListener(this.onStoreChange.bind(this))
   }
 
   onStoreChange(){
     this.setState(HeatsinkStore.get_new_data())
   }
-
-
 
   render() {
     return (
@@ -94,10 +91,10 @@ class Heatsink extends React.Component {
   }
 
   store_update_heatsink_count(heatsink_location, amount) {
-    var payload = {}
-    payload.heatsink_location = heatsink_location
-    payload.amount = amount
-    HeatsinkAction.update_heatsink_count(payload);
+    var new_data = {}
+    new_data.heatsink_location = heatsink_location
+    new_data.amount = amount
+    HeatsinkAction.update_heatsink_count(new_data);
   }
 
 }

@@ -16,10 +16,9 @@ var CHANGE = 'HEATSINK_UPDATE_COUNT'
 /*
  * Update the Store's heatsink count
  */
-function update(updates) {
+function update(new_data) {
   console.log("nag uupdate si store")
-  data.internal_heatsinks = updates.internal_heatsinks;
-  data.external_heatsinks = updates.external_heatsinks;
+  data = Object.assign(data, new_data)
 }
 
 
@@ -69,9 +68,11 @@ AppDispatcher.register((payload) => {
       console.log("Step 4. [Dispatcher] Recognized that the dispatch order's 'HEATSINK_UPDATE_COUNT' action_type exists")
       console.log("... Updating the data record")
 
-      data[payload.heatsink.heatsink_location] = parseInt(payload.heatsink.amount)
+      // data[payload.new_data.heatsink_location] = parseInt(payload.new_data.amount)
       console.log("... data is now :")
       console.log(data)
+
+      update(payload.new_data)
       _HeatsinkStore.emitChange()
       break;
 

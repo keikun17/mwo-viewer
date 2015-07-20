@@ -1,5 +1,8 @@
 import AppDispatcher from '../app_dispatcher.es6';
 import WeaponConstants from '../constants/weapon_constants'
+import WeaponStore from '../stores/weapon_store'
+
+
 var WeaponActions = {
 
   /**

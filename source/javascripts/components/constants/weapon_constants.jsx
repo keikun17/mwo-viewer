@@ -1,0 +1,3 @@
+export default {
+  WEAPON_CONSTANTS: 'WEAPON_CONSTANTS'
+}

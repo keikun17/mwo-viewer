@@ -11,6 +11,7 @@ var Equipment = React.createClass({
     return <equipments style={this.styles}>
       <h1>Equipments</h1>
       <Heatsink/>
+      <div id="equipped_weapons" />
     </equipments>
   }
 })

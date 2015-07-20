@@ -15,6 +15,7 @@ class Cooldown extends React.Component {
 
   componentDidMount() {
     CooldownStore.addChangeListener(this.onStoreChange.bind(this))
+    CooldownActions.update_store()
   }
 
   onStoreChange() {

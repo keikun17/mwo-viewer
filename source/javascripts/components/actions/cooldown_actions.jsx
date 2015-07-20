@@ -23,7 +23,7 @@ var CooldownActions = {
     var internal_cooldown = (internal_heatsink_cooldown_modifier * heatsink_store_data.internal_heatsinks)
     var external_cooldown = (external_heatsink_cooldown_modifier * heatsink_store_data.external_heatsinks)
 
-    var time_to_zero = "WIP"
+    var time_to_zero = "WP"
     var cool_rate = internal_cooldown + external_cooldown
 
     AppDispatcher.dispatch({

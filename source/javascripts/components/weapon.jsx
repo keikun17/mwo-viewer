@@ -25,7 +25,7 @@ var Weapon = React.createClass({
 
   _onClick: function(){
     WeaponActions.equip(this)
-  }
+  },
 
 });
 

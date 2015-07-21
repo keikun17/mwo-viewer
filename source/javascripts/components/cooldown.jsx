@@ -10,7 +10,7 @@ class Cooldown extends React.Component {
     // override the state unique to the class here
     //
     this.store_data = CooldownStore.get_new_data()
-    this.state = CooldownStore.get_new_data()
+    this.state = this.store_data
   }
 
   componentDidMount() {

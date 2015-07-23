@@ -30,7 +30,8 @@ class Equipment extends React.Component {
 
     var equipped_weapons = this.state.equipped_weapons.map(function(weapon ,index ,equipped_weapons){
       let _weapon = weapon.props.weapon
-      return <EquippedWeapon name={_weapon.name} id={_weapon.id} />
+
+      return <EquippedWeapon key={_weapon.id} name={_weapon.name} weapon_id={_weapon.weapon_id} />
     })
 
     return <equipments style={this.getStyle()}>

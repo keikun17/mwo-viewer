@@ -8,5 +8,5 @@ remove_weapon_button
   user-select: none
 
   &::before
-    font-family: ionicons
+    font-family: Ionicons
     content: "\f37f"

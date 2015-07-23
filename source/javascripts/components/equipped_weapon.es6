@@ -1,4 +1,5 @@
-var React = require('react');
+import React from 'react'
+import WeaponTrigger from './weapon_trigger'
 
 class EquippedWeapon extends React.Component {
 
@@ -9,8 +10,8 @@ class EquippedWeapon extends React.Component {
 
   render() {
     return <equipped_weapon key={this.props.id} style={this.styles}>
-      <fire_button className="ion-arrow-shrink" />
-      <remove_weapon_button className="ion-android-delete"/>
+      <WeaponTrigger/>
+      <remove_weapon_button/>
       <span>
       {this.props.name}
       </span>

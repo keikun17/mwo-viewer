@@ -1,5 +1,6 @@
 import React from 'react'
 import WeaponTrigger from './weapon_trigger'
+import WeaponActions from './actions/weapon_actions'
 
 class EquippedWeapon extends React.Component {
 

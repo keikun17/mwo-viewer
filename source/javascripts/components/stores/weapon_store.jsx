@@ -5,6 +5,7 @@ import WeaponConstants from '../constants/weapon_constants'
 var CHANGE = 'WEAPON_UPDATED'
 
 var data = {
+  last_id: 0,
   equipped_weapons: []
 }
 
@@ -46,7 +47,8 @@ AppDispatcher.register((payload) => {
   switch(action_type) {
     case WeaponConstants.WEAPON_EQUIP:
 
-      data.equipped_weapons.push(payload.weapon)
+      equip(payload.weapon_props)
+      // data.equipped_weapons.push(payload.weapon)
 
       _WeaponStore.emit(CHANGE)
 

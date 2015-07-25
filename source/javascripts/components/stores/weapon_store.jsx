@@ -24,9 +24,6 @@ var equip = function(weapon_props) {
  * @param {string} id
  */
 var destroy = function(index) {
-  console.log('removing from index')
-  console.log(index)
-  console.log(data.equipped_weapons)
   data.equipped_weapons.splice(index, 1)
 }
 

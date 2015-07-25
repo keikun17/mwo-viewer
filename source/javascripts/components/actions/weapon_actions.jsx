@@ -11,7 +11,14 @@ var WeaponActions = {
   equip: function(weapon){
     AppDispatcher.dispatch({
       action_type: WeaponConstants.WEAPON_EQUIP,
-      weapon: weapon
+      weapon_props: weapon.props.weapon
+    })
+  },
+
+  unequip: function(index) {
+    AppDispatcher.dispatch({
+      action_type: WeaponConstants.WEAPON_UNEQUIP,
+      index: index
     })
   }
 

@@ -10,15 +10,24 @@ class EquippedWeapon extends React.Component {
 
 
   render() {
-    return <equipped_weapon key={this.props.id} style={this.styles}>
+    console.log("creating equipment with the ff props")
+    console.log(this.props)
+    return <equipped_weapon id={this.props.id} key={this.props.key} style={this.styles}>
       <WeaponTrigger/>
-      <remove_weapon_button/>
+      <remove_weapon_button onClick={this._remove.bind(this)}/>
       <span>
       {this.props.name}
       </span>
       <cooldown_timer>3.2s</cooldown_timer>
     </equipped_weapon>
   }
+
+
+  _remove() {
+    var index = this.props.id
+    WeaponActions.unequip(index)
+  }
+
 
 }
 

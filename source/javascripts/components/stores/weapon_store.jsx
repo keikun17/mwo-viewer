@@ -9,10 +9,32 @@ var data = {
   equipped_weapons: []
 }
 
+/**
+ * Equip a weapon
+ * @param {string} id
+ */
+var equip = function(weapon_props) {
+  var equipped_weapon = Object.assign({},weapon_props)
+  window.hh = equipped_weapon
+  data.equipped_weapons.push(equipped_weapon)
+}
+
+/**
+ * Delete a weapon
+ * @param {string} id
+ */
+var destroy = function(index) {
+  console.log('removing from index')
+  console.log(index)
+  console.log(data.equipped_weapons)
+  data.equipped_weapons.splice(index, 1)
+}
+
 class WeaponStore extends EventEmitter {
 
   // move this to store base class
   get_new_data() {
+    window.x = data
     return data
   }
 
@@ -53,7 +75,13 @@ AppDispatcher.register((payload) => {
       _WeaponStore.emit(CHANGE)
 
       console.log("equipping weapon : ")
-      console.log(payload.weapon)
+      console.log(payload.weapon_props)
+      break
+    case WeaponConstants.WEAPON_UNEQUIP:
+      console.log("removing")
+      destroy(payload.index)
+      console.log("past remove")
+      _WeaponStore.emit(CHANGE)
       break
   }
 })

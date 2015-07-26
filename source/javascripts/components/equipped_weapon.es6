@@ -10,7 +10,11 @@ class EquippedWeapon extends React.Component {
   }
 
   componentWillMount() {
-    console.log("will remount")
+    console.log("mounting weapon")
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.cooldown_timer)
   }
 
   componentDidMount() {

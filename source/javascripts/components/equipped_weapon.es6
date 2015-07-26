@@ -34,6 +34,7 @@ class EquippedWeapon extends React.Component {
   }
 
   disable_weapon() {
+    clearInterval(this.cooldown_timer)
     this.setState( { cooldownTimeRemaining: 4.2 } )
     this.cooldown_timer = setInterval(this.cooldown_tick.bind(this), 100);
   }

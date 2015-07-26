@@ -14,7 +14,7 @@ var data = {
  * @param {string} id
  */
 var equip = function(weapon_props) {
-  var equipped_weapon = Object.assign({},weapon_props)
+  var equipped_weapon = Object.assign({}, weapon_props)
   window.hh = equipped_weapon
   data.equipped_weapons.push(equipped_weapon)
 }

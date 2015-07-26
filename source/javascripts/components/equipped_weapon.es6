@@ -30,12 +30,11 @@ class EquippedWeapon extends React.Component {
 
   _remove() {
     var index = this.props.id
-    WeaponActions.unequip(index)
   }
 
   disable_weapon() {
     clearInterval(this.cooldown_timer)
-    this.setState( { cooldownTimeRemaining: 4.2 } )
+    this.setState( { cooldownTimeRemaining: this.props.cooldown_time } )
     this.cooldown_timer = setInterval(this.cooldown_tick.bind(this), 100);
   }
 

@@ -65,19 +65,11 @@ AppDispatcher.register((payload) => {
   var action_type = payload.action_type;
   switch(action_type) {
     case WeaponConstants.WEAPON_EQUIP:
-
       equip(payload.weapon_props)
-      // data.equipped_weapons.push(payload.weapon)
-
       _WeaponStore.emit(CHANGE)
-
-      console.log("equipping weapon : ")
-      console.log(payload.weapon_props)
       break
     case WeaponConstants.WEAPON_UNEQUIP:
-      console.log("removing")
       destroy(payload.index)
-      console.log("past remove")
       _WeaponStore.emit(CHANGE)
       break
   }

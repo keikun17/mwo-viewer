@@ -6,10 +6,10 @@ class WeaponTrigger extends  React.Component {
     super(props)
   }
 
-
   render(){
-    return <weapon_trigger/>
+    return <weapon_trigger onClick={ this.props.on_click }/>
   }
+
 }
 
 export default WeaponTrigger

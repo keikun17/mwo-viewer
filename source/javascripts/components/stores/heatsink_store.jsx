@@ -58,7 +58,7 @@ export default _HeatsinkStore;
 // register the actions of this store
 console.log("Step 0. : Registering the heatsink_store actions. Aabangan natin yung 'HEATSINK_UPDATE_COUNT' dispatch");
 AppDispatcher.register((payload) => {
-  console.log("Step 3. [Dispatcher] Received a dispatch order from the {heatsink_component => heatsink_action} with the payload:");
+  console.log("Step 3. [Dispatcher] Received a dispatch order from the somewhere with the payload:");
   console.log(payload)
 
   var action_type = payload.action_type;

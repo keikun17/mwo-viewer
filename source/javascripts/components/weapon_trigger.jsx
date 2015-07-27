@@ -7,7 +7,8 @@ class WeaponTrigger extends  React.Component {
   }
 
   render(){
-    return <weapon_trigger onClick={ this.props.on_click }/>
+    var className = this.props.is_disabled ? "disabled" : ""
+    return <weapon_trigger className={className} onClick={ this.props.on_click }/>
   }
 
 }

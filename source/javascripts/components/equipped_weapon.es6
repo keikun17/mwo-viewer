@@ -6,7 +6,7 @@ class EquippedWeapon extends React.Component {
 
   constructor(props) {
     super(props)
-    this.state = { cooldownTimeRemaining: 0 }
+    this.state = { cooldownTimeRemaining: 0, is_disabled: false }
   }
 
   componentWillMount() {
@@ -22,13 +22,15 @@ class EquippedWeapon extends React.Component {
   }
 
   render() {
-    return <equipped_weapon id={this.props.id} key={this.props.key} style={this.styles}>
-      <WeaponTrigger on_click={ this.disable_weapon.bind(this) } />
+    var className = this.state.is_disabled ? "disabled" : ""
+
+    return <equipped_weapon className={className} id={this.props.id} key={this.props.key} style={this.styles}>
+      <cooldown_timer>{ this.state.cooldownTimeRemaining }s</cooldown_timer>
+      <WeaponTrigger is_disabled={this.state.is_disabled} on_click={ this.disable_weapon.bind(this) } />
       <remove_weapon_button onClick={this._remove.bind(this)}/>
       <span>
       {this.props.name}
       </span>
-      <cooldown_timer>{ this.state.cooldownTimeRemaining }s</cooldown_timer>
     </equipped_weapon>
   }
 
@@ -39,8 +41,13 @@ class EquippedWeapon extends React.Component {
   }
 
   disable_weapon() {
+    if(this.state.is_disabled === true) { return }
+
     clearInterval(this.cooldown_timer)
-    this.setState( { cooldownTimeRemaining: this.props.cooldown_time } )
+    this.setState({
+      cooldownTimeRemaining: this.props.cooldown_time ,
+      is_disabled: true
+    })
     this.cooldown_timer = setInterval(this.cooldown_tick.bind(this), 100);
   }
 
@@ -50,7 +57,7 @@ class EquippedWeapon extends React.Component {
     time_remaining = time_remaining.toFixed(2)
 
     if(time_remaining < 0){
-      this.setState({ cooldownTimeRemaining: 0 });
+      this.setState({ cooldownTimeRemaining: 0, is_disabled: false });
       clearInterval(this.cooldown_timer)
     } else {
       this.setState({ cooldownTimeRemaining: time_remaining });

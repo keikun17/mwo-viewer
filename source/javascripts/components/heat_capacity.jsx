@@ -8,21 +8,21 @@ class CurrentHeat extends React.Component {
 
     // override the state unique to the class here
     this.state = {
-      value: 42,
-      capacity: 100,
-      ghost_heat_previous: 20,
-      ghost_heat_total: 130
+      value: '--',
+      capacity: '---',
+      ghost_heat_previous: '--',
+      ghost_heat_total: '--'
     };
   }
 
   componentDidMount() {
     this.store_data = HeatsinkStore.get_new_data()
-    HeatsinkStore.addChangeListener(this.onStoreChange.bind(this))
-    console.log("heatsinks are")
-    console.log(this.store_data.heatsinks)
+    this.calculate_and_draw()
+    HeatsinkStore.addChangeListener(this.calculate_and_draw.bind(this))
   }
 
-  onStoreChange() {
+  // TODO : Move this to heat_capacity store
+  calculate_and_draw() {
     // All mechs require a minimum 10 heat sinks to function
     // Engines come with 1 HS built in for every 25 rating up to the 250 engines
     // Standard or XL engine has no impact on this
@@ -52,7 +52,6 @@ class CurrentHeat extends React.Component {
     var external_capacity = this.store_data.external_heatsinks * external_heatsink_capacity_modifier
 
     var capacity = base_capacity + internal_capacity + external_capacity
-    console.log("CAPACITY IS #{capacity}")
 
     this.setState({
       value: 66,

@@ -51,7 +51,7 @@ class CurrentHeat extends React.Component {
     var internal_capacity = this.store_data.internal_heatsinks * internal_heatsink_capacity_modifier
     var external_capacity = this.store_data.external_heatsinks * external_heatsink_capacity_modifier
 
-    var capacity = base_capacity + internal_capacity + external_capacity
+    var capacity = (base_capacity + internal_capacity + external_capacity).toPrecision(2)
 
     this.setState({
       value: '--',

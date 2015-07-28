@@ -54,10 +54,10 @@ class CurrentHeat extends React.Component {
     var capacity = base_capacity + internal_capacity + external_capacity
 
     this.setState({
-      value: 66,
+      value: '--',
       capacity: capacity,
-      ghost_heat_previous: 333,
-      ghost_heat_total: 444
+      ghost_heat_previous: '---',
+      ghost_heat_total: '---'
     })
   }
 

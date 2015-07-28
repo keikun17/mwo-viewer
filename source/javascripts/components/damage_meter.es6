@@ -4,10 +4,10 @@ class DamageMeter extends React.Component {
     super(props)
 
     this.state = {
-      damage_previous: 12,
-      damage_total: 120,
-      dps: 21,
-      elapsed_time: 55
+      damage_previous: '--',
+      damage_total: '--',
+      dps: '--',
+      elapsed_time: '--'
     }
   }
 

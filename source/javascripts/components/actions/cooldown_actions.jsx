@@ -24,7 +24,7 @@ var CooldownActions = {
     var external_cooldown = (external_heatsink_cooldown_modifier * heatsink_store_data.external_heatsinks)
 
     var time_to_zero = "--"
-    var cool_rate = internal_cooldown + external_cooldown
+    var cool_rate = (internal_cooldown + external_cooldown).toFixed(2)
 
     AppDispatcher.dispatch({
       action_type: CooldownConstants.COOLDOWN_UPDATE,

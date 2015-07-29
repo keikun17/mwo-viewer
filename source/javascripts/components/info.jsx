@@ -1,6 +1,6 @@
 var React = require('react');
 var MapInfo = require('./map_info')
-var Heat = require('./heat_capacity');
+var Heat = require('./heat')
 var DamageMeter = require('./damage_meter')
 var Cooldown = require('./cooldown')
 

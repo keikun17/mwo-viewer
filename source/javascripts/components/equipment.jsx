@@ -35,7 +35,9 @@ class Equipment extends React.Component {
         key={index}
         name={_weapon.name}
         weapon_id={_weapon.weapon_id}
-        cooldown_time={_weapon.cooldown_time} />
+        cooldown_time={_weapon.cooldown_time} 
+        heat={_weapon.heat}
+        />
     })
 
     return <equipments style={this.getStyle()}>

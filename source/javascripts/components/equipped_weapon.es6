@@ -1,6 +1,6 @@
 import React from 'react'
-import WeaponTrigger from './weapon_trigger'
 import WeaponActions from './actions/weapon_actions'
+import HeatActions from './actions/heat_actions'
 
 class EquippedWeapon extends React.Component {
 
@@ -26,7 +26,7 @@ class EquippedWeapon extends React.Component {
 
     return <equipped_weapon className={className} id={this.props.id} key={this.props.key} style={this.styles}>
       <cooldown_timer>{ this.state.cooldownTimeRemaining }s</cooldown_timer>
-      <WeaponTrigger is_disabled={this.state.is_disabled} on_click={ this.disable_weapon.bind(this) } />
+      <weapon_trigger className={className} onClick={ this.fire_weapon.bind(this) } />
       <remove_weapon_button onClick={this._remove.bind(this)}/>
       <span>
       {this.props.name}
@@ -38,6 +38,12 @@ class EquippedWeapon extends React.Component {
     console.log("removing")
     var index = this.props.id
     WeaponActions.unequip(index)
+  }
+
+
+  fire_weapon() {
+    this.disable_weapon()
+    HeatActions.apply_heat(this.props.heat)
   }
 
   disable_weapon() {

@@ -1,5 +1,6 @@
 var React = require('react');
 import HeatsinkStore from "./stores/heatsink_store"
+import HeatStore from "./stores/heat_store"
 
 class CurrentHeat extends React.Component {
 
@@ -7,22 +8,30 @@ class CurrentHeat extends React.Component {
     super(props);
 
     // override the state unique to the class here
-    this.state = {
-      value: '--',
-      capacity: '---',
-      ghost_heat_previous: '--',
-      ghost_heat_total: '--'
-    };
+    // this.state = {
+    //   value: '--',
+    //   capacity: '---',
+    //   ghost_heat_previous: '--',
+    //   ghost_heat_total: '--'
+    // };
+    this.state = HeatStore.get_new_data()
   }
 
   componentDidMount() {
     this.store_data = HeatsinkStore.get_new_data()
-    this.calculate_and_draw()
-    HeatsinkStore.addChangeListener(this.calculate_and_draw.bind(this))
+    this.calculate_capacity_and_draw()
+    HeatsinkStore.addChangeListener(this.calculate_capacity_and_draw.bind(this))
+    HeatStore.addChangeListener(this.update_heat.bind(this))
   }
 
-  // TODO : Move this to heat_capacity store
-  calculate_and_draw() {
+
+  update_heat() {
+    console.log("PDATING HEAT")
+    this.setState(HeatStore.get_new_data())
+  }
+
+  // TODO : Move this computation logic to heat store and just return do `this.setState(HeatStore.get_new_data())
+  calculate_capacity_and_draw() {
     // All mechs require a minimum 10 heat sinks to function
     // Engines come with 1 HS built in for every 25 rating up to the 250 engines
     // Standard or XL engine has no impact on this
@@ -54,10 +63,7 @@ class CurrentHeat extends React.Component {
     var capacity = (base_capacity + internal_capacity + external_capacity).toPrecision(2)
 
     this.setState({
-      value: '--',
       capacity: capacity,
-      ghost_heat_previous: '---',
-      ghost_heat_total: '---'
     })
   }
 

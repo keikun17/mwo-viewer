@@ -31,7 +31,6 @@ class WeaponStore extends EventEmitter {
 
   // move this to store base class
   get_new_data() {
-    window.x = data
     return data
   }
 

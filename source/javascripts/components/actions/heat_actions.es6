@@ -9,7 +9,17 @@ var HeatActions = {
       action_type: HeatConstants.HEAT_APPLY,
       amount: amount
     })
+  },
+
+  update_capacity: function() {
+    AppDispatcher.dispatch({
+      action_type: HeatConstants.HEAT_CAPACITY_UPDATE
+    })
   }
+
+
+
+
 }
 
 export default HeatActions

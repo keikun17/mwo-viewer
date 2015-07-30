@@ -103,11 +103,6 @@ let _HeatStore = new HeatStore();
 export default _HeatStore
 
 /*
- * Subscribe to other store's changes
- */
-HeatsinkStore.addChangeListener(HeatActions.update_capacity)
-
-/*
  * Register actions
  */
 AppDispatcher.register((payload) => {

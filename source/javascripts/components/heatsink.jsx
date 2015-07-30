@@ -2,6 +2,7 @@ var React = require('react');
 import HeatsinkAction from './actions/heatsink_actions';
 import AppDispatcher from './app_dispatcher';
 import HeatsinkStore from './stores/heatsink_store';
+import HeatActions from './actions/heat_actions'
 
 class Heatsink extends React.Component {
   constructor(props) {

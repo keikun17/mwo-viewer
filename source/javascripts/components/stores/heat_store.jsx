@@ -2,6 +2,7 @@ import {EventEmitter} from 'events';
 import AppDispatcher from '../app_dispatcher';
 import HeatConstants from '../constants/heat_constants'
 import HeatsinkStore from '../stores/heatsink_store'
+import HeatActions from '../actions/heat_actions'
 
 /**
  * Store data
@@ -101,8 +102,14 @@ class HeatStore extends EventEmitter {
 let _HeatStore = new HeatStore();
 export default _HeatStore
 
-HeatsinkStore.addChangeListener(recalculate_capacity.bind(_HeatStore))
+/*
+ * Subscribe to other store's changes
+ */
+HeatsinkStore.addChangeListener(HeatActions.update_capacity)
 
+/*
+ * Register actions
+ */
 AppDispatcher.register((payload) => {
   var action_type = payload.action_type
   switch(action_type) {

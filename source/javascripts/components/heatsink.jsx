@@ -64,6 +64,8 @@ class Heatsink extends React.Component {
 
   _onHeatsinkTypeChange(event) {
     this.store_toggle_heatsink_type()
+    HeatActions.update_capacity()
+
   }
 
   _onInternalChange(event) {
@@ -71,6 +73,7 @@ class Heatsink extends React.Component {
     console.log("Step 1. I am in the heatsink component. Detected input field change")
 
     this.store_update_heatsink_count('internal_heatsinks', event.target.value)
+    HeatActions.update_capacity()
 
   }
 
@@ -79,6 +82,7 @@ class Heatsink extends React.Component {
     console.log("Step 1. I am in the heatsink component. Detected input field change")
 
     this.store_update_heatsink_count('external_heatsinks', event.target.value)
+    HeatActions.update_capacity()
 
   }
 

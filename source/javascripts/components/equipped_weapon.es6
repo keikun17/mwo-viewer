@@ -9,10 +9,6 @@ class EquippedWeapon extends React.Component {
     this.state = { cooldownTimeRemaining: 0, is_disabled: false }
   }
 
-  componentWillMount() {
-    console.log("mounting weapon")
-  }
-
   componentWillUnmount() {
     clearInterval(this.cooldown_timer)
   }

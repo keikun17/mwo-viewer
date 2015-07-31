@@ -20,9 +20,21 @@ var data = {
 
 /**
  * Increase mech heat by given amount
+ *   {float} amount
  */
 var add_heat = function(amount) {
   data.value = data.value + amount
+}
+
+/**
+ * Reduce the heat by
+ */
+var release_heat = function(amount){
+  data.value = (data.value - amount).toFixed(2)
+
+  if(data.value < 0){
+    data.value = 0
+  }
 }
 
 
@@ -115,6 +127,10 @@ AppDispatcher.register((payload) => {
 
     case HeatConstants.HEAT_APPLY:
       add_heat(payload.amount)
+      _HeatStore.emit(CHANGE)
+      break
+    case HeatConstants.HEAT_RELEASE:
+      release_heat(payload.amount)
       _HeatStore.emit(CHANGE)
       break
   }

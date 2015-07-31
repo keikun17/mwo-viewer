@@ -2,6 +2,7 @@ var React = require('react');
 import HeatsinkStore from "./stores/heatsink_store"
 import HeatStore from "./stores/heat_store"
 import HeatActions from './actions/heat_actions'
+import CooldownStore from './stores/cooldown_store'
 
 class CurrentHeat extends React.Component {
 
@@ -17,10 +18,24 @@ class CurrentHeat extends React.Component {
     HeatStore.addChangeListener(this.update_heat.bind(this))
     HeatActions.update_capacity()
     this.update_heat()
+
+    this.cooling_cycle = setInterval(this.release_heat.bind(this), 100)
+  }
+
+
+  componentWillUnmount() {
+    clearInterval(this.cooling_cycle)
   }
 
   update_heat() {
     this.setState(HeatStore.get_new_data())
+  }
+
+  release_heat() {
+    if(this.state.value > 0){
+      var a = CooldownStore.get_new_data().cool_rate / 10 
+      HeatActions.release_heat(a);
+    }
   }
 
   getStyle(){

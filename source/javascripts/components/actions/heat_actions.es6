@@ -11,6 +11,13 @@ var HeatActions = {
     })
   },
 
+  release_heat: function(amount) {
+    AppDispatcher.dispatch({
+      action_type: HeatConstants.HEAT_RELEASE,
+      amount: amount
+    })
+  },
+
   update_capacity: function() {
     AppDispatcher.dispatch({
       action_type: HeatConstants.HEAT_CAPACITY_UPDATE

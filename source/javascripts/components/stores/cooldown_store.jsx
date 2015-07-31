@@ -1,8 +1,7 @@
-// import EventEmitter from 'event-emitter';
 import {EventEmitter} from 'events';
 import AppDispatcher from '../app_dispatcher';
 import CooldownConstants from '../constants/cooldown_constants'
-
+import HeatStore from '../stores/heat_store'
 
 var data = {
   time_to_zero: 0,
@@ -13,6 +12,12 @@ var CHANGE = 'COOLDOWN_STORE_UPDATED'
 
 function update(new_data) {
   data = Object.assign(data, new_data)
+}
+
+function update_time_to_zero() {
+  console.log("wajskjdskj")
+  var time_to_zero = (HeatStore.get_new_data().value / data.cool_rate).toFixed(2)
+  data.time_to_zero = time_to_zero
 }
 
 class CooldownStore extends EventEmitter {
@@ -46,9 +51,11 @@ AppDispatcher.register((payload) => {
 
   switch(action_type) {
     case CooldownConstants.COOLDOWN_UPDATE:
-      console.log("NEWWWW DATA IS")
-      console.log(payload.new_data)
       update(payload.new_data)
+      _CooldownStore.emitChange()
+      break
+    case CooldownConstants.COOLDOWN_ETA_UPDATE:
+      update_time_to_zero()
       _CooldownStore.emitChange()
       break
   }

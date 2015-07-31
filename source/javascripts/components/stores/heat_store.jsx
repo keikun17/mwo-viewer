@@ -3,6 +3,7 @@ import AppDispatcher from '../app_dispatcher';
 import HeatConstants from '../constants/heat_constants'
 import HeatsinkStore from '../stores/heatsink_store'
 import HeatActions from '../actions/heat_actions'
+import CooldownActions from '../actions/cooldown_actions'
 
 /**
  * Store data
@@ -31,6 +32,7 @@ var add_heat = function(amount) {
  */
 var release_heat = function(amount){
   data.value = (data.value - amount).toFixed(2)
+  setTimeout(CooldownActions.update_cooldown_time)
 
   if(data.value < 0){
     data.value = 0

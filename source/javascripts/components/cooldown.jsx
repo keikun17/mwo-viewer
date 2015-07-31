@@ -1,5 +1,6 @@
 var React = require('react');
 import HeatsinkStore from "./stores/heatsink_store"
+import HeatStore from "./stores/heat_store"
 import CooldownStore from "./stores/cooldown_store"
 import CooldownActions from "./actions/cooldown_actions"
 

@@ -18,7 +18,6 @@ class EquippedWeapon extends React.Component {
   }
 
   componentDidMount() {
-    this.cooldown_timer = setInterval(this.tick, 1000);
   }
 
   render() {

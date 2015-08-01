@@ -50,7 +50,7 @@ class CurrentHeat extends React.Component {
 
         <div className="info">
           <span className="info-title">Heat</span>
-          <span className="info-value">{this.state.value}</span>
+          <span className="info-value">{this.state.value.toFixed(2)}</span>
           <span className="info-value-divider">/</span>
           <span className="info-value">{this.state.capacity}</span>
           <span className="info-label">Current / Capacity</span>

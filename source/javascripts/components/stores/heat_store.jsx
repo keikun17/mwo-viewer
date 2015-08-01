@@ -24,7 +24,7 @@ var data = {
  *   {float} amount
  */
 var add_heat = function(amount) {
-  data.value = +((data.value + amount).toFixed(2))
+  data.value = data.value + amount
 }
 
 /**

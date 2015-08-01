@@ -1,6 +1,7 @@
 import React from 'react'
 import WeaponActions from './actions/weapon_actions'
 import HeatActions from './actions/heat_actions'
+import DamageActions from './actions/damage_actions'
 
 class EquippedWeapon extends React.Component {
 
@@ -39,6 +40,7 @@ class EquippedWeapon extends React.Component {
   fire_weapon() {
     if(this.state.is_disabled !== true) {
       HeatActions.apply_heat(this.props.heat)
+      DamageActions.apply_damage(this.props.damage)
     }
     this.disable_weapon()
   }

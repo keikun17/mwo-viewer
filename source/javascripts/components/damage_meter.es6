@@ -1,14 +1,11 @@
 var React = require('react');
+import DamageStore from './stores/damage_store'
+
 class DamageMeter extends React.Component {
   constructor(props) {
     super(props)
 
-    this.state = {
-      damage_previous: '--',
-      damage_total: '--',
-      dps: '--',
-      elapsed_time: '--'
-    }
+    this.state = DamageStore.get_new_data()
   }
 
 
@@ -18,15 +15,24 @@ class DamageMeter extends React.Component {
     }
   }
 
+  componentDidMount() {
+    DamageStore.addChangeListener(this.onStoreChange.bind(this))
+  }
+
+  onStoreChange() {
+    console.log("TUWID NA DAAN")
+    this.setState(DamageStore.get_new_data())
+  }
+
   render() {
     return(
      <damage_meter style={this.getStyle()}>
 
        <div className="info">
          <span className="info-title">Damage</span>
-         <span className="info-value">{this.state.damage_previous}</span>
+         <span className="info-value">{this.state.last}</span>
          <span className="info-value-divider">/</span>
-         <span className="info-value">{this.state.damage_total}</span>
+         <span className="info-value">{this.state.total}</span>
          <span className="info-label">Previous / Total</span>
        </div>
 

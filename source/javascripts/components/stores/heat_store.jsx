@@ -24,14 +24,14 @@ var data = {
  *   {float} amount
  */
 var add_heat = function(amount) {
-  data.value = data.value + amount
+  data.value = +((data.value + amount).toFixed(2))
 }
 
 /**
  * Reduce the heat by
  */
 var release_heat = function(amount){
-  data.value = (data.value - amount).toFixed(2)
+  data.value = +((data.value - amount).toFixed(2))
   setTimeout(CooldownActions.update_cooldown_time)
 
   if(data.value < 0){

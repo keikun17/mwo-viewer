@@ -24,9 +24,6 @@ var HeatActions = {
     })
   }
 
-
-
-
 }
 
 export default HeatActions

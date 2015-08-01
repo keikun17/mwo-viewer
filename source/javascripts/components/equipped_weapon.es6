@@ -57,7 +57,7 @@ class EquippedWeapon extends React.Component {
   cooldown_tick() {
     console.log("tick...")
     var time_remaining = this.state.cooldownTimeRemaining - .1
-    time_remaining = time_remaining.toFixed(2)
+    time_remaining = +(time_remaining.toFixed(2))
 
     if(time_remaining < 0){
       this.setState({ cooldownTimeRemaining: 0, is_disabled: false });

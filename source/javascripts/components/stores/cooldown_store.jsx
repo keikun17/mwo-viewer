@@ -16,7 +16,7 @@ function update(new_data) {
 
 function update_time_to_zero() {
   console.log("wajskjdskj")
-  var time_to_zero = (HeatStore.get_new_data().value / data.cool_rate).toFixed(2)
+  var time_to_zero = +((HeatStore.get_new_data().value / data.cool_rate).toFixed(2))
   data.time_to_zero = time_to_zero
 }
 

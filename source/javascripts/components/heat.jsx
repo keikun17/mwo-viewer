@@ -33,8 +33,8 @@ class CurrentHeat extends React.Component {
 
   release_heat() {
     if(this.state.value > 0){
-      var a = CooldownStore.get_new_data().cool_rate / 10 
-      HeatActions.release_heat(a);
+      var amount = CooldownStore.get_new_data().cool_rate / 10
+      HeatActions.release_heat(amount);
     }
   }
 

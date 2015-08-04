@@ -6,8 +6,8 @@ gem "middleman", "~>3.3.10"
 gem "middleman-api", "~> 0.2.0"
 gem 'haml'
 
-# Live-reloading plugin
-gem "middleman-livereload", "~> 3.3.0"
+# # Live-reloading plugin
+# gem "middleman-livereload", "~> 3.3.0"
 gem "middleman-gh-pages"
 
 # Stylesheet gems

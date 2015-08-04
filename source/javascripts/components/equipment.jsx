@@ -51,7 +51,7 @@ class Equipment extends React.Component {
 
       <h1>Equipments</h1>
       <Heatsink/>
-      <alpha_strike onClick={this.fireAllWeapons.bind(this)} >PINDOT</alpha_strike>
+      <alpha_strike onClick={this.fireAllWeapons.bind(this)} >Alpha Strike</alpha_strike>
       <equipped_weapons>
         {equipped_weapons}
       </equipped_weapons>

@@ -32,6 +32,7 @@ var destroy = function(index) {
  */
 var alpha_strike = function() {
   // TOOD set damage.data.last to the total of all weapons fired
+  _WeaponStore.emit(WeaponConstants.WEAPON_DID_ALPHA)
 }
 
 class WeaponStore extends EventEmitter {
@@ -79,9 +80,8 @@ AppDispatcher.register((payload) => {
       _WeaponStore.emit(CHANGE)
       break
     case WeaponConstants.WEAPON_ALPHA:
-      console.log("firing all weapons sa store")
-      alpha_strike()
-      _WeaponStore.emit(WeaponConstants.WEAPON_DID_ALPHA)
+      setTimeout(alpha_strike)
+      break
   }
 })
 

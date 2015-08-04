@@ -2,6 +2,8 @@ import React from 'react'
 import WeaponActions from './actions/weapon_actions'
 import HeatActions from './actions/heat_actions'
 import DamageActions from './actions/damage_actions'
+import WeaponStore from './stores/weapon_store'
+import WeaponConstants from './constants/weapon_constants'
 
 class EquippedWeapon extends React.Component {
 
@@ -15,6 +17,7 @@ class EquippedWeapon extends React.Component {
   }
 
   componentDidMount() {
+    WeaponStore.on(WeaponConstants.WEAPON_DID_ALPHA, this.fire_weapon.bind(this))
   }
 
   render() {

@@ -27,6 +27,14 @@ var destroy = function(index) {
   data.equipped_weapons.splice(index, 1)
 }
 
+/**
+ * emits a "WEAPON_DID_ALPHA" that causes equipped weapon components subscribed to the action to fire
+ * and sets the damage.data.last to the total of all weapons fired
+ */
+var alpha_strike = function() {
+  // TOOD set damage.data.last to the total of all weapons fired
+}
+
 class WeaponStore extends EventEmitter {
 
   // move this to store base class
@@ -71,6 +79,10 @@ AppDispatcher.register((payload) => {
       destroy(payload.index)
       _WeaponStore.emit(CHANGE)
       break
+    case WeaponConstants.WEAPON_ALPHA:
+      console.log("firing all weapons sa store")
+      alpha_strike()
+      _WeaponStore.emit(WeaponConstants.WEAPON_DID_ALPHA)
   }
 })
 

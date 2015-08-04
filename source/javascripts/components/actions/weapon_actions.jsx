@@ -20,6 +20,12 @@ var WeaponActions = {
       action_type: WeaponConstants.WEAPON_UNEQUIP,
       index: index
     })
+  },
+
+  alpha_strike: function() {
+    AppDispatcher.dispatch({
+      action_type: WeaponConstants.WEAPON_ALPHA
+    })
   }
 
 }

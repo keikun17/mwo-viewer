@@ -1,8 +1,7 @@
 var React = require('react');
 var Heatsink = require('./heatsink')
-import WeaponStore from "./stores/weapon_store"
-import EquippedWeapon from "./equipped_weapon"
 import WeaponActions from './actions/weapon_actions'
+import EquippedWeaponsWrapper from './equipped_weapons_wrapper'
 
 class Equipment extends React.Component {
   getStyle() {
@@ -13,19 +12,8 @@ class Equipment extends React.Component {
 
   constructor(props) {
     super(props)
-    this.state = {equipped_weapons: []}
   }
 
-
-  componentDidMount() {
-    WeaponStore.addChangeListener(this.onStoreChange.bind(this))
-  }
-
-  onStoreChange() {
-    this.setState({
-      equipped_weapons: WeaponStore.get_new_data().equipped_weapons
-    })
-  }
 
   fireAllWeapons(){
     console.log('fireallweapons')
@@ -34,28 +22,11 @@ class Equipment extends React.Component {
 
   render() {
 
-    var equipped_weapons = this.state.equipped_weapons.map(function(weapon ,index ,equipped_weapons){
-      let _weapon = weapon
-
-      return <EquippedWeapon id={index}
-        key={index}
-        name={_weapon.name}
-        weapon_id={_weapon.weapon_id}
-        cooldown_time={_weapon.cooldown_time}
-        heat={_weapon.heat}
-        damage={_weapon.damage}
-        />
-    })
-
     return <equipments style={this.getStyle()}>
-
       <h1>Equipments</h1>
       <Heatsink/>
       <alpha_strike onClick={this.fireAllWeapons.bind(this)} >Alpha Strike</alpha_strike>
-      <equipped_weapons>
-        {equipped_weapons}
-      </equipped_weapons>
-
+      <EquippedWeaponsWrapper />
     </equipments>
   }
 }

@@ -17,7 +17,6 @@ var CHANGE = 'HEATSINK_UPDATE_COUNT'
  * Update the Store's heatsink count
  */
 function update(new_data) {
-  console.log("nag uupdate si store")
   data = Object.assign(data, new_data)
 }
 
@@ -31,16 +30,11 @@ class HeatsinkStore extends EventEmitter {
 
   // move this to store base class
   emitChange() {
-    console.log("Dito ko sa emitchange sa loob ng heatsink_store")
-    console.log("Final Step : Here, we update the heatsink info cooldown an capacity with the updated data : ")
-    console.log(data)
     this.emit(CHANGE);
   }
 
   // move this to store base class
   addChangeListener(callback) {
-    console.log("heatsink_store.addChangelistener called para pag may changes sa store, mapopropagate sa react components itong callback na to :")
-    console.log(callback)
     this.on(CHANGE, callback);
   }
 

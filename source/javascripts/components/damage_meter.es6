@@ -20,7 +20,6 @@ class DamageMeter extends React.Component {
   }
 
   onStoreChange() {
-    console.log("TUWID NA DAAN")
     this.setState(DamageStore.get_new_data())
   }
 

@@ -32,6 +32,7 @@ var destroy = function(index) {
  */
 var alpha_strike = function() {
   // TOOD set damage.data.last to the total of all weapons fired
+  _WeaponStore.emit(WeaponConstants.WEAPON_WILL_GROUP_FIRE)
   _WeaponStore.emit(WeaponConstants.WEAPON_DID_ALPHA)
 }
 

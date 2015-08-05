@@ -15,7 +15,6 @@ class Equipment extends React.Component {
   }
 
   fireAllWeapons(){
-    console.log('fireallweapons')
     WeaponActions.alpha_strike()
   }
 

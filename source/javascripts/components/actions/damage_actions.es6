@@ -8,6 +8,16 @@ var DamageActions = {
       amount: amount
     })
   },
+
+  stack_damage: function(amount) {
+    AppDispatcher.dispatch({
+      action_type: DamageConstants.DAMAGE_STACK,
+      amount: amount
+    })
+
+  }
+
+
 }
 
 export default DamageActions

@@ -17,7 +17,7 @@ class EquippedWeapon extends React.Component {
   }
 
   componentDidMount() {
-    WeaponStore.on(WeaponConstants.WEAPON_DID_ALPHA, this.fire_weapon.bind(this))
+    WeaponStore.on(WeaponConstants.WEAPON_DID_ALPHA, this.group_fire_weapon.bind(this))
   }
 
   render() {
@@ -39,9 +39,15 @@ class EquippedWeapon extends React.Component {
     WeaponActions.unequip(index)
   }
 
+  group_fire_weapon() {
+    if(this.state.is_disabled !== true) {
+      HeatActions.apply_heat(this.props.heat)
+      DamageActions.stack_damage(this.props.damage)
+    }
+    this.disable_weapon()
+  }
 
   fire_weapon() {
-    console.log("FIRE")
     if(this.state.is_disabled !== true) {
       HeatActions.apply_heat(this.props.heat)
       DamageActions.apply_damage(this.props.damage)

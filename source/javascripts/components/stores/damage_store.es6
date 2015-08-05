@@ -19,7 +19,22 @@ var data = {
  *   {float} amount
  */
 var update_last = function(amount) {
+  console.log("BAWAL DITO")
   data.last = amount
+}
+
+/**
+ * Increase the value of 'last' damage dealt (in cases where weapons are group fired)
+ *   {float} amount
+ */
+var stack_last = function(amount) {
+  console.log("current data.last is ")
+  console.log(data.last)
+
+  console.log("increase damage by")
+  console.log(amount)
+
+  data.last = data.last + amount
 }
 
 /**
@@ -77,6 +92,10 @@ AppDispatcher.register((payload) =>{
       increase_total(payload.amount)
       _DamageStore.emit(CHANGE)
       break
+    case DamageConstants.DAMAGE_STACK:
+      stack_last(payload.amount)
+      increase_total(payload.amount)
+      _DamageStore.emit(CHANGE)
   }
 })
 

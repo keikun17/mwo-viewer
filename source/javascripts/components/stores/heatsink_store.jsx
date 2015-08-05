@@ -56,22 +56,12 @@ let _HeatsinkStore = new HeatsinkStore();
 export default _HeatsinkStore;
 
 // register the actions of this store
-console.log("Step 0. : Registering the heatsink_store actions. Aabangan natin yung 'HEATSINK_UPDATE_COUNT' dispatch");
 AppDispatcher.register((payload) => {
-  console.log("Step 3. [Dispatcher] Received a dispatch order from the somewhere with the payload:");
-  console.log(payload)
 
   var action_type = payload.action_type;
 
   switch(action_type) {
     case HeatsinkConstants.HEATSINK_UPDATE_COUNT:
-      console.log("Step 4. [Dispatcher] Recognized that the dispatch order's 'HEATSINK_UPDATE_COUNT' action_type exists")
-      console.log("... Updating the data record")
-
-      // data[payload.new_data.heatsink_location] = parseInt(payload.new_data.amount)
-      console.log("... replacing old data with new data :")
-      console.log(payload.new_data)
-
       update(payload.new_data)
       _HeatsinkStore.emitChange()
       break;
@@ -80,9 +70,5 @@ AppDispatcher.register((payload) => {
       data.double_heatsinks = !data.double_heatsinks
       _HeatsinkStore.emitChange()
       break
-
-    default:
-      console.log("[Step 4. FAILED] Falls through the dispatcher.. the action type is: " + action_type)
-      break;
   }
 })

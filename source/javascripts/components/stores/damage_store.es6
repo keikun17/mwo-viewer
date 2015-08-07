@@ -28,12 +28,6 @@ var update_last = function(amount) {
  *   {float} amount
  */
 var stack_last = function(amount) {
-  console.log("current data.last is ")
-  console.log(data.last)
-
-  console.log("increase damage by")
-  console.log(amount)
-
   data.last = data.last + amount
 }
 

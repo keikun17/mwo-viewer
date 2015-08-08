@@ -19,7 +19,6 @@ var data = {
  *   {float} amount
  */
 var update_last = function(amount) {
-  console.log("BAWAL DITO")
   data.last = amount
 }
 

@@ -49,7 +49,7 @@ class EquippedWeapon extends React.Component {
 
   fire_weapon() {
     if(this.state.is_disabled !== true) {
-      HeatActions.apply_heat(this.props.heat)
+      HeatActions.apply_heat(this.props)
       DamageActions.apply_damage(this.props.damage)
     }
     this.disable_weapon()

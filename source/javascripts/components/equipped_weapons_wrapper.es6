@@ -11,6 +11,7 @@ export default class EquippedWeaponsWrapper extends React.Component {
 
   componentDidMount() {
     WeaponStore.addChangeListener(this.onStoreChange.bind(this))
+
   }
 
   onStoreChange() {
@@ -30,6 +31,7 @@ export default class EquippedWeaponsWrapper extends React.Component {
       cooldown_time={_weapon.cooldown_time}
       heat={_weapon.heat}
       damage={_weapon.damage}
+      ghost_heat_group={_weapon.ghost_heat_group}
       />
     })
 

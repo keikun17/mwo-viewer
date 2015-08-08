@@ -23,8 +23,15 @@ var data = {
  * Increase mech heat by given amount
  *   {float} amount
  */
-var add_heat = function(amount) {
+var add_base_heat = function(amount) {
   data.value = data.value + amount
+}
+
+var add_ghost_heat = function(ghost_heat_group, weapon_heat) {
+   console.log("Ghost heat group is")
+   console.log(ghost_heat_group)
+   console.log("Ghost heat amount is")
+   console.log(weapon_heat)
 }
 
 /**
@@ -128,7 +135,8 @@ AppDispatcher.register((payload) => {
       break
 
     case HeatConstants.HEAT_APPLY:
-      add_heat(payload.amount)
+      add_base_heat(payload.weapon_props.heat)
+      add_ghost_heat(payload.weapon_props.ghost_heat_group, payload.weapon_props.heat)
       _HeatStore.emit(CHANGE)
       break
     case HeatConstants.HEAT_RELEASE:

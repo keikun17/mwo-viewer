@@ -27,10 +27,6 @@ var add_base_heat = function(amount) {
   data.value = data.value + amount
 }
 
-var ghost_heat_check = function(weapon_props) {
-   GhostHeatActions.process(weapon_props)
-}
-
 /**
  * Reduce the heat by
  */
@@ -133,7 +129,6 @@ AppDispatcher.register((payload) => {
 
     case HeatConstants.HEAT_APPLY:
       add_base_heat(payload.weapon_props.heat)
-      ghost_heat_check(payload.weapon_props)
       _HeatStore.emit(CHANGE)
       break
     case HeatConstants.HEAT_RELEASE:

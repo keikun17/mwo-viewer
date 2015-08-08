@@ -1,4 +1,6 @@
+import AppDispatcher from '../app_dispatcher'
 import {EventEmitter} from 'events'
+import GhostHeatConstants from '../constants/ghost_heat_constants'
 
 /**
  * Store data format
@@ -13,15 +15,15 @@ import {EventEmitter} from 'events'
  */
 var data = {
   slas: {trigger_time: 0, limit: 6, current: 0},
-  slas: {trigger_time: 0, limit: 6, current: 0},
+  mlas: {trigger_time: 0, limit: 6, current: 0},
 }
 
 
-var process = function(weapon_props) {
+var check_and_process = function(weapon_props) {
   console.log("Weapon ghost heat is")
-  weapon_props.ghost_heat_group
+  console.log(weapon_props.ghost_heat_group)
   console.log("normal weapon heat is")
-  weapon_props.gheat
+  console.log(weapon_props.heat)
 }
 
 
@@ -72,7 +74,7 @@ AppDispatcher.register((payload) => {
   var action_type = payload.action_type
   switch(action_type) {
     case GhostHeatConstants.GHOST_HEAT_PROCESS:
-      process(payload.weapon_props)
+      check_and_process(payload.weapon_props)
       break
   }
 })

@@ -4,6 +4,7 @@ import HeatActions from './actions/heat_actions'
 import DamageActions from './actions/damage_actions'
 import WeaponStore from './stores/weapon_store'
 import WeaponConstants from './constants/weapon_constants'
+import GhostHeatActions from './actions/ghost_heat_actions'
 
 class EquippedWeapon extends React.Component {
 
@@ -43,6 +44,7 @@ class EquippedWeapon extends React.Component {
     if(this.state.is_disabled !== true) {
       HeatActions.apply_heat(this.props)
       DamageActions.stack_damage(this.props.damage)
+      GhostHeatActions.check_and_process(this.props)
     }
     this.disable_weapon()
   }
@@ -51,6 +53,7 @@ class EquippedWeapon extends React.Component {
     if(this.state.is_disabled !== true) {
       HeatActions.apply_heat(this.props)
       DamageActions.apply_damage(this.props.damage)
+      GhostHeatActions.check_and_process(this.props)
     }
     this.disable_weapon()
   }

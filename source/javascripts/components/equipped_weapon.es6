@@ -55,6 +55,7 @@ class EquippedWeapon extends React.Component {
     this.disable_weapon()
   }
 
+  // TODO : Component should not manage its own state like this. implement and user equipped_weapon_wrapper_store
   disable_weapon() {
     if(this.state.is_disabled === true) { return }
 
@@ -66,6 +67,7 @@ class EquippedWeapon extends React.Component {
     this.cooldown_timer = setInterval(this.cooldown_tick.bind(this), 100);
   }
 
+  // TODO : Component should not manage its own state like this. implement and user equipped_weapon_wrapper_store
   cooldown_tick() {
     console.log("tick...")
     var time_remaining = this.state.cooldownTimeRemaining - .1

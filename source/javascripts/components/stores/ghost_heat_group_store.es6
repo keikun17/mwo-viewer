@@ -17,6 +17,13 @@ var data = {
 }
 
 
+var process = function(weapon_props) {
+  console.log("Weapon ghost heat is")
+  weapon_props.ghost_heat_group
+  console.log("normal weapon heat is")
+  weapon_props.gheat
+}
+
 
 class GhostHeatGroupStore extends EventEmitter {
 
@@ -61,5 +68,12 @@ export default _GhostHeatGroupStore
  * Register actions
  */
 AppDispatcher.register((payload) => {
+
+  var action_type = payload.action_type
+  switch(action_type) {
+    case GhostHeatConstants.GHOST_HEAT_PROCESS:
+      process(payload.weapon_props)
+      break
+  }
 })
 

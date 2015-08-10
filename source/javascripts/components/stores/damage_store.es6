@@ -89,6 +89,7 @@ AppDispatcher.register((payload) =>{
       stack_last(payload.amount)
       increase_total(payload.amount)
       _DamageStore.emit(CHANGE)
+      break
   }
 })
 

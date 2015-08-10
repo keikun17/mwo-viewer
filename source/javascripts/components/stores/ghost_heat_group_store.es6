@@ -112,7 +112,7 @@ export default _GhostHeatGroupStore
 /*
  * Register actions
  */
-AppDispatcher.register((payload) => {
+_GhostHeatGroupStore.dispatch_token = AppDispatcher.register((payload) => {
 
   var action_type = payload.action_type
   switch(action_type) {

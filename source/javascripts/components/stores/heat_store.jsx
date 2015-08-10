@@ -119,7 +119,7 @@ export default _HeatStore
 /*
  * Register actions
  */
-AppDispatcher.register((payload) => {
+_HeatStore.dispatch_token = AppDispatcher.register((payload) => {
   var action_type = payload.action_type
   switch(action_type) {
     case HeatConstants.HEAT_CAPACITY_UPDATE:

@@ -50,7 +50,7 @@ let _HeatsinkStore = new HeatsinkStore();
 export default _HeatsinkStore;
 
 // register the actions of this store
-AppDispatcher.register((payload) => {
+_HeatsinkStore.dispatch_token = AppDispatcher.register((payload) => {
 
   var action_type = payload.action_type;
 

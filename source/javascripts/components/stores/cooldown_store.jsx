@@ -45,7 +45,7 @@ let _CooldownStore = new CooldownStore()
 
 export default _CooldownStore
 
-AppDispatcher.register((payload) => {
+_CooldownStore.dispatch_token = AppDispatcher.register((payload) => {
   var action_type = payload.action_type
 
   switch(action_type) {

@@ -77,7 +77,7 @@ class DamageStore extends EventEmitter {
 let _DamageStore = new DamageStore();
 export default _DamageStore
 
-AppDispatcher.register((payload) =>{
+_DamageStore.dispatch_token = AppDispatcher.register((payload) =>{
   var action_type = payload.action_type
   switch(action_type) {
     case DamageConstants.DAMAGE_APPLY:

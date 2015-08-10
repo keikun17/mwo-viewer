@@ -64,7 +64,7 @@ class WeaponStore extends EventEmitter {
 let _WeaponStore = new WeaponStore();
 export default _WeaponStore
 
-AppDispatcher.register((payload) => {
+_WeaponStore.dispatch_token = AppDispatcher.register((payload) => {
   var action_type = payload.action_type;
   switch(action_type) {
     case WeaponConstants.WEAPON_EQUIP:

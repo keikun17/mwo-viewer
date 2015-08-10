@@ -63,6 +63,10 @@ var check_and_process = function(weapon_props) {
 
   // Increment weapon group counter by 1
   data[ghost_heat_group].current = data[ghost_heat_group].current + 1
+
+  if(data[ghost_heat_group].current > data[ghost_heat_group].limit){
+    // Apply ghost heat
+  }
 }
 
 

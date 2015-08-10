@@ -11,17 +11,27 @@ import GhostHeatConstants from '../constants/ghost_heat_constants'
  *        {integer} limit                   - number of shots that can be fired within the ghost
  *                                            heat group without triggering ghost heat
  *        {integer} current                 - number of times a weapon has been fired within the `trigger_time`
+ *        {object}  timer=undefined         - The 'setInterval' object for the weapon group that reduces trigger_time by a unit per tick
  *
  */
 var data = {
-  slas: {trigger_time: 0, limit: 6, current: 0},
-  mlas: {trigger_time: 0, limit: 6, current: 0},
-  llas: {trigger_time: 0, limit: 6, current: 0},
+  slas: {trigger_time: 0, limit: 6, current: 0, timer: undefined },
+  mlas: {trigger_time: 0, limit: 6, current: 0, timer: undefined },
+  llas: {trigger_time: 0, limit: 6, current: 0, timer: undefined },
+}
+
+/*
+ * Stores / Namespace for the ghost heat trigger timer objects
+ *   <group name>: <timer>
+ *     {key}    <group name>
+ *     {object} <timer>
+ */
+var timers = {
 }
 
 
 /**
- * {object} weapon_props
+ * @param {object} weapon_props - Weapon props
  *
  * 1. Set trigger time for weapon group to '2',
  * 2. Start group trigger timer if not started yet,
@@ -29,8 +39,30 @@ var data = {
  * 4. Compute for the ghost heat if present and apply
  */
 var check_and_process = function(weapon_props) {
-  data[weapon_props.ghost_heat_group].trigger_time = 2
-  data[weapon_props.ghost_heat_group].current = data[weapon_props.ghost_heat_group].current + 1
+  var ghost_heat_group = weapon_props.ghost_heat_group
+
+  // Set trigger time for the weapon group to '2'
+  data[ghost_heat_group].trigger_time = 2
+
+  // Start group trigger timer if not started yet
+  if(data[ghost_heat_group].timer == undefined){
+
+    data[ghost_heat_group].timer = setInterval(
+      function(){
+
+        if(data[ghost_heat_group].trigger_time > 0){
+          data[ghost_heat_group].trigger_time = data[ghost_heat_group].trigger_time - .1
+        }else{
+          // kill the timer when cooldown is over
+          clearInterval(data[ghost_heat_group].timer)
+          // remove the reference left behind by clearInterval
+          data[ghost_heat_group].timer = undefined
+        }
+      }, 100)
+  }
+
+  // Increment weapon group counter by 1
+  data[ghost_heat_group].current = data[ghost_heat_group].current + 1
 }
 
 

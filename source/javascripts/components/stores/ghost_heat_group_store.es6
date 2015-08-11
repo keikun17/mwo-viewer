@@ -106,7 +106,6 @@ class GhostHeatGroupStore extends EventEmitter {
 
 
 let _GhostHeatGroupStore = new GhostHeatGroupStore()
-export default _GhostHeatGroupStore
 
 
 /*
@@ -116,9 +115,11 @@ _GhostHeatGroupStore.dispatch_token = AppDispatcher.register((payload) => {
 
   var action_type = payload.action_type
   switch(action_type) {
-    case GhostHeatConstants.GHOST_HEAT_PROCESS:
-      check_and_process(payload.weapon_props)
+    case HeatConstants.HEAT_APPLY:
+      AppDispatcher.waitFor([HeatStore.dispatch_token])
+      include_ghost_heat(payload.weapon_props)
       break
   }
 })
 
+export default _GhostHeatGroupStore

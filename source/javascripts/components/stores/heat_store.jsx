@@ -2,6 +2,7 @@ import {EventEmitter} from 'events';
 import AppDispatcher from '../app_dispatcher';
 import HeatConstants from '../constants/heat_constants'
 import HeatsinkStore from '../stores/heatsink_store'
+import GhostHeatGroupStore from '../stores/ghost_heat_group_store'
 import HeatActions from '../actions/heat_actions'
 import CooldownActions from '../actions/cooldown_actions'
 

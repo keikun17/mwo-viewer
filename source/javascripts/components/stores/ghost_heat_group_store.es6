@@ -56,6 +56,8 @@ var check_and_process = function(weapon_props) {
           // kill the timer when cooldown is over
           clearInterval(data[ghost_heat_group].timer)
           // remove the reference left behind by clearInterval
+          data[ghost_heat_group].current = 0
+          //
           data[ghost_heat_group].timer = undefined
         }
       }, 100)

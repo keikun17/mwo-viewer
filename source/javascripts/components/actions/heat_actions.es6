@@ -22,7 +22,15 @@ var HeatActions = {
     AppDispatcher.dispatch({
       action_type: HeatConstants.HEAT_CAPACITY_UPDATE
     })
-  }
+  },
+
+  add_ghost_heat: function(amount) {
+    AppDispatcher.dispatch({
+      action_type: HeatConstants.GHOST_HEAT_APPLY,
+      amount: amount
+    })
+  },
+
 
 }
 

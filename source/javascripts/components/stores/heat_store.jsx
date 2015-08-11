@@ -136,6 +136,10 @@ _HeatStore.dispatch_token = AppDispatcher.register((payload) => {
       release_heat(payload.amount)
       _HeatStore.emit(CHANGE)
       break
+    case HeatConstants.GHOST_HEAT_APPLY:
+      add_base_heat(payload.amount)
+      _HeatStore.emit(CHANGE)
+      break
   }
 })
 

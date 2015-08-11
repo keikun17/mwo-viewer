@@ -2,6 +2,7 @@ import AppDispatcher from '../app_dispatcher'
 import {EventEmitter} from 'events'
 import HeatConstants from '../constants/heat_constants'
 import HeatStore from '../stores/heat_store'
+import HeatActions from '../actions/heat_actions'
 
 /**
  * Store data format
@@ -69,6 +70,10 @@ var include_ghost_heat = function(weapon_props) {
 
   if(data[ghost_heat_group].current > data[ghost_heat_group].limit){
     console.log("GHOST HEAT PRESENT")
+
+    var ghost_heat_amount = 69
+
+    setTimeout(function(){ HeatActions.add_ghost_heat(ghost_heat_amount) })
     // Apply ghost heat
   }
 }

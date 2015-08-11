@@ -72,7 +72,6 @@ class EquippedWeapon extends React.Component {
 
   // TODO : Component should not manage its own state like this. implement and user equipped_weapon_wrapper_store
   cooldown_tick() {
-    console.log("tick...")
     var time_remaining = this.state.cooldownTimeRemaining - .1
     time_remaining = +(time_remaining.toFixed(2))
 

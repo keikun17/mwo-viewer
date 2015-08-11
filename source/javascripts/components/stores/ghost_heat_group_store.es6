@@ -1,6 +1,7 @@
 import AppDispatcher from '../app_dispatcher'
 import {EventEmitter} from 'events'
-import GhostHeatConstants from '../constants/ghost_heat_constants'
+import HeatConstants from '../constants/heat_constants'
+import HeatStore from '../stores/heat_store'
 
 /**
  * Store data format
@@ -38,7 +39,7 @@ var timers = {
  * 3. Increment weapon group counter by 1
  * 4. Compute for the ghost heat if present and apply
  */
-var check_and_process = function(weapon_props) {
+var include_ghost_heat = function(weapon_props) {
   var ghost_heat_group = weapon_props.ghost_heat_group
 
   // Set trigger time for the weapon group to '2'
@@ -67,6 +68,7 @@ var check_and_process = function(weapon_props) {
   data[ghost_heat_group].current = data[ghost_heat_group].current + 1
 
   if(data[ghost_heat_group].current > data[ghost_heat_group].limit){
+    console.log("GHOST HEAT PRESENT")
     // Apply ghost heat
   }
 }

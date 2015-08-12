@@ -15,8 +15,10 @@ class EquippedWeapon extends React.Component {
 
   shots_before_ghost() {
     var ghost_heat_group = GhostHeatGroupStore.get_new_data()[this.props.ghost_heat_group]
-    var shots = ghost_heat_group.limit - ghost_heat_group.current
-    return shots
+    if(ghost_heat_group){
+      var shots = ghost_heat_group.limit - ghost_heat_group.current
+      return shots
+    }
   }
 
   update_shots_before_ghost() {
@@ -29,7 +31,9 @@ class EquippedWeapon extends React.Component {
 
   componentDidMount() {
     WeaponStore.on(WeaponConstants.WEAPON_DID_ALPHA, this.group_fire_weapon.bind(this))
-    GhostHeatGroupStore.addChangeListener(this.update_shots_before_ghost.bind(this))
+    if(this.state.shots_before_ghost !== undefined) {
+      GhostHeatGroupStore.addChangeListener(this.update_shots_before_ghost.bind(this))
+    }
   }
 
   render() {

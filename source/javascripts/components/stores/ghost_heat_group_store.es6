@@ -140,8 +140,10 @@ _GhostHeatGroupStore.dispatch_token = AppDispatcher.register((payload) => {
   switch(action_type) {
     case HeatConstants.HEAT_APPLY:
       AppDispatcher.waitFor([HeatStore.dispatch_token])
-      include_ghost_heat(payload.weapon_props)
-      _GhostHeatGroupStore.emit(CHANGE)
+      if(payload.weapon_props.ghost_heat_group !== undefined) {
+        include_ghost_heat(payload.weapon_props)
+        _GhostHeatGroupStore.emit(CHANGE)
+      }
       break
   }
 })

@@ -17,9 +17,19 @@ import HeatActions from '../actions/heat_actions'
  *
  */
 var data = {
-  slas: {trigger_time: 0, limit: 6, current: 0, timer: undefined },
-  mlas: {trigger_time: 0, limit: 6, current: 0, timer: undefined },
-  llas: {trigger_time: 0, limit: 6, current: 0, timer: undefined },
+  mlas:   {trigger_time: 0, limit: 6, current: 0, timer: undefined, multiplier: 1 },
+  llas:   {trigger_time: 0, limit: 2, current: 0, timer: undefined, multiplier: 2.8 },
+  ppc:    {trigger_time: 0, limit: 2, current: 0, timer: undefined, multiplier: 7.0 },
+  erppc:  {trigger_time: 0, limit: 2, current: 0, timer: undefined, multiplier: 4.5 },
+  lrm20:  {trigger_time: 0, limit: 2, current: 0, timer: undefined, multiplier: 2.8 },
+  lrm15:  {trigger_time: 0, limit: 2, current: 0, timer: undefined, multiplier: 2.8 },
+  lrm10:  {trigger_time: 0, limit: 2, current: 0, timer: undefined, multiplier: 2.8 },
+  ac2:    {trigger_time: 0, limit: 3, current: 0, timer: undefined, multiplier: 1 },
+  ac20:   {trigger_time: 0, limit: 3, current: 0, timer: undefined, multiplier: 24 },
+  srm2:   {trigger_time: 0, limit: 4, current: 0, timer: undefined, multiplier: 1 },
+  ssrm2:  {trigger_time: 0, limit: 4, current: 0, timer: undefined, multiplier: 1 },
+  srm4:   {trigger_time: 0, limit: 4, current: 0, timer: undefined, multiplier: 1 },
+  srm6:   {trigger_time: 0, limit: 3, current: 0, timer: undefined, multiplier: 1 },
 }
 
 /*

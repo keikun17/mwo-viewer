@@ -3,13 +3,24 @@ import WeaponActions from './actions/weapon_actions'
 import HeatActions from './actions/heat_actions'
 import DamageActions from './actions/damage_actions'
 import WeaponStore from './stores/weapon_store'
+import GhostHeatGroupStore from './stores/ghost_heat_group_store'
 import WeaponConstants from './constants/weapon_constants'
 
 class EquippedWeapon extends React.Component {
 
   constructor(props) {
     super(props)
-    this.state = { cooldownTimeRemaining: 0, is_disabled: false }
+    this.state = { cooldownTimeRemaining: 0, is_disabled: false , shots_before_ghost: this.shots_before_ghost()}
+  }
+
+  shots_before_ghost() {
+    var ghost_heat_group = GhostHeatGroupStore.get_new_data()[this.props.ghost_heat_group]
+    var shots = ghost_heat_group.limit - ghost_heat_group.current
+    return shots
+  }
+
+  update_shots_before_ghost() {
+    this.setState({shots_before_ghost: this.shots_before_ghost()})
   }
 
   componentWillUnmount() {
@@ -18,6 +29,7 @@ class EquippedWeapon extends React.Component {
 
   componentDidMount() {
     WeaponStore.on(WeaponConstants.WEAPON_DID_ALPHA, this.group_fire_weapon.bind(this))
+    GhostHeatGroupStore.addChangeListener(this.update_shots_before_ghost.bind(this))
   }
 
   render() {
@@ -29,6 +41,7 @@ class EquippedWeapon extends React.Component {
       <remove_weapon_button onClick={this._remove.bind(this)}/>
       <span>
       {this.props.name}
+      [{this.state.shots_before_ghost}]
       </span>
     </equipped_weapon>
   }

@@ -55,12 +55,14 @@ var include_ghost_heat = function(weapon_props) {
         if(data[ghost_heat_group].trigger_time > 0){
           data[ghost_heat_group].trigger_time = data[ghost_heat_group].trigger_time - .1
         }else{
+          // TODO : move this to its own method `reset_group_ghost_heat`
           // kill the timer when cooldown is over
           clearInterval(data[ghost_heat_group].timer)
           // remove the reference left behind by clearInterval
           data[ghost_heat_group].current = 0
           //
           data[ghost_heat_group].timer = undefined
+          _GhostHeatGroupStore.emit(CHANGE)
         }
       }, 100)
   }
@@ -78,6 +80,8 @@ var include_ghost_heat = function(weapon_props) {
   }
 }
 
+
+var CHANGE = 'GHOST_HEAT_GROUP_UPDATED'
 
 class GhostHeatGroupStore extends EventEmitter {
 
@@ -127,6 +131,7 @@ _GhostHeatGroupStore.dispatch_token = AppDispatcher.register((payload) => {
     case HeatConstants.HEAT_APPLY:
       AppDispatcher.waitFor([HeatStore.dispatch_token])
       include_ghost_heat(payload.weapon_props)
+      _GhostHeatGroupStore.emit(CHANGE)
       break
   }
 })

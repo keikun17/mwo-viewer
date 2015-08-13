@@ -10,14 +10,10 @@ import CooldownActions from '../actions/cooldown_actions'
  * Store data
  *   {float} value               - the amount of heat in the mech
  *   {float} capacity            - mech heat capacity
- *   {float} ghost_heat_previous - Ghost heat added by previous weapon fire
- *   {float} ghost_heat_total    - Total ghost heat added since last mech reset
  */
 var data = {
   value: 0,
   capacity: '---',
-  ghost_heat_previous: '--',
-  ghost_heat_total: '--'
 }
 
 /**

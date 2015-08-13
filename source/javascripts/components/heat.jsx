@@ -56,14 +56,6 @@ class CurrentHeat extends React.Component {
           <span className="info-label">Current / Capacity</span>
         </div>
 
-        <div className="info">
-          <span className="info-title">Ghost Heat</span>
-          <span className="info-value">{this.state.ghost_heat_previous}</span>
-          <span className="info-value-divider">/</span>
-          <span className="info-value">{this.state.ghost_heat_total}</span>
-          <span className="info-label">Previous / Total</span>
-        </div>
-
       </current_heat>
 
     );

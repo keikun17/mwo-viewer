@@ -10,19 +10,19 @@ class EquippedWeapon extends React.Component {
 
   constructor(props) {
     super(props)
-    this.state = { cooldownTimeRemaining: 0, is_disabled: false , shots_before_ghost: this.shots_before_ghost()}
+    this.state = { cooldownTimeRemaining: 0, is_disabled: false , shots_before_ghost: this.count_shots_before_ghost()}
   }
 
-  shots_before_ghost() {
+  count_shots_before_ghost() {
     var ghost_heat_group = GhostHeatGroupStore.get_new_data()[this.props.ghost_heat_group]
     if(ghost_heat_group){
-      var shots = ghost_heat_group.limit - ghost_heat_group.current
+      var shots = this.props.ghost_limit - ghost_heat_group.current
       return shots
     }
   }
 
   update_shots_before_ghost() {
-    this.setState({shots_before_ghost: this.shots_before_ghost()})
+    this.setState({shots_before_ghost: this.count_shots_before_ghost()})
   }
 
   componentWillUnmount() {
@@ -31,13 +31,18 @@ class EquippedWeapon extends React.Component {
 
   componentDidMount() {
     WeaponStore.on(WeaponConstants.WEAPON_DID_ALPHA, this.group_fire_weapon.bind(this))
-    if(this.state.shots_before_ghost !== undefined) {
+    if(this.state.shots_before_ghost !== 0) {
       GhostHeatGroupStore.addChangeListener(this.update_shots_before_ghost.bind(this))
     }
   }
 
   render() {
     var className = this.state.is_disabled ? "disabled" : ""
+    var shots_before_ghost = ""
+
+    if(this.props.ghost_limit){
+      shots_before_ghost =  "[" + this.state.shots_before_ghost  + "]"
+    }
 
     return <equipped_weapon className={className} id={this.props.id} key={this.props.key} style={this.styles}>
       <cooldown_timer>{ this.state.cooldownTimeRemaining }s</cooldown_timer>
@@ -45,7 +50,7 @@ class EquippedWeapon extends React.Component {
       <remove_weapon_button onClick={this._remove.bind(this)}/>
       <span>
       {this.props.name}
-      [{this.state.shots_before_ghost}]
+      {shots_before_ghost}
       </span>
     </equipped_weapon>
   }

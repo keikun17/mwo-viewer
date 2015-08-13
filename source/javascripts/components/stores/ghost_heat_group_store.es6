@@ -7,29 +7,26 @@ import HeatActions from '../actions/heat_actions'
 /**
  * Store data format
  *   <group name>: <ghost heat properties>
- *     {key}    <group name>           - Abbreviated Ghost heat group name (e.g. slas, mlas, llas)
+ *     {key}    <group name>           - Abbreviated Ghost heat linked penalty group name (e.g. slas, mlas, llas)
  *     {object} <ghost heat properies> :
- *        {float}   trigger_time            - time remaining before `current` counter is reset
- *        {integer} limit                   - number of shots that can be fired within the ghost
+ *          {float} trigger_time            - time remaining before `current` counter is reset
  *                                            heat group without triggering ghost heat
  *        {integer} current                 - number of times a weapon has been fired within the `trigger_time`
- *        {object}  timer=undefined         - The 'setInterval' object for the weapon group that reduces trigger_time by a unit per tick
+ *         {object} timer=undefined         - The 'setInterval' object for the weapon group that reduces trigger_time by a unit per tick
+ *          {float} multiplier              - Ghost heat multiplier for each weapon fired beyond the limit
+ *
  *
  */
 var data = {
-  mlas:   {trigger_time: 0, limit: 6, current: 0, timer: undefined, multiplier: 1 },
-  llas:   {trigger_time: 0, limit: 2, current: 0, timer: undefined, multiplier: 2.8 },
-  ppc:    {trigger_time: 0, limit: 2, current: 0, timer: undefined, multiplier: 7.0 },
-  erppc:  {trigger_time: 0, limit: 2, current: 0, timer: undefined, multiplier: 4.5 },
-  lrm20:  {trigger_time: 0, limit: 2, current: 0, timer: undefined, multiplier: 2.8 },
-  lrm15:  {trigger_time: 0, limit: 2, current: 0, timer: undefined, multiplier: 2.8 },
-  lrm10:  {trigger_time: 0, limit: 2, current: 0, timer: undefined, multiplier: 2.8 },
-  ac2:    {trigger_time: 0, limit: 3, current: 0, timer: undefined, multiplier: 1 },
-  ac20:   {trigger_time: 0, limit: 3, current: 0, timer: undefined, multiplier: 24 },
-  srm2:   {trigger_time: 0, limit: 4, current: 0, timer: undefined, multiplier: 1 },
-  ssrm2:  {trigger_time: 0, limit: 4, current: 0, timer: undefined, multiplier: 1 },
-  srm4:   {trigger_time: 0, limit: 4, current: 0, timer: undefined, multiplier: 1 },
-  srm6:   {trigger_time: 0, limit: 3, current: 0, timer: undefined, multiplier: 1 },
+  mlas:    {trigger_time: 0, current: 0, timer: undefined, multiplier: 1 },
+  llas:    {trigger_time: 0, current: 0, timer: undefined, multiplier: 2.8 },
+  ppc:     {trigger_time: 0, current: 0, timer: undefined, multiplier: 7.0 },
+  erppc:   {trigger_time: 0, current: 0, timer: undefined, multiplier: 4.5 },
+  lrm:     {trigger_time: 0, current: 0, timer: undefined, multiplier: 2.8 },
+  ac2:     {trigger_time: 0, current: 0, timer: undefined, multiplier: 1 },
+  ac20:    {trigger_time: 0, current: 0, timer: undefined, multiplier: 24 },
+  srm:     {trigger_time: 0, current: 0, timer: undefined, multiplier: 1 },
+  ssrm:    {trigger_time: 0, current: 0, timer: undefined, multiplier: 1 },
 }
 
 /*
@@ -80,10 +77,10 @@ var include_ghost_heat = function(weapon_props) {
   // Increment weapon group counter by 1
   data[ghost_heat_group].current = data[ghost_heat_group].current + 1
 
-  if(data[ghost_heat_group].current > data[ghost_heat_group].limit){
+  if(data[ghost_heat_group].current > weapon_props.ghost_limit){
     console.log("GHOST HEAT PRESENT")
 
-    var ghost_heat_amount = 69
+    var ghost_heat_amount = 55
 
     setTimeout(function(){ HeatActions.add_ghost_heat(ghost_heat_amount) })
     // Apply ghost heat
@@ -140,7 +137,7 @@ _GhostHeatGroupStore.dispatch_token = AppDispatcher.register((payload) => {
   switch(action_type) {
     case HeatConstants.HEAT_APPLY:
       AppDispatcher.waitFor([HeatStore.dispatch_token])
-      if(payload.weapon_props.ghost_heat_group !== undefined) {
+      if(payload.weapon_props.ghost_limit !== 0) {
         include_ghost_heat(payload.weapon_props)
         _GhostHeatGroupStore.emit(CHANGE)
       }

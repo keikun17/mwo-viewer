@@ -73,45 +73,45 @@ var heat_scale = function(weapons_fired){
  * 4. Compute for the ghost heat if present and apply
  */
 var include_ghost_heat = function(weapon_props) {
-  var ghost_heat_group = weapon_props.ghost_heat_group
+  var ghost_heat_group =data[weapon_props.ghost_heat_group]
+  var ghost_heat_group = ghost_heat_group
 
   // Set trigger time for the weapon group to '2'
-  data[ghost_heat_group].trigger_time = 2
+  ghost_heat_group.trigger_time = 2
 
   // Start group trigger timer if not started yet
-  if(data[ghost_heat_group].timer == undefined){
+  if(ghost_heat_group.timer == undefined){
 
-    data[ghost_heat_group].timer = setInterval(
+    ghost_heat_group.timer = setInterval(
       function(){
 
-        if(data[ghost_heat_group].trigger_time > 0){
-          data[ghost_heat_group].trigger_time = data[ghost_heat_group].trigger_time - .1
+        if(ghost_heat_group.trigger_time > 0){
+          ghost_heat_group.trigger_time = ghost_heat_group.trigger_time - .1
         }else{
           // TODO : move this to its own method `reset_group_ghost_heat`
           // kill the timer when cooldown is over
-          clearInterval(data[ghost_heat_group].timer)
+          clearInterval(ghost_heat_group.timer)
           // remove the reference left behind by clearInterval
-          data[ghost_heat_group].current = 0
+          ghost_heat_group.current = 0
           //
-          data[ghost_heat_group].timer = undefined
+          ghost_heat_group.timer = undefined
           _GhostHeatGroupStore.emit(CHANGE)
         }
       }, 100)
   }
 
   // Increment weapon group counter by 1
-  data[ghost_heat_group].current = data[ghost_heat_group].current + 1
+  ghost_heat_group.current = ghost_heat_group.current + 1
 
-  if(data[ghost_heat_group].current > weapon_props.ghost_limit){
-    console.log("GHOST HEAT PRESENT")
+  if(ghost_heat_group.current > weapon_props.ghost_limit){
 
-    var ghost_heat_amount = weapon_props.heat *  data[ghost_heat_group].multiplier * heat_scale(data[ghost_heat_group].current)
-    console.log("currently at")
-    console.log(data[ghost_heat_group].current)
-    console.log("amount is")
-    console.log(ghost_heat_amount)
+    var ghost_heat_amount = weapon_props.heat *  ghost_heat_group.multiplier * heat_scale(ghost_heat_group.current)
 
-    setTimeout(function(){ HeatActions.add_ghost_heat(ghost_heat_amount) })
+    setTimeout(function(){
+      HeatActions.add_ghost_heat(ghost_heat_amount)
+      var message = "[" + ghost_heat_group.current  + "] " + weapon_props.name + " caused " + ghost_heat_amount + " ghost heat."
+      _GhostHeatGroupStore.emit('ghost_heat_applied', message)
+    })
     // Apply ghost heat
   }
 }

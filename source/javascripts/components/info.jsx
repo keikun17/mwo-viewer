@@ -3,6 +3,7 @@ var MapInfo = require('./map_info')
 var Heat = require('./heat')
 var DamageMeter = require('./damage_meter')
 var Cooldown = require('./cooldown')
+var EventLog = require('./event_log')
 
 var Info = React.createClass({
   styles: {
@@ -17,6 +18,7 @@ var Info = React.createClass({
       <Cooldown/>
       <DamageMeter />
       <MapInfo />
+      <EventLog/>
     </info>
   }
 })

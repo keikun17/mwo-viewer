@@ -29,16 +29,6 @@ var data = {
   ssrm:    {trigger_time: 0, current: 0, timer: undefined, multiplier: 1 },
 }
 
-/*
- * Stores / Namespace for the ghost heat trigger timer objects
- *   <group name>: <timer>
- *     {key}    <group name>
- *     {object} <timer>
- */
-var timers = {
-}
-
-
 /**
  * @param {object} weapon_props - Weapon props
  *

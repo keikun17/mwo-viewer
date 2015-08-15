@@ -30,6 +30,41 @@ var data = {
 }
 
 /**
+ *
+ */
+var heat_scale = function(weapons_fired){
+  if(weapons_fired < 2) {
+    return 0
+  }else if(weapons_fired >= 12){
+    return 5
+  }
+
+  switch(weapons_fired) {
+
+    case 2:
+      return 0.08
+    case 3:
+      return 0.18
+    case 4:
+      return 0.30
+    case 5:
+      return 0.45
+    case 6:
+      return 0.60
+    case 7:
+      return 0.60
+    case 8:
+      return 0.80
+    case 9:
+      return 1.50
+    case 10:
+      return 2.00
+    case 11:
+      return 3.00
+  }
+}
+
+/**
  * @param {object} weapon_props - Weapon props
  *
  * 1. Set trigger time for weapon group to '2',
@@ -70,7 +105,11 @@ var include_ghost_heat = function(weapon_props) {
   if(data[ghost_heat_group].current > weapon_props.ghost_limit){
     console.log("GHOST HEAT PRESENT")
 
-    var ghost_heat_amount = 55
+    var ghost_heat_amount = weapon_props.heat *  data[ghost_heat_group].multiplier * heat_scale(data[ghost_heat_group].current)
+    console.log("currently at")
+    console.log(data[ghost_heat_group].current)
+    console.log("amount is")
+    console.log(ghost_heat_amount)
 
     setTimeout(function(){ HeatActions.add_ghost_heat(ghost_heat_amount) })
     // Apply ghost heat

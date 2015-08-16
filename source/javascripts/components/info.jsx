@@ -14,8 +14,10 @@ var Info = React.createClass({
   render: function(){
     return <info style={this.styles}>
       <h1>Info</h1>
-      <Heat/>
-      <Cooldown/>
+      <div style={{display:'block'}}>
+        <Heat/>
+        <Cooldown/>
+      </div>
       <DamageMeter />
       <MapInfo />
       <EventLog/>

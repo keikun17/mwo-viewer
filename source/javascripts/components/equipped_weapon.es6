@@ -26,6 +26,10 @@ class EquippedWeapon extends React.Component {
   }
 
   componentWillUnmount() {
+    console.log ("removing 1")
+    console.log(WeaponStore.removeListener(WeaponConstants.WEAPON_DID_ALPHA, this.group_fire_weapon.bind(this)))
+    console.log ("removing 2")
+    console.log(GhostHeatGroupStore.removeListener('GHOST_HEAT_GROUP_UPDATED', this.update_shots_before_ghost.bind(this)))
     clearInterval(this.cooldown_timer)
   }
 

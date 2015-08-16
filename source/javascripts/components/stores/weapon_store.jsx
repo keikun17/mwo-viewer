@@ -61,7 +61,10 @@ class WeaponStore extends EventEmitter {
 }
 
 
-let _WeaponStore = new WeaponStore();
+let _WeaponStore = new WeaponStore()
+
+_WeaponStore.setMaxListeners(0)
+
 export default _WeaponStore
 
 _WeaponStore.dispatch_token = AppDispatcher.register((payload) => {

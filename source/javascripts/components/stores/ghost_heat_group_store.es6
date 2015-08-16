@@ -155,6 +155,7 @@ class GhostHeatGroupStore extends EventEmitter {
 
 
 let _GhostHeatGroupStore = new GhostHeatGroupStore()
+_GhostHeatGroupStore.setMaxListeners(0)
 
 
 /*

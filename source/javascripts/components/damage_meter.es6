@@ -15,7 +15,7 @@ class DamageMeter extends React.Component {
 
   getStyle(){
     return {
-      display: 'block'
+      display: 'flex'
     }
   }
 

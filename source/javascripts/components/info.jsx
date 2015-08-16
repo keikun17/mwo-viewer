@@ -14,9 +14,9 @@ var Info = React.createClass({
   render: function(){
     return <info style={this.styles}>
       <h1>Info</h1>
-      <div style={{display:'block'}}>
-        <Heat/>
-        <Cooldown/>
+      <div style={{display:'flex'}}>
+        <Heat className='info'/>
+        <Cooldown className='info'/>
       </div>
       <DamageMeter />
       <MapInfo />

@@ -25,20 +25,18 @@ class Cooldown extends React.Component {
 
   getStyle(){
     return {
-      display: 'inline-block'
+      flex: '1 0 0'
     }
   }
 
   render() {
     return (
-      <cooldown style={this.getStyle()}>
-        <div className="info">
+      <cooldown style={this.getStyle()} className="info">
           <span className="info-title">Cooldown</span>
           <span className="info-value">{this.state.time_to_zero}s</span>
           <span className="info-value-divider">/</span>
           <span className="info-value">{this.state.cool_rate}</span>
           <span className="info-label">Time / Rate</span>
-        </div>
       </cooldown>
     );
   }

@@ -40,21 +40,19 @@ class CurrentHeat extends React.Component {
 
   getStyle(){
     return {
-      display: 'inline-block'
+      flex: '1 0 0'
     }
   }
 
   render() {
     return (
-      <current_heat style={this.getStyle()}>
+      <current_heat style={this.getStyle()} className="info">
 
-        <div className="info">
           <span className="info-title">Heat</span>
           <span className="info-value">{this.state.value.toFixed(2)}</span>
           <span className="info-value-divider">/</span>
           <span className="info-value">{this.state.capacity}</span>
           <span className="info-label">Current / Capacity</span>
-        </div>
 
       </current_heat>
 

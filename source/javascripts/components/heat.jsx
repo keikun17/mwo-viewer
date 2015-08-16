@@ -47,13 +47,11 @@ class CurrentHeat extends React.Component {
   render() {
     return (
       <current_heat style={this.getStyle()} className="info">
-
           <span className="info-title">Heat</span>
           <span className="info-value">{this.state.value.toFixed(2)}</span>
           <span className="info-value-divider">/</span>
           <span className="info-value">{this.state.capacity}</span>
           <span className="info-label">Current / Capacity</span>
-
       </current_heat>
 
     );

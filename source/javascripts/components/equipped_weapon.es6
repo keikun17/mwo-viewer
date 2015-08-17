@@ -15,7 +15,7 @@ class EquippedWeapon extends React.Component {
       cooldownTimeRemaining: 0,
       is_disabled: false,
       shots_before_ghost: this.count_shots_before_ghost(),
-      weapon_groups: {grp1: true, grp2: false, grp3: false, grp4: false}
+      weapon_groups: { grp1: true, grp2: false, grp3: false, grp4: false, grp5: false, grp6: false }
     }
   }
 
@@ -112,12 +112,12 @@ class EquippedWeapon extends React.Component {
       {this.props.name}
       {shots_before_ghost}
       </span>
-      <WeaponGroup group_id="1" weapon_props={this.props} />
-      <WeaponGroup group_id="2" weapon_props={this.props} />
-      <WeaponGroup group_id="3" weapon_props={this.props} />
-      <WeaponGroup group_id="4" weapon_props={this.props} />
-      <WeaponGroup group_id="5" weapon_props={this.props} />
-      <WeaponGroup group_id="6" weapon_props={this.props} />
+      <WeaponGroup group_id="1" selected={this.state.weapon_groups.grp1} />
+      <WeaponGroup group_id="2" selected={this.state.weapon_groups.grp2} />
+      <WeaponGroup group_id="3" selected={this.state.weapon_groups.grp3} />
+      <WeaponGroup group_id="4" selected={this.state.weapon_groups.grp4} />
+      <WeaponGroup group_id="5" selected={this.state.weapon_groups.grp5} />
+      <WeaponGroup group_id="6" selected={this.state.weapon_groups.grp6} />
     </equipped_weapon>
   }
 

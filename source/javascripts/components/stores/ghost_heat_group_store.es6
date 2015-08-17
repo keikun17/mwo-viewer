@@ -29,6 +29,8 @@ var data = {
   ssrm:    {trigger_time: 0, current: 0, timer: undefined, multiplier: 1 },
 }
 
+var CHANGE = 'GHOST_HEAT_GROUP_UPDATED'
+
 /**
  *
  */
@@ -117,7 +119,6 @@ var include_ghost_heat = function(weapon_props) {
 }
 
 
-var CHANGE = 'GHOST_HEAT_GROUP_UPDATED'
 
 class GhostHeatGroupStore extends EventEmitter {
 

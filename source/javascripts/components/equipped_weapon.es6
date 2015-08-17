@@ -5,12 +5,18 @@ import DamageActions from './actions/damage_actions'
 import WeaponStore from './stores/weapon_store'
 import GhostHeatGroupStore from './stores/ghost_heat_group_store'
 import WeaponConstants from './constants/weapon_constants'
+import WeaponGroup from './weapon_group'
 
 class EquippedWeapon extends React.Component {
 
   constructor(props) {
     super(props)
-    this.state = { cooldownTimeRemaining: 0, is_disabled: false , shots_before_ghost: this.count_shots_before_ghost()}
+    this.state = {
+      cooldownTimeRemaining: 0,
+      is_disabled: false,
+      shots_before_ghost: this.count_shots_before_ghost(),
+      weapon_groups: {grp1: true, grp2: false, grp3: false, grp4: false}
+    }
   }
 
   count_shots_before_ghost() {
@@ -106,6 +112,12 @@ class EquippedWeapon extends React.Component {
       {this.props.name}
       {shots_before_ghost}
       </span>
+      <WeaponGroup group_id="1" weapon_props={this.props} />
+      <WeaponGroup group_id="2" weapon_props={this.props} />
+      <WeaponGroup group_id="3" weapon_props={this.props} />
+      <WeaponGroup group_id="4" weapon_props={this.props} />
+      <WeaponGroup group_id="5" weapon_props={this.props} />
+      <WeaponGroup group_id="6" weapon_props={this.props} />
     </equipped_weapon>
   }
 

@@ -112,12 +112,14 @@ class EquippedWeapon extends React.Component {
       {this.props.name}
       {shots_before_ghost}
       </span>
-      <WeaponGroup group_id="1" selected={this.state.weapon_groups.grp1} />
-      <WeaponGroup group_id="2" selected={this.state.weapon_groups.grp2} />
-      <WeaponGroup group_id="3" selected={this.state.weapon_groups.grp3} />
-      <WeaponGroup group_id="4" selected={this.state.weapon_groups.grp4} />
-      <WeaponGroup group_id="5" selected={this.state.weapon_groups.grp5} />
-      <WeaponGroup group_id="6" selected={this.state.weapon_groups.grp6} />
+      <weapon_group_wrapper>
+        <WeaponGroup group_id="1" selected={this.state.weapon_groups.grp1} />
+        <WeaponGroup group_id="2" selected={this.state.weapon_groups.grp2} />
+        <WeaponGroup group_id="3" selected={this.state.weapon_groups.grp3} />
+        <WeaponGroup group_id="4" selected={this.state.weapon_groups.grp4} />
+        <WeaponGroup group_id="5" selected={this.state.weapon_groups.grp5} />
+        <WeaponGroup group_id="6" selected={this.state.weapon_groups.grp6} />
+      </weapon_group_wrapper>
     </equipped_weapon>
   }
 

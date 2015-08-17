@@ -26,37 +26,20 @@ class EquippedWeapon extends React.Component {
   }
 
   componentWillUnmount() {
-    console.log ("removing 1")
-    console.log(WeaponStore.removeListener(WeaponConstants.WEAPON_DID_ALPHA, this.group_fire_weapon.bind(this)))
-    console.log ("removing 2")
-    console.log(GhostHeatGroupStore.removeListener('GHOST_HEAT_GROUP_UPDATED', this.update_shots_before_ghost.bind(this)))
+    WeaponStore.removeListener(WeaponConstants.WEAPON_DID_ALPHA, this.group_fire_weapon.bind(this))
+    console.log("weaponstore listeners are")
+    console.log(WeaponStore.listeners(WeaponConstants.WEAPON_DID_ALPHA))
+    console.log("weaponstore listeners are")
+    console.log(GhostHeatGroupStore.listeners('GHOST_HEAT_GROUP_UPDATED'))
     clearInterval(this.cooldown_timer)
+    GhostHeatGroupStore.removeListener(this.onGhostHeatChange, this.update_shots_before_ghost.bind(this))
   }
 
   componentDidMount() {
     WeaponStore.on(WeaponConstants.WEAPON_DID_ALPHA, this.group_fire_weapon.bind(this))
     if(this.state.shots_before_ghost !== 0) {
-      GhostHeatGroupStore.addChangeListener(this.update_shots_before_ghost.bind(this))
+      GhostHeatGroupStore.addChangeListener( this.update_shots_before_ghost.bind(this))
     }
-  }
-
-  render() {
-    var className = this.state.is_disabled ? "disabled" : ""
-    var shots_before_ghost = ""
-
-    if(this.props.ghost_limit){
-      shots_before_ghost =  "[" + this.state.shots_before_ghost  + "]"
-    }
-
-    return <equipped_weapon className={className} id={this.props.id} key={this.props.key} style={this.styles}>
-      <cooldown_timer>{ this.state.cooldownTimeRemaining }s</cooldown_timer>
-      <weapon_trigger className={className} onClick={ this.fire_weapon.bind(this) } />
-      <remove_weapon_button onClick={this._remove.bind(this)}/>
-      <span>
-      {this.props.name}
-      {shots_before_ghost}
-      </span>
-    </equipped_weapon>
   }
 
   _remove() {
@@ -106,6 +89,26 @@ class EquippedWeapon extends React.Component {
     }
 
   }
+
+  render() {
+    var className = this.state.is_disabled ? "disabled" : ""
+    var shots_before_ghost = ""
+
+    if(this.props.ghost_limit){
+      shots_before_ghost =  "[" + this.state.shots_before_ghost  + "]"
+    }
+
+    return <equipped_weapon className={className} id={this.props.id} key={this.props.key} style={this.styles}>
+      <cooldown_timer>{ this.state.cooldownTimeRemaining }s</cooldown_timer>
+      <weapon_trigger className={className} onClick={ this.fire_weapon.bind(this) } />
+      <remove_weapon_button onClick={this._remove.bind(this)}/>
+      <span>
+      {this.props.name}
+      {shots_before_ghost}
+      </span>
+    </equipped_weapon>
+  }
+
 
 }
 

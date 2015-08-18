@@ -30,11 +30,12 @@ var destroy = function(id) {
 
 /** Toggle the weapon group of an equipped weapon
  * @param {string} equipped_weapon_id - ID of the weapon
- * @param {string} group_id - ID of the weapon_group (grp1, grp2, etc.)
+ * @param {string} group_id - ID of the weapon_group (1, 2, 3. not grp1, grp2)
  */
 var toggle_equipped_weapon_group = function(equipped_weapon_id, group_id) {
-  var current_value = data.equipped_weapons[equipped_weapon_id][group_id]
-  data.equipped_weapons[equipped_weapon_id][group_id] = !current_value
+  var group_id = "grp" + group_id
+  var current_value = data.equipped_weapons[equipped_weapon_id].weapon_groups[group_id]
+  data.equipped_weapons[equipped_weapon_id].weapon_groups[group_id] = !current_value
 }
 
 /**

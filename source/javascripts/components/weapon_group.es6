@@ -1,4 +1,5 @@
 import React from 'react'
+import WeaponActions from './actions/weapon_actions'
 
 export default class WeaponGroup extends React.Component {
 
@@ -14,19 +15,17 @@ export default class WeaponGroup extends React.Component {
   }
 
   class_names(){
-    if(this.state.enabled) {
+    if(this.is_enabled()) {
       return "selected"
     }
   }
 
   toggleWeaponGroup() {
-    console.log(this.props.equipped_weapon_id)
-    console.log(this.props.group_id)
-    WeaponActions.assignWeaponGroup(this.props.equipped_weapon_id, this.props.group_id)
+    WeaponActions.toggleWeaponGroup(this.props.equipped_weapon_id, this.props.group_id)
   }
 
 
   render() {
-    return <weapon_group className={this.class_names()} >{this.props.group_id}</weapon_group>
+    return <weapon_group className={this.class_names()} onClick={this.toggleWeaponGroup.bind(this) }>{this.props.group_id}</weapon_group>
   }
 }

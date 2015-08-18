@@ -21,21 +21,29 @@ export default class EquippedWeaponsWrapper extends React.Component {
   }
 
   render() {
-    var equipped_weapons = this.state.equipped_weapons.map(function(weapon ,index ,equipped_weapons){
-      let _weapon = weapon
+    console.log(this.state.equipped_weapons)
+    var equipped_weapons = []
+      for (var key in this.state.equipped_weapons){
+      let _weapon = this.state.equipped_weapons[key]
+      console.log(_weapon)
 
-      return <EquippedWeapon id={_weapon.id}
-      key={index}
-      name={_weapon.name}
-      weapon_id={_weapon.weapon_id}
-      cooldown_time={_weapon.cooldown_time}
-      heat={_weapon.heat}
-      damage={_weapon.damage}
-      ghost_heat_group={_weapon.ghost_heat_group}
-      ghost_limit={_weapon.ghost_limit}
-      weapon_groups={_weapon.weapon_groups}
-      />
-    })
+      equipped_weapons.push(
+        <EquippedWeapon id={key}
+        key={key}
+        name={_weapon.name}
+        weapon_id={_weapon.weapon_id}
+        cooldown_time={_weapon.cooldown_time}
+        heat={_weapon.heat}
+        damage={_weapon.damage}
+        ghost_heat_group={_weapon.ghost_heat_group}
+        ghost_limit={_weapon.ghost_limit}
+        weapon_groups={_weapon.weapon_groups}
+        />
+      )
+    }
+
+    console.log("Eq")
+    console.log(equipped_weapons)
 
     return <equipped_weapons>
     {equipped_weapons}

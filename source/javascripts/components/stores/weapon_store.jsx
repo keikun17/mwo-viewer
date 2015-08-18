@@ -17,7 +17,7 @@ var equip = function(weapon_props) {
   var initial_weapon_groups =  { grp1: true, grp2: true, grp3: false, grp4: false, grp5: false, grp6: false }
   var id = (+new Date() + Math.floor(Math.random() * 999999)).toString(36);
   var equipped_weapon = Object.assign({id: id, weapon_groups: initial_weapon_groups}, weapon_props)
-  data.equipped_weapons.push(equipped_weapon)
+  data.equipped_weapons[id] = equipped_weapon
 }
 
 /**
@@ -25,7 +25,7 @@ var equip = function(weapon_props) {
  * @param {string} id
  */
 var destroy = function(index) {
-  data.equipped_weapons.splice(index, 1)
+  delete data.equipped_weapons[id]
 }
 
 /** Toggle the weapon group of an equipped weapon

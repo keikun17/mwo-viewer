@@ -48,7 +48,6 @@ class EquippedWeapon extends React.Component {
   }
 
   _remove() {
-    console.log("removing")
     WeaponActions.unequip(this.props.id)
   }
 

@@ -21,11 +21,9 @@ export default class EquippedWeaponsWrapper extends React.Component {
   }
 
   render() {
-    console.log(this.state.equipped_weapons)
     var equipped_weapons = []
       for (var key in this.state.equipped_weapons){
       let _weapon = this.state.equipped_weapons[key]
-      console.log(_weapon)
 
       equipped_weapons.push(
         <EquippedWeapon id={key}
@@ -41,9 +39,6 @@ export default class EquippedWeaponsWrapper extends React.Component {
         />
       )
     }
-
-    console.log("Eq")
-    console.log(equipped_weapons)
 
     return <equipped_weapons>
     {equipped_weapons}

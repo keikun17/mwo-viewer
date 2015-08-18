@@ -24,7 +24,7 @@ var equip = function(weapon_props) {
  * Delete a weapon
  * @param {string} id
  */
-var destroy = function(index) {
+var destroy = function(id) {
   delete data.equipped_weapons[id]
 }
 

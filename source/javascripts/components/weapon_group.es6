@@ -18,8 +18,15 @@ export default class WeaponGroup extends React.Component {
       return "selected"
     }
   }
+
+  toggleWeaponGroup() {
+    console.log(this.props.equipped_weapon_id)
+    console.log(this.props.group_id)
+    WeaponActions.assignWeaponGroup(this.props.equipped_weapon_id, this.props.group_id)
+  }
+
+
   render() {
-    return <weapon_group className={this.class_names()}>{this.props.group_id}</weapon_group>
+    return <weapon_group className={this.class_names()} onClick={ this.toggleGroup.bind(this) } >{this.props.group_id}</weapon_group>
   }
 }
-

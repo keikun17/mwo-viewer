@@ -15,7 +15,8 @@ var data = {
  */
 var equip = function(weapon_props) {
   var initial_weapon_groups =  { grp1: true, grp2: true, grp3: false, grp4: false, grp5: false, grp6: false }
-  var equipped_weapon = Object.assign({weapon_groups: initial_weapon_groups}, weapon_props)
+  var id = (+new Date() + Math.floor(Math.random() * 999999)).toString(36);
+  var equipped_weapon = Object.assign({id: id, weapon_groups: initial_weapon_groups}, weapon_props)
   data.equipped_weapons.push(equipped_weapon)
 }
 
@@ -25,6 +26,15 @@ var equip = function(weapon_props) {
  */
 var destroy = function(index) {
   data.equipped_weapons.splice(index, 1)
+}
+
+/** Toggle the weapon group of an equipped weapon
+ * @param {string} equipped_weapon_id - ID of the weapon
+ * @param {string} group_id - ID of the weapon_group (grp1, grp2, etc.)
+ */
+var toggle_equipped_weapon_group = function(equipped_weapon_id, group_id) {
+  var current_value = data.equipped_weapons[equipped_weapon_id][group_id]
+  data.equipped_weapons[equipped_weapon_id][group_id] = !current_value
 }
 
 /**
@@ -81,6 +91,10 @@ _WeaponStore.dispatch_token = AppDispatcher.register((payload) => {
       break
     case WeaponConstants.WEAPON_ALPHA:
       setTimeout(alpha_strike)
+      break
+    case WeaponConstants.WEAPON_TOGGLE_GROUP:
+      toggle_equipped_weapon_group(payload.equipped_weapon_id, payload.group_id)
+      _WeaponStore.emit(CHANGE)
       break
   }
 })

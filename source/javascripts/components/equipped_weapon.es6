@@ -95,10 +95,6 @@ class EquippedWeapon extends React.Component {
 
   }
 
-  toggleGroup() {
-
-  }
-
   render() {
     var className = this.state.is_disabled ? "disabled" : ""
     var shots_before_ghost = ""
@@ -116,12 +112,12 @@ class EquippedWeapon extends React.Component {
       {shots_before_ghost}
       </span>
       <weapon_group_wrapper>
-        <WeaponGroup group_id="1" selected={this.props.weapon_groups.grp1}  onClick={ this.toggleGroup(1) } />
-        <WeaponGroup group_id="2" selected={this.props.weapon_groups.grp2}  onClick={ this.toggleGroup(2) } />
-        <WeaponGroup group_id="3" selected={this.props.weapon_groups.grp3}  onClick={ this.toggleGroup(3) } />
-        <WeaponGroup group_id="4" selected={this.props.weapon_groups.grp4}  onClick={ this.toggleGroup(4) } />
-        <WeaponGroup group_id="5" selected={this.props.weapon_groups.grp5}  onClick={ this.toggleGroup(5) } />
-        <WeaponGroup group_id="6" selected={this.props.weapon_groups.grp6}  onClick={ this.toggleGroup(6) } />
+        <WeaponGroup group_id="1" selected={this.props.weapon_groups.grp1}  equipped_weapon_id={ this.props.id } />
+        <WeaponGroup group_id="2" selected={this.props.weapon_groups.grp2}  equipped_weapon_id={ this.props.id } />
+        <WeaponGroup group_id="3" selected={this.props.weapon_groups.grp3}  equipped_weapon_id={ this.props.id } />
+        <WeaponGroup group_id="4" selected={this.props.weapon_groups.grp4}  equipped_weapon_id={ this.props.id } />
+        <WeaponGroup group_id="5" selected={this.props.weapon_groups.grp5}  equipped_weapon_id={ this.props.id } />
+        <WeaponGroup group_id="6" selected={this.props.weapon_groups.grp6}  equipped_weapon_id={ this.props.id } />
       </weapon_group_wrapper>
     </equipped_weapon>
   }

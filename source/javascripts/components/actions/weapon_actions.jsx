@@ -26,6 +26,14 @@ var WeaponActions = {
     AppDispatcher.dispatch({
       action_type: WeaponConstants.WEAPON_ALPHA
     })
+  },
+
+  toggleWeaponGroup:function(equipped_weapon_id, group_id) {
+    AppDispatcher.dispatch({
+      action_type: WeaponConstants.WEAPON_TOGGLE_GROUP,
+      equipped_weapon_id: equipped_weapon_id,
+      group_id: group_id
+    })
   }
 
 }

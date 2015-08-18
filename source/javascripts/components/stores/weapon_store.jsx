@@ -6,7 +6,7 @@ var CHANGE = 'WEAPON_UPDATED'
 
 var data = {
   last_id: 0,
-  equipped_weapons: []
+  equipped_weapons: {}
 }
 
 /**

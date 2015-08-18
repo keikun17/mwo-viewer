@@ -15,7 +15,6 @@ class EquippedWeapon extends React.Component {
       cooldownTimeRemaining: 0,
       is_disabled: false,
       shots_before_ghost: this.count_shots_before_ghost(),
-      weapon_groups: { grp1: true, grp2: false, grp3: false, grp4: false, grp5: false, grp6: false }
     }
   }
 
@@ -96,6 +95,10 @@ class EquippedWeapon extends React.Component {
 
   }
 
+  toggleGroup() {
+
+  }
+
   render() {
     var className = this.state.is_disabled ? "disabled" : ""
     var shots_before_ghost = ""
@@ -113,12 +116,12 @@ class EquippedWeapon extends React.Component {
       {shots_before_ghost}
       </span>
       <weapon_group_wrapper>
-        <WeaponGroup group_id="1" selected={this.state.weapon_groups.grp1} />
-        <WeaponGroup group_id="2" selected={this.state.weapon_groups.grp2} />
-        <WeaponGroup group_id="3" selected={this.state.weapon_groups.grp3} />
-        <WeaponGroup group_id="4" selected={this.state.weapon_groups.grp4} />
-        <WeaponGroup group_id="5" selected={this.state.weapon_groups.grp5} />
-        <WeaponGroup group_id="6" selected={this.state.weapon_groups.grp6} />
+        <WeaponGroup group_id="1" selected={this.props.weapon_groups.grp1}  onClick={ this.toggleGroup(1) } />
+        <WeaponGroup group_id="2" selected={this.props.weapon_groups.grp2}  onClick={ this.toggleGroup(2) } />
+        <WeaponGroup group_id="3" selected={this.props.weapon_groups.grp3}  onClick={ this.toggleGroup(3) } />
+        <WeaponGroup group_id="4" selected={this.props.weapon_groups.grp4}  onClick={ this.toggleGroup(4) } />
+        <WeaponGroup group_id="5" selected={this.props.weapon_groups.grp5}  onClick={ this.toggleGroup(5) } />
+        <WeaponGroup group_id="6" selected={this.props.weapon_groups.grp6}  onClick={ this.toggleGroup(6) } />
       </weapon_group_wrapper>
     </equipped_weapon>
   }

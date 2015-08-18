@@ -14,7 +14,8 @@ var data = {
  * @param {string} id
  */
 var equip = function(weapon_props) {
-  var equipped_weapon = Object.assign({}, weapon_props)
+  var initial_weapon_groups =  { grp1: true, grp2: true, grp3: false, grp4: false, grp5: false, grp6: false }
+  var equipped_weapon = Object.assign({weapon_groups: initial_weapon_groups}, weapon_props)
   data.equipped_weapons.push(equipped_weapon)
 }
 

@@ -33,6 +33,7 @@ export default class EquippedWeaponsWrapper extends React.Component {
       damage={_weapon.damage}
       ghost_heat_group={_weapon.ghost_heat_group}
       ghost_limit={_weapon.ghost_limit}
+      weapon_groups={_weapon.weapon_groups}
       />
     })
 

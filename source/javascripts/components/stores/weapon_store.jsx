@@ -54,7 +54,6 @@ var alpha_strike = function() {
  */
 var group_fire = function(group_id) {
   // TOOD set damage.data.last to the total of all weapons fired
-  console.log(group_id)
   _WeaponStore.emit(WeaponConstants.WEAPON_WILL_GROUP_FIRE)
   _WeaponStore.emit(WeaponConstants.WEAPON_DID_GROUP_FIRE, group_id)
 }

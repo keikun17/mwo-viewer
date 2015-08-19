@@ -43,7 +43,6 @@ var toggle_equipped_weapon_group = function(equipped_weapon_id, group_id) {
  * and sets the damage.data.last to the total of all weapons fired
  */
 var alpha_strike = function() {
-  // TOOD set damage.data.last to the total of all weapons fired
   _WeaponStore.emit(WeaponConstants.WEAPON_WILL_GROUP_FIRE)
   _WeaponStore.emit(WeaponConstants.WEAPON_DID_ALPHA)
 }
@@ -53,7 +52,6 @@ var alpha_strike = function() {
  * and sets the damage.data.last to the total of all weapons fired
  */
 var group_fire = function(group_id) {
-  // TOOD set damage.data.last to the total of all weapons fired
   _WeaponStore.emit(WeaponConstants.WEAPON_WILL_GROUP_FIRE)
   _WeaponStore.emit(WeaponConstants.WEAPON_DID_GROUP_FIRE, group_id)
 }

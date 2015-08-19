@@ -48,6 +48,17 @@ var alpha_strike = function() {
   _WeaponStore.emit(WeaponConstants.WEAPON_DID_ALPHA)
 }
 
+/**
+ * emits a "WEAPON_GROUP_FIRE" that causes equipped weapon under a given group_id to fire
+ * and sets the damage.data.last to the total of all weapons fired
+ */
+var group_fire = function(group_id) {
+  // TOOD set damage.data.last to the total of all weapons fired
+  console.log(group_id)
+  _WeaponStore.emit(WeaponConstants.WEAPON_WILL_GROUP_FIRE)
+  _WeaponStore.emit(WeaponConstants.WEAPON_DID_GROUP_FIRE, group_id)
+}
+
 class WeaponStore extends EventEmitter {
 
   // move this to store base class
@@ -92,6 +103,11 @@ _WeaponStore.dispatch_token = AppDispatcher.register((payload) => {
       break
     case WeaponConstants.WEAPON_ALPHA:
       setTimeout(alpha_strike)
+      break
+    case WeaponConstants.WEAPON_GROUP_FIRE:
+      // setTimeout(group_fireupayload.group_id))
+      setTimeout(function(){group_fire(payload.group_id)})
+      _WeaponStore.emit(CHANGE)
       break
     case WeaponConstants.WEAPON_TOGGLE_GROUP:
       toggle_equipped_weapon_group(payload.equipped_weapon_id, payload.group_id)

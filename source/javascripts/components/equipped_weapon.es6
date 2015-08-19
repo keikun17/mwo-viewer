@@ -42,7 +42,7 @@ class EquippedWeapon extends React.Component {
 
   componentDidMount() {
     WeaponStore.on(WeaponConstants.WEAPON_DID_ALPHA, this.group_fire_weapon.bind(this, 'ALL'))
-    WeaponStore.on(WeaponConstants.WEAPON_DID_ALPHA, this.group_fire_weapon.bind(this))
+    WeaponStore.on(WeaponConstants.WEAPON_DID_GROUP_FIRE, this.group_fire_weapon.bind(this))
     if(this.state.shots_before_ghost !== 0) {
       GhostHeatGroupStore.addChangeListener( this.update_shots_before_ghost.bind(this))
     }
@@ -55,14 +55,17 @@ class EquippedWeapon extends React.Component {
   group_fire_weapon(group_id) {
     if(this.state.is_disabled !== true) {
       if(group_id === 'ALL'){
-        console.log("ALL")
+        // If Alpha Strike
         HeatActions.apply_heat(this.props)
         DamageActions.stack_damage(this.props.damage)
-      } else {
-        debugger
+        this.disable_weapon()
+      } else if (this.props.weapon_groups["grp" + group_id] === true) {
+        // If Group Fire
+        HeatActions.apply_heat(this.props)
+        DamageActions.stack_damage(this.props.damage)
+        this.disable_weapon()
       }
     }
-    this.disable_weapon()
   }
 
   fire_weapon() {

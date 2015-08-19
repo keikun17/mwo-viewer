@@ -20,6 +20,7 @@ class DamageMeter extends React.Component {
   }
 
   componentDidMount() {
+    // Reset the damage counter to 0
     WeaponStore.on(WeaponConstants.WEAPON_WILL_GROUP_FIRE, () => {DamageActions.apply_damage(0)})
     DamageStore.addChangeListener(this.onStoreChange.bind(this))
   }

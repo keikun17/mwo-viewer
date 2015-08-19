@@ -22,6 +22,13 @@ var WeaponActions = {
     })
   },
 
+  group_fire: function(group_id) {
+    AppDispatcher.dispatch({
+      action_type: WeaponConstants.WEAPON_GROUP_FIRE,
+      group_id: group_id
+    })
+  },
+
   alpha_strike: function() {
     AppDispatcher.dispatch({
       action_type: WeaponConstants.WEAPON_ALPHA

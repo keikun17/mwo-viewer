@@ -24,6 +24,11 @@ class Equipment extends React.Component {
       <h1>Equipments</h1>
       <Heatsink/>
       <alpha_strike onClick={this.fireAllWeapons.bind(this)} >Alpha Strike</alpha_strike>
+      <weapon_group_trigger>1</weapon_group_trigger>
+      <weapon_group_trigger>2</weapon_group_trigger>
+      <weapon_group_trigger>3</weapon_group_trigger>
+      <weapon_group_trigger>4</weapon_group_trigger>
+      <weapon_group_trigger>5</weapon_group_trigger>
       <EquippedWeaponsWrapper />
     </equipments>
   }

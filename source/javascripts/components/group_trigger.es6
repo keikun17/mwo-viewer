@@ -1,5 +1,7 @@
 var React = require('react')
 import WeaponActions from './actions/weapon_actions'
+import Keybindings from './stores/keybindings_store'
+import KeybindingActions from './actions/keybinding_actions'
 
 class GroupTrigger extends React.Component {
   constructor(props) {
@@ -8,6 +10,12 @@ class GroupTrigger extends React.Component {
 
   group_fire(group_id) {
     WeaponActions.group_fire(group_id)
+  }
+
+  componentDidMount() {
+    var mapping = this.group_fire.bind( this, this.props.group_id )
+
+    KeybindingActions.assign(this.props.group_id, mapping )
   }
 
   render() {

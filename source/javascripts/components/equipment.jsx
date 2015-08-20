@@ -29,12 +29,12 @@ class Equipment extends React.Component {
       <h1>Equipments</h1>
       <Heatsink/>
       <alpha_strike onClick={this.fireAllWeapons.bind(this)} >Alpha Strike</alpha_strike>
-      <GroupTrigger group_id=1 />
-      <GroupTrigger group_id=2 />
-      <GroupTrigger group_id=3 />
-      <GroupTrigger group_id=4 />
-      <GroupTrigger group_id=5 />
-      <GroupTrigger group_id=6 />
+      <GroupTrigger group_id="1" />
+      <GroupTrigger group_id="2" />
+      <GroupTrigger group_id="3" />
+      <GroupTrigger group_id="4" />
+      <GroupTrigger group_id="5" />
+      <GroupTrigger group_id="6" />
       <EquippedWeaponsWrapper />
     </equipments>
   }

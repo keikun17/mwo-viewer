@@ -2,6 +2,7 @@ var React = require('react');
 var Heatsink = require('./heatsink')
 import WeaponActions from './actions/weapon_actions'
 import EquippedWeaponsWrapper from './equipped_weapons_wrapper'
+import GroupTrigger from './group_trigger'
 
 class Equipment extends React.Component {
   getStyle() {
@@ -28,12 +29,12 @@ class Equipment extends React.Component {
       <h1>Equipments</h1>
       <Heatsink/>
       <alpha_strike onClick={this.fireAllWeapons.bind(this)} >Alpha Strike</alpha_strike>
-      <weapon_group_trigger onClick={ this.group_fire.bind(this, 1)}>1</weapon_group_trigger>
-      <weapon_group_trigger onClick={ this.group_fire.bind(this, 2)} >2</weapon_group_trigger>
-      <weapon_group_trigger onClick={ this.group_fire.bind(this, 3)} >3</weapon_group_trigger>
-      <weapon_group_trigger onClick={ this.group_fire.bind(this, 4)} >4</weapon_group_trigger>
-      <weapon_group_trigger onClick={ this.group_fire.bind(this, 5)} >5</weapon_group_trigger>
-      <weapon_group_trigger onClick={ this.group_fire.bind(this, 6)} >6</weapon_group_trigger>
+      <GroupTrigger group_id=1 />
+      <GroupTrigger group_id=2 />
+      <GroupTrigger group_id=3 />
+      <GroupTrigger group_id=4 />
+      <GroupTrigger group_id=5 />
+      <GroupTrigger group_id=6 />
       <EquippedWeaponsWrapper />
     </equipments>
   }

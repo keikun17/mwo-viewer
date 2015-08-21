@@ -41,8 +41,15 @@ var WeaponActions = {
       equipped_weapon_id: equipped_weapon_id,
       group_id: group_id
     })
-  }
+  },
 
+
+  start_cooldown:function(equipped_weapon_id) {
+    AppDispatcher.dispatch({
+      action_type: WeaponConstants.WEAPON_COOLDOWN,
+      equipped_weapon_id: equipped_weapon_id,
+    })
+  },
 }
 
 export default WeaponActions

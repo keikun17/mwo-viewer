@@ -14,10 +14,13 @@ var data = {
  * @param {string} id
  */
 var equip = function(weapon_props) {
-  var initial_weapon_groups =  { grp1: true, grp2: false, grp3: false, grp4: false, grp5: false, grp6: false }
-  var id = (+new Date() + Math.floor(Math.random() * 999999)).toString(36);
-  var equipped_weapon = Object.assign({id: id, weapon_groups: initial_weapon_groups}, weapon_props)
-  data.equipped_weapons[id] = equipped_weapon
+  var equipped_weapon = Object.assign({
+    id: (+new Date() + Math.floor(Math.random() * 999999)).toString(36),
+    weapon_groups: { grp1: true, grp2: false, grp3: false, grp4: false, grp5: false, grp6: false },
+    cooldown_time_remaining: 0,
+    is_disabled: false,
+  }, weapon_props)
+  data.equipped_weapons[equipped_weapon.id] = equipped_weapon
 }
 
 /**
@@ -54,6 +57,38 @@ var alpha_strike = function() {
 var group_fire = function(group_id) {
   _WeaponStore.emit(WeaponConstants.WEAPON_WILL_GROUP_FIRE)
   _WeaponStore.emit(WeaponConstants.WEAPON_DID_GROUP_FIRE, group_id)
+}
+
+/**
+ * starts the cooldown process of the equipped weapon, disabling the weapon until counter reaches 0.
+ * @param {string} equipped_weapon_id
+ */
+var cooldown_weapon = function(equipped_weapon_id) {
+  // No-oP if still on cooldown
+  if(data.equipped_weapons[equipped_weapon_id].is_disabled === true)  {return}
+
+  // Disable Weapon
+  data.equipped_weapons[equipped_weapon_id].is_disabled = true
+
+  // Set Cooldown Timer to the weapon's cooldown time
+  data.equipped_weapons[equipped_weapon_id].cooldown_time_remaining = +(data.equipped_weapons[equipped_weapon_id].cooldown_time.toFixed(2))
+
+
+  var cooldown_tick = function(){
+    if(data.equipped_weapons[equipped_weapon_id].cooldown_time_remaining < 0){
+      clearInterval(cooldown_timer)
+      data.equipped_weapons[equipped_weapon_id].cooldown_time_remaining = 0
+      data.equipped_weapons[equipped_weapon_id].is_disabled = false
+      _WeaponStore.emit(CHANGE)
+    } else {
+      data.equipped_weapons[equipped_weapon_id].cooldown_time_remaining = +((data.equipped_weapons[equipped_weapon_id].cooldown_time_remaining - .1).toFixed(2))
+      _WeaponStore.emit(CHANGE)
+    }
+  }
+
+  var cooldown_timer =  setInterval(cooldown_tick, 100)
+
+
 }
 
 class WeaponStore extends EventEmitter {
@@ -108,6 +143,10 @@ _WeaponStore.dispatch_token = AppDispatcher.register((payload) => {
       break
     case WeaponConstants.WEAPON_TOGGLE_GROUP:
       toggle_equipped_weapon_group(payload.equipped_weapon_id, payload.group_id)
+      _WeaponStore.emit(CHANGE)
+      break
+    case WeaponConstants.WEAPON_COOLDOWN:
+      cooldown_weapon(payload.equipped_weapon_id)
       _WeaponStore.emit(CHANGE)
       break
   }

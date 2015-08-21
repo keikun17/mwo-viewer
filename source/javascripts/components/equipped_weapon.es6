@@ -13,7 +13,7 @@ class EquippedWeapon extends React.Component {
     super(props)
     this.state = {
       cooldownTimeRemaining: 0,
-      is_disabled: false,
+      // is_disabled: false,
       shots_before_ghost: this.count_shots_before_ghost(),
     }
   }
@@ -38,6 +38,9 @@ class EquippedWeapon extends React.Component {
     console.log(GhostHeatGroupStore.listeners('GHOST_HEAT_GROUP_UPDATED'))
     clearInterval(this.cooldown_timer)
     GhostHeatGroupStore.removeListener(this.onGhostHeatChange, this.update_shots_before_ghost.bind(this))
+    console.log("compinent unmounts")
+    WeaponStore.removeListener(WeaponConstants.WEAPON_DID_GROUP_FIRE, this.group_fire_weapon)
+    WeaponStore.removeListener(WeaponConstants.WEAPON_DID_GROUP_FIRE, this.group_fire_weapon.bind(this))
   }
 
   componentDidMount() {
@@ -53,7 +56,8 @@ class EquippedWeapon extends React.Component {
   }
 
   group_fire_weapon(group_id) {
-    if(this.state.is_disabled !== true) {
+    console.log(group_id)
+    if(this.props.is_disabled !== true) {
       if(group_id === 'ALL'){
         // If Alpha Strike
         HeatActions.apply_heat(this.props)
@@ -72,8 +76,9 @@ class EquippedWeapon extends React.Component {
     if(this.state.is_disabled !== true) {
       HeatActions.apply_heat(this.props)
       DamageActions.apply_damage(this.props.damage)
+      WeaponActions.start_cooldown(this.props.id)
     }
-    this.disable_weapon()
+    // this.disable_weapon()
   }
 
   // TODO : Component should not manage its own state like this. implement and user equipped_weapon_wrapper_store
@@ -103,7 +108,7 @@ class EquippedWeapon extends React.Component {
   }
 
   render() {
-    var className = this.state.is_disabled ? "disabled" : ""
+    var className = this.props.is_disabled ? "disabled" : ""
     var shots_before_ghost = ""
 
     if(this.props.ghost_limit){
@@ -111,7 +116,7 @@ class EquippedWeapon extends React.Component {
     }
 
     return <equipped_weapon className={className} id={this.props.id} key={this.props.key} style={this.styles}>
-      <cooldown_timer>{ this.state.cooldownTimeRemaining }s</cooldown_timer>
+      <cooldown_timer>{ this.props.cooldown_time_remaining }s</cooldown_timer>
       <weapon_trigger className={className} onClick={ this.fire_weapon.bind(this) } />
       <remove_weapon_button onClick={this._remove.bind(this)}/>
       <span>

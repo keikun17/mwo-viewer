@@ -7,6 +7,11 @@ var weapons_list = [
   {weapon_id: 123, ghost_limit: 2, name: 'PPC',    cooldown_time: 4,    heat: 10, damage: 11, ghost_heat_group: 'ppc'},
   {weapon_id: 123, ghost_limit: 2, name: 'ER PPC', cooldown_time: 4,    heat: 15, damage: 11, ghost_heat_group: 'ppc'},
 
+  {weapon_id: 123, ghost_limit: 0, name: 'AC 5',   cooldown_time: 1.66, heat: 1,  damage: 5 },
+  {weapon_id: 123, ghost_limit: 0, name: 'UAC 5',  cooldown_time: 1.66, heat: 1,  damage: 5 },
+  {weapon_id: 123, ghost_limit: 0, name: 'AC 10',  cooldown_time: 2.5,  heat: 3,  damage: 10 },
+  {weapon_id: 123, ghost_limit: 1, name: 'AC 20',  cooldown_time: 4,    heat: 6,  damage: 20, ghost_heat_group: 'ac20'},
+
   {weapon_id: 123, ghost_limit: 4, name: 'SRM 2',  cooldown_time: 2,    heat: 2,  damage: 4,  ghost_heat_group: 'srm'},
   {weapon_id: 123, ghost_limit: 3, name: 'SRM 4',  cooldown_time: 3,    heat: 2,  damage: 8,  ghost_heat_group: 'srm'},
   {weapon_id: 123, ghost_limit: 3, name: 'SRM 6',  cooldown_time: 4,    heat: 4,  damage: 12, ghost_heat_group: 'srm'},

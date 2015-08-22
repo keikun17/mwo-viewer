@@ -75,6 +75,12 @@ var cooldown_weapon = function(equipped_weapon_id) {
 
 
   var cooldown_tick = function(){
+
+    // If the weapon has been deleted, cancel the `tick`
+    if (typeof data.equipped_weapons[equipped_weapon_id] === 'undefined') {
+      clearInterval(cooldown_timer)
+    }
+
     if(data.equipped_weapons[equipped_weapon_id].cooldown_time_remaining < 0){
       clearInterval(cooldown_timer)
       data.equipped_weapons[equipped_weapon_id].cooldown_time_remaining = 0

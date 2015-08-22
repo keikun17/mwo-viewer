@@ -125,7 +125,7 @@ _HeatStore.dispatch_token = AppDispatcher.register((payload) => {
       break
 
     case HeatConstants.HEAT_APPLY:
-      add_base_heat(payload.weapon_props.heat)
+      add_base_heat(payload.weapon.heat)
       _HeatStore.emit(CHANGE)
       break
     case HeatConstants.HEAT_RELEASE:

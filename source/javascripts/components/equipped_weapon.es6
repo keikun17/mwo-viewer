@@ -56,28 +56,24 @@ class EquippedWeapon extends React.Component {
   }
 
   group_fire_weapon(group_id) {
-    console.log(group_id)
-    if(this.props.is_disabled !== true) {
-      if(group_id === 'ALL'){
-        // If Alpha Strike
-        HeatActions.apply_heat(this.props)
-        DamageActions.stack_damage(this.props.damage)
-        WeaponActions.start_cooldown(this.props.id)
-      } else if (this.props.weapon_groups["grp" + group_id] === true) {
-        // If Group Fire
-        HeatActions.apply_heat(this.props)
-        DamageActions.stack_damage(this.props.damage)
-        WeaponActions.start_cooldown(this.props.id)
-      }
+    if(this.props.is_disabled === true) { return }
+
+    var weapon = WeaponStore.get_new_data().equipped_weapons[this.props.id]
+
+    if((group_id === 'ALL') || (this.props.weapon_groups["grp" + group_id] === true)) {
+      // If Alpha Strike
+      HeatActions.apply_heat(weapon)
+      DamageActions.stack_damage(weapon.damage)
+      WeaponActions.start_cooldown(weapon.id)
     }
   }
 
   fire_weapon() {
-    if(this.state.is_disabled !== true) {
-      HeatActions.apply_heat(this.props)
-      DamageActions.apply_damage(this.props.damage)
-      WeaponActions.start_cooldown(this.props.id)
-    }
+    if (this.props.is_disabled === true) { return }
+    var weapon = WeaponStore.get_new_data().equipped_weapons[this.props.id]
+    HeatActions.apply_heat(weapon)
+    DamageActions.stack_damage(weapon.damage)
+    WeaponActions.start_cooldown(weapon.id)
   }
 
   render() {

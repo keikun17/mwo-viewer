@@ -4,10 +4,10 @@ import HeatStore from '../stores/heat_store'
 
 var HeatActions = {
 
-  apply_heat: function(weapon_props) {
+  apply_heat: function(weapon) {
     AppDispatcher.dispatch({
       action_type: HeatConstants.HEAT_APPLY,
-      weapon_props: weapon_props
+      weapon: weapon
     })
   },
 

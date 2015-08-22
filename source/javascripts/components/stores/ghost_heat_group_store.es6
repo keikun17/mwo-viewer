@@ -67,15 +67,15 @@ var heat_scale = function(weapons_fired){
 }
 
 /**
- * @param {object} weapon_props - Weapon props
+ * @param {object} weapon - Equipped Weapon object from the weapon store
  *
  * 1. Set trigger time for weapon group to '2',
  * 2. Start group trigger timer if not started yet,
  * 3. Increment weapon group counter by 1
  * 4. Compute for the ghost heat if present and apply
  */
-var include_ghost_heat = function(weapon_props) {
-  var ghost_heat_group =data[weapon_props.ghost_heat_group]
+var include_ghost_heat = function(weapon) {
+  var ghost_heat_group =data[weapon.ghost_heat_group]
   var ghost_heat_group = ghost_heat_group
 
   // Set trigger time for the weapon group to '2'
@@ -105,13 +105,13 @@ var include_ghost_heat = function(weapon_props) {
   // Increment weapon group counter by 1
   ghost_heat_group.current = ghost_heat_group.current + 1
 
-  if(ghost_heat_group.current > weapon_props.ghost_limit){
+  if(ghost_heat_group.current > weapon.ghost_limit){
 
-    var ghost_heat_amount = weapon_props.heat *  ghost_heat_group.multiplier * heat_scale(ghost_heat_group.current)
+    var ghost_heat_amount = weapon.heat *  ghost_heat_group.multiplier * heat_scale(ghost_heat_group.current)
 
     setTimeout(function(){
       HeatActions.add_ghost_heat(ghost_heat_amount)
-      var message = "[" + ghost_heat_group.current  + "] " + weapon_props.name + " caused " + ghost_heat_amount + " ghost heat."
+      var message = "[" + ghost_heat_group.current  + "] " + weapon.name + " caused " + ghost_heat_amount + " ghost heat."
       _GhostHeatGroupStore.emit('ghost_heat_applied', message)
     })
     // Apply ghost heat
@@ -168,8 +168,8 @@ _GhostHeatGroupStore.dispatch_token = AppDispatcher.register((payload) => {
   switch(action_type) {
     case HeatConstants.HEAT_APPLY:
       AppDispatcher.waitFor([HeatStore.dispatch_token])
-      if(payload.weapon_props.ghost_limit !== 0) {
-        include_ghost_heat(payload.weapon_props)
+      if(payload.weapon.ghost_limit !== 0) {
+        include_ghost_heat(payload.weapon)
         _GhostHeatGroupStore.emit(CHANGE)
       }
       break

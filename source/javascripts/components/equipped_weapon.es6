@@ -43,15 +43,12 @@ class EquippedWeapon extends React.Component {
 
     if((group_id === 'ALL') || (this.props.weapon_groups["grp" + group_id] === true)) {
       this.fire_weapon()
-      HeatActions.apply_heat(weapon)
-      DamageActions.stack_damage(weapon.damage)
-      WeaponActions.start_cooldown(weapon.id)
     }
   }
 
   fire_weapon() {
-    if (this.props.is_disabled === true) { return }
     var weapon = WeaponStore.get_new_data().equipped_weapons[this.props.id]
+    if (weapon.is_disabled === true) { return }
     HeatActions.apply_heat(weapon)
     DamageActions.stack_damage(weapon.damage)
     WeaponActions.start_cooldown(weapon.id)

@@ -79,7 +79,7 @@ var include_ghost_heat = function(weapon) {
   var ghost_heat_group = ghost_heat_group
 
   // Set trigger time for the weapon group to '2'
-  ghost_heat_group.trigger_time = 2
+  ghost_heat_group.trigger_time = .5
 
   // Start group trigger timer if not started yet
   if(ghost_heat_group.timer == undefined){

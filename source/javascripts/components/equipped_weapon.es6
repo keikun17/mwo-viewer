@@ -38,12 +38,11 @@ class EquippedWeapon extends React.Component {
   }
 
   group_fire_weapon(group_id) {
-    if(this.props.is_disabled === true) { return }
-
     var weapon = WeaponStore.get_new_data().equipped_weapons[this.props.id]
+    if(typeof(weapon) === 'undefined') { return }
 
     if((group_id === 'ALL') || (this.props.weapon_groups["grp" + group_id] === true)) {
-      // If Alpha Strike
+      this.fire_weapon()
       HeatActions.apply_heat(weapon)
       DamageActions.stack_damage(weapon.damage)
       WeaponActions.start_cooldown(weapon.id)

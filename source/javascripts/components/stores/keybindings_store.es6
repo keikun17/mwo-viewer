@@ -18,7 +18,6 @@ window.onkeypress = function(e) {
  * Assigns a hotkey to a function
  */
 var assign = function(__key, mapping) {
-  console.log("assigning key " + __key + " to mapping " + mapping)
   mappings[__key] = mapping
 }
 

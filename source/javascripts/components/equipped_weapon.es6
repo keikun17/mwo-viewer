@@ -23,12 +23,7 @@ class EquippedWeapon extends React.Component {
 
   componentWillUnmount() {
     WeaponStore.removeListener(WeaponConstants.WEAPON_DID_ALPHA, this.group_fire_weapon.bind(this))
-    console.log("weaponstore listeners are")
-    console.log(WeaponStore.listeners(WeaponConstants.WEAPON_DID_ALPHA))
-    console.log("weaponstore listeners are")
-    console.log(GhostHeatGroupStore.listeners('GHOST_HEAT_GROUP_UPDATED'))
     clearInterval(this.cooldown_timer)
-    console.log("compinent unmounts")
     WeaponStore.removeListener(WeaponConstants.WEAPON_DID_GROUP_FIRE, this.group_fire_weapon)
     WeaponStore.removeListener(WeaponConstants.WEAPON_DID_GROUP_FIRE, this.group_fire_weapon.bind(this))
   }

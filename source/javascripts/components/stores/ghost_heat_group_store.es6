@@ -108,10 +108,11 @@ var include_ghost_heat = function(weapon) {
   if(ghost_heat_group.current > weapon.ghost_limit){
 
     var ghost_heat_amount = weapon.heat *  ghost_heat_group.multiplier * heat_scale(ghost_heat_group.current)
+    var ghost_linked_fire_sequence_position = ghost_heat_group.current
 
     setTimeout(function(){
       HeatActions.add_ghost_heat(ghost_heat_amount)
-      var message = "[" + ghost_heat_group.current  + "] " + weapon.name + " caused " + ghost_heat_amount + " ghost heat."
+      var message = "[" + ghost_linked_fire_sequence_position  + "] " + weapon.name + " caused " + ghost_heat_amount + " ghost heat."
       _GhostHeatGroupStore.emit('ghost_heat_applied', message)
     })
     // Apply ghost heat

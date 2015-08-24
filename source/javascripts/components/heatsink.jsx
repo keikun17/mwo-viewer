@@ -73,7 +73,7 @@ class Heatsink extends React.Component {
     console.log("--- START ----")
     console.log("Step 1. I am in the heatsink component. Detected input field change")
 
-    this.store_update_heatsink_count('internal_heatsinks', event.target.value)
+    this.store_update_heatsink_count('internal_heatsinks', this.refs.internal_heatsinks.value)
     HeatActions.update_capacity()
 
   }
@@ -82,7 +82,7 @@ class Heatsink extends React.Component {
     console.log("--- START ----")
     console.log("Step 1. I am in the heatsink component. Detected input field change")
 
-    this.store_update_heatsink_count('external_heatsinks', event.target.value)
+    this.store_update_heatsink_count('external_heatsinks', this.refs.external_heatsinks.value)
     HeatActions.update_capacity()
 
   }

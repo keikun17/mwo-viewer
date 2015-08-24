@@ -3,6 +3,7 @@ import HeatsinkAction from './actions/heatsink_actions';
 import AppDispatcher from './app_dispatcher';
 import HeatsinkStore from './stores/heatsink_store';
 import HeatActions from './actions/heat_actions'
+import CooldownActions from './actions/cooldown_actions'
 
 class Heatsink extends React.Component {
   constructor(props) {
@@ -89,6 +90,7 @@ class Heatsink extends React.Component {
 
   store_toggle_heatsink_type() {
     HeatsinkAction.toggle_heatsink_type();
+    CooldownActions.update_store()
   }
 
   store_update_heatsink_count(heatsink_location, amount) {

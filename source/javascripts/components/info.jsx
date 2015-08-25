@@ -4,23 +4,21 @@ var Heat = require('./heat')
 var DamageMeter = require('./damage_meter')
 var Cooldown = require('./cooldown')
 var EventLog = require('./event_log')
+var DPSMeter = require('./dps_meter')
 
 var Info = React.createClass({
-  styles: {
-    flex: '1 0 0',
-    paddingLeft: '10px'
-  },
 
   render: function(){
-    return <info style={this.styles}>
+    return <info>
       <h1>Info</h1>
-      <div style={{display:'flex'}}>
+      <info_wrapper>
         <Heat className='info'/>
         <Cooldown className='info'/>
-      </div>
-      <DamageMeter />
-      <MapInfo />
-      <EventLog/>
+        <DamageMeter />
+        <DPSMeter />
+        <MapInfo />
+        <EventLog/>
+      </info_wrapper>
     </info>
   }
 })

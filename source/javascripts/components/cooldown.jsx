@@ -23,15 +23,9 @@ class Cooldown extends React.Component {
     this.setState(CooldownStore.get_new_data())
   }
 
-  getStyle(){
-    return {
-      flex: '1 0 0'
-    }
-  }
-
   render() {
     return (
-      <cooldown style={this.getStyle()} className="info">
+      <cooldown className="info">
           <span className="info-title">Cooldown</span>
           <span className="info-value">{this.state.time_to_zero}s</span>
           <span className="info-value-divider">/</span>

@@ -19,6 +19,7 @@ export default class EventLog extends React.Component {
 
   render() {
     var contents = this.state.contents
-    return <textarea cols='80' rows="10" value={contents}/>
+
+    return <textarea className='event-log' cols='80' rows="10" value={contents}/>
   }
 }

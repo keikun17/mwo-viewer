@@ -10,10 +10,9 @@ class MechViewer extends React.Component {
 
   getStyle() {
     return {
-      // display: '-webkit-flex',
       display: 'flex',
       flexDirection: 'row',
-      // WebkitFlexDirection: 'row'
+      alignItems: 'stretch'
     }
   }
 

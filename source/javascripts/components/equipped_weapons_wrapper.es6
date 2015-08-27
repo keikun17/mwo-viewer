@@ -38,6 +38,7 @@ export default class EquippedWeaponsWrapper extends React.Component {
         weapon_groups={_weapon.weapon_groups}
         is_disabled={_weapon.is_disabled}
         cooldown_time_remaining={_weapon.cooldown_time_remaining}
+        type={_weapon.type}
         />
       )
     }

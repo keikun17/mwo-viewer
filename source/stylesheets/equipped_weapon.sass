@@ -1,3 +1,5 @@
+@import './variables/colors'
+
 equipped_weapon
   display: flex
   margin-bottom: 4px
@@ -5,3 +7,12 @@ equipped_weapon
 
   > span
     margin: 0 5px 0 5px
+
+  &.laser
+    color: $colors-laser
+
+  &.ballistic
+    color: $colors-ballistic
+
+  &.missile
+    color: $colors-missile

@@ -55,7 +55,23 @@ class EquippedWeapon extends React.Component {
   }
 
   render() {
-    var className = this.props.is_disabled ? "disabled" : ""
+    var className = this.props.is_disabled ? "disabled " : ""
+
+    switch(this.props.type) {
+      case 'mis':
+        var weapon_class = 'missile'
+      break
+      case 'las':
+        var weapon_class = 'laser'
+      break
+      case 'bal':
+        var weapon_class = 'ballistic'
+      break
+    }
+
+
+    console.log("type  is " + weapon_class)
+    className = className + weapon_class
 
     return <equipped_weapon className={className} id={this.props.id} key={this.props.key} style={this.styles}>
       <cooldown_timer>{ this.props.cooldown_time_remaining }s</cooldown_timer>

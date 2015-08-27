@@ -16,7 +16,6 @@ var Weapon = React.createClass({
           break
       }
 
-      console.log(weapon_class)
     return <weapon onClick={this._onClick} className={weapon_class}>{this.props.weapon.name}</weapon>
   },
 

@@ -4,8 +4,11 @@ var Weapon = require('./weapon');
 var Armory = React.createClass({
 
   styles: {
+    display: 'flex',
+    flexDirection: 'column',
     paddingLeft: '10px',
     flex: '1 0 0',
+    midWidth: '231px',
   },
 
   render: function(){

@@ -1,24 +1,28 @@
-import React from 'react';
-import EventEmitter from 'event-emitter';
+import React from 'react'
+import EventEmitter from 'event-emitter'
 
-import Mech from './mech';
-import Armory from './armory';
-import weapons_list from './weapons_list';
-import appDispatcher from './app_dispatcher';
+import Armory from './armory'
+import Info from './info'
+import Equipment from './equipment'
+import weapons_list from './weapons_list'
+import appDispatcher from './app_dispatcher'
 
 class MechViewer extends React.Component {
 
   getStyle() {
     return {
       display: 'flex',
+      alignItems: 'stretch',
       flexDirection: 'row',
-      alignItems: 'stretch'
+      height: '100%',
+      flexWrap: 'wrap',
     }
   }
 
   render() {
     return <mechviewer style={this.getStyle()}>
-      <Mech/>
+      <Info/>
+      <Equipment/>
       <Armory weapons_list={weapons_list}/>
     </mechviewer>
   }

@@ -16,7 +16,6 @@ var Info = React.createClass({
         <Cooldown className='info'/>
         <DamageMeter />
         <DPSMeter />
-        <MapInfo />
         <EventLog/>
       </info_wrapper>
     </info>

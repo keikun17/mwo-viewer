@@ -29,35 +29,41 @@ class Heatsink extends React.Component {
     return (
       <heatsink>
         <internal_heatsink>
-          <div className="equipment">
-            <label>Double Heatsinks</label>
-            <input type="checkbox"
-              ref="double_heatsinks"
-              value={this.state.double_heatsinks}
-              onChange={this._onHeatsinkTypeChange.bind(this)}
-            />
+          <div className="input-group">
+            <label className>Double Heatsinks</label>
+            <div className="input-field">
+              <input type="checkbox"
+                ref="double_heatsinks"
+                value={this.state.double_heatsinks}
+                onChange={this._onHeatsinkTypeChange.bind(this)}
+              />
+            </div>
           </div>
         </internal_heatsink>
 
         <internal_heatsink>
-          <div className="equipment">
+          <div className="input-group">
             <label>Internal Heatsinks</label>
-            <input type="number"
-              ref="internal_heatsinks"
-              value={this.state.internal_heatsinks}
-              onChange={this._onInternalChange.bind(this)}
-            />
+            <div className="input-field">
+              <input type="number"
+                ref="internal_heatsinks"
+                value={this.state.internal_heatsinks}
+                onChange={this._onInternalChange.bind(this)}
+              />
+            </div>
           </div>
         </internal_heatsink>
 
         <external_heatsink>
-          <div className="equipment">
+          <div className="input-group">
             <label>External Heatsinks</label>
-            <input type="number"
-              ref="external_heatsinks"
-              value={this.state.external_heatsinks}
-              onChange={this._onExternalChange.bind(this)}
-            />
+            <div className="input-field">
+              <input type="number"
+                ref="external_heatsinks"
+                value={this.state.external_heatsinks}
+                onChange={this._onExternalChange.bind(this)}
+              />
+            </div>
           </div>
         </external_heatsink>
       </heatsink>

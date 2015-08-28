@@ -14,7 +14,6 @@ class MechViewer extends React.Component {
       display: 'flex',
       alignItems: 'stretch',
       flexDirection: 'row',
-      height: '100%',
       flexWrap: 'wrap',
     }
   }

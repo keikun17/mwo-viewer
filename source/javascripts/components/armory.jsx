@@ -8,7 +8,7 @@ var Armory = React.createClass({
     flexDirection: 'column',
     paddingLeft: '10px',
     flex: '1 0 0',
-    midWidth: '231px',
+    minWidth: '231px',
   },
 
   render: function(){

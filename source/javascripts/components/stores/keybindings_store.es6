@@ -10,6 +10,7 @@ var CHANGE = "KEYBINDING_CHANGED"
  * Check keymappings for matching functions bound to that keypress
  */
 window.onkeypress = function(e) {
+  if(document.activeElement.tagName === "INPUT") {return}
   var value = String.fromCharCode(e.keyCode)
   _KeybindingStore.get_key_mappings()[value]()
 }

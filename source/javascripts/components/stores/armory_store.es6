@@ -1,17 +1,20 @@
 import {EventEmitter} from 'events';
 import AppDispatcher from '../app_dispatcher';
 import ArmoryConstants from '../constants/armory_constants'
+import WeaponList from '../weapons_list'
 
 var CHANGE = "ARMORY_UPDATED"
 
-var data = {current: 'clan'}
+var data = {
+  current: 'clan',
+  weapon_list: WeaponList
+}
 
 /**
  * Toggles the list of weapons in the armory between IS and Clans
  */
 
 var toggle_weapons_list = function() {
-  console.log('toggling')
   switch(data.current) {
     case 'innersphere':
       data.current = 'clan'

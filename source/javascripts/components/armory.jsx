@@ -1,11 +1,20 @@
 var React = require('react');
 var Weapon = require('./weapon');
 import FactionSelect from './faction_select'
+import ArmoryStore from './stores/armory_store'
 
-var Armory = React.createClass({
+class Armory extends React.Component {
 
-  render: function(){
-    var weapons = this.props.weapons_list.map(function(weapon, index, weapons_list){
+  constructor(props) {
+    super(props)
+    window.x = ArmoryStore.get_new_data()
+    this.state = {
+      weapons_list: ArmoryStore.get_new_data().weapon_list
+    }
+  }
+
+  render(){
+    var weapons = this.state.weapons_list.map(function(weapon, index, weapons_list){
       return <Weapon weapon={weapon} key={index}/>
     });
 
@@ -19,6 +28,6 @@ var Armory = React.createClass({
       {weapons}
       </armory>
   }
-});
+}
 
 module.exports = Armory;

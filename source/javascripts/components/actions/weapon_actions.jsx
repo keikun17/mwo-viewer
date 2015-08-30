@@ -50,6 +50,12 @@ var WeaponActions = {
       equipped_weapon_id: equipped_weapon_id,
     })
   },
+
+
+  toggle_list_faction: function() {
+    AppDispatcher.dispatch({
+    })
+  }
 }
 
 export default WeaponActions

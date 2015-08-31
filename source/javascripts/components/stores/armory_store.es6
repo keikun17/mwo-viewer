@@ -6,8 +6,8 @@ import WeaponList from '../weapons_list'
 var CHANGE = "ARMORY_UPDATED"
 
 var data = {
-  current: 'clan',
-  weapon_list: WeaponList
+  selected_faction: 'innersphere',
+  weapons_list: WeaponList
 }
 
 /**
@@ -15,23 +15,37 @@ var data = {
  */
 
 var toggle_weapons_list = function() {
-  switch(data.current) {
+  switch(data.selected_faction) {
     case 'innersphere':
-      data.current = 'clan'
+      data.selected_faction = 'clan'
       break
     case 'clan':
-      data.current = 'innersphere'
+      data.selected_faction = 'innersphere'
       break
   }
-
-  console.log(`data is now ${data.current}`)
 }
 
 
 class ArmoryStore extends EventEmitter {
 
+  // move this to store base class
   get_new_data() {
     return data
+  }
+
+  // move this to store base class
+  emitChange() {
+    this.emit(CHANGE);
+  }
+
+  // move this to store base class
+  addChangeListener(callback) {
+    this.on(CHANGE, callback);
+  }
+
+  // move this to store base class
+  removeChangeListener(callback) {
+    this.removeListener(CHANGE, callback);
   }
 
 }

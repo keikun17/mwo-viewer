@@ -8,6 +8,12 @@ class FactionSelect extends React.Component {
   constructor(props) {
     super(props)
     this.onChange = this.onChange.bind(this)
+    this.show_clan_weapons = this.show_clan_weapons.bind(this)
+    this.state = ArmoryStore.get_new_data()
+  }
+
+  show_clan_weapons() {
+    return(this.state.selected_faction === 'clan')
   }
 
   componentDidMount() {
@@ -17,11 +23,11 @@ class FactionSelect extends React.Component {
 
     return <faction_select>
       <faction className="innersphere">
-        <input type="radio" name="weaponfilter"  onChange={this.onChange}/>
+        <input type="radio" name="weaponfilter"  onChange={this.onChange} checked={ !this.show_clan_weapons() }/>
         Inner Sphere
       </faction>
       <faction className="clan">
-        <input type="radio" name="weaponfilter" onChange={this.onChange} checked={this.props.show_clan}/>
+        <input type="radio" name="weaponfilter" onChange={this.onChange} checked={ this.show_clan_weapons() }/>
         Clans
       </faction>
     </faction_select>

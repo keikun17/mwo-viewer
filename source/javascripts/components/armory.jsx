@@ -7,10 +7,26 @@ class Armory extends React.Component {
 
   constructor(props) {
     super(props)
-    window.x = ArmoryStore.get_new_data()
+
+    // pre-bind
+    this.update_weapon_list = this.update_weapon_list.bind(this)
+
+    var store_data = ArmoryStore.get_new_data()
     this.state = {
-      weapons_list: ArmoryStore.get_new_data().weapon_list
+      weapons_list: store_data.weapons_list[store_data.selected_faction]
     }
+  }
+
+
+  update_weapon_list() {
+    var store_data = ArmoryStore.get_new_data()
+    this.setState({
+      weapons_list: store_data.weapons_list[store_data.selected_faction]
+    })
+  }
+
+  componentDidMount() {
+    ArmoryStore.addChangeListener(this.update_weapon_list)
   }
 
   render(){

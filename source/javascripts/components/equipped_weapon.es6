@@ -69,8 +69,6 @@ class EquippedWeapon extends React.Component {
       break
     }
 
-
-    console.log("type  is " + weapon_class)
     className = className + weapon_class
 
     return <equipped_weapon className={className} id={this.props.id} key={this.props.key} style={this.styles}>

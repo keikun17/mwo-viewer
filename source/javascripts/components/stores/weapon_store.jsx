@@ -9,6 +9,25 @@ var data = {
   equipped_weapons: {}
 }
 
+// This is the 'ticker' that goes through all weapons that is currently in cooldown .
+// It it reduces the cooldown counter for each weapon and reactivates them when clock turns 0
+var cooldown_ticker = setInterval(function() {
+
+  for(let equipped_weapon_id in data.equipped_weapons) {
+    let equipped_weapon = data.equipped_weapons[equipped_weapon_id]
+    if(equipped_weapon.is_disabled === false) { continue }
+
+    if(equipped_weapon.cooldown_time_remaining < 0){
+      equipped_weapon.cooldown_time_remaining = 0
+      equipped_weapon.is_disabled = false
+    } else {
+      equipped_weapon.cooldown_time_remaining = +((equipped_weapon.cooldown_time_remaining - .1).toFixed(2))
+    }
+
+  }
+  _WeaponStore.emit(CHANGE)
+}, 100)
+
 /**
  * Equip a weapon
  * @param {string} id
@@ -60,7 +79,7 @@ var group_fire = function(group_id) {
 }
 
 /**
- * starts the cooldown process of the equipped weapon, disabling the weapon until counter reaches 0.
+ * starts the cooldown process of the equipped weapon, disabling the weapon and, setting cooldown time.
  * @param {string} equipped_weapon_id
  */
 var cooldown_weapon = function(equipped_weapon_id) {
@@ -72,29 +91,6 @@ var cooldown_weapon = function(equipped_weapon_id) {
 
   // Set Cooldown Timer to the weapon's cooldown time
   data.equipped_weapons[equipped_weapon_id].cooldown_time_remaining = +(data.equipped_weapons[equipped_weapon_id].cooldown_time.toFixed(2))
-
-
-  var cooldown_tick = function(){
-
-    // If the weapon has been deleted, cancel the `tick`
-    if (typeof data.equipped_weapons[equipped_weapon_id] === 'undefined') {
-      clearInterval(cooldown_timer)
-      return
-    }
-
-    if(data.equipped_weapons[equipped_weapon_id].cooldown_time_remaining < 0){
-      clearInterval(cooldown_timer)
-      data.equipped_weapons[equipped_weapon_id].cooldown_time_remaining = 0
-      data.equipped_weapons[equipped_weapon_id].is_disabled = false
-      _WeaponStore.emit(CHANGE)
-    } else {
-      data.equipped_weapons[equipped_weapon_id].cooldown_time_remaining = +((data.equipped_weapons[equipped_weapon_id].cooldown_time_remaining - .1).toFixed(2))
-      _WeaponStore.emit(CHANGE)
-    }
-  }
-
-  var cooldown_timer =  setInterval(cooldown_tick, 100)
-
 
 }
 

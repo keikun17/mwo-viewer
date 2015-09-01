@@ -1,7 +1,9 @@
 var weapons_list = {
   innersphere: [
     {weapon_id: 123, ghost_limit: 0, type: 'las', name: 'SMALL LASER', cooldown_time: 2.25, heat: 3, damage: 3},
+    {weapon_id: 123, ghost_limit: 0, type: 'las', name: 'SMALL PULSE LASER', cooldown_time: 2.25, heat: 3, damage: 4},
     {weapon_id: 123, ghost_limit: 6, type: 'las', name: 'MEDIUM LASER', cooldown_time: 3, heat: 4, damage: 5, ghost_heat_group: 'mlas'},
+    {weapon_id: 123, ghost_limit: 0, type: 'las', name: 'MEDIUM PULSE LASER', cooldown_time: 3, heat: 4, damage: 6 },
     {weapon_id: 123, ghost_limit: 3, type: 'las', name: 'LARGE LASER', cooldown_time: 3.25, heat: 7, damage: 9, ghost_heat_group: 'llas'},
     {weapon_id: 123, ghost_limit: 3, type: 'las', name: 'LARGE PULSE LASER', cooldown_time: 3.25, heat: 7, damage: 11, ghost_heat_group: 'llas'},
 

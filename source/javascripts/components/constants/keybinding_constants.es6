@@ -1,3 +1,0 @@
-export default {
-  KEYBINDING_ASSIGN: 'KEYBINDING_ASSIGN'
-}

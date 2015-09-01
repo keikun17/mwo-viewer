@@ -1,4 +1,0 @@
-export default {
-  DAMAGE_APPLY: 'DAMAGE_APPLY',
-  DAMAGE_STACK: 'DAMAGE_STACK'
-}

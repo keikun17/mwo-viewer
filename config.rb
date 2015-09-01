@@ -48,9 +48,6 @@ set :js_dir, 'javascripts'
 
 set :images_dir, 'images'
 
-# Activate 'middleman-api' gem for serving json api
-activate :api
-
 # Active autoprefixer from 'middleman-autoprefixer' gem
 
 activate :autoprefixer do

@@ -36,13 +36,16 @@ var weapons_list = {
   ] ,
 
   clan: [
-    {weapon_id: 123, ghost_limit: 0, type: 'las', name: 'C-SMALL LASER', cooldown_time: 2.25, heat: 3, damage: 3},
-    {weapon_id: 123, ghost_limit: 6, type: 'las', name: 'C-MEDIUM LASER', cooldown_time: 3, heat: 4, damage: 5, ghost_heat_group: 'mlas'},
-    {weapon_id: 123, ghost_limit: 3, type: 'las', name: 'C-LARGE LASER', cooldown_time: 3.25, heat: 7, damage: 9, ghost_heat_group: 'llas'},
-    {weapon_id: 123, ghost_limit: 3, type: 'las', name: 'C-LARGE PULSE LASER', cooldown_time: 3.25, heat: 7, damage: 11, ghost_heat_group: 'llas'},
+    {weapon_id: 123, ghost_limit: 6, type: 'las', name: 'C-ER SMALL LASER', cooldown_time: 2.25, heat: 3, damage: 5, ghost_heat_group: 'clas'},
+    {weapon_id: 123, ghost_limit: 6, type: 'las', name: 'C-SMALL PULSE LASER', cooldown_time: 2.25, heat: 3, damage: 6, ghost_heat_group: 'clas'},
+    {weapon_id: 123, ghost_limit: 6, type: 'las', name: 'C-ER MEDIUM LASER', cooldown_time: 3, heat: 6, damage: 7, ghost_heat_group: 'clas'},
+    {weapon_id: 123, ghost_limit: 6, type: 'las', name: 'C-MEDIUM PULSE LASER', cooldown_time: 3, heat: 6, damage: 8, ghost_heat_group: 'clas' },
+    {weapon_id: 123, ghost_limit: 2, type: 'las', name: 'C-ER LARGE LASER', cooldown_time: 3.25, heat: 10, damage: 11, ghost_heat_group: 'llas'},
+    {weapon_id: 123, ghost_limit: 2, type: 'las', name: 'C-LARGE PULSE LASER', cooldown_time: 3.25, heat: 10, damage: 13, ghost_heat_group: 'llas'},
 
-    {weapon_id: 123, ghost_limit: 2, type: 'las', name: 'C-PPC',    cooldown_time: 4,    heat: 10, damage: 11, ghost_heat_group: 'ppc'},
-    {weapon_id: 123, ghost_limit: 2, type: 'las', name: 'C-ER PPC', cooldown_time: 4,    heat: 15, damage: 11, ghost_heat_group: 'ppc'},
+    {weapon_id: 123, ghost_limit: 0, type: 'las', name: 'C-FLAMER', cooldown_time: 1, heat: 1, damage: 0.7},
+
+    {weapon_id: 123, ghost_limit: 2, type: 'las', name: 'C-ER PPC', cooldown_time: 4, heat: 15, damage: 15, ghost_heat_group: 'ppc'},
 
     {weapon_id: 123, ghost_limit: 0, type: 'bal', name: 'C-AC 5',   cooldown_time: 1.66, heat: 1,  damage: 5 },
     {weapon_id: 123, ghost_limit: 0, type: 'bal', name: 'C-UAC 5',  cooldown_time: 1.66, heat: 1,  damage: 5 },

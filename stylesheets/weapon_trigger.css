@@ -1,0 +1,20 @@
+@charset "UTF-8";
+/* line 3, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/weapon_trigger.sass */
+weapon_trigger {
+  padding: 5px;
+  color: white;
+  background-color: #ce3b3b;
+  margin-right: 2px;
+  border-radius: 2px;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none; }
+  /* line 13, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/weapon_trigger.sass */
+  weapon_trigger.disabled {
+    background-color: grey; }
+  /* line 16, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/weapon_trigger.sass */
+  weapon_trigger::before {
+    font-family: Ionicons;
+    content: ""; }

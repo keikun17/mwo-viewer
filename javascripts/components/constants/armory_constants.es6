@@ -1,0 +1,3 @@
+export default {
+  ARMORY_TOGGLE_FACTION: 'ARMORY_TOGGLE_FACTION'
+}

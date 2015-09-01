@@ -1,0 +1,4 @@
+/* line 1, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/event-log.sass */
+textarea.event-log {
+  font-size: 0.8em;
+  margin: 10px; }

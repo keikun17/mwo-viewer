@@ -1,0 +1,26 @@
+/* line 3, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/alpha_strike.sass */
+alpha_strike {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  border: 1px solid #ce3b3b;
+  border-radius: 4px;
+  background-color: #ce3b3b;
+  color: #FFF;
+  cursor: pointer;
+  font-family: Roboto, sans-serif;
+  padding: 10px 5px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  min-width: 100px;
+  max-width: 150px;
+  text-align: center;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none; }

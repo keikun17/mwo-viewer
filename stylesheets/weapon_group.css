@@ -1,0 +1,15 @@
+/* line 1, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/weapon_group.sass */
+weapon_group_wrapper {
+  margin-left: auto;
+  margin-right: 25%; }
+
+/* line 5, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/weapon_group.sass */
+weapon_group {
+  padding: 2px;
+  margin-right: 2px;
+  border: 1px solid green;
+  font-size: 0.8em; }
+  /* line 11, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/weapon_group.sass */
+  weapon_group.selected {
+    color: black;
+    background-color: green; }

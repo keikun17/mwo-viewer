@@ -5,6 +5,8 @@ var weapons_list = {
     {weapon_id: 123, ghost_limit: 3, type: 'las', name: 'LARGE LASER', cooldown_time: 3.25, heat: 7, damage: 9, ghost_heat_group: 'llas'},
     {weapon_id: 123, ghost_limit: 3, type: 'las', name: 'LARGE PULSE LASER', cooldown_time: 3.25, heat: 7, damage: 11, ghost_heat_group: 'llas'},
 
+    {weapon_id: 123, ghost_limit: 0, type: 'las', name: 'FLAMER', cooldown_time: 1, heat: 1, damage: 0.7},
+
     {weapon_id: 123, ghost_limit: 2, type: 'las', name: 'PPC',    cooldown_time: 4,    heat: 10, damage: 11, ghost_heat_group: 'ppc'},
     {weapon_id: 123, ghost_limit: 2, type: 'las', name: 'ER PPC', cooldown_time: 4,    heat: 15, damage: 11, ghost_heat_group: 'ppc'},
 

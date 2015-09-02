@@ -13,16 +13,17 @@ weapon {
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
-          user-select: none; }
-  /* line 18, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/weapon.sass */
+          user-select: none;
+  font-weight: 100; }
+  /* line 19, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/weapon.sass */
   weapon.laser {
     border: 1px solid #cec23b;
     background-color: #cec23b; }
-  /* line 22, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/weapon.sass */
+  /* line 23, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/weapon.sass */
   weapon.ballistic {
     border: 1px solid #a73bce;
     background-color: #a73bce; }
-  /* line 26, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/weapon.sass */
+  /* line 27, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/weapon.sass */
   weapon.missile {
     border: 1px solid #3b87ce;
     background-color: #3b87ce; }

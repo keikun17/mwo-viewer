@@ -23,12 +23,12 @@ class FactionSelect extends React.Component {
 
     return <faction_select>
       <faction className="innersphere">
-        <input type="radio" name="weaponfilter"  onChange={this.onChange} checked={ !this.show_clan_weapons() }/>
-        Inner Sphere
+         <input id="is_select" type="radio" name="weaponfilter"  onChange={this.onChange} checked={ !this.show_clan_weapons() }/>
+         <label className="innersphere" htmlFor="is_select">Inner Sphere </label>
       </faction>
       <faction className="clan">
-        <input type="radio" name="weaponfilter" onChange={this.onChange} checked={ this.show_clan_weapons() }/>
-        Clans
+        <input id="clan_select" type="radio" name="weaponfilter" onChange={this.onChange} checked={ this.show_clan_weapons() }/>
+        <label className="clan" htmlFor="clan_select">Clans</label>
       </faction>
     </faction_select>
   }

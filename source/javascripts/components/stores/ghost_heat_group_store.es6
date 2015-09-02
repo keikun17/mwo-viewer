@@ -27,6 +27,8 @@ var data = {
   ac20:    {trigger_time: 0, current: 0, timer: undefined, multiplier: 24 },
   srm:     {trigger_time: 0, current: 0, timer: undefined, multiplier: 1 },
   ssrm:    {trigger_time: 0, current: 0, timer: undefined, multiplier: 1 },
+  clas:    {trigger_time: 0, current: 0, timer: undefined, multiplier: 1 },
+
 }
 
 var CHANGE = 'GHOST_HEAT_GROUP_UPDATED'

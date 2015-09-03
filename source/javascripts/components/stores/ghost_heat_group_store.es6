@@ -28,6 +28,10 @@ var data = {
   srm:     {trigger_time: 0, current: 0, timer: undefined, multiplier: 1 },
   ssrm:    {trigger_time: 0, current: 0, timer: undefined, multiplier: 1 },
   clas:    {trigger_time: 0, current: 0, timer: undefined, multiplier: 1 },
+  cuac5:   {trigger_time: 0, current: 0, timer: undefined, multiplier: 1},
+  cac5:   {trigger_time: 0, current: 0, timer: undefined, multiplier: 1},
+  cac10:   {trigger_time: 0, current: 0, timer: undefined, multiplier: 1},
+  cac20:   {trigger_time: 0, current: 0, timer: undefined, multiplier: 1},
 
 }
 

@@ -54,6 +54,10 @@ var weapons_list = {
     {weapon_id: 123, ghost_limit: 1, type: 'bal', name: 'C-AC 20',  cooldown_time: 4.72, heat: 6,  damage: 20, ghost_heat_group: 'cac20'},
 
     {weapon_id: 123, ghost_limit: 0, type: 'bal', name: 'C-GAUSS RIFLE', cooldown_time: 4, heat: 1,  damage: 15 },
+    {weapon_id: 123, ghost_limit: 0, type: 'bal', name: 'C-LB 2X', cooldown_time: .72, heat: 1,  damage: 2 },
+    {weapon_id: 123, ghost_limit: 0, type: 'bal', name: 'C-LB 5X', cooldown_time: 1.66, heat: 1,  damage: 5 },
+    {weapon_id: 123, ghost_limit: 0, type: 'bal', name: 'C-LB 10X', cooldown_time: 2.5, heat: 2,  damage: 10 },
+    {weapon_id: 123, ghost_limit: 0, type: 'bal', name: 'C-LB 20X', cooldown_time: 4, heat: 6,  damage: 20 },
 
     {weapon_id: 123, ghost_limit: 4, type: 'mis', name: 'C-SRM 2',  cooldown_time: 2,    heat: 2,  damage: 4,  ghost_heat_group: 'srm'},
     {weapon_id: 123, ghost_limit: 3, type: 'mis', name: 'C-SRM 4',  cooldown_time: 3,    heat: 2,  damage: 8,  ghost_heat_group: 'srm'},

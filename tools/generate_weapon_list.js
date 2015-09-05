@@ -25,9 +25,13 @@ request(url, function(error, response, body ){
     for(var item_id in raw_json) {
       let item = raw_json[item_id]
 
-      // Break conditions (next item if current item is not a weapon or factionless)
+      // Break conditions 
+      //   Skip non weapons
       if( item.category != "weapon") { break }
+      //   Skip factionless weapons
       if( typeof(item.factions) === 'undefined') {break}
+      //   Skip non-damaging weapons
+      if( item.stats.damage === 0) {break}
 
       if(item.factions.InnerSphere == true) {
         var faction = 'innersphere'

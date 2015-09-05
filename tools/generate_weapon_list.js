@@ -20,9 +20,11 @@ request(url, function(error, response, body ){
       clan: []
     }
 
-    for(item_id in raw_json) {
+    // console.log(`raw json is ${JSON.stringify(raw_json)}`)
+
+    for(var item_id in raw_json) {
       let item = raw_json[item_id]
-      if( item.category != "weapons") {break}
+      if( item.category != "weapon") { break }
 
       if(item.factions.InnerSphere == true) {
         var faction = 'innersphere'
@@ -31,36 +33,50 @@ request(url, function(error, response, body ){
         var faction = 'clan'
       }
 
-      // for the ghost_limit property
+      // For weapon type property
+      switch(item.stats.type){
+        case "Ballistic":
+          var weapon_type = 'bal'
+        break
+        case "Energy":
+          var weapon_type = 'las'
+        break
+        case "Missile":
+          var weapon_type = "mis"
+        break
+      }
+
+      // for weapon ghost_limit property
       if(typeof(item.stats.minheatpenaltylevel) != 'undefined') {
         var ghost_limit = item.stats.minheatpenaltylevel - 1
       } else {
         var ghost_limit = 0
       }
 
+      console.log(`${faction} contents are currently`)
+      console.log(json[faction])
       json[faction].push({
         weapon_id: item_id,
-        ghost_limit: ghost_limit
-        type: stats.typ
+        ghost_limit: ghost_limit,
+        type: weapon_type,
+        name: item.name
 
       })
 
-      }
     }
 
 
     fs.writeFile(filename, JSON.stringify(json, null, 2), function(err){
       if(err){
-        console.log("Error writing file")
+        console.log("Error writing file " + err)
       }
     })
 
 
 
-    console.log("contents are" + json)
+    console.log("contents are " + json)
 
   } else {
-
     console.log("Error encountered " + error)
   }
 })

@@ -1,3 +1,4 @@
+"use strict"
 var request = require("request")
 var fs = require("fs")
 var url = "http://static.mwomercs.com/api/items/list/full.json"

@@ -61,7 +61,17 @@ request(url, function(error, response, body ){
         var ghost_limit = 0
       }
 
+      // for damage
       var damage = item.stats.damage * item.stats.numFiring
+
+      // for ghost heat group
+
+      console.log(item.stats.heatPenaltyID)
+      if(typeof(item.stats.heatPenaltyID) != 'undefined') {
+        var ghost_heat_group = item.stats.heatPenaltyID
+      } else {
+        var ghost_heat_group = item_id
+      }
 
       console.log(`${faction} contents are currently`)
       console.log(json[faction])
@@ -73,10 +83,7 @@ request(url, function(error, response, body ){
         cooldown_time: item.stats.cooldown,
         heat: item.stats.heat,
         damage: damage,
-        ghost_heat_group: item.stats.heatPenaltyID
-
-
-
+        ghost_heat_group: ghost_heat_group
       })
 
     }

@@ -1,8 +1,10 @@
 import AppDispatcher from '../app_dispatcher'
 import {EventEmitter} from 'events'
 import HeatConstants from '../constants/heat_constants'
+import WeaponConstants from '../constants/weapon_constants'
 import HeatStore from '../stores/heat_store'
 import HeatActions from '../actions/heat_actions'
+import WeaponStore from '../stores/weapon_store'
 
 /**
  * Store data format
@@ -32,10 +34,16 @@ var data = {
   cac5:   {trigger_time: 0, current: 0, timer: undefined, multiplier: 1},
   cac10:   {trigger_time: 0, current: 0, timer: undefined, multiplier: 1},
   cac20:   {trigger_time: 0, current: 0, timer: undefined, multiplier: 1},
-
 }
 
 var CHANGE = 'GHOST_HEAT_GROUP_UPDATED'
+
+var register = function(ghost_heat_group_id) {
+  if(typeof(data[ghost_heat_group_id]) != 'undefined'){
+    data[ghost_heat_group_id] = {trigger_time: 0, current: 0, timer: undefined}
+  }
+}
+
 
 /**
  *
@@ -173,6 +181,7 @@ _GhostHeatGroupStore.dispatch_token = AppDispatcher.register((payload) => {
 
   var action_type = payload.action_type
   switch(action_type) {
+
     case HeatConstants.HEAT_APPLY:
       AppDispatcher.waitFor([HeatStore.dispatch_token])
       if(payload.weapon.ghost_limit !== 0) {
@@ -180,6 +189,12 @@ _GhostHeatGroupStore.dispatch_token = AppDispatcher.register((payload) => {
         _GhostHeatGroupStore.emit(CHANGE)
       }
       break
+
+    case WeaponConstants.WEAPON_EQUIP:
+      AppDispatcher.waitFor([WeaponStore.dispatch_token])
+      register(payload.weapon_props.ghost_heat_group)
+      break
+
   }
 })
 

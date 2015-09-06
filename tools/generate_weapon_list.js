@@ -60,6 +60,8 @@ request(url, function(error, response, body ){
         var ghost_limit = 0
       }
 
+      var damage = item.stats.damage * item.stats.numFiring
+
       console.log(`${faction} contents are currently`)
       console.log(json[faction])
       json[faction].push({
@@ -69,7 +71,7 @@ request(url, function(error, response, body ){
         name: item.name,
         cooldown_time: item.stats.cooldown,
         heat: item.stats.heat,
-        damage: 0,
+        damage: damage,
         ghost_heat_group: item.stats.heatPenaltyID
 
 

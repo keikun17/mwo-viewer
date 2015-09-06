@@ -25,21 +25,23 @@ request(url, function(error, response, body ){
 
     for(var item_id in raw_json) {
       let item = raw_json[item_id]
+      console.log(`processing item_id : ${item_id}`)
 
       // Break conditions
       //   Skip non weapons
-      if( item.category != "weapon") { break }
+      if( item.category != "weapon") { continue }
       //   Skip factionless weapons
-      if( typeof(item.factions) === 'undefined') {break}
+      if( typeof(item.factions) === 'undefined') { continue }
       //   Skip non-damaging weapons
-      if( item.stats.damage === 0) {break}
+      if( item.stats.damage === 0) { continue }
 
-      if(item.factions.InnerSphere == true) {
+      if(item.factions.InnerSphere === true) {
         var faction = 'innersphere'
 
-      } else if (item.factions.Clan == true) {
+      } else if (item.factions.Clan === true) {
         var faction = 'clan'
-      }
+      } 
+
 
       // For weapon type property
       switch(item.stats.type){

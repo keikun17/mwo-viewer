@@ -8,7 +8,8 @@ module.exports = {
       "cooldown_time": 4,
       "heat": 6,
       "damage": 20,
-      "ghost_heat_group": "1000"
+      "ghost_heat_group": "1000",
+      "multiplier": 24
     },
     {
       "weapon_id": "1001",
@@ -18,7 +19,8 @@ module.exports = {
       "cooldown_time": 3,
       "heat": 4,
       "damage": 5,
-      "ghost_heat_group": "1001"
+      "ghost_heat_group": "1001",
+      "multiplier": 1
     },
     {
       "weapon_id": "1002",
@@ -28,7 +30,8 @@ module.exports = {
       "cooldown_time": 4.75,
       "heat": 6,
       "damage": 20,
-      "ghost_heat_group": 2
+      "ghost_heat_group": 2,
+      "multiplier": 2.8
     },
     {
       "weapon_id": "1003",
@@ -48,7 +51,8 @@ module.exports = {
       "cooldown_time": 3,
       "heat": 3,
       "damage": 8.6,
-      "ghost_heat_group": 4
+      "ghost_heat_group": 4,
+      "multiplier": 1
     },
     {
       "weapon_id": "1005",
@@ -58,7 +62,8 @@ module.exports = {
       "cooldown_time": 3.25,
       "heat": 8,
       "damage": 9,
-      "ghost_heat_group": 3
+      "ghost_heat_group": 3,
+      "multiplier": 4
     },
     {
       "weapon_id": "1006",
@@ -68,7 +73,8 @@ module.exports = {
       "cooldown_time": 4,
       "heat": 15,
       "damage": 10,
-      "ghost_heat_group": 1
+      "ghost_heat_group": 1,
+      "multiplier": 7
     },
     {
       "weapon_id": "1007",
@@ -88,7 +94,8 @@ module.exports = {
       "cooldown_time": 3.25,
       "heat": 7,
       "damage": 9,
-      "ghost_heat_group": 3
+      "ghost_heat_group": 3,
+      "multiplier": 4
     },
     {
       "weapon_id": "1009",
@@ -98,7 +105,8 @@ module.exports = {
       "cooldown_time": 4,
       "heat": 10,
       "damage": 10,
-      "ghost_heat_group": 1
+      "ghost_heat_group": 1,
+      "multiplier": 7
     },
     {
       "weapon_id": "1010",
@@ -108,7 +116,8 @@ module.exports = {
       "cooldown_time": 3.25,
       "heat": 7,
       "damage": 11,
-      "ghost_heat_group": 3
+      "ghost_heat_group": 3,
+      "multiplier": 4
     },
     {
       "weapon_id": "1011",
@@ -218,7 +227,8 @@ module.exports = {
       "cooldown_time": 3.25,
       "heat": 2,
       "damage": 5,
-      "ghost_heat_group": 2
+      "ghost_heat_group": 2,
+      "multiplier": 2.8
     },
     {
       "weapon_id": "1027",
@@ -228,7 +238,8 @@ module.exports = {
       "cooldown_time": 3.75,
       "heat": 4,
       "damage": 10,
-      "ghost_heat_group": 2
+      "ghost_heat_group": 2,
+      "multiplier": 2.8
     },
     {
       "weapon_id": "1028",
@@ -238,7 +249,8 @@ module.exports = {
       "cooldown_time": 4.25,
       "heat": 5,
       "damage": 15,
-      "ghost_heat_group": 2
+      "ghost_heat_group": 2,
+      "multiplier": 2.8
     }
   ],
   "clan": []

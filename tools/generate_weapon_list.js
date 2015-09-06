@@ -66,15 +66,12 @@ request(url, function(error, response, body ){
 
       // for ghost heat group
 
-      console.log(item.stats.heatPenaltyID)
       if(typeof(item.stats.heatPenaltyID) != 'undefined') {
         var ghost_heat_group = item.stats.heatPenaltyID
       } else {
         var ghost_heat_group = item_id
       }
 
-      console.log(`${faction} contents are currently`)
-      console.log(json[faction])
       json[faction].push({
         weapon_id: item_id,
         ghost_limit: ghost_limit,
@@ -96,10 +93,6 @@ request(url, function(error, response, body ){
         console.log("Error writing file " + err)
       }
     })
-
-
-
-    console.log("contents are " + json)
 
   } else {
     console.log("Error encountered " + error)

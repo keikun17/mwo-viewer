@@ -88,8 +88,9 @@ request(url, function(error, response, body ){
 
     }
 
+    var content = `module.exports = ${JSON.stringify(json, null, 2)} `
 
-    fs.writeFile(filename, JSON.stringify(json, null, 2), function(err){
+    fs.writeFile(filename, content, function(err){
       if(err){
         console.log("Error writing file " + err)
       }

@@ -96,6 +96,8 @@ request(url, function(error, response, body ){
       }
     })
 
+    console.log("Done")
+
   } else {
     console.log("Error encountered " + error)
   }

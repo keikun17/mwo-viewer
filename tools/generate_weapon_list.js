@@ -26,7 +26,7 @@ request(url, function(error, response, body ){
     for(var item_id in raw_json) {
       let item = raw_json[item_id]
 
-      // Break conditions 
+      // Break conditions
       //   Skip non weapons
       if( item.category != "weapon") { break }
       //   Skip factionless weapons
@@ -83,7 +83,8 @@ request(url, function(error, response, body ){
         cooldown_time: item.stats.cooldown,
         heat: item.stats.heat,
         damage: damage,
-        ghost_heat_group: ghost_heat_group
+        ghost_heat_group: ghost_heat_group,
+        multiplier: item.stats.heatpenalty
       })
 
     }

@@ -66,7 +66,13 @@ request(url, function(error, response, body ){
         weapon_id: item_id,
         ghost_limit: ghost_limit,
         type: weapon_type,
-        name: item.name
+        name: item.name,
+        cooldown_time: item.stats.cooldown,
+        heat: item.stats.heat,
+        damage: 0,
+        ghost_heat_group: item.stats.heatPenaltyID
+
+
 
       })
 

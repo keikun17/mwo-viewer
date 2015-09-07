@@ -21,6 +21,7 @@ request(url, function(error, response, body ){
       clan: []
     }
 
+
     // console.log(`raw json is ${JSON.stringify(raw_json)}`)
 
     for(var item_id in raw_json) {
@@ -40,7 +41,7 @@ request(url, function(error, response, body ){
 
       } else if (item.factions.Clan === true) {
         var faction = 'clan'
-      } 
+      }
 
 
       // For weapon type property
@@ -87,6 +88,18 @@ request(url, function(error, response, body ){
       })
 
     }
+
+    // Sort alphabetically
+    var name_sorter =  function(a,b) {
+      if (a.name < b.name)
+        return -1;
+      if (a.name > b.name)
+        return 1;
+      return 0;
+    }
+
+    json.innersphere.sort(name_sorter)
+    json.clan.sort(name_sorter)
 
     var content = `module.exports = ${JSON.stringify(json, null, 2)} `
 

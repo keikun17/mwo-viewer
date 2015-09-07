@@ -101,6 +101,18 @@ request(url, function(error, response, body ){
     json.innersphere.sort(name_sorter)
     json.clan.sort(name_sorter)
 
+    // Sort by weapon_type
+    var weapon_type_sorter =  function(a,b) {
+      if (a.type < b.type)
+        return -1;
+      if (a.type > b.type)
+        return 1;
+      return 0;
+    }
+
+    json.innersphere.sort(weapon_type_sorter)
+    json.clan.sort(weapon_type_sorter)
+
     var content = `module.exports = ${JSON.stringify(json, null, 2)} `
 
     fs.writeFile(filename, content, function(err){

@@ -21,6 +21,9 @@ request(url, function(error, response, body ){
       clan: []
     }
 
+    // Do not include these items
+    var black_listed = ["1237", "1014"]
+
 
     // console.log(`raw json is ${JSON.stringify(raw_json)}`)
 
@@ -29,8 +32,11 @@ request(url, function(error, response, body ){
       console.log(`processing item_id : ${item_id}`)
 
       // Break conditions
+      // Skip blacklisted weapons
+      if(black_listed.indexOf(item_id) != -1)
+        continue
       //   Skip non weapons
-      if( item.category != "weapon") { continue }
+      if(item.category != "weapon"){ continue }
       //   Skip factionless weapons
       if( typeof(item.factions) === 'undefined') { continue }
       //   Skip non-damaging weapons

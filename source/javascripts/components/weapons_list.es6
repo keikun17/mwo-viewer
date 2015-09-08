@@ -1,6 +1,16 @@
 module.exports = {
   "innersphere": [
     {
+      "weapon_id": "1020",
+      "ghost_limit": 0,
+      "type": "bal",
+      "name": "AutoCannon10",
+      "cooldown_time": 2.5,
+      "heat": 3,
+      "damage": 10,
+      "ghost_heat_group": "1020"
+    },
+    {
       "weapon_id": "1025",
       "ghost_limit": 0,
       "type": "bal",
@@ -9,16 +19,6 @@ module.exports = {
       "heat": 1,
       "damage": 5,
       "ghost_heat_group": "1025"
-    },
-    {
-      "weapon_id": "1018",
-      "ghost_limit": 0,
-      "type": "bal",
-      "name": "AutoCannon2",
-      "cooldown_time": 0.72,
-      "heat": 1,
-      "damage": 2,
-      "ghost_heat_group": "1018"
     },
     {
       "weapon_id": "1000",
@@ -42,14 +42,24 @@ module.exports = {
       "ghost_heat_group": "1019"
     },
     {
-      "weapon_id": "1021",
+      "weapon_id": "1024",
       "ghost_limit": 0,
       "type": "bal",
-      "name": "GaussRifle",
-      "cooldown_time": 4,
+      "name": "MachineGun",
+      "cooldown_time": 0,
+      "heat": 0,
+      "damage": 0.08,
+      "ghost_heat_group": "1024"
+    },
+    {
+      "weapon_id": "1018",
+      "ghost_limit": 0,
+      "type": "bal",
+      "name": "AutoCannon2",
+      "cooldown_time": 0.72,
       "heat": 1,
-      "damage": 15,
-      "ghost_heat_group": "1021"
+      "damage": 2,
+      "ghost_heat_group": "1018"
     },
     {
       "weapon_id": "1023",
@@ -62,45 +72,34 @@ module.exports = {
       "ghost_heat_group": "1023"
     },
     {
-      "weapon_id": "1020",
+      "weapon_id": "1021",
       "ghost_limit": 0,
       "type": "bal",
-      "name": "AutoCannon10",
-      "cooldown_time": 2.5,
-      "heat": 3,
-      "damage": 10,
-      "ghost_heat_group": "1020"
+      "name": "GaussRifle",
+      "cooldown_time": 4,
+      "heat": 1,
+      "damage": 15,
+      "ghost_heat_group": "1021"
     },
     {
-      "weapon_id": "1024",
-      "ghost_limit": 0,
-      "type": "bal",
-      "name": "MachineGun",
-      "cooldown_time": 0,
-      "heat": 0,
-      "damage": 0.08,
-      "ghost_heat_group": "1024"
-    },
-    {
-      "weapon_id": "1014",
+      "weapon_id": "1011",
       "ghost_limit": 0,
       "type": "las",
-      "name": "AntiMissileSystem",
-      "cooldown_time": 0,
-      "heat": 0,
-      "damage": 3.5,
-      "ghost_heat_group": "1014"
+      "name": "MediumPulseLaser",
+      "cooldown_time": 3,
+      "heat": 4,
+      "damage": 6,
+      "ghost_heat_group": "1011"
     },
     {
-      "weapon_id": "1005",
-      "ghost_limit": 3,
+      "weapon_id": "1007",
+      "ghost_limit": 0,
       "type": "las",
-      "name": "ERLargeLaser",
-      "cooldown_time": 3.25,
-      "heat": 8,
-      "damage": 9,
-      "ghost_heat_group": 3,
-      "multiplier": 4
+      "name": "Flamer",
+      "cooldown_time": 0,
+      "heat": 1,
+      "damage": 0.7,
+      "ghost_heat_group": "1007"
     },
     {
       "weapon_id": "1012",
@@ -145,17 +144,6 @@ module.exports = {
       "multiplier": 7
     },
     {
-      "weapon_id": "1008",
-      "ghost_limit": 3,
-      "type": "las",
-      "name": "LargeLaser",
-      "cooldown_time": 3.25,
-      "heat": 7,
-      "damage": 9,
-      "ghost_heat_group": 3,
-      "multiplier": 4
-    },
-    {
       "weapon_id": "1010",
       "ghost_limit": 3,
       "type": "las",
@@ -167,14 +155,15 @@ module.exports = {
       "multiplier": 4
     },
     {
-      "weapon_id": "1007",
-      "ghost_limit": 0,
+      "weapon_id": "1005",
+      "ghost_limit": 3,
       "type": "las",
-      "name": "Flamer",
-      "cooldown_time": 0,
-      "heat": 1,
-      "damage": 0.7,
-      "ghost_heat_group": "1007"
+      "name": "ERLargeLaser",
+      "cooldown_time": 3.25,
+      "heat": 8,
+      "damage": 9,
+      "ghost_heat_group": 3,
+      "multiplier": 4
     },
     {
       "weapon_id": "1001",
@@ -188,23 +177,35 @@ module.exports = {
       "multiplier": 1
     },
     {
-      "weapon_id": "1011",
-      "ghost_limit": 0,
+      "weapon_id": "1008",
+      "ghost_limit": 3,
       "type": "las",
-      "name": "MediumPulseLaser",
-      "cooldown_time": 3,
-      "heat": 4,
-      "damage": 6,
-      "ghost_heat_group": "1011"
+      "name": "LargeLaser",
+      "cooldown_time": 3.25,
+      "heat": 7,
+      "damage": 9,
+      "ghost_heat_group": 3,
+      "multiplier": 4
     },
     {
-      "weapon_id": "1002",
+      "weapon_id": "1027",
       "ghost_limit": 2,
       "type": "mis",
-      "name": "LRM20",
-      "cooldown_time": 4.75,
-      "heat": 6,
-      "damage": 20,
+      "name": "LRM10",
+      "cooldown_time": 3.75,
+      "heat": 4,
+      "damage": 10,
+      "ghost_heat_group": 2,
+      "multiplier": 2.8
+    },
+    {
+      "weapon_id": "1026",
+      "ghost_limit": 3,
+      "type": "mis",
+      "name": "LRM5",
+      "cooldown_time": 3.25,
+      "heat": 2,
+      "damage": 5,
       "ghost_heat_group": 2,
       "multiplier": 2.8
     },
@@ -242,6 +243,17 @@ module.exports = {
       "multiplier": 1
     },
     {
+      "weapon_id": "1002",
+      "ghost_limit": 2,
+      "type": "mis",
+      "name": "LRM20",
+      "cooldown_time": 4.75,
+      "heat": 6,
+      "damage": 20,
+      "ghost_heat_group": 2,
+      "multiplier": 2.8
+    },
+    {
       "weapon_id": "1028",
       "ghost_limit": 2,
       "type": "mis",
@@ -249,17 +261,6 @@ module.exports = {
       "cooldown_time": 4.25,
       "heat": 5,
       "damage": 15,
-      "ghost_heat_group": 2,
-      "multiplier": 2.8
-    },
-    {
-      "weapon_id": "1027",
-      "ghost_limit": 2,
-      "type": "mis",
-      "name": "LRM10",
-      "cooldown_time": 3.75,
-      "heat": 4,
-      "damage": 10,
       "ghost_heat_group": 2,
       "multiplier": 2.8
     },
@@ -273,29 +274,19 @@ module.exports = {
       "damage": 4,
       "ghost_heat_group": "1032",
       "multiplier": 1
-    },
-    {
-      "weapon_id": "1026",
-      "ghost_limit": 3,
-      "type": "mis",
-      "name": "LRM5",
-      "cooldown_time": 3.25,
-      "heat": 2,
-      "damage": 5,
-      "ghost_heat_group": 2,
-      "multiplier": 2.8
     }
   ],
   "clan": [
     {
-      "weapon_id": "1200",
-      "ghost_limit": 0,
+      "weapon_id": "1240",
+      "ghost_limit": 2,
       "type": "bal",
-      "name": "ClanLBXAutoCannon2",
-      "cooldown_time": 0.72,
-      "heat": 1,
-      "damage": 1,
-      "ghost_heat_group": "1200"
+      "name": "ClanAutoCannon10",
+      "cooldown_time": 2.9,
+      "heat": 2,
+      "damage": 9.9999,
+      "ghost_heat_group": 8,
+      "multiplier": 1
     },
     {
       "weapon_id": "1205",
@@ -331,6 +322,17 @@ module.exports = {
       "multiplier": 0.8
     },
     {
+      "weapon_id": "1207",
+      "ghost_limit": 1,
+      "type": "bal",
+      "name": "ClanUltraAutoCannon20",
+      "cooldown_time": 4,
+      "heat": 7,
+      "damage": 20,
+      "ghost_heat_group": 9,
+      "multiplier": 30
+    },
+    {
       "weapon_id": "1204",
       "ghost_limit": 0,
       "type": "bal",
@@ -362,25 +364,14 @@ module.exports = {
       "ghost_heat_group": "1209"
     },
     {
-      "weapon_id": "1240",
-      "ghost_limit": 2,
-      "type": "bal",
-      "name": "ClanAutoCannon10",
-      "cooldown_time": 2.9,
-      "heat": 2,
-      "damage": 9.9999,
-      "ghost_heat_group": 8,
-      "multiplier": 1
-    },
-    {
-      "weapon_id": "1201",
+      "weapon_id": "1238",
       "ghost_limit": 0,
       "type": "bal",
-      "name": "ClanLBXAutoCannon5",
-      "cooldown_time": 1.66,
+      "name": "ClanAutoCannon2",
+      "cooldown_time": 0.72,
       "heat": 1,
-      "damage": 1,
-      "ghost_heat_group": "1201"
+      "damage": 2,
+      "ghost_heat_group": "1238"
     },
     {
       "weapon_id": "1208",
@@ -403,14 +394,14 @@ module.exports = {
       "ghost_heat_group": "1202"
     },
     {
-      "weapon_id": "1238",
+      "weapon_id": "1200",
       "ghost_limit": 0,
       "type": "bal",
-      "name": "ClanAutoCannon2",
+      "name": "ClanLBXAutoCannon2",
       "cooldown_time": 0.72,
       "heat": 1,
-      "damage": 2,
-      "ghost_heat_group": "1238"
+      "damage": 1,
+      "ghost_heat_group": "1200"
     },
     {
       "weapon_id": "1203",
@@ -423,15 +414,14 @@ module.exports = {
       "ghost_heat_group": "1203"
     },
     {
-      "weapon_id": "1207",
-      "ghost_limit": 1,
+      "weapon_id": "1201",
+      "ghost_limit": 0,
       "type": "bal",
-      "name": "ClanUltraAutoCannon20",
-      "cooldown_time": 4,
-      "heat": 7,
-      "damage": 20,
-      "ghost_heat_group": 9,
-      "multiplier": 30
+      "name": "ClanLBXAutoCannon5",
+      "cooldown_time": 1.66,
+      "heat": 1,
+      "damage": 1,
+      "ghost_heat_group": "1201"
     },
     {
       "weapon_id": "1210",
@@ -442,17 +432,6 @@ module.exports = {
       "heat": 1,
       "damage": 0.7,
       "ghost_heat_group": "1210"
-    },
-    {
-      "weapon_id": "1211",
-      "ghost_limit": 6,
-      "type": "las",
-      "name": "ClanERSmallLaser",
-      "cooldown_time": 2.25,
-      "heat": 3,
-      "damage": 5,
-      "ghost_heat_group": 10,
-      "multiplier": 1.4
     },
     {
       "weapon_id": "1216",
@@ -466,15 +445,15 @@ module.exports = {
       "multiplier": 4
     },
     {
-      "weapon_id": "1217",
-      "ghost_limit": 2,
+      "weapon_id": "1211",
+      "ghost_limit": 6,
       "type": "las",
-      "name": "ClanERPPC",
-      "cooldown_time": 4,
-      "heat": 15,
-      "damage": 10,
-      "ghost_heat_group": 1,
-      "multiplier": 7
+      "name": "ClanERSmallLaser",
+      "cooldown_time": 2.25,
+      "heat": 3,
+      "damage": 5,
+      "ghost_heat_group": 10,
+      "multiplier": 1.4
     },
     {
       "weapon_id": "1215",
@@ -499,6 +478,17 @@ module.exports = {
       "multiplier": 1
     },
     {
+      "weapon_id": "1217",
+      "ghost_limit": 2,
+      "type": "las",
+      "name": "ClanERPPC",
+      "cooldown_time": 4,
+      "heat": 15,
+      "damage": 10,
+      "ghost_heat_group": 1,
+      "multiplier": 7
+    },
+    {
       "weapon_id": "1212",
       "ghost_limit": 6,
       "type": "las",
@@ -521,28 +511,6 @@ module.exports = {
       "multiplier": 4
     },
     {
-      "weapon_id": "1226",
-      "ghost_limit": 4,
-      "type": "mis",
-      "name": "ClanSRM2",
-      "cooldown_time": 2,
-      "heat": 2,
-      "damage": 4,
-      "ghost_heat_group": "1226",
-      "multiplier": 1
-    },
-    {
-      "weapon_id": "1227",
-      "ghost_limit": 3,
-      "type": "mis",
-      "name": "ClanSRM4",
-      "cooldown_time": 3,
-      "heat": 3,
-      "damage": 8,
-      "ghost_heat_group": 7,
-      "multiplier": 1
-    },
-    {
       "weapon_id": "1228",
       "ghost_limit": 3,
       "type": "mis",
@@ -552,6 +520,17 @@ module.exports = {
       "damage": 12,
       "ghost_heat_group": 7,
       "multiplier": 1
+    },
+    {
+      "weapon_id": "1220",
+      "ghost_limit": 2,
+      "type": "mis",
+      "name": "ClanLRM15",
+      "cooldown_time": 4.5,
+      "heat": 5,
+      "damage": 15,
+      "ghost_heat_group": 6,
+      "multiplier": 3.1
     },
     {
       "weapon_id": "1218",
@@ -609,14 +588,26 @@ module.exports = {
       "multiplier": 3.1
     },
     {
-      "weapon_id": "1237",
-      "ghost_limit": 0,
+      "weapon_id": "1226",
+      "ghost_limit": 4,
       "type": "mis",
-      "name": "ClanAntiMissileSystem",
-      "cooldown_time": 0,
-      "heat": 0,
-      "damage": 3.5,
-      "ghost_heat_group": "1237"
+      "name": "ClanSRM2",
+      "cooldown_time": 2,
+      "heat": 2,
+      "damage": 4,
+      "ghost_heat_group": "1226",
+      "multiplier": 1
+    },
+    {
+      "weapon_id": "1227",
+      "ghost_limit": 3,
+      "type": "mis",
+      "name": "ClanSRM4",
+      "cooldown_time": 3,
+      "heat": 3,
+      "damage": 8,
+      "ghost_heat_group": 7,
+      "multiplier": 1
     },
     {
       "weapon_id": "1221",
@@ -626,17 +617,6 @@ module.exports = {
       "cooldown_time": 5,
       "heat": 6,
       "damage": 20,
-      "ghost_heat_group": 6,
-      "multiplier": 3.1
-    },
-    {
-      "weapon_id": "1220",
-      "ghost_limit": 2,
-      "type": "mis",
-      "name": "ClanLRM15",
-      "cooldown_time": 4.5,
-      "heat": 5,
-      "damage": 15,
       "ghost_heat_group": 6,
       "multiplier": 3.1
     }

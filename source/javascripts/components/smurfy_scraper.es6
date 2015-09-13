@@ -17,8 +17,8 @@ export default class SmurfyScraper extends React.Component {
   render() {
     return <smurfy_scraper>
     <form onSubmit={this.scrape}>
-      <label htmlFor="smufy_scraper">Import from Smurfy</label>
-      <input id="smurfy_scraper"/>
+      <label htmlFor="smurfy_url">Import from Smurfy</label>
+      <input id="smurfy_url"/>
     </form>
     </smurfy_scraper>
   }

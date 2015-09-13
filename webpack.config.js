@@ -28,6 +28,10 @@ module.exports = {
   //
   resolve: {
     extensions: ['', '.coffee', '.jsx', '.json', '.es6', '.js']
+  },
+
+  node: {
+    fs: "empty"
   }
 }
 

@@ -14,7 +14,6 @@ export default class SmurfyScraper extends React.Component {
   }
 
   scrape(e) {
-    console.log("scrapin smurfy")
     e.preventDefault()
 
     // In the mechlab tooltip, all the required HTML are loaded, whereas in the mechlab,
@@ -28,9 +27,15 @@ export default class SmurfyScraper extends React.Component {
 
     var oReq= new XMLHttpRequest();
 
-    var updateProgress = function() { console.log("1") }
-    var transferFailed = function() { console.log("3") }
-    var transferCanceled = function() { console.log("4") }
+    var updateProgress = function() {
+      // console.log("1")
+    }
+    var transferFailed = function() {
+      // console.log("3")
+    }
+    var transferCanceled = function() {
+      // console.log("4")
+    }
 
     oReq.addEventListener("progress", updateProgress, false);
     oReq.addEventListener("load", this.transferComplete.bind(this), false);
@@ -43,13 +48,11 @@ export default class SmurfyScraper extends React.Component {
 
 
   transferComplete(data) {
-    console.log("data is")
-    console.log(data)
     var responseText = JSON.parse(data.currentTarget.responseText)
     var result_body = JSON.parse(responseText.query.results.body)
 
-    console.log("Result body is ")
-    console.log(result_body)
+    // console.log("Result body is ")
+    // console.log(result_body)
 
     var configurations = result_body.configuration
 
@@ -62,8 +65,8 @@ export default class SmurfyScraper extends React.Component {
       }
     }
 
-    console.log("item ids are ")
-    console.log(item_ids)
+    // console.log("item ids are ")
+    // console.log(item_ids)
 
     var factioned_weapons_list = ArmoryStore.get_new_data().weapons_list
     var weapons_list = factioned_weapons_list["innersphere"].concat(factioned_weapons_list["clan"])
@@ -73,8 +76,8 @@ export default class SmurfyScraper extends React.Component {
       weapons_to_equip.push(weapons_list.find( x => (x.weapon_id === weapon_id)))
     }
 
-    console.log("weapons to equip are")
-    console.log(weapons_to_equip)
+    // console.log("weapons to equip are")
+    // console.log(weapons_to_equip)
 
     for(let weapon of weapons_to_equip) {
       if(typeof(weapon) === "object")

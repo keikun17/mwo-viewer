@@ -20,7 +20,7 @@ export default class SmurfyScraper extends React.Component {
     smurfy_url = smurfy_url.replace('i=', '/')
     smurfy_url = smurfy_url.replace('&l=', '/')
 
-    var yql_url =  "http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20html%20where%20url=%27http://mwo.smurfy-net.de/mechlab/loadouts/22/7092659ec74a9dcff094cad653ae5f55e3300ace%27%20&format=json"
+    var yql_url =  `http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20html%20where%20url=%27${smurfy_url}%27%20&format=json`
 
     var oReq= new XMLHttpRequest();
 

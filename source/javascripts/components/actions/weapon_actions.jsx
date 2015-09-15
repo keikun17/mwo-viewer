@@ -10,7 +10,7 @@ var WeaponActions = {
    */
   equip: function(weapon){
     AppDispatcher.dispatch({
-      action_type: WeaponConstants.WEAPON_EQUIP,
+     action_type: WeaponConstants.WEAPON_EQUIP,
       weapon_props: weapon.props.weapon
     })
   },
@@ -19,6 +19,12 @@ var WeaponActions = {
     AppDispatcher.dispatch({
       action_type: WeaponConstants.WEAPON_UNEQUIP,
       index: index
+    })
+  },
+
+  strip_all: function() {
+    AppDispatcher.dispatch({
+      action_type: WeaponConstants.WEAPON_STRIP_ALL
     })
   },
 

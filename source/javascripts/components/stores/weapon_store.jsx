@@ -50,6 +50,15 @@ var destroy = function(id) {
   delete data.equipped_weapons[id]
 }
 
+/**
+ * Unequips all weapons
+ */
+
+var strip_all = function() {
+  console.log("callecalledd")
+  data.equipped_weapons = []
+}
+
 /** Toggle the weapon group of an equipped weapon
  * @param {string} equipped_weapon_id - ID of the weapon
  * @param {string} group_id - ID of the weapon_group (1, 2, 3. not grp1, grp2)
@@ -150,6 +159,10 @@ _WeaponStore.dispatch_token = AppDispatcher.register((payload) => {
       break
     case WeaponConstants.WEAPON_COOLDOWN:
       cooldown_weapon(payload.equipped_weapon_id)
+      _WeaponStore.emit(CHANGE)
+      break
+    case WeaponConstants.WEAPON_STRIP_ALL:
+      strip_all()
       _WeaponStore.emit(CHANGE)
       break
   }

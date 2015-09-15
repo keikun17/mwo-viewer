@@ -44,8 +44,14 @@ export default class EquippedWeaponsWrapper extends React.Component {
       )
     }
 
+    if(equipped_weapons.length > 0){
+      var strip_all = <strip_all>Strip all Weapons</strip_all>
+    } else {
+      var strip_all = ""
+    }
     return <equipped_weapons>
-    {equipped_weapons}
+      {equipped_weapons}
+      {strip_all}
     </equipped_weapons>
 
   }

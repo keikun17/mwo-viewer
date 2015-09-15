@@ -11,14 +11,13 @@ equipped_weapon {
           align-items: center; }
   /* line 8, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/equipped_weapon.sass */
   equipped_weapon > span {
-    margin: 0 5px 0 5px;
-    font-weight: 100; }
-  /* line 12, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/equipped_weapon.sass */
+    margin: 0 5px 0 5px; }
+  /* line 11, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/equipped_weapon.sass */
   equipped_weapon.laser {
-    color: #cec23b; }
-  /* line 15, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/equipped_weapon.sass */
+    color: #ce6c3b; }
+  /* line 14, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/equipped_weapon.sass */
   equipped_weapon.ballistic {
     color: #a73bce; }
-  /* line 18, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/equipped_weapon.sass */
+  /* line 17, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/equipped_weapon.sass */
   equipped_weapon.missile {
     color: #3b87ce; }

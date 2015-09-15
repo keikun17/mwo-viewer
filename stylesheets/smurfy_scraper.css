@@ -1,0 +1,15 @@
+/* line 2, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/smurfy_scraper.sass */
+smurfy_scraper input {
+  background-color: gray; }
+  /* line 4, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/smurfy_scraper.sass */
+  smurfy_scraper input.loading {
+    background-color: orange;
+    color: #fff; }
+  /* line 7, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/smurfy_scraper.sass */
+  smurfy_scraper input.loaded {
+    background-color: green;
+    color: #fff; }
+  /* line 10, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/smurfy_scraper.sass */
+  smurfy_scraper input.errored {
+    background-color: red;
+    color: #fff; }

@@ -70,15 +70,14 @@ equipped_weapon {
           align-items: center; }
   /* line 8, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/equipped_weapon.sass */
   equipped_weapon > span {
-    margin: 0 5px 0 5px;
-    font-weight: 100; }
-  /* line 12, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/equipped_weapon.sass */
+    margin: 0 5px 0 5px; }
+  /* line 11, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/equipped_weapon.sass */
   equipped_weapon.laser {
-    color: #cec23b; }
-  /* line 15, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/equipped_weapon.sass */
+    color: #ce6c3b; }
+  /* line 14, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/equipped_weapon.sass */
   equipped_weapon.ballistic {
     color: #a73bce; }
-  /* line 18, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/equipped_weapon.sass */
+  /* line 17, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/equipped_weapon.sass */
   equipped_weapon.missile {
     color: #3b87ce; }
 /* line 1, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/event-log.sass */
@@ -92,7 +91,7 @@ faction_select {
   display: -ms-flexbox;
   display: flex;
   margin-bottom: 5px;
-  border: 2px solid #121212;
+  border: 2px solid #141414;
   border-radius: 5px;
   background: #222;
   background-clip: border-box;
@@ -155,12 +154,6 @@ faction {
       box-shadow: inset 0 2px 3px rgba(0, 0, 0, 0.4), inset 0 0 4px 4px rgba(0, 0, 0, 0.1);
       background: -webkit-linear-gradient(top, #313137 0%, #1e1e24 100%);
       background: linear-gradient(to bottom, #313137 0%, #1e1e24 100%); }
-      /* line 46, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/faction_select.sass */
-      faction input[type="radio"]:checked + label.innersphere {
-        text-shadow: 0 0 10px #0fefff; }
-      /* line 49, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/faction_select.sass */
-      faction input[type="radio"]:checked + label.clan {
-        text-shadow: 0 0 10px #ff870f; }
 /* line 1, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/forms.sass */
 .input-group {
   display: -webkit-box;
@@ -627,6 +620,40 @@ remove_weapon_button {
   remove_weapon_button::before {
     font-family: ionicons;
     content: ""; }
+
+/* line 16, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/remove_weapon_button.sass */
+strip_all {
+  color: white;
+  background-color: #ffa600;
+  font-size: 1em;
+  display: block;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: Roboto, sans-serif;
+  margin-top: 3px;
+  margin-bottom: 5px;
+  text-align: center;
+  text-align: center;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  font-weight: 100; }
+/* line 2, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/smurfy_scraper.sass */
+smurfy_scraper input {
+  background-color: gray; }
+  /* line 4, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/smurfy_scraper.sass */
+  smurfy_scraper input.loading {
+    background-color: orange;
+    color: #fff; }
+  /* line 7, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/smurfy_scraper.sass */
+  smurfy_scraper input.loaded {
+    background-color: green;
+    color: #fff; }
+  /* line 10, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/smurfy_scraper.sass */
+  smurfy_scraper input.errored {
+    background-color: red;
+    color: #fff; }
 /* line 3, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/weapon.sass */
 weapon {
   font-size: 1em;
@@ -646,8 +673,8 @@ weapon {
   font-weight: 100; }
   /* line 19, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/weapon.sass */
   weapon.laser {
-    border: 1px solid #cec23b;
-    background-color: #cec23b; }
+    border: 1px solid #ce6c3b;
+    background-color: #ce6c3b; }
   /* line 23, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/weapon.sass */
   weapon.ballistic {
     border: 1px solid #a73bce;

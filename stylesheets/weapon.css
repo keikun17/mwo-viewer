@@ -17,8 +17,8 @@ weapon {
   font-weight: 100; }
   /* line 19, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/weapon.sass */
   weapon.laser {
-    border: 1px solid #cec23b;
-    background-color: #cec23b; }
+    border: 1px solid #ce6c3b;
+    background-color: #ce6c3b; }
   /* line 23, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/weapon.sass */
   weapon.ballistic {
     border: 1px solid #a73bce;

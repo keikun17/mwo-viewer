@@ -1,5 +1,6 @@
 import React from 'react'
 import WeaponStore from "./stores/weapon_store"
+import WeaponActions from './actions/weapon_actions'
 import EquippedWeapon from "./equipped_weapon"
 
 export default class EquippedWeaponsWrapper extends React.Component {
@@ -18,6 +19,11 @@ export default class EquippedWeaponsWrapper extends React.Component {
     this.setState({
       equipped_weapons: WeaponStore.get_new_data().equipped_weapons
     })
+  }
+
+
+  strip_all() {
+    WeaponActions.strip_all()
   }
 
   render() {
@@ -39,12 +45,19 @@ export default class EquippedWeaponsWrapper extends React.Component {
         is_disabled={_weapon.is_disabled}
         cooldown_time_remaining={_weapon.cooldown_time_remaining}
         type={_weapon.type}
+        multiplier={_weapon.multiplier}
         />
       )
     }
 
+    if(equipped_weapons.length > 0){
+      var strip_all = <strip_all onClick={this.strip_all.bind(this)}>Strip all Weapons</strip_all>
+    } else {
+      var strip_all = ""
+    }
     return <equipped_weapons>
-    {equipped_weapons}
+      {equipped_weapons}
+      {strip_all}
     </equipped_weapons>
 
   }

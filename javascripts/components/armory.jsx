@@ -2,6 +2,7 @@ var React = require('react');
 var Weapon = require('./weapon');
 import FactionSelect from './faction_select'
 import ArmoryStore from './stores/armory_store'
+import SmurfyScraper from  './smurfy_scraper'
 
 class Armory extends React.Component {
 
@@ -40,6 +41,7 @@ class Armory extends React.Component {
       <h1>
         Armory
       </h1>
+      <SmurfyScraper/>
       <FactionSelect/>
       {weapons}
       </armory>

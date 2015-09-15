@@ -19374,19 +19374,19 @@
 	
 	var _armory2 = _interopRequireDefault(_armory);
 	
-	var _info = __webpack_require__(/*! ./info */ 207);
+	var _info = __webpack_require__(/*! ./info */ 209);
 	
 	var _info2 = _interopRequireDefault(_info);
 	
-	var _equipment = __webpack_require__(/*! ./equipment */ 226);
+	var _equipment = __webpack_require__(/*! ./equipment */ 228);
 	
 	var _equipment2 = _interopRequireDefault(_equipment);
 	
-	var _weapons_list = __webpack_require__(/*! ./weapons_list */ 236);
+	var _weapons_list = __webpack_require__(/*! ./weapons_list */ 198);
 	
 	var _weapons_list2 = _interopRequireDefault(_weapons_list);
 	
-	var _app_dispatcher = __webpack_require__(/*! ./app_dispatcher */ 193);
+	var _app_dispatcher = __webpack_require__(/*! ./app_dispatcher */ 191);
 	
 	var _app_dispatcher2 = _interopRequireDefault(_app_dispatcher);
 	
@@ -20347,12 +20347,16 @@
 	
 	var _faction_select2 = _interopRequireDefault(_faction_select);
 	
-	var _storesArmory_store = __webpack_require__(/*! ./stores/armory_store */ 191);
+	var _storesArmory_store = __webpack_require__(/*! ./stores/armory_store */ 196);
 	
 	var _storesArmory_store2 = _interopRequireDefault(_storesArmory_store);
 	
+	var _smurfy_scraper = __webpack_require__(/*! ./smurfy_scraper */ 199);
+	
+	var _smurfy_scraper2 = _interopRequireDefault(_smurfy_scraper);
+	
 	var React = __webpack_require__(/*! react */ 1);
-	var Weapon = __webpack_require__(/*! ./weapon */ 198);
+	var Weapon = __webpack_require__(/*! ./weapon */ 200);
 	
 	var Armory = (function (_React$Component) {
 	  function Armory(props) {
@@ -20401,6 +20405,7 @@
 	          null,
 	          'Armory'
 	        ),
+	        React.createElement(_smurfy_scraper2['default'], null),
 	        React.createElement(_faction_select2['default'], null),
 	        weapons
 	      );
@@ -20439,7 +20444,7 @@
 	
 	var _actionsArmory_actions2 = _interopRequireDefault(_actionsArmory_actions);
 	
-	var _storesArmory_store = __webpack_require__(/*! ./stores/armory_store */ 191);
+	var _storesArmory_store = __webpack_require__(/*! ./stores/armory_store */ 196);
 	
 	var _storesArmory_store2 = _interopRequireDefault(_storesArmory_store);
 	
@@ -20519,11 +20524,11 @@
 	  value: true
 	});
 	
-	var _app_dispatcherEs6 = __webpack_require__(/*! ../app_dispatcher.es6 */ 193);
+	var _app_dispatcherEs6 = __webpack_require__(/*! ../app_dispatcher.es6 */ 191);
 	
 	var _app_dispatcherEs62 = _interopRequireDefault(_app_dispatcherEs6);
 	
-	var _constantsArmory_constants = __webpack_require__(/*! ../constants/armory_constants */ 197);
+	var _constantsArmory_constants = __webpack_require__(/*! ../constants/armory_constants */ 195);
 	
 	var _constantsArmory_constants2 = _interopRequireDefault(_constantsArmory_constants);
 	
@@ -20545,6 +20550,419 @@
 
 /***/ },
 /* 191 */
+/*!**********************************************************!*\
+  !*** ./source/javascripts/components/app_dispatcher.es6 ***!
+  \**********************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	var _inherits = __webpack_require__(/*! babel-runtime/helpers/inherits */ 157)["default"];
+	
+	var _get = __webpack_require__(/*! babel-runtime/helpers/get */ 162)["default"];
+	
+	var _createClass = __webpack_require__(/*! babel-runtime/helpers/create-class */ 168)["default"];
+	
+	var _classCallCheck = __webpack_require__(/*! babel-runtime/helpers/class-call-check */ 171)["default"];
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _flux = __webpack_require__(/*! flux */ 192);
+	
+	var AppDispatcher = (function (_Dispatcher) {
+	  function AppDispatcher() {
+	    _classCallCheck(this, AppDispatcher);
+	
+	    _get(Object.getPrototypeOf(AppDispatcher.prototype), "constructor", this).apply(this, arguments);
+	  }
+	
+	  _inherits(AppDispatcher, _Dispatcher);
+	
+	  _createClass(AppDispatcher, [{
+	    key: "handleViewAction",
+	    value: function handleViewAction(action) {
+	      console.log("--------------");
+	      console.log("Dispatcher handling an action: ");
+	      console.log(action);
+	      console.log("--------------");
+	      this.dispatch({
+	        source: "VIEW_ACTION",
+	        action: action
+	      });
+	    }
+	  }]);
+	
+	  return AppDispatcher;
+	})(_flux.Dispatcher);
+	
+	var _AppDispatcher = new AppDispatcher();
+	
+	// let _AppDispatcher = new Dispatcher();
+	
+	exports["default"] = _AppDispatcher;
+	module.exports = exports["default"];
+
+/***/ },
+/* 192 */
+/*!*************************!*\
+  !*** ./~/flux/index.js ***!
+  \*************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/**
+	 * Copyright (c) 2014-2015, Facebook, Inc.
+	 * All rights reserved.
+	 *
+	 * This source code is licensed under the BSD-style license found in the
+	 * LICENSE file in the root directory of this source tree. An additional grant
+	 * of patent rights can be found in the PATENTS file in the same directory.
+	 */
+	
+	module.exports.Dispatcher = __webpack_require__(/*! ./lib/Dispatcher */ 193)
+
+
+/***/ },
+/* 193 */
+/*!**********************************!*\
+  !*** ./~/flux/lib/Dispatcher.js ***!
+  \**********************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/*
+	 * Copyright (c) 2014, Facebook, Inc.
+	 * All rights reserved.
+	 *
+	 * This source code is licensed under the BSD-style license found in the
+	 * LICENSE file in the root directory of this source tree. An additional grant
+	 * of patent rights can be found in the PATENTS file in the same directory.
+	 *
+	 * @providesModule Dispatcher
+	 * @typechecks
+	 */
+	
+	"use strict";
+	
+	var invariant = __webpack_require__(/*! ./invariant */ 194);
+	
+	var _lastID = 1;
+	var _prefix = 'ID_';
+	
+	/**
+	 * Dispatcher is used to broadcast payloads to registered callbacks. This is
+	 * different from generic pub-sub systems in two ways:
+	 *
+	 *   1) Callbacks are not subscribed to particular events. Every payload is
+	 *      dispatched to every registered callback.
+	 *   2) Callbacks can be deferred in whole or part until other callbacks have
+	 *      been executed.
+	 *
+	 * For example, consider this hypothetical flight destination form, which
+	 * selects a default city when a country is selected:
+	 *
+	 *   var flightDispatcher = new Dispatcher();
+	 *
+	 *   // Keeps track of which country is selected
+	 *   var CountryStore = {country: null};
+	 *
+	 *   // Keeps track of which city is selected
+	 *   var CityStore = {city: null};
+	 *
+	 *   // Keeps track of the base flight price of the selected city
+	 *   var FlightPriceStore = {price: null}
+	 *
+	 * When a user changes the selected city, we dispatch the payload:
+	 *
+	 *   flightDispatcher.dispatch({
+	 *     actionType: 'city-update',
+	 *     selectedCity: 'paris'
+	 *   });
+	 *
+	 * This payload is digested by `CityStore`:
+	 *
+	 *   flightDispatcher.register(function(payload) {
+	 *     if (payload.actionType === 'city-update') {
+	 *       CityStore.city = payload.selectedCity;
+	 *     }
+	 *   });
+	 *
+	 * When the user selects a country, we dispatch the payload:
+	 *
+	 *   flightDispatcher.dispatch({
+	 *     actionType: 'country-update',
+	 *     selectedCountry: 'australia'
+	 *   });
+	 *
+	 * This payload is digested by both stores:
+	 *
+	 *    CountryStore.dispatchToken = flightDispatcher.register(function(payload) {
+	 *     if (payload.actionType === 'country-update') {
+	 *       CountryStore.country = payload.selectedCountry;
+	 *     }
+	 *   });
+	 *
+	 * When the callback to update `CountryStore` is registered, we save a reference
+	 * to the returned token. Using this token with `waitFor()`, we can guarantee
+	 * that `CountryStore` is updated before the callback that updates `CityStore`
+	 * needs to query its data.
+	 *
+	 *   CityStore.dispatchToken = flightDispatcher.register(function(payload) {
+	 *     if (payload.actionType === 'country-update') {
+	 *       // `CountryStore.country` may not be updated.
+	 *       flightDispatcher.waitFor([CountryStore.dispatchToken]);
+	 *       // `CountryStore.country` is now guaranteed to be updated.
+	 *
+	 *       // Select the default city for the new country
+	 *       CityStore.city = getDefaultCityForCountry(CountryStore.country);
+	 *     }
+	 *   });
+	 *
+	 * The usage of `waitFor()` can be chained, for example:
+	 *
+	 *   FlightPriceStore.dispatchToken =
+	 *     flightDispatcher.register(function(payload) {
+	 *       switch (payload.actionType) {
+	 *         case 'country-update':
+	 *           flightDispatcher.waitFor([CityStore.dispatchToken]);
+	 *           FlightPriceStore.price =
+	 *             getFlightPriceStore(CountryStore.country, CityStore.city);
+	 *           break;
+	 *
+	 *         case 'city-update':
+	 *           FlightPriceStore.price =
+	 *             FlightPriceStore(CountryStore.country, CityStore.city);
+	 *           break;
+	 *     }
+	 *   });
+	 *
+	 * The `country-update` payload will be guaranteed to invoke the stores'
+	 * registered callbacks in order: `CountryStore`, `CityStore`, then
+	 * `FlightPriceStore`.
+	 */
+	
+	  function Dispatcher() {
+	    this.$Dispatcher_callbacks = {};
+	    this.$Dispatcher_isPending = {};
+	    this.$Dispatcher_isHandled = {};
+	    this.$Dispatcher_isDispatching = false;
+	    this.$Dispatcher_pendingPayload = null;
+	  }
+	
+	  /**
+	   * Registers a callback to be invoked with every dispatched payload. Returns
+	   * a token that can be used with `waitFor()`.
+	   *
+	   * @param {function} callback
+	   * @return {string}
+	   */
+	  Dispatcher.prototype.register=function(callback) {
+	    var id = _prefix + _lastID++;
+	    this.$Dispatcher_callbacks[id] = callback;
+	    return id;
+	  };
+	
+	  /**
+	   * Removes a callback based on its token.
+	   *
+	   * @param {string} id
+	   */
+	  Dispatcher.prototype.unregister=function(id) {
+	    invariant(
+	      this.$Dispatcher_callbacks[id],
+	      'Dispatcher.unregister(...): `%s` does not map to a registered callback.',
+	      id
+	    );
+	    delete this.$Dispatcher_callbacks[id];
+	  };
+	
+	  /**
+	   * Waits for the callbacks specified to be invoked before continuing execution
+	   * of the current callback. This method should only be used by a callback in
+	   * response to a dispatched payload.
+	   *
+	   * @param {array<string>} ids
+	   */
+	  Dispatcher.prototype.waitFor=function(ids) {
+	    invariant(
+	      this.$Dispatcher_isDispatching,
+	      'Dispatcher.waitFor(...): Must be invoked while dispatching.'
+	    );
+	    for (var ii = 0; ii < ids.length; ii++) {
+	      var id = ids[ii];
+	      if (this.$Dispatcher_isPending[id]) {
+	        invariant(
+	          this.$Dispatcher_isHandled[id],
+	          'Dispatcher.waitFor(...): Circular dependency detected while ' +
+	          'waiting for `%s`.',
+	          id
+	        );
+	        continue;
+	      }
+	      invariant(
+	        this.$Dispatcher_callbacks[id],
+	        'Dispatcher.waitFor(...): `%s` does not map to a registered callback.',
+	        id
+	      );
+	      this.$Dispatcher_invokeCallback(id);
+	    }
+	  };
+	
+	  /**
+	   * Dispatches a payload to all registered callbacks.
+	   *
+	   * @param {object} payload
+	   */
+	  Dispatcher.prototype.dispatch=function(payload) {
+	    invariant(
+	      !this.$Dispatcher_isDispatching,
+	      'Dispatch.dispatch(...): Cannot dispatch in the middle of a dispatch.'
+	    );
+	    this.$Dispatcher_startDispatching(payload);
+	    try {
+	      for (var id in this.$Dispatcher_callbacks) {
+	        if (this.$Dispatcher_isPending[id]) {
+	          continue;
+	        }
+	        this.$Dispatcher_invokeCallback(id);
+	      }
+	    } finally {
+	      this.$Dispatcher_stopDispatching();
+	    }
+	  };
+	
+	  /**
+	   * Is this Dispatcher currently dispatching.
+	   *
+	   * @return {boolean}
+	   */
+	  Dispatcher.prototype.isDispatching=function() {
+	    return this.$Dispatcher_isDispatching;
+	  };
+	
+	  /**
+	   * Call the callback stored with the given id. Also do some internal
+	   * bookkeeping.
+	   *
+	   * @param {string} id
+	   * @internal
+	   */
+	  Dispatcher.prototype.$Dispatcher_invokeCallback=function(id) {
+	    this.$Dispatcher_isPending[id] = true;
+	    this.$Dispatcher_callbacks[id](this.$Dispatcher_pendingPayload);
+	    this.$Dispatcher_isHandled[id] = true;
+	  };
+	
+	  /**
+	   * Set up bookkeeping needed when dispatching.
+	   *
+	   * @param {object} payload
+	   * @internal
+	   */
+	  Dispatcher.prototype.$Dispatcher_startDispatching=function(payload) {
+	    for (var id in this.$Dispatcher_callbacks) {
+	      this.$Dispatcher_isPending[id] = false;
+	      this.$Dispatcher_isHandled[id] = false;
+	    }
+	    this.$Dispatcher_pendingPayload = payload;
+	    this.$Dispatcher_isDispatching = true;
+	  };
+	
+	  /**
+	   * Clear bookkeeping used for dispatching.
+	   *
+	   * @internal
+	   */
+	  Dispatcher.prototype.$Dispatcher_stopDispatching=function() {
+	    this.$Dispatcher_pendingPayload = null;
+	    this.$Dispatcher_isDispatching = false;
+	  };
+	
+	
+	module.exports = Dispatcher;
+
+
+/***/ },
+/* 194 */
+/*!*********************************!*\
+  !*** ./~/flux/lib/invariant.js ***!
+  \*********************************/
+/***/ function(module, exports) {
+
+	/**
+	 * Copyright (c) 2014, Facebook, Inc.
+	 * All rights reserved.
+	 *
+	 * This source code is licensed under the BSD-style license found in the
+	 * LICENSE file in the root directory of this source tree. An additional grant
+	 * of patent rights can be found in the PATENTS file in the same directory.
+	 *
+	 * @providesModule invariant
+	 */
+	
+	"use strict";
+	
+	/**
+	 * Use invariant() to assert state which your program assumes to be true.
+	 *
+	 * Provide sprintf-style format (only %s is supported) and arguments
+	 * to provide information about what broke and what you were
+	 * expecting.
+	 *
+	 * The invariant message will be stripped in production, but the invariant
+	 * will remain to ensure logic does not differ in production.
+	 */
+	
+	var invariant = function(condition, format, a, b, c, d, e, f) {
+	  if (false) {
+	    if (format === undefined) {
+	      throw new Error('invariant requires an error message argument');
+	    }
+	  }
+	
+	  if (!condition) {
+	    var error;
+	    if (format === undefined) {
+	      error = new Error(
+	        'Minified exception occurred; use the non-minified dev environment ' +
+	        'for the full error message and additional helpful warnings.'
+	      );
+	    } else {
+	      var args = [a, b, c, d, e, f];
+	      var argIndex = 0;
+	      error = new Error(
+	        'Invariant Violation: ' +
+	        format.replace(/%s/g, function() { return args[argIndex++]; })
+	      );
+	    }
+	
+	    error.framesToPop = 1; // we don't care about invariant's own frame
+	    throw error;
+	  }
+	};
+	
+	module.exports = invariant;
+
+
+/***/ },
+/* 195 */
+/*!**********************************************************************!*\
+  !*** ./source/javascripts/components/constants/armory_constants.es6 ***!
+  \**********************************************************************/
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+	exports['default'] = {
+	  ARMORY_TOGGLE_FACTION: 'ARMORY_TOGGLE_FACTION'
+	};
+	module.exports = exports['default'];
+
+/***/ },
+/* 196 */
 /*!***************************************************************!*\
   !*** ./source/javascripts/components/stores/armory_store.es6 ***!
   \***************************************************************/
@@ -20566,17 +20984,17 @@
 	  value: true
 	});
 	
-	var _events = __webpack_require__(/*! events */ 192);
+	var _events = __webpack_require__(/*! events */ 197);
 	
-	var _app_dispatcher = __webpack_require__(/*! ../app_dispatcher */ 193);
+	var _app_dispatcher = __webpack_require__(/*! ../app_dispatcher */ 191);
 	
 	var _app_dispatcher2 = _interopRequireDefault(_app_dispatcher);
 	
-	var _constantsArmory_constants = __webpack_require__(/*! ../constants/armory_constants */ 197);
+	var _constantsArmory_constants = __webpack_require__(/*! ../constants/armory_constants */ 195);
 	
 	var _constantsArmory_constants2 = _interopRequireDefault(_constantsArmory_constants);
 	
-	var _weapons_list = __webpack_require__(/*! ../weapons_list */ 236);
+	var _weapons_list = __webpack_require__(/*! ../weapons_list */ 198);
 	
 	var _weapons_list2 = _interopRequireDefault(_weapons_list);
 	
@@ -20661,7 +21079,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 192 */
+/* 197 */
 /*!************************************************!*\
   !*** ./~/node-libs-browser/~/events/events.js ***!
   \************************************************/
@@ -20971,420 +21389,837 @@
 
 
 /***/ },
-/* 193 */
+/* 198 */
+/*!********************************************************!*\
+  !*** ./source/javascripts/components/weapons_list.es6 ***!
+  \********************************************************/
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	module.exports = {
+	  "innersphere": [{
+	    "weapon_id": "1020",
+	    "ghost_limit": 0,
+	    "type": "bal",
+	    "name": "AutoCannon10",
+	    "cooldown_time": 2.5,
+	    "heat": 3,
+	    "damage": 10,
+	    "ghost_heat_group": "1020"
+	  }, {
+	    "weapon_id": "1025",
+	    "ghost_limit": 0,
+	    "type": "bal",
+	    "name": "UltraAutoCannon5",
+	    "cooldown_time": 1.66,
+	    "heat": 1,
+	    "damage": 5,
+	    "ghost_heat_group": "1025"
+	  }, {
+	    "weapon_id": "1000",
+	    "ghost_limit": 1,
+	    "type": "bal",
+	    "name": "AutoCannon20",
+	    "cooldown_time": 4,
+	    "heat": 6,
+	    "damage": 20,
+	    "ghost_heat_group": "1000",
+	    "multiplier": 24
+	  }, {
+	    "weapon_id": "1019",
+	    "ghost_limit": 0,
+	    "type": "bal",
+	    "name": "AutoCannon5",
+	    "cooldown_time": 1.66,
+	    "heat": 1,
+	    "damage": 5,
+	    "ghost_heat_group": "1019"
+	  }, {
+	    "weapon_id": "1024",
+	    "ghost_limit": 0,
+	    "type": "bal",
+	    "name": "MachineGun",
+	    "cooldown_time": 0,
+	    "heat": 0,
+	    "damage": 0.08,
+	    "ghost_heat_group": "1024"
+	  }, {
+	    "weapon_id": "1018",
+	    "ghost_limit": 0,
+	    "type": "bal",
+	    "name": "AutoCannon2",
+	    "cooldown_time": 0.72,
+	    "heat": 1,
+	    "damage": 2,
+	    "ghost_heat_group": "1018"
+	  }, {
+	    "weapon_id": "1023",
+	    "ghost_limit": 0,
+	    "type": "bal",
+	    "name": "LBXAutoCannon10",
+	    "cooldown_time": 2.5,
+	    "heat": 2,
+	    "damage": 1,
+	    "ghost_heat_group": "1023"
+	  }, {
+	    "weapon_id": "1021",
+	    "ghost_limit": 0,
+	    "type": "bal",
+	    "name": "GaussRifle",
+	    "cooldown_time": 4,
+	    "heat": 1,
+	    "damage": 15,
+	    "ghost_heat_group": "1021"
+	  }, {
+	    "weapon_id": "1011",
+	    "ghost_limit": 0,
+	    "type": "las",
+	    "name": "MediumPulseLaser",
+	    "cooldown_time": 3,
+	    "heat": 4,
+	    "damage": 6,
+	    "ghost_heat_group": "1011"
+	  }, {
+	    "weapon_id": "1007",
+	    "ghost_limit": 0,
+	    "type": "las",
+	    "name": "Flamer",
+	    "cooldown_time": 0,
+	    "heat": 1,
+	    "damage": 0.7,
+	    "ghost_heat_group": "1007"
+	  }, {
+	    "weapon_id": "1012",
+	    "ghost_limit": 0,
+	    "type": "las",
+	    "name": "SmallPulseLaser",
+	    "cooldown_time": 2.25,
+	    "heat": 2,
+	    "damage": 4,
+	    "ghost_heat_group": "1012"
+	  }, {
+	    "weapon_id": "1003",
+	    "ghost_limit": 0,
+	    "type": "las",
+	    "name": "SmallLaser",
+	    "cooldown_time": 2.25,
+	    "heat": 2,
+	    "damage": 3,
+	    "ghost_heat_group": "1003"
+	  }, {
+	    "weapon_id": "1009",
+	    "ghost_limit": 2,
+	    "type": "las",
+	    "name": "PPC",
+	    "cooldown_time": 4,
+	    "heat": 10,
+	    "damage": 10,
+	    "ghost_heat_group": 1,
+	    "multiplier": 7
+	  }, {
+	    "weapon_id": "1006",
+	    "ghost_limit": 2,
+	    "type": "las",
+	    "name": "ERPPC",
+	    "cooldown_time": 4,
+	    "heat": 15,
+	    "damage": 10,
+	    "ghost_heat_group": 1,
+	    "multiplier": 7
+	  }, {
+	    "weapon_id": "1010",
+	    "ghost_limit": 3,
+	    "type": "las",
+	    "name": "LargePulseLaser",
+	    "cooldown_time": 3.25,
+	    "heat": 7,
+	    "damage": 11,
+	    "ghost_heat_group": 3,
+	    "multiplier": 4
+	  }, {
+	    "weapon_id": "1005",
+	    "ghost_limit": 3,
+	    "type": "las",
+	    "name": "ERLargeLaser",
+	    "cooldown_time": 3.25,
+	    "heat": 8,
+	    "damage": 9,
+	    "ghost_heat_group": 3,
+	    "multiplier": 4
+	  }, {
+	    "weapon_id": "1001",
+	    "ghost_limit": 6,
+	    "type": "las",
+	    "name": "MediumLaser",
+	    "cooldown_time": 3,
+	    "heat": 4,
+	    "damage": 5,
+	    "ghost_heat_group": "1001",
+	    "multiplier": 1
+	  }, {
+	    "weapon_id": "1008",
+	    "ghost_limit": 3,
+	    "type": "las",
+	    "name": "LargeLaser",
+	    "cooldown_time": 3.25,
+	    "heat": 7,
+	    "damage": 9,
+	    "ghost_heat_group": 3,
+	    "multiplier": 4
+	  }, {
+	    "weapon_id": "1027",
+	    "ghost_limit": 2,
+	    "type": "mis",
+	    "name": "LRM10",
+	    "cooldown_time": 3.75,
+	    "heat": 4,
+	    "damage": 10,
+	    "ghost_heat_group": 2,
+	    "multiplier": 2.8
+	  }, {
+	    "weapon_id": "1026",
+	    "ghost_limit": 3,
+	    "type": "mis",
+	    "name": "LRM5",
+	    "cooldown_time": 3.25,
+	    "heat": 2,
+	    "damage": 5,
+	    "ghost_heat_group": 2,
+	    "multiplier": 2.8
+	  }, {
+	    "weapon_id": "1030",
+	    "ghost_limit": 4,
+	    "type": "mis",
+	    "name": "SRM2",
+	    "cooldown_time": 2,
+	    "heat": 2,
+	    "damage": 4.3,
+	    "ghost_heat_group": "1030",
+	    "multiplier": 1
+	  }, {
+	    "weapon_id": "1004",
+	    "ghost_limit": 3,
+	    "type": "mis",
+	    "name": "SRM4",
+	    "cooldown_time": 3,
+	    "heat": 3,
+	    "damage": 8.6,
+	    "ghost_heat_group": 4,
+	    "multiplier": 1
+	  }, {
+	    "weapon_id": "1031",
+	    "ghost_limit": 3,
+	    "type": "mis",
+	    "name": "SRM6",
+	    "cooldown_time": 4,
+	    "heat": 4,
+	    "damage": 12.899999999999999,
+	    "ghost_heat_group": 4,
+	    "multiplier": 1
+	  }, {
+	    "weapon_id": "1002",
+	    "ghost_limit": 2,
+	    "type": "mis",
+	    "name": "LRM20",
+	    "cooldown_time": 4.75,
+	    "heat": 6,
+	    "damage": 20,
+	    "ghost_heat_group": 2,
+	    "multiplier": 2.8
+	  }, {
+	    "weapon_id": "1028",
+	    "ghost_limit": 2,
+	    "type": "mis",
+	    "name": "LRM15",
+	    "cooldown_time": 4.25,
+	    "heat": 5,
+	    "damage": 15,
+	    "ghost_heat_group": 2,
+	    "multiplier": 2.8
+	  }, {
+	    "weapon_id": "1032",
+	    "ghost_limit": 4,
+	    "type": "mis",
+	    "name": "StreakSRM2",
+	    "cooldown_time": 3.5,
+	    "heat": 2,
+	    "damage": 4,
+	    "ghost_heat_group": "1032",
+	    "multiplier": 1
+	  }],
+	  "clan": [{
+	    "weapon_id": "1240",
+	    "ghost_limit": 2,
+	    "type": "bal",
+	    "name": "ClanAutoCannon10",
+	    "cooldown_time": 2.9,
+	    "heat": 2,
+	    "damage": 9.9999,
+	    "ghost_heat_group": 8,
+	    "multiplier": 1
+	  }, {
+	    "weapon_id": "1205",
+	    "ghost_limit": 3,
+	    "type": "bal",
+	    "name": "ClanUltraAutoCannon5",
+	    "cooldown_time": 1.66,
+	    "heat": 1,
+	    "damage": 5,
+	    "ghost_heat_group": "1205",
+	    "multiplier": 0.8
+	  }, {
+	    "weapon_id": "1241",
+	    "ghost_limit": 1,
+	    "type": "bal",
+	    "name": "ClanAutoCannon20",
+	    "cooldown_time": 4.7,
+	    "heat": 6,
+	    "damage": 20,
+	    "ghost_heat_group": 9,
+	    "multiplier": 30
+	  }, {
+	    "weapon_id": "1239",
+	    "ghost_limit": 3,
+	    "type": "bal",
+	    "name": "ClanAutoCannon5",
+	    "cooldown_time": 1.8,
+	    "heat": 1,
+	    "damage": 5,
+	    "ghost_heat_group": "1239",
+	    "multiplier": 0.8
+	  }, {
+	    "weapon_id": "1207",
+	    "ghost_limit": 1,
+	    "type": "bal",
+	    "name": "ClanUltraAutoCannon20",
+	    "cooldown_time": 4,
+	    "heat": 7,
+	    "damage": 20,
+	    "ghost_heat_group": 9,
+	    "multiplier": 30
+	  }, {
+	    "weapon_id": "1204",
+	    "ghost_limit": 0,
+	    "type": "bal",
+	    "name": "ClanUltraAutoCannon2",
+	    "cooldown_time": 0.72,
+	    "heat": 1,
+	    "damage": 2,
+	    "ghost_heat_group": "1204"
+	  }, {
+	    "weapon_id": "1206",
+	    "ghost_limit": 2,
+	    "type": "bal",
+	    "name": "ClanUltraAutoCannon10",
+	    "cooldown_time": 2.5,
+	    "heat": 3,
+	    "damage": 9.9999,
+	    "ghost_heat_group": 8,
+	    "multiplier": 1
+	  }, {
+	    "weapon_id": "1209",
+	    "ghost_limit": 0,
+	    "type": "bal",
+	    "name": "ClanMachineGun",
+	    "cooldown_time": 0,
+	    "heat": 0,
+	    "damage": 0.08,
+	    "ghost_heat_group": "1209"
+	  }, {
+	    "weapon_id": "1238",
+	    "ghost_limit": 0,
+	    "type": "bal",
+	    "name": "ClanAutoCannon2",
+	    "cooldown_time": 0.72,
+	    "heat": 1,
+	    "damage": 2,
+	    "ghost_heat_group": "1238"
+	  }, {
+	    "weapon_id": "1208",
+	    "ghost_limit": 0,
+	    "type": "bal",
+	    "name": "ClanGaussRifle",
+	    "cooldown_time": 4,
+	    "heat": 1,
+	    "damage": 15,
+	    "ghost_heat_group": "1208"
+	  }, {
+	    "weapon_id": "1202",
+	    "ghost_limit": 0,
+	    "type": "bal",
+	    "name": "ClanLBXAutoCannon10",
+	    "cooldown_time": 2.5,
+	    "heat": 2,
+	    "damage": 1,
+	    "ghost_heat_group": "1202"
+	  }, {
+	    "weapon_id": "1200",
+	    "ghost_limit": 0,
+	    "type": "bal",
+	    "name": "ClanLBXAutoCannon2",
+	    "cooldown_time": 0.72,
+	    "heat": 1,
+	    "damage": 1,
+	    "ghost_heat_group": "1200"
+	  }, {
+	    "weapon_id": "1203",
+	    "ghost_limit": 0,
+	    "type": "bal",
+	    "name": "ClanLBXAutoCannon20",
+	    "cooldown_time": 4,
+	    "heat": 6,
+	    "damage": 1,
+	    "ghost_heat_group": "1203"
+	  }, {
+	    "weapon_id": "1201",
+	    "ghost_limit": 0,
+	    "type": "bal",
+	    "name": "ClanLBXAutoCannon5",
+	    "cooldown_time": 1.66,
+	    "heat": 1,
+	    "damage": 1,
+	    "ghost_heat_group": "1201"
+	  }, {
+	    "weapon_id": "1210",
+	    "ghost_limit": 0,
+	    "type": "las",
+	    "name": "ClanFlamer",
+	    "cooldown_time": 0,
+	    "heat": 1,
+	    "damage": 0.7,
+	    "ghost_heat_group": "1210"
+	  }, {
+	    "weapon_id": "1216",
+	    "ghost_limit": 2,
+	    "type": "las",
+	    "name": "ClanLargePulseLaser",
+	    "cooldown_time": 3.25,
+	    "heat": 10,
+	    "damage": 13,
+	    "ghost_heat_group": 3,
+	    "multiplier": 4
+	  }, {
+	    "weapon_id": "1211",
+	    "ghost_limit": 6,
+	    "type": "las",
+	    "name": "ClanERSmallLaser",
+	    "cooldown_time": 2.25,
+	    "heat": 3,
+	    "damage": 5,
+	    "ghost_heat_group": 10,
+	    "multiplier": 1.4
+	  }, {
+	    "weapon_id": "1215",
+	    "ghost_limit": 6,
+	    "type": "las",
+	    "name": "ClanMediumPulseLaser",
+	    "cooldown_time": 3,
+	    "heat": 6,
+	    "damage": 8,
+	    "ghost_heat_group": 10,
+	    "multiplier": 1
+	  }, {
+	    "weapon_id": "1214",
+	    "ghost_limit": 6,
+	    "type": "las",
+	    "name": "ClanSmallPulseLaser",
+	    "cooldown_time": 2.25,
+	    "heat": 3,
+	    "damage": 6,
+	    "ghost_heat_group": 10,
+	    "multiplier": 1
+	  }, {
+	    "weapon_id": "1217",
+	    "ghost_limit": 2,
+	    "type": "las",
+	    "name": "ClanERPPC",
+	    "cooldown_time": 4,
+	    "heat": 15,
+	    "damage": 10,
+	    "ghost_heat_group": 1,
+	    "multiplier": 7
+	  }, {
+	    "weapon_id": "1212",
+	    "ghost_limit": 6,
+	    "type": "las",
+	    "name": "ClanERMediumLaser",
+	    "cooldown_time": 3,
+	    "heat": 6,
+	    "damage": 7,
+	    "ghost_heat_group": 10,
+	    "multiplier": 1.4
+	  }, {
+	    "weapon_id": "1213",
+	    "ghost_limit": 2,
+	    "type": "las",
+	    "name": "ClanERLargeLaser",
+	    "cooldown_time": 3.25,
+	    "heat": 10,
+	    "damage": 11,
+	    "ghost_heat_group": 3,
+	    "multiplier": 4
+	  }, {
+	    "weapon_id": "1228",
+	    "ghost_limit": 3,
+	    "type": "mis",
+	    "name": "ClanSRM6",
+	    "cooldown_time": 4,
+	    "heat": 4,
+	    "damage": 12,
+	    "ghost_heat_group": 7,
+	    "multiplier": 1
+	  }, {
+	    "weapon_id": "1220",
+	    "ghost_limit": 2,
+	    "type": "mis",
+	    "name": "ClanLRM15",
+	    "cooldown_time": 4.5,
+	    "heat": 5,
+	    "damage": 15,
+	    "ghost_heat_group": 6,
+	    "multiplier": 3.1
+	  }, {
+	    "weapon_id": "1218",
+	    "ghost_limit": 3,
+	    "type": "mis",
+	    "name": "ClanLRM5",
+	    "cooldown_time": 3.5,
+	    "heat": 2,
+	    "damage": 5,
+	    "ghost_heat_group": 6,
+	    "multiplier": 3.1
+	  }, {
+	    "weapon_id": "1232",
+	    "ghost_limit": 4,
+	    "type": "mis",
+	    "name": "ClanStreakSRM2",
+	    "cooldown_time": 3.5,
+	    "heat": 2,
+	    "damage": 4,
+	    "ghost_heat_group": "1232",
+	    "multiplier": 1
+	  }, {
+	    "weapon_id": "1233",
+	    "ghost_limit": 3,
+	    "type": "mis",
+	    "name": "ClanStreakSRM4",
+	    "cooldown_time": 5,
+	    "heat": 3,
+	    "damage": 8,
+	    "ghost_heat_group": 5,
+	    "multiplier": 1.1
+	  }, {
+	    "weapon_id": "1234",
+	    "ghost_limit": 3,
+	    "type": "mis",
+	    "name": "ClanStreakSRM6",
+	    "cooldown_time": 6,
+	    "heat": 4,
+	    "damage": 12,
+	    "ghost_heat_group": 5,
+	    "multiplier": 1.1
+	  }, {
+	    "weapon_id": "1219",
+	    "ghost_limit": 2,
+	    "type": "mis",
+	    "name": "ClanLRM10",
+	    "cooldown_time": 4,
+	    "heat": 4,
+	    "damage": 10,
+	    "ghost_heat_group": 6,
+	    "multiplier": 3.1
+	  }, {
+	    "weapon_id": "1226",
+	    "ghost_limit": 4,
+	    "type": "mis",
+	    "name": "ClanSRM2",
+	    "cooldown_time": 2,
+	    "heat": 2,
+	    "damage": 4,
+	    "ghost_heat_group": "1226",
+	    "multiplier": 1
+	  }, {
+	    "weapon_id": "1227",
+	    "ghost_limit": 3,
+	    "type": "mis",
+	    "name": "ClanSRM4",
+	    "cooldown_time": 3,
+	    "heat": 3,
+	    "damage": 8,
+	    "ghost_heat_group": 7,
+	    "multiplier": 1
+	  }, {
+	    "weapon_id": "1221",
+	    "ghost_limit": 2,
+	    "type": "mis",
+	    "name": "ClanLRM20",
+	    "cooldown_time": 5,
+	    "heat": 6,
+	    "damage": 20,
+	    "ghost_heat_group": 6,
+	    "multiplier": 3.1
+	  }]
+	};
+
+/***/ },
+/* 199 */
 /*!**********************************************************!*\
-  !*** ./source/javascripts/components/app_dispatcher.es6 ***!
+  !*** ./source/javascripts/components/smurfy_scraper.es6 ***!
   \**********************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
-	
-	var _inherits = __webpack_require__(/*! babel-runtime/helpers/inherits */ 157)["default"];
-	
-	var _get = __webpack_require__(/*! babel-runtime/helpers/get */ 162)["default"];
-	
-	var _createClass = __webpack_require__(/*! babel-runtime/helpers/create-class */ 168)["default"];
-	
-	var _classCallCheck = __webpack_require__(/*! babel-runtime/helpers/class-call-check */ 171)["default"];
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _flux = __webpack_require__(/*! flux */ 194);
-	
-	var AppDispatcher = (function (_Dispatcher) {
-	  function AppDispatcher() {
-	    _classCallCheck(this, AppDispatcher);
-	
-	    _get(Object.getPrototypeOf(AppDispatcher.prototype), "constructor", this).apply(this, arguments);
-	  }
-	
-	  _inherits(AppDispatcher, _Dispatcher);
-	
-	  _createClass(AppDispatcher, [{
-	    key: "handleViewAction",
-	    value: function handleViewAction(action) {
-	      console.log("--------------");
-	      console.log("Dispatcher handling an action: ");
-	      console.log(action);
-	      console.log("--------------");
-	      this.dispatch({
-	        source: "VIEW_ACTION",
-	        action: action
-	      });
-	    }
-	  }]);
-	
-	  return AppDispatcher;
-	})(_flux.Dispatcher);
-	
-	var _AppDispatcher = new AppDispatcher();
-	
-	// let _AppDispatcher = new Dispatcher();
-	
-	exports["default"] = _AppDispatcher;
-	module.exports = exports["default"];
-
-/***/ },
-/* 194 */
-/*!*************************!*\
-  !*** ./~/flux/index.js ***!
-  \*************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	/**
-	 * Copyright (c) 2014-2015, Facebook, Inc.
-	 * All rights reserved.
-	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
-	 */
-	
-	module.exports.Dispatcher = __webpack_require__(/*! ./lib/Dispatcher */ 195)
-
-
-/***/ },
-/* 195 */
-/*!**********************************!*\
-  !*** ./~/flux/lib/Dispatcher.js ***!
-  \**********************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	/*
-	 * Copyright (c) 2014, Facebook, Inc.
-	 * All rights reserved.
-	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
-	 *
-	 * @providesModule Dispatcher
-	 * @typechecks
-	 */
-	
-	"use strict";
-	
-	var invariant = __webpack_require__(/*! ./invariant */ 196);
-	
-	var _lastID = 1;
-	var _prefix = 'ID_';
-	
-	/**
-	 * Dispatcher is used to broadcast payloads to registered callbacks. This is
-	 * different from generic pub-sub systems in two ways:
-	 *
-	 *   1) Callbacks are not subscribed to particular events. Every payload is
-	 *      dispatched to every registered callback.
-	 *   2) Callbacks can be deferred in whole or part until other callbacks have
-	 *      been executed.
-	 *
-	 * For example, consider this hypothetical flight destination form, which
-	 * selects a default city when a country is selected:
-	 *
-	 *   var flightDispatcher = new Dispatcher();
-	 *
-	 *   // Keeps track of which country is selected
-	 *   var CountryStore = {country: null};
-	 *
-	 *   // Keeps track of which city is selected
-	 *   var CityStore = {city: null};
-	 *
-	 *   // Keeps track of the base flight price of the selected city
-	 *   var FlightPriceStore = {price: null}
-	 *
-	 * When a user changes the selected city, we dispatch the payload:
-	 *
-	 *   flightDispatcher.dispatch({
-	 *     actionType: 'city-update',
-	 *     selectedCity: 'paris'
-	 *   });
-	 *
-	 * This payload is digested by `CityStore`:
-	 *
-	 *   flightDispatcher.register(function(payload) {
-	 *     if (payload.actionType === 'city-update') {
-	 *       CityStore.city = payload.selectedCity;
-	 *     }
-	 *   });
-	 *
-	 * When the user selects a country, we dispatch the payload:
-	 *
-	 *   flightDispatcher.dispatch({
-	 *     actionType: 'country-update',
-	 *     selectedCountry: 'australia'
-	 *   });
-	 *
-	 * This payload is digested by both stores:
-	 *
-	 *    CountryStore.dispatchToken = flightDispatcher.register(function(payload) {
-	 *     if (payload.actionType === 'country-update') {
-	 *       CountryStore.country = payload.selectedCountry;
-	 *     }
-	 *   });
-	 *
-	 * When the callback to update `CountryStore` is registered, we save a reference
-	 * to the returned token. Using this token with `waitFor()`, we can guarantee
-	 * that `CountryStore` is updated before the callback that updates `CityStore`
-	 * needs to query its data.
-	 *
-	 *   CityStore.dispatchToken = flightDispatcher.register(function(payload) {
-	 *     if (payload.actionType === 'country-update') {
-	 *       // `CountryStore.country` may not be updated.
-	 *       flightDispatcher.waitFor([CountryStore.dispatchToken]);
-	 *       // `CountryStore.country` is now guaranteed to be updated.
-	 *
-	 *       // Select the default city for the new country
-	 *       CityStore.city = getDefaultCityForCountry(CountryStore.country);
-	 *     }
-	 *   });
-	 *
-	 * The usage of `waitFor()` can be chained, for example:
-	 *
-	 *   FlightPriceStore.dispatchToken =
-	 *     flightDispatcher.register(function(payload) {
-	 *       switch (payload.actionType) {
-	 *         case 'country-update':
-	 *           flightDispatcher.waitFor([CityStore.dispatchToken]);
-	 *           FlightPriceStore.price =
-	 *             getFlightPriceStore(CountryStore.country, CityStore.city);
-	 *           break;
-	 *
-	 *         case 'city-update':
-	 *           FlightPriceStore.price =
-	 *             FlightPriceStore(CountryStore.country, CityStore.city);
-	 *           break;
-	 *     }
-	 *   });
-	 *
-	 * The `country-update` payload will be guaranteed to invoke the stores'
-	 * registered callbacks in order: `CountryStore`, `CityStore`, then
-	 * `FlightPriceStore`.
-	 */
-	
-	  function Dispatcher() {
-	    this.$Dispatcher_callbacks = {};
-	    this.$Dispatcher_isPending = {};
-	    this.$Dispatcher_isHandled = {};
-	    this.$Dispatcher_isDispatching = false;
-	    this.$Dispatcher_pendingPayload = null;
-	  }
-	
-	  /**
-	   * Registers a callback to be invoked with every dispatched payload. Returns
-	   * a token that can be used with `waitFor()`.
-	   *
-	   * @param {function} callback
-	   * @return {string}
-	   */
-	  Dispatcher.prototype.register=function(callback) {
-	    var id = _prefix + _lastID++;
-	    this.$Dispatcher_callbacks[id] = callback;
-	    return id;
-	  };
-	
-	  /**
-	   * Removes a callback based on its token.
-	   *
-	   * @param {string} id
-	   */
-	  Dispatcher.prototype.unregister=function(id) {
-	    invariant(
-	      this.$Dispatcher_callbacks[id],
-	      'Dispatcher.unregister(...): `%s` does not map to a registered callback.',
-	      id
-	    );
-	    delete this.$Dispatcher_callbacks[id];
-	  };
-	
-	  /**
-	   * Waits for the callbacks specified to be invoked before continuing execution
-	   * of the current callback. This method should only be used by a callback in
-	   * response to a dispatched payload.
-	   *
-	   * @param {array<string>} ids
-	   */
-	  Dispatcher.prototype.waitFor=function(ids) {
-	    invariant(
-	      this.$Dispatcher_isDispatching,
-	      'Dispatcher.waitFor(...): Must be invoked while dispatching.'
-	    );
-	    for (var ii = 0; ii < ids.length; ii++) {
-	      var id = ids[ii];
-	      if (this.$Dispatcher_isPending[id]) {
-	        invariant(
-	          this.$Dispatcher_isHandled[id],
-	          'Dispatcher.waitFor(...): Circular dependency detected while ' +
-	          'waiting for `%s`.',
-	          id
-	        );
-	        continue;
-	      }
-	      invariant(
-	        this.$Dispatcher_callbacks[id],
-	        'Dispatcher.waitFor(...): `%s` does not map to a registered callback.',
-	        id
-	      );
-	      this.$Dispatcher_invokeCallback(id);
-	    }
-	  };
-	
-	  /**
-	   * Dispatches a payload to all registered callbacks.
-	   *
-	   * @param {object} payload
-	   */
-	  Dispatcher.prototype.dispatch=function(payload) {
-	    invariant(
-	      !this.$Dispatcher_isDispatching,
-	      'Dispatch.dispatch(...): Cannot dispatch in the middle of a dispatch.'
-	    );
-	    this.$Dispatcher_startDispatching(payload);
-	    try {
-	      for (var id in this.$Dispatcher_callbacks) {
-	        if (this.$Dispatcher_isPending[id]) {
-	          continue;
-	        }
-	        this.$Dispatcher_invokeCallback(id);
-	      }
-	    } finally {
-	      this.$Dispatcher_stopDispatching();
-	    }
-	  };
-	
-	  /**
-	   * Is this Dispatcher currently dispatching.
-	   *
-	   * @return {boolean}
-	   */
-	  Dispatcher.prototype.isDispatching=function() {
-	    return this.$Dispatcher_isDispatching;
-	  };
-	
-	  /**
-	   * Call the callback stored with the given id. Also do some internal
-	   * bookkeeping.
-	   *
-	   * @param {string} id
-	   * @internal
-	   */
-	  Dispatcher.prototype.$Dispatcher_invokeCallback=function(id) {
-	    this.$Dispatcher_isPending[id] = true;
-	    this.$Dispatcher_callbacks[id](this.$Dispatcher_pendingPayload);
-	    this.$Dispatcher_isHandled[id] = true;
-	  };
-	
-	  /**
-	   * Set up bookkeeping needed when dispatching.
-	   *
-	   * @param {object} payload
-	   * @internal
-	   */
-	  Dispatcher.prototype.$Dispatcher_startDispatching=function(payload) {
-	    for (var id in this.$Dispatcher_callbacks) {
-	      this.$Dispatcher_isPending[id] = false;
-	      this.$Dispatcher_isHandled[id] = false;
-	    }
-	    this.$Dispatcher_pendingPayload = payload;
-	    this.$Dispatcher_isDispatching = true;
-	  };
-	
-	  /**
-	   * Clear bookkeeping used for dispatching.
-	   *
-	   * @internal
-	   */
-	  Dispatcher.prototype.$Dispatcher_stopDispatching=function() {
-	    this.$Dispatcher_pendingPayload = null;
-	    this.$Dispatcher_isDispatching = false;
-	  };
-	
-	
-	module.exports = Dispatcher;
-
-
-/***/ },
-/* 196 */
-/*!*********************************!*\
-  !*** ./~/flux/lib/invariant.js ***!
-  \*********************************/
-/***/ function(module, exports) {
-
-	/**
-	 * Copyright (c) 2014, Facebook, Inc.
-	 * All rights reserved.
-	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
-	 *
-	 * @providesModule invariant
-	 */
-	
-	"use strict";
-	
-	/**
-	 * Use invariant() to assert state which your program assumes to be true.
-	 *
-	 * Provide sprintf-style format (only %s is supported) and arguments
-	 * to provide information about what broke and what you were
-	 * expecting.
-	 *
-	 * The invariant message will be stripped in production, but the invariant
-	 * will remain to ensure logic does not differ in production.
-	 */
-	
-	var invariant = function(condition, format, a, b, c, d, e, f) {
-	  if (false) {
-	    if (format === undefined) {
-	      throw new Error('invariant requires an error message argument');
-	    }
-	  }
-	
-	  if (!condition) {
-	    var error;
-	    if (format === undefined) {
-	      error = new Error(
-	        'Minified exception occurred; use the non-minified dev environment ' +
-	        'for the full error message and additional helpful warnings.'
-	      );
-	    } else {
-	      var args = [a, b, c, d, e, f];
-	      var argIndex = 0;
-	      error = new Error(
-	        'Invariant Violation: ' +
-	        format.replace(/%s/g, function() { return args[argIndex++]; })
-	      );
-	    }
-	
-	    error.framesToPop = 1; // we don't care about invariant's own frame
-	    throw error;
-	  }
-	};
-	
-	module.exports = invariant;
-
-
-/***/ },
-/* 197 */
-/*!**********************************************************************!*\
-  !*** ./source/javascripts/components/constants/armory_constants.es6 ***!
-  \**********************************************************************/
-/***/ function(module, exports) {
-
 	'use strict';
+	
+	var _inherits = __webpack_require__(/*! babel-runtime/helpers/inherits */ 157)['default'];
+	
+	var _get = __webpack_require__(/*! babel-runtime/helpers/get */ 162)['default'];
+	
+	var _createClass = __webpack_require__(/*! babel-runtime/helpers/create-class */ 168)['default'];
+	
+	var _classCallCheck = __webpack_require__(/*! babel-runtime/helpers/class-call-check */ 171)['default'];
+	
+	var _getIterator = __webpack_require__(/*! babel-runtime/core-js/get-iterator */ 238)['default'];
+	
+	var _interopRequireDefault = __webpack_require__(/*! babel-runtime/helpers/interop-require-default */ 172)['default'];
 	
 	Object.defineProperty(exports, '__esModule', {
 	  value: true
 	});
-	exports['default'] = {
-	  ARMORY_TOGGLE_FACTION: 'ARMORY_TOGGLE_FACTION'
-	};
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactDom = __webpack_require__(/*! react-dom */ 155);
+	
+	var _reactDom2 = _interopRequireDefault(_reactDom);
+	
+	var _storesArmory_store = __webpack_require__(/*! ./stores/armory_store */ 196);
+	
+	var _storesArmory_store2 = _interopRequireDefault(_storesArmory_store);
+	
+	var _actionsWeapon_actions = __webpack_require__(/*! ./actions/weapon_actions */ 201);
+	
+	var _actionsWeapon_actions2 = _interopRequireDefault(_actionsWeapon_actions);
+	
+	var SmurfyScraper = (function (_React$Component) {
+	  function SmurfyScraper(props) {
+	    _classCallCheck(this, SmurfyScraper);
+	
+	    _get(Object.getPrototypeOf(SmurfyScraper.prototype), 'constructor', this).call(this, props);
+	    this.scrape = this.scrape.bind(this);
+	    this.state = {};
+	  }
+	
+	  _inherits(SmurfyScraper, _React$Component);
+	
+	  _createClass(SmurfyScraper, [{
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {}
+	  }, {
+	    key: 'scrape',
+	    value: function scrape(e) {
+	      e.preventDefault();
+	
+	      // In the mechlab tooltip, all the required HTML are loaded, whereas in the mechlab,
+	      // things gets loaded by JS
+	      var smurfy_url = _reactDom2['default'].findDOMNode(this.refs.smurfy_urler).value;
+	      smurfy_url = smurfy_url.replace('mwo.smurfy-net.de/mechlab#', 'mwo.smurfy-net.de/mechlab/loadouts');
+	      smurfy_url = smurfy_url.replace('i=', '/');
+	      smurfy_url = smurfy_url.replace('&l=', '/');
+	
+	      var yql_url = 'http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20html%20where%20url=%27' + smurfy_url + '%27%20&format=json';
+	
+	      var oReq = new XMLHttpRequest();
+	
+	      oReq.addEventListener('progress', this.updateProgress.bind(this), false);
+	      oReq.addEventListener('error', this.transferFailed.bind(this), false);
+	      oReq.addEventListener('abort', this.transferCanceled.bind(this), false);
+	      oReq.addEventListener('load', this.transferComplete.bind(this), false);
+	
+	      oReq.open('GET', yql_url, true);
+	      oReq.send();
+	    }
+	  }, {
+	    key: 'updateProgress',
+	    value: function updateProgress(data) {
+	      this.setState({ className: 'loading' });
+	    }
+	  }, {
+	    key: 'transferFailed',
+	    value: function transferFailed(data) {
+	      this.setState({ className: 'errored' });
+	    }
+	  }, {
+	    key: 'transferCanceled',
+	    value: function transferCanceled() {
+	      console.log('transfer cancelled');
+	    }
+	  }, {
+	    key: 'transferComplete',
+	    value: function transferComplete(data) {
+	      var responseText = JSON.parse(data.currentTarget.responseText);
+	      try {
+	        var result_body = JSON.parse(responseText.query.results.body);
+	      } catch (err) {
+	        this.setState({ className: 'errored' });
+	      }
+	
+	      // console.log("Result body is ")
+	      // console.log(result_body)
+	
+	      var configurations = result_body.configuration;
+	
+	      var item_ids = [];
+	
+	      var _iteratorNormalCompletion = true;
+	      var _didIteratorError = false;
+	      var _iteratorError = undefined;
+	
+	      try {
+	        for (var _iterator = _getIterator(configurations), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+	          var configuration = _step.value;
+	          var _iteratorNormalCompletion4 = true;
+	          var _didIteratorError4 = false;
+	          var _iteratorError4 = undefined;
+	
+	          try {
+	            for (var _iterator4 = _getIterator(configuration.items), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
+	              var item = _step4.value;
+	
+	              if (item.type === 'weapon') item_ids.push(item.id);
+	            }
+	          } catch (err) {
+	            _didIteratorError4 = true;
+	            _iteratorError4 = err;
+	          } finally {
+	            try {
+	              if (!_iteratorNormalCompletion4 && _iterator4['return']) {
+	                _iterator4['return']();
+	              }
+	            } finally {
+	              if (_didIteratorError4) {
+	                throw _iteratorError4;
+	              }
+	            }
+	          }
+	        }
+	      } catch (err) {
+	        _didIteratorError = true;
+	        _iteratorError = err;
+	      } finally {
+	        try {
+	          if (!_iteratorNormalCompletion && _iterator['return']) {
+	            _iterator['return']();
+	          }
+	        } finally {
+	          if (_didIteratorError) {
+	            throw _iteratorError;
+	          }
+	        }
+	      }
+	
+	      // console.log("item ids are ")
+	      // console.log(item_ids)
+	
+	      var factioned_weapons_list = _storesArmory_store2['default'].get_new_data().weapons_list;
+	      var weapons_list = factioned_weapons_list['innersphere'].concat(factioned_weapons_list['clan']);
+	
+	      var weapons_to_equip = [];
+	      var _iteratorNormalCompletion2 = true;
+	      var _didIteratorError2 = false;
+	      var _iteratorError2 = undefined;
+	
+	      try {
+	        var _loop = function () {
+	          var weapon_id = _step2.value;
+	
+	          weapons_to_equip.push(weapons_list.find(function (x) {
+	            return x.weapon_id === weapon_id;
+	          }));
+	        };
+	
+	        for (var _iterator2 = _getIterator(item_ids), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+	          _loop();
+	        }
+	      } catch (err) {
+	        _didIteratorError2 = true;
+	        _iteratorError2 = err;
+	      } finally {
+	        try {
+	          if (!_iteratorNormalCompletion2 && _iterator2['return']) {
+	            _iterator2['return']();
+	          }
+	        } finally {
+	          if (_didIteratorError2) {
+	            throw _iteratorError2;
+	          }
+	        }
+	      }
+	
+	      // console.log("weapons to equip are")
+	      // console.log(weapons_to_equip)
+	
+	      var _iteratorNormalCompletion3 = true;
+	      var _didIteratorError3 = false;
+	      var _iteratorError3 = undefined;
+	
+	      try {
+	        for (var _iterator3 = _getIterator(weapons_to_equip), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+	          var weapon = _step3.value;
+	
+	          if (typeof weapon === 'object') _actionsWeapon_actions2['default'].equip({ props: { weapon: weapon } });
+	        }
+	      } catch (err) {
+	        _didIteratorError3 = true;
+	        _iteratorError3 = err;
+	      } finally {
+	        try {
+	          if (!_iteratorNormalCompletion3 && _iterator3['return']) {
+	            _iterator3['return']();
+	          }
+	        } finally {
+	          if (_didIteratorError3) {
+	            throw _iteratorError3;
+	          }
+	        }
+	      }
+	
+	      this.setState({ className: 'loaded' });
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      return _react2['default'].createElement(
+	        'smurfy_scraper',
+	        null,
+	        _react2['default'].createElement(
+	          'form',
+	          { onSubmit: this.scrape },
+	          _react2['default'].createElement(
+	            'div',
+	            { className: 'input-group' },
+	            _react2['default'].createElement(
+	              'label',
+	              { htmlFor: 'smurfy_url' },
+	              'Import from Smurfy'
+	            ),
+	            _react2['default'].createElement('input', { className: this.state.className, id: 'smurfy_url', ref: 'smurfy_urler' })
+	          )
+	        )
+	      );
+	    }
+	  }]);
+	
+	  return SmurfyScraper;
+	})(_react2['default'].Component);
+	
+	exports['default'] = SmurfyScraper;
 	module.exports = exports['default'];
 
 /***/ },
-/* 198 */
+/* 200 */
 /*!**************************************************!*\
   !*** ./source/javascripts/components/weapon.jsx ***!
   \**************************************************/
@@ -21393,7 +22228,7 @@
 	'use strict';
 	
 	var React = __webpack_require__(/*! react */ 1);
-	var WeaponActions = __webpack_require__(/*! ./actions/weapon_actions */ 199);
+	var WeaponActions = __webpack_require__(/*! ./actions/weapon_actions */ 201);
 	
 	var Weapon = React.createClass({
 	  displayName: 'Weapon',
@@ -21427,7 +22262,7 @@
 	module.exports = Weapon;
 
 /***/ },
-/* 199 */
+/* 201 */
 /*!******************************************************************!*\
   !*** ./source/javascripts/components/actions/weapon_actions.jsx ***!
   \******************************************************************/
@@ -21441,15 +22276,15 @@
 	  value: true
 	});
 	
-	var _app_dispatcherEs6 = __webpack_require__(/*! ../app_dispatcher.es6 */ 193);
+	var _app_dispatcherEs6 = __webpack_require__(/*! ../app_dispatcher.es6 */ 191);
 	
 	var _app_dispatcherEs62 = _interopRequireDefault(_app_dispatcherEs6);
 	
-	var _constantsWeapon_constants = __webpack_require__(/*! ../constants/weapon_constants */ 200);
+	var _constantsWeapon_constants = __webpack_require__(/*! ../constants/weapon_constants */ 202);
 	
 	var _constantsWeapon_constants2 = _interopRequireDefault(_constantsWeapon_constants);
 	
-	var _storesWeapon_store = __webpack_require__(/*! ../stores/weapon_store */ 201);
+	var _storesWeapon_store = __webpack_require__(/*! ../stores/weapon_store */ 203);
 	
 	var _storesWeapon_store2 = _interopRequireDefault(_storesWeapon_store);
 	
@@ -21469,6 +22304,12 @@
 	    _app_dispatcherEs62['default'].dispatch({
 	      action_type: _constantsWeapon_constants2['default'].WEAPON_UNEQUIP,
 	      index: index
+	    });
+	  },
+	
+	  strip_all: function strip_all() {
+	    _app_dispatcherEs62['default'].dispatch({
+	      action_type: _constantsWeapon_constants2['default'].WEAPON_STRIP_ALL
 	    });
 	  },
 	
@@ -21509,7 +22350,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 200 */
+/* 202 */
 /*!**********************************************************************!*\
   !*** ./source/javascripts/components/constants/weapon_constants.jsx ***!
   \**********************************************************************/
@@ -21523,6 +22364,7 @@
 	exports['default'] = {
 	  WEAPON_EQUIP: 'WEAPON_EQUIP',
 	  WEAPON_UNEQUIP: 'WEAPON_UNEQUIP',
+	  WEAPON_STRIP_ALL: 'WEAPON_STRIP_ALL',
 	  WEAPON_ALPHA: 'WEAPON_ALPHA',
 	  WEAPON_DID_ALPHA: 'WEAPON_DID_ALPHA',
 	  WEAPON_GROUP_FIRE: 'WEAPON_GROUP_FIRE',
@@ -21534,7 +22376,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 201 */
+/* 203 */
 /*!***************************************************************!*\
   !*** ./source/javascripts/components/stores/weapon_store.jsx ***!
   \***************************************************************/
@@ -21550,7 +22392,7 @@
 	
 	var _classCallCheck = __webpack_require__(/*! babel-runtime/helpers/class-call-check */ 171)['default'];
 	
-	var _Object$assign = __webpack_require__(/*! babel-runtime/core-js/object/assign */ 202)['default'];
+	var _Object$assign = __webpack_require__(/*! babel-runtime/core-js/object/assign */ 204)['default'];
 	
 	var _interopRequireDefault = __webpack_require__(/*! babel-runtime/helpers/interop-require-default */ 172)['default'];
 	
@@ -21558,13 +22400,13 @@
 	  value: true
 	});
 	
-	var _events = __webpack_require__(/*! events */ 192);
+	var _events = __webpack_require__(/*! events */ 197);
 	
-	var _app_dispatcher = __webpack_require__(/*! ../app_dispatcher */ 193);
+	var _app_dispatcher = __webpack_require__(/*! ../app_dispatcher */ 191);
 	
 	var _app_dispatcher2 = _interopRequireDefault(_app_dispatcher);
 	
-	var _constantsWeapon_constants = __webpack_require__(/*! ../constants/weapon_constants */ 200);
+	var _constantsWeapon_constants = __webpack_require__(/*! ../constants/weapon_constants */ 202);
 	
 	var _constantsWeapon_constants2 = _interopRequireDefault(_constantsWeapon_constants);
 	
@@ -21615,6 +22457,15 @@
 	 */
 	var destroy = function destroy(id) {
 	  delete data.equipped_weapons[id];
+	};
+	
+	/**
+	 * Unequips all weapons
+	 */
+	
+	var strip_all = function strip_all() {
+	  console.log('callecalledd');
+	  data.equipped_weapons = [];
 	};
 	
 	/** Toggle the weapon group of an equipped weapon
@@ -21739,31 +22590,35 @@
 	      cooldown_weapon(payload.equipped_weapon_id);
 	      _WeaponStore.emit(CHANGE);
 	      break;
+	    case _constantsWeapon_constants2['default'].WEAPON_STRIP_ALL:
+	      strip_all();
+	      _WeaponStore.emit(CHANGE);
+	      break;
 	  }
 	});
 	module.exports = exports['default'];
 
 /***/ },
-/* 202 */
+/* 204 */
 /*!**************************************************!*\
   !*** ./~/babel-runtime/core-js/object/assign.js ***!
   \**************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = { "default": __webpack_require__(/*! core-js/library/fn/object/assign */ 203), __esModule: true };
+	module.exports = { "default": __webpack_require__(/*! core-js/library/fn/object/assign */ 205), __esModule: true };
 
 /***/ },
-/* 203 */
+/* 205 */
 /*!***************************************************************!*\
   !*** ./~/babel-runtime/~/core-js/library/fn/object/assign.js ***!
   \***************************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(/*! ../../modules/es6.object.assign */ 204);
+	__webpack_require__(/*! ../../modules/es6.object.assign */ 206);
 	module.exports = __webpack_require__(/*! ../../modules/$ */ 160).core.Object.assign;
 
 /***/ },
-/* 204 */
+/* 206 */
 /*!************************************************************************!*\
   !*** ./~/babel-runtime/~/core-js/library/modules/es6.object.assign.js ***!
   \************************************************************************/
@@ -21771,17 +22626,17 @@
 
 	// 19.1.3.1 Object.assign(target, source)
 	var $def = __webpack_require__(/*! ./$.def */ 166);
-	$def($def.S, 'Object', {assign: __webpack_require__(/*! ./$.assign */ 205)});
+	$def($def.S, 'Object', {assign: __webpack_require__(/*! ./$.assign */ 207)});
 
 /***/ },
-/* 205 */
+/* 207 */
 /*!***************************************************************!*\
   !*** ./~/babel-runtime/~/core-js/library/modules/$.assign.js ***!
   \***************************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	var $        = __webpack_require__(/*! ./$ */ 160)
-	  , enumKeys = __webpack_require__(/*! ./$.enum-keys */ 206);
+	  , enumKeys = __webpack_require__(/*! ./$.enum-keys */ 208);
 	// 19.1.2.1 Object.assign(target, source, ...)
 	/* eslint-disable no-unused-vars */
 	module.exports = Object.assign || function assign(target, source){
@@ -21801,7 +22656,7 @@
 	};
 
 /***/ },
-/* 206 */
+/* 208 */
 /*!******************************************************************!*\
   !*** ./~/babel-runtime/~/core-js/library/modules/$.enum-keys.js ***!
   \******************************************************************/
@@ -21819,7 +22674,7 @@
 	};
 
 /***/ },
-/* 207 */
+/* 209 */
 /*!************************************************!*\
   !*** ./source/javascripts/components/info.jsx ***!
   \************************************************/
@@ -21828,12 +22683,12 @@
 	'use strict';
 	
 	var React = __webpack_require__(/*! react */ 1);
-	var MapInfo = __webpack_require__(/*! ./map_info */ 208);
-	var Heat = __webpack_require__(/*! ./heat */ 209);
-	var DamageMeter = __webpack_require__(/*! ./damage_meter */ 219);
-	var Cooldown = __webpack_require__(/*! ./cooldown */ 223);
-	var EventLog = __webpack_require__(/*! ./event_log */ 224);
-	var DPSMeter = __webpack_require__(/*! ./dps_meter */ 225);
+	var MapInfo = __webpack_require__(/*! ./map_info */ 210);
+	var Heat = __webpack_require__(/*! ./heat */ 211);
+	var DamageMeter = __webpack_require__(/*! ./damage_meter */ 221);
+	var Cooldown = __webpack_require__(/*! ./cooldown */ 225);
+	var EventLog = __webpack_require__(/*! ./event_log */ 226);
+	var DPSMeter = __webpack_require__(/*! ./dps_meter */ 227);
 	
 	var Info = React.createClass({
 	  displayName: 'Info',
@@ -21863,7 +22718,7 @@
 	module.exports = Info;
 
 /***/ },
-/* 208 */
+/* 210 */
 /*!****************************************************!*\
   !*** ./source/javascripts/components/map_info.jsx ***!
   \****************************************************/
@@ -21897,7 +22752,7 @@
 	module.exports = MapInfo;
 
 /***/ },
-/* 209 */
+/* 211 */
 /*!************************************************!*\
   !*** ./source/javascripts/components/heat.jsx ***!
   \************************************************/
@@ -21919,19 +22774,19 @@
 	  value: true
 	});
 	
-	var _storesHeatsink_store = __webpack_require__(/*! ./stores/heatsink_store */ 210);
+	var _storesHeatsink_store = __webpack_require__(/*! ./stores/heatsink_store */ 212);
 	
 	var _storesHeatsink_store2 = _interopRequireDefault(_storesHeatsink_store);
 	
-	var _storesHeat_store = __webpack_require__(/*! ./stores/heat_store */ 212);
+	var _storesHeat_store = __webpack_require__(/*! ./stores/heat_store */ 214);
 	
 	var _storesHeat_store2 = _interopRequireDefault(_storesHeat_store);
 	
-	var _actionsHeat_actions = __webpack_require__(/*! ./actions/heat_actions */ 215);
+	var _actionsHeat_actions = __webpack_require__(/*! ./actions/heat_actions */ 217);
 	
 	var _actionsHeat_actions2 = _interopRequireDefault(_actionsHeat_actions);
 	
-	var _storesCooldown_store = __webpack_require__(/*! ./stores/cooldown_store */ 218);
+	var _storesCooldown_store = __webpack_require__(/*! ./stores/cooldown_store */ 220);
 	
 	var _storesCooldown_store2 = _interopRequireDefault(_storesCooldown_store);
 	
@@ -22019,7 +22874,7 @@
 	module.exports = exports["default"];
 
 /***/ },
-/* 210 */
+/* 212 */
 /*!*****************************************************************!*\
   !*** ./source/javascripts/components/stores/heatsink_store.jsx ***!
   \*****************************************************************/
@@ -22036,7 +22891,7 @@
 	
 	var _classCallCheck = __webpack_require__(/*! babel-runtime/helpers/class-call-check */ 171)['default'];
 	
-	var _Object$assign = __webpack_require__(/*! babel-runtime/core-js/object/assign */ 202)['default'];
+	var _Object$assign = __webpack_require__(/*! babel-runtime/core-js/object/assign */ 204)['default'];
 	
 	var _interopRequireDefault = __webpack_require__(/*! babel-runtime/helpers/interop-require-default */ 172)['default'];
 	
@@ -22044,13 +22899,13 @@
 	  value: true
 	});
 	
-	var _events = __webpack_require__(/*! events */ 192);
+	var _events = __webpack_require__(/*! events */ 197);
 	
-	var _app_dispatcher = __webpack_require__(/*! ../app_dispatcher */ 193);
+	var _app_dispatcher = __webpack_require__(/*! ../app_dispatcher */ 191);
 	
 	var _app_dispatcher2 = _interopRequireDefault(_app_dispatcher);
 	
-	var _constantsHeatsink_constants = __webpack_require__(/*! ../constants/heatsink_constants */ 211);
+	var _constantsHeatsink_constants = __webpack_require__(/*! ../constants/heatsink_constants */ 213);
 	
 	var _constantsHeatsink_constants2 = _interopRequireDefault(_constantsHeatsink_constants);
 	
@@ -22135,7 +22990,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 211 */
+/* 213 */
 /*!************************************************************************!*\
   !*** ./source/javascripts/components/constants/heatsink_constants.es6 ***!
   \************************************************************************/
@@ -22153,7 +23008,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 212 */
+/* 214 */
 /*!*************************************************************!*\
   !*** ./source/javascripts/components/stores/heat_store.jsx ***!
   \*************************************************************/
@@ -22175,29 +23030,29 @@
 	  value: true
 	});
 	
-	var _events = __webpack_require__(/*! events */ 192);
+	var _events = __webpack_require__(/*! events */ 197);
 	
-	var _app_dispatcher = __webpack_require__(/*! ../app_dispatcher */ 193);
+	var _app_dispatcher = __webpack_require__(/*! ../app_dispatcher */ 191);
 	
 	var _app_dispatcher2 = _interopRequireDefault(_app_dispatcher);
 	
-	var _constantsHeat_constants = __webpack_require__(/*! ../constants/heat_constants */ 213);
+	var _constantsHeat_constants = __webpack_require__(/*! ../constants/heat_constants */ 215);
 	
 	var _constantsHeat_constants2 = _interopRequireDefault(_constantsHeat_constants);
 	
-	var _storesHeatsink_store = __webpack_require__(/*! ../stores/heatsink_store */ 210);
+	var _storesHeatsink_store = __webpack_require__(/*! ../stores/heatsink_store */ 212);
 	
 	var _storesHeatsink_store2 = _interopRequireDefault(_storesHeatsink_store);
 	
-	var _storesGhost_heat_group_store = __webpack_require__(/*! ../stores/ghost_heat_group_store */ 214);
+	var _storesGhost_heat_group_store = __webpack_require__(/*! ../stores/ghost_heat_group_store */ 216);
 	
 	var _storesGhost_heat_group_store2 = _interopRequireDefault(_storesGhost_heat_group_store);
 	
-	var _actionsHeat_actions = __webpack_require__(/*! ../actions/heat_actions */ 215);
+	var _actionsHeat_actions = __webpack_require__(/*! ../actions/heat_actions */ 217);
 	
 	var _actionsHeat_actions2 = _interopRequireDefault(_actionsHeat_actions);
 	
-	var _actionsCooldown_actions = __webpack_require__(/*! ../actions/cooldown_actions */ 216);
+	var _actionsCooldown_actions = __webpack_require__(/*! ../actions/cooldown_actions */ 218);
 	
 	var _actionsCooldown_actions2 = _interopRequireDefault(_actionsCooldown_actions);
 	
@@ -22353,7 +23208,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 213 */
+/* 215 */
 /*!********************************************************************!*\
   !*** ./source/javascripts/components/constants/heat_constants.es6 ***!
   \********************************************************************/
@@ -22373,7 +23228,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 214 */
+/* 216 */
 /*!*************************************************************************!*\
   !*** ./source/javascripts/components/stores/ghost_heat_group_store.es6 ***!
   \*************************************************************************/
@@ -22395,23 +23250,31 @@
 	  value: true
 	});
 	
-	var _app_dispatcher = __webpack_require__(/*! ../app_dispatcher */ 193);
+	var _app_dispatcher = __webpack_require__(/*! ../app_dispatcher */ 191);
 	
 	var _app_dispatcher2 = _interopRequireDefault(_app_dispatcher);
 	
-	var _events = __webpack_require__(/*! events */ 192);
+	var _events = __webpack_require__(/*! events */ 197);
 	
-	var _constantsHeat_constants = __webpack_require__(/*! ../constants/heat_constants */ 213);
+	var _constantsHeat_constants = __webpack_require__(/*! ../constants/heat_constants */ 215);
 	
 	var _constantsHeat_constants2 = _interopRequireDefault(_constantsHeat_constants);
 	
-	var _storesHeat_store = __webpack_require__(/*! ../stores/heat_store */ 212);
+	var _constantsWeapon_constants = __webpack_require__(/*! ../constants/weapon_constants */ 202);
+	
+	var _constantsWeapon_constants2 = _interopRequireDefault(_constantsWeapon_constants);
+	
+	var _storesHeat_store = __webpack_require__(/*! ../stores/heat_store */ 214);
 	
 	var _storesHeat_store2 = _interopRequireDefault(_storesHeat_store);
 	
-	var _actionsHeat_actions = __webpack_require__(/*! ../actions/heat_actions */ 215);
+	var _actionsHeat_actions = __webpack_require__(/*! ../actions/heat_actions */ 217);
 	
 	var _actionsHeat_actions2 = _interopRequireDefault(_actionsHeat_actions);
+	
+	var _storesWeapon_store = __webpack_require__(/*! ../stores/weapon_store */ 203);
+	
+	var _storesWeapon_store2 = _interopRequireDefault(_storesWeapon_store);
 	
 	/**
 	 * Store data format
@@ -22422,23 +23285,23 @@
 	 *                                            heat group without triggering ghost heat
 	 *        {integer} current                 - number of times a weapon has been fired within the `trigger_time`
 	 *         {object} timer=undefined         - The 'setInterval' object for the weapon group that reduces trigger_time by a unit per tick
-	 *          {float} multiplier              - Ghost heat multiplier for each weapon fired beyond the limit
 	 *
 	 *
 	 */
-	var data = {
-	  mlas: { trigger_time: 0, current: 0, timer: undefined, multiplier: 1 },
-	  llas: { trigger_time: 0, current: 0, timer: undefined, multiplier: 2.8 },
-	  ppc: { trigger_time: 0, current: 0, timer: undefined, multiplier: 7.0 },
-	  erppc: { trigger_time: 0, current: 0, timer: undefined, multiplier: 4.5 },
-	  lrm: { trigger_time: 0, current: 0, timer: undefined, multiplier: 2.8 },
-	  ac2: { trigger_time: 0, current: 0, timer: undefined, multiplier: 1 },
-	  ac20: { trigger_time: 0, current: 0, timer: undefined, multiplier: 24 },
-	  srm: { trigger_time: 0, current: 0, timer: undefined, multiplier: 1 },
-	  ssrm: { trigger_time: 0, current: 0, timer: undefined, multiplier: 1 }
-	};
+	var data = {};
 	
 	var CHANGE = 'GHOST_HEAT_GROUP_UPDATED';
+	
+	/**
+	 * Register a weapon's ghost heat group
+	 * @param {string} id
+	 */
+	var register = function register(ghost_heat_group_id) {
+	  // Only register once
+	  if (typeof data[ghost_heat_group_id] == 'undefined') {
+	    data[ghost_heat_group_id] = { trigger_time: 0, current: 0, timer: undefined };
+	  }
+	};
 	
 	/**
 	 *
@@ -22515,7 +23378,7 @@
 	
 	  if (ghost_heat_group.current > weapon.ghost_limit) {
 	
-	    var ghost_heat_amount = weapon.heat * ghost_heat_group.multiplier * heat_scale(ghost_heat_group.current);
+	    var ghost_heat_amount = weapon.heat * weapon.multiplier * heat_scale(ghost_heat_group.current);
 	    var ghost_linked_fire_sequence_position = ghost_heat_group.current;
 	
 	    setTimeout(function () {
@@ -22588,6 +23451,7 @@
 	
 	  var action_type = payload.action_type;
 	  switch (action_type) {
+	
 	    case _constantsHeat_constants2['default'].HEAT_APPLY:
 	      _app_dispatcher2['default'].waitFor([_storesHeat_store2['default'].dispatch_token]);
 	      if (payload.weapon.ghost_limit !== 0) {
@@ -22595,15 +23459,36 @@
 	        _GhostHeatGroupStore.emit(CHANGE);
 	      }
 	      break;
+	
+	    case _constantsWeapon_constants2['default'].WEAPON_EQUIP:
+	      _app_dispatcher2['default'].waitFor([_storesWeapon_store2['default'].dispatch_token]);
+	      register(payload.weapon_props.ghost_heat_group);
+	      break;
+	
 	  }
 	});
 	
 	exports['default'] = _GhostHeatGroupStore;
 	module.exports = exports['default'];
+
+	// mlas:    {trigger_time: 0, current: 0, timer: undefined, multiplier: 1 },
+	// llas:    {trigger_time: 0, current: 0, timer: undefined, multiplier: 2.8 },
+	// ppc:     {trigger_time: 0, current: 0, timer: undefined, multiplier: 7.0 },
+	// erppc:   {trigger_time: 0, current: 0, timer: undefined, multiplier: 4.5 },
+	// lrm:     {trigger_time: 0, current: 0, timer: undefined, multiplier: 2.8 },
+	// ac2:     {trigger_time: 0, current: 0, timer: undefined, multiplier: 1 },
+	// ac20:    {trigger_time: 0, current: 0, timer: undefined, multiplier: 24 },
+	// srm:     {trigger_time: 0, current: 0, timer: undefined, multiplier: 1 },
+	// ssrm:    {trigger_time: 0, current: 0, timer: undefined, multiplier: 1 },
+	// clas:    {trigger_time: 0, current: 0, timer: undefined, multiplier: 1 },
+	// cuac5:   {trigger_time: 0, current: 0, timer: undefined, multiplier: 1},
+	// cac5:   {trigger_time: 0, current: 0, timer: undefined, multiplier: 1},
+	// cac10:   {trigger_time: 0, current: 0, timer: undefined, multiplier: 1},
+	// cac20:   {trigger_time: 0, current: 0, timer: undefined, multiplier: 1},
 	// Apply ghost heat
 
 /***/ },
-/* 215 */
+/* 217 */
 /*!****************************************************************!*\
   !*** ./source/javascripts/components/actions/heat_actions.es6 ***!
   \****************************************************************/
@@ -22617,15 +23502,15 @@
 	  value: true
 	});
 	
-	var _app_dispatcher = __webpack_require__(/*! ../app_dispatcher */ 193);
+	var _app_dispatcher = __webpack_require__(/*! ../app_dispatcher */ 191);
 	
 	var _app_dispatcher2 = _interopRequireDefault(_app_dispatcher);
 	
-	var _constantsHeat_constants = __webpack_require__(/*! ../constants/heat_constants */ 213);
+	var _constantsHeat_constants = __webpack_require__(/*! ../constants/heat_constants */ 215);
 	
 	var _constantsHeat_constants2 = _interopRequireDefault(_constantsHeat_constants);
 	
-	var _storesHeat_store = __webpack_require__(/*! ../stores/heat_store */ 212);
+	var _storesHeat_store = __webpack_require__(/*! ../stores/heat_store */ 214);
 	
 	var _storesHeat_store2 = _interopRequireDefault(_storesHeat_store);
 	
@@ -22664,7 +23549,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 216 */
+/* 218 */
 /*!********************************************************************!*\
   !*** ./source/javascripts/components/actions/cooldown_actions.jsx ***!
   \********************************************************************/
@@ -22678,23 +23563,23 @@
 	  value: true
 	});
 	
-	var _app_dispatcher = __webpack_require__(/*! ../app_dispatcher */ 193);
+	var _app_dispatcher = __webpack_require__(/*! ../app_dispatcher */ 191);
 	
 	var _app_dispatcher2 = _interopRequireDefault(_app_dispatcher);
 	
-	var _constantsHeatsink_constants = __webpack_require__(/*! ../constants/heatsink_constants */ 211);
+	var _constantsHeatsink_constants = __webpack_require__(/*! ../constants/heatsink_constants */ 213);
 	
 	var _constantsHeatsink_constants2 = _interopRequireDefault(_constantsHeatsink_constants);
 	
-	var _constantsCooldown_constants = __webpack_require__(/*! ../constants/cooldown_constants */ 217);
+	var _constantsCooldown_constants = __webpack_require__(/*! ../constants/cooldown_constants */ 219);
 	
 	var _constantsCooldown_constants2 = _interopRequireDefault(_constantsCooldown_constants);
 	
-	var _storesHeatsink_store = __webpack_require__(/*! ../stores/heatsink_store */ 210);
+	var _storesHeatsink_store = __webpack_require__(/*! ../stores/heatsink_store */ 212);
 	
 	var _storesHeatsink_store2 = _interopRequireDefault(_storesHeatsink_store);
 	
-	var _storesCooldown_store = __webpack_require__(/*! ../stores/cooldown_store */ 218);
+	var _storesCooldown_store = __webpack_require__(/*! ../stores/cooldown_store */ 220);
 	
 	var _storesCooldown_store2 = _interopRequireDefault(_storesCooldown_store);
 	
@@ -22738,7 +23623,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 217 */
+/* 219 */
 /*!************************************************************************!*\
   !*** ./source/javascripts/components/constants/cooldown_constants.jsx ***!
   \************************************************************************/
@@ -22756,7 +23641,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 218 */
+/* 220 */
 /*!*****************************************************************!*\
   !*** ./source/javascripts/components/stores/cooldown_store.jsx ***!
   \*****************************************************************/
@@ -22772,7 +23657,7 @@
 	
 	var _classCallCheck = __webpack_require__(/*! babel-runtime/helpers/class-call-check */ 171)['default'];
 	
-	var _Object$assign = __webpack_require__(/*! babel-runtime/core-js/object/assign */ 202)['default'];
+	var _Object$assign = __webpack_require__(/*! babel-runtime/core-js/object/assign */ 204)['default'];
 	
 	var _interopRequireDefault = __webpack_require__(/*! babel-runtime/helpers/interop-require-default */ 172)['default'];
 	
@@ -22780,17 +23665,17 @@
 	  value: true
 	});
 	
-	var _events = __webpack_require__(/*! events */ 192);
+	var _events = __webpack_require__(/*! events */ 197);
 	
-	var _app_dispatcher = __webpack_require__(/*! ../app_dispatcher */ 193);
+	var _app_dispatcher = __webpack_require__(/*! ../app_dispatcher */ 191);
 	
 	var _app_dispatcher2 = _interopRequireDefault(_app_dispatcher);
 	
-	var _constantsCooldown_constants = __webpack_require__(/*! ../constants/cooldown_constants */ 217);
+	var _constantsCooldown_constants = __webpack_require__(/*! ../constants/cooldown_constants */ 219);
 	
 	var _constantsCooldown_constants2 = _interopRequireDefault(_constantsCooldown_constants);
 	
-	var _storesHeat_store = __webpack_require__(/*! ../stores/heat_store */ 212);
+	var _storesHeat_store = __webpack_require__(/*! ../stores/heat_store */ 214);
 	
 	var _storesHeat_store2 = _interopRequireDefault(_storesHeat_store);
 	
@@ -22871,7 +23756,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 219 */
+/* 221 */
 /*!********************************************************!*\
   !*** ./source/javascripts/components/damage_meter.es6 ***!
   \********************************************************/
@@ -22893,19 +23778,19 @@
 	  value: true
 	});
 	
-	var _storesDamage_store = __webpack_require__(/*! ./stores/damage_store */ 220);
+	var _storesDamage_store = __webpack_require__(/*! ./stores/damage_store */ 222);
 	
 	var _storesDamage_store2 = _interopRequireDefault(_storesDamage_store);
 	
-	var _actionsDamage_actions = __webpack_require__(/*! ./actions/damage_actions */ 222);
+	var _actionsDamage_actions = __webpack_require__(/*! ./actions/damage_actions */ 224);
 	
 	var _actionsDamage_actions2 = _interopRequireDefault(_actionsDamage_actions);
 	
-	var _storesWeapon_store = __webpack_require__(/*! ./stores/weapon_store */ 201);
+	var _storesWeapon_store = __webpack_require__(/*! ./stores/weapon_store */ 203);
 	
 	var _storesWeapon_store2 = _interopRequireDefault(_storesWeapon_store);
 	
-	var _constantsWeapon_constants = __webpack_require__(/*! ./constants/weapon_constants */ 200);
+	var _constantsWeapon_constants = __webpack_require__(/*! ./constants/weapon_constants */ 202);
 	
 	var _constantsWeapon_constants2 = _interopRequireDefault(_constantsWeapon_constants);
 	
@@ -22978,7 +23863,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 220 */
+/* 222 */
 /*!***************************************************************!*\
   !*** ./source/javascripts/components/stores/damage_store.es6 ***!
   \***************************************************************/
@@ -23000,13 +23885,13 @@
 	  value: true
 	});
 	
-	var _events = __webpack_require__(/*! events */ 192);
+	var _events = __webpack_require__(/*! events */ 197);
 	
-	var _app_dispatcher = __webpack_require__(/*! ../app_dispatcher */ 193);
+	var _app_dispatcher = __webpack_require__(/*! ../app_dispatcher */ 191);
 	
 	var _app_dispatcher2 = _interopRequireDefault(_app_dispatcher);
 	
-	var _constantsDamage_constants = __webpack_require__(/*! ../constants/damage_constants */ 221);
+	var _constantsDamage_constants = __webpack_require__(/*! ../constants/damage_constants */ 223);
 	
 	var _constantsDamage_constants2 = _interopRequireDefault(_constantsDamage_constants);
 	
@@ -23121,7 +24006,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 221 */
+/* 223 */
 /*!**********************************************************************!*\
   !*** ./source/javascripts/components/constants/damage_constants.es6 ***!
   \**********************************************************************/
@@ -23139,7 +24024,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 222 */
+/* 224 */
 /*!******************************************************************!*\
   !*** ./source/javascripts/components/actions/damage_actions.es6 ***!
   \******************************************************************/
@@ -23153,11 +24038,11 @@
 	  value: true
 	});
 	
-	var _app_dispatcher = __webpack_require__(/*! ../app_dispatcher */ 193);
+	var _app_dispatcher = __webpack_require__(/*! ../app_dispatcher */ 191);
 	
 	var _app_dispatcher2 = _interopRequireDefault(_app_dispatcher);
 	
-	var _constantsDamage_constants = __webpack_require__(/*! ../constants/damage_constants */ 221);
+	var _constantsDamage_constants = __webpack_require__(/*! ../constants/damage_constants */ 223);
 	
 	var _constantsDamage_constants2 = _interopRequireDefault(_constantsDamage_constants);
 	
@@ -23182,7 +24067,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 223 */
+/* 225 */
 /*!****************************************************!*\
   !*** ./source/javascripts/components/cooldown.jsx ***!
   \****************************************************/
@@ -23204,19 +24089,19 @@
 	  value: true
 	});
 	
-	var _storesHeatsink_store = __webpack_require__(/*! ./stores/heatsink_store */ 210);
+	var _storesHeatsink_store = __webpack_require__(/*! ./stores/heatsink_store */ 212);
 	
 	var _storesHeatsink_store2 = _interopRequireDefault(_storesHeatsink_store);
 	
-	var _storesHeat_store = __webpack_require__(/*! ./stores/heat_store */ 212);
+	var _storesHeat_store = __webpack_require__(/*! ./stores/heat_store */ 214);
 	
 	var _storesHeat_store2 = _interopRequireDefault(_storesHeat_store);
 	
-	var _storesCooldown_store = __webpack_require__(/*! ./stores/cooldown_store */ 218);
+	var _storesCooldown_store = __webpack_require__(/*! ./stores/cooldown_store */ 220);
 	
 	var _storesCooldown_store2 = _interopRequireDefault(_storesCooldown_store);
 	
-	var _actionsCooldown_actions = __webpack_require__(/*! ./actions/cooldown_actions */ 216);
+	var _actionsCooldown_actions = __webpack_require__(/*! ./actions/cooldown_actions */ 218);
 	
 	var _actionsCooldown_actions2 = _interopRequireDefault(_actionsCooldown_actions);
 	
@@ -23290,7 +24175,7 @@
 	module.exports = exports["default"];
 
 /***/ },
-/* 224 */
+/* 226 */
 /*!*****************************************************!*\
   !*** ./source/javascripts/components/event_log.es6 ***!
   \*****************************************************/
@@ -23312,7 +24197,7 @@
 	  value: true
 	});
 	
-	var _storesGhost_heat_group_store = __webpack_require__(/*! ./stores/ghost_heat_group_store */ 214);
+	var _storesGhost_heat_group_store = __webpack_require__(/*! ./stores/ghost_heat_group_store */ 216);
 	
 	var _storesGhost_heat_group_store2 = _interopRequireDefault(_storesGhost_heat_group_store);
 	
@@ -23355,7 +24240,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 225 */
+/* 227 */
 /*!*****************************************************!*\
   !*** ./source/javascripts/components/dps_meter.es6 ***!
   \*****************************************************/
@@ -23377,19 +24262,19 @@
 	  value: true
 	});
 	
-	var _storesDamage_store = __webpack_require__(/*! ./stores/damage_store */ 220);
+	var _storesDamage_store = __webpack_require__(/*! ./stores/damage_store */ 222);
 	
 	var _storesDamage_store2 = _interopRequireDefault(_storesDamage_store);
 	
-	var _actionsDamage_actions = __webpack_require__(/*! ./actions/damage_actions */ 222);
+	var _actionsDamage_actions = __webpack_require__(/*! ./actions/damage_actions */ 224);
 	
 	var _actionsDamage_actions2 = _interopRequireDefault(_actionsDamage_actions);
 	
-	var _storesWeapon_store = __webpack_require__(/*! ./stores/weapon_store */ 201);
+	var _storesWeapon_store = __webpack_require__(/*! ./stores/weapon_store */ 203);
 	
 	var _storesWeapon_store2 = _interopRequireDefault(_storesWeapon_store);
 	
-	var _constantsWeapon_constants = __webpack_require__(/*! ./constants/weapon_constants */ 200);
+	var _constantsWeapon_constants = __webpack_require__(/*! ./constants/weapon_constants */ 202);
 	
 	var _constantsWeapon_constants2 = _interopRequireDefault(_constantsWeapon_constants);
 	
@@ -23454,7 +24339,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 226 */
+/* 228 */
 /*!*****************************************************!*\
   !*** ./source/javascripts/components/equipment.jsx ***!
   \*****************************************************/
@@ -23476,20 +24361,20 @@
 	  value: true
 	});
 	
-	var _actionsWeapon_actions = __webpack_require__(/*! ./actions/weapon_actions */ 199);
+	var _actionsWeapon_actions = __webpack_require__(/*! ./actions/weapon_actions */ 201);
 	
 	var _actionsWeapon_actions2 = _interopRequireDefault(_actionsWeapon_actions);
 	
-	var _equipped_weapons_wrapper = __webpack_require__(/*! ./equipped_weapons_wrapper */ 227);
+	var _equipped_weapons_wrapper = __webpack_require__(/*! ./equipped_weapons_wrapper */ 229);
 	
 	var _equipped_weapons_wrapper2 = _interopRequireDefault(_equipped_weapons_wrapper);
 	
-	var _group_trigger = __webpack_require__(/*! ./group_trigger */ 230);
+	var _group_trigger = __webpack_require__(/*! ./group_trigger */ 232);
 	
 	var _group_trigger2 = _interopRequireDefault(_group_trigger);
 	
 	var React = __webpack_require__(/*! react */ 1);
-	var Heatsink = __webpack_require__(/*! ./heatsink */ 234);
+	var Heatsink = __webpack_require__(/*! ./heatsink */ 236);
 	
 	var Equipment = (function (_React$Component) {
 	  function Equipment(props) {
@@ -23561,25 +24446,25 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 227 */
+/* 229 */
 /*!********************************************************************!*\
   !*** ./source/javascripts/components/equipped_weapons_wrapper.es6 ***!
   \********************************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 	
-	var _inherits = __webpack_require__(/*! babel-runtime/helpers/inherits */ 157)["default"];
+	var _inherits = __webpack_require__(/*! babel-runtime/helpers/inherits */ 157)['default'];
 	
-	var _get = __webpack_require__(/*! babel-runtime/helpers/get */ 162)["default"];
+	var _get = __webpack_require__(/*! babel-runtime/helpers/get */ 162)['default'];
 	
-	var _createClass = __webpack_require__(/*! babel-runtime/helpers/create-class */ 168)["default"];
+	var _createClass = __webpack_require__(/*! babel-runtime/helpers/create-class */ 168)['default'];
 	
-	var _classCallCheck = __webpack_require__(/*! babel-runtime/helpers/class-call-check */ 171)["default"];
+	var _classCallCheck = __webpack_require__(/*! babel-runtime/helpers/class-call-check */ 171)['default'];
 	
-	var _interopRequireDefault = __webpack_require__(/*! babel-runtime/helpers/interop-require-default */ 172)["default"];
+	var _interopRequireDefault = __webpack_require__(/*! babel-runtime/helpers/interop-require-default */ 172)['default'];
 	
-	Object.defineProperty(exports, "__esModule", {
+	Object.defineProperty(exports, '__esModule', {
 	  value: true
 	});
 	
@@ -23587,11 +24472,15 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _storesWeapon_store = __webpack_require__(/*! ./stores/weapon_store */ 201);
+	var _storesWeapon_store = __webpack_require__(/*! ./stores/weapon_store */ 203);
 	
 	var _storesWeapon_store2 = _interopRequireDefault(_storesWeapon_store);
 	
-	var _equipped_weapon = __webpack_require__(/*! ./equipped_weapon */ 228);
+	var _actionsWeapon_actions = __webpack_require__(/*! ./actions/weapon_actions */ 201);
+	
+	var _actionsWeapon_actions2 = _interopRequireDefault(_actionsWeapon_actions);
+	
+	var _equipped_weapon = __webpack_require__(/*! ./equipped_weapon */ 230);
 	
 	var _equipped_weapon2 = _interopRequireDefault(_equipped_weapon);
 	
@@ -23599,32 +24488,37 @@
 	  function EquippedWeaponsWrapper(props) {
 	    _classCallCheck(this, EquippedWeaponsWrapper);
 	
-	    _get(Object.getPrototypeOf(EquippedWeaponsWrapper.prototype), "constructor", this).call(this, props);
+	    _get(Object.getPrototypeOf(EquippedWeaponsWrapper.prototype), 'constructor', this).call(this, props);
 	    this.state = { equipped_weapons: [] };
 	  }
 	
 	  _inherits(EquippedWeaponsWrapper, _React$Component);
 	
 	  _createClass(EquippedWeaponsWrapper, [{
-	    key: "componentDidMount",
+	    key: 'componentDidMount',
 	    value: function componentDidMount() {
-	      _storesWeapon_store2["default"].addChangeListener(this.onStoreChange.bind(this));
+	      _storesWeapon_store2['default'].addChangeListener(this.onStoreChange.bind(this));
 	    }
 	  }, {
-	    key: "onStoreChange",
+	    key: 'onStoreChange',
 	    value: function onStoreChange() {
 	      this.setState({
-	        equipped_weapons: _storesWeapon_store2["default"].get_new_data().equipped_weapons
+	        equipped_weapons: _storesWeapon_store2['default'].get_new_data().equipped_weapons
 	      });
 	    }
 	  }, {
-	    key: "render",
+	    key: 'strip_all',
+	    value: function strip_all() {
+	      _actionsWeapon_actions2['default'].strip_all();
+	    }
+	  }, {
+	    key: 'render',
 	    value: function render() {
 	      var equipped_weapons = [];
 	      for (var key in this.state.equipped_weapons) {
 	        var _weapon = this.state.equipped_weapons[key];
 	
-	        equipped_weapons.push(_react2["default"].createElement(_equipped_weapon2["default"], { id: key,
+	        equipped_weapons.push(_react2['default'].createElement(_equipped_weapon2['default'], { id: key,
 	          key: key,
 	          name: _weapon.name,
 	          weapon_id: _weapon.weapon_id,
@@ -23636,26 +24530,37 @@
 	          weapon_groups: _weapon.weapon_groups,
 	          is_disabled: _weapon.is_disabled,
 	          cooldown_time_remaining: _weapon.cooldown_time_remaining,
-	          type: _weapon.type
+	          type: _weapon.type,
+	          multiplier: _weapon.multiplier
 	        }));
 	      }
 	
-	      return _react2["default"].createElement(
-	        "equipped_weapons",
+	      if (equipped_weapons.length > 0) {
+	        var strip_all = _react2['default'].createElement(
+	          'strip_all',
+	          { onClick: this.strip_all.bind(this) },
+	          'Strip all Weapons'
+	        );
+	      } else {
+	        var strip_all = '';
+	      }
+	      return _react2['default'].createElement(
+	        'equipped_weapons',
 	        null,
-	        equipped_weapons
+	        equipped_weapons,
+	        strip_all
 	      );
 	    }
 	  }]);
 	
 	  return EquippedWeaponsWrapper;
-	})(_react2["default"].Component);
+	})(_react2['default'].Component);
 	
-	exports["default"] = EquippedWeaponsWrapper;
-	module.exports = exports["default"];
+	exports['default'] = EquippedWeaponsWrapper;
+	module.exports = exports['default'];
 
 /***/ },
-/* 228 */
+/* 230 */
 /*!***********************************************************!*\
   !*** ./source/javascripts/components/equipped_weapon.es6 ***!
   \***********************************************************/
@@ -23681,31 +24586,31 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _actionsWeapon_actions = __webpack_require__(/*! ./actions/weapon_actions */ 199);
+	var _actionsWeapon_actions = __webpack_require__(/*! ./actions/weapon_actions */ 201);
 	
 	var _actionsWeapon_actions2 = _interopRequireDefault(_actionsWeapon_actions);
 	
-	var _actionsHeat_actions = __webpack_require__(/*! ./actions/heat_actions */ 215);
+	var _actionsHeat_actions = __webpack_require__(/*! ./actions/heat_actions */ 217);
 	
 	var _actionsHeat_actions2 = _interopRequireDefault(_actionsHeat_actions);
 	
-	var _actionsDamage_actions = __webpack_require__(/*! ./actions/damage_actions */ 222);
+	var _actionsDamage_actions = __webpack_require__(/*! ./actions/damage_actions */ 224);
 	
 	var _actionsDamage_actions2 = _interopRequireDefault(_actionsDamage_actions);
 	
-	var _storesWeapon_store = __webpack_require__(/*! ./stores/weapon_store */ 201);
+	var _storesWeapon_store = __webpack_require__(/*! ./stores/weapon_store */ 203);
 	
 	var _storesWeapon_store2 = _interopRequireDefault(_storesWeapon_store);
 	
-	var _storesGhost_heat_group_store = __webpack_require__(/*! ./stores/ghost_heat_group_store */ 214);
+	var _storesGhost_heat_group_store = __webpack_require__(/*! ./stores/ghost_heat_group_store */ 216);
 	
 	var _storesGhost_heat_group_store2 = _interopRequireDefault(_storesGhost_heat_group_store);
 	
-	var _constantsWeapon_constants = __webpack_require__(/*! ./constants/weapon_constants */ 200);
+	var _constantsWeapon_constants = __webpack_require__(/*! ./constants/weapon_constants */ 202);
 	
 	var _constantsWeapon_constants2 = _interopRequireDefault(_constantsWeapon_constants);
 	
-	var _weapon_group = __webpack_require__(/*! ./weapon_group */ 229);
+	var _weapon_group = __webpack_require__(/*! ./weapon_group */ 231);
 	
 	var _weapon_group2 = _interopRequireDefault(_weapon_group);
 	
@@ -23826,7 +24731,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 229 */
+/* 231 */
 /*!********************************************************!*\
   !*** ./source/javascripts/components/weapon_group.es6 ***!
   \********************************************************/
@@ -23852,7 +24757,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _actionsWeapon_actions = __webpack_require__(/*! ./actions/weapon_actions */ 199);
+	var _actionsWeapon_actions = __webpack_require__(/*! ./actions/weapon_actions */ 201);
 	
 	var _actionsWeapon_actions2 = _interopRequireDefault(_actionsWeapon_actions);
 	
@@ -23903,7 +24808,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 230 */
+/* 232 */
 /*!*********************************************************!*\
   !*** ./source/javascripts/components/group_trigger.es6 ***!
   \*********************************************************/
@@ -23925,15 +24830,15 @@
 	  value: true
 	});
 	
-	var _actionsWeapon_actions = __webpack_require__(/*! ./actions/weapon_actions */ 199);
+	var _actionsWeapon_actions = __webpack_require__(/*! ./actions/weapon_actions */ 201);
 	
 	var _actionsWeapon_actions2 = _interopRequireDefault(_actionsWeapon_actions);
 	
-	var _storesKeybindings_store = __webpack_require__(/*! ./stores/keybindings_store */ 231);
+	var _storesKeybindings_store = __webpack_require__(/*! ./stores/keybindings_store */ 233);
 	
 	var _storesKeybindings_store2 = _interopRequireDefault(_storesKeybindings_store);
 	
-	var _actionsKeybinding_actions = __webpack_require__(/*! ./actions/keybinding_actions */ 233);
+	var _actionsKeybinding_actions = __webpack_require__(/*! ./actions/keybinding_actions */ 235);
 	
 	var _actionsKeybinding_actions2 = _interopRequireDefault(_actionsKeybinding_actions);
 	
@@ -23978,7 +24883,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 231 */
+/* 233 */
 /*!********************************************************************!*\
   !*** ./source/javascripts/components/stores/keybindings_store.es6 ***!
   \********************************************************************/
@@ -24000,13 +24905,13 @@
 	  value: true
 	});
 	
-	var _events = __webpack_require__(/*! events */ 192);
+	var _events = __webpack_require__(/*! events */ 197);
 	
-	var _app_dispatcher = __webpack_require__(/*! ../app_dispatcher */ 193);
+	var _app_dispatcher = __webpack_require__(/*! ../app_dispatcher */ 191);
 	
 	var _app_dispatcher2 = _interopRequireDefault(_app_dispatcher);
 	
-	var _constantsKeybinding_constants = __webpack_require__(/*! ../constants/keybinding_constants */ 232);
+	var _constantsKeybinding_constants = __webpack_require__(/*! ../constants/keybinding_constants */ 234);
 	
 	var _constantsKeybinding_constants2 = _interopRequireDefault(_constantsKeybinding_constants);
 	
@@ -24067,7 +24972,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 232 */
+/* 234 */
 /*!**************************************************************************!*\
   !*** ./source/javascripts/components/constants/keybinding_constants.es6 ***!
   \**************************************************************************/
@@ -24084,7 +24989,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 233 */
+/* 235 */
 /*!**********************************************************************!*\
   !*** ./source/javascripts/components/actions/keybinding_actions.es6 ***!
   \**********************************************************************/
@@ -24098,11 +25003,11 @@
 	  value: true
 	});
 	
-	var _app_dispatcherEs6 = __webpack_require__(/*! ../app_dispatcher.es6 */ 193);
+	var _app_dispatcherEs6 = __webpack_require__(/*! ../app_dispatcher.es6 */ 191);
 	
 	var _app_dispatcherEs62 = _interopRequireDefault(_app_dispatcherEs6);
 	
-	var _constantsKeybinding_constants = __webpack_require__(/*! ../constants/keybinding_constants */ 232);
+	var _constantsKeybinding_constants = __webpack_require__(/*! ../constants/keybinding_constants */ 234);
 	
 	var _constantsKeybinding_constants2 = _interopRequireDefault(_constantsKeybinding_constants);
 	
@@ -24120,7 +25025,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 234 */
+/* 236 */
 /*!****************************************************!*\
   !*** ./source/javascripts/components/heatsink.jsx ***!
   \****************************************************/
@@ -24142,23 +25047,23 @@
 	  value: true
 	});
 	
-	var _actionsHeatsink_actions = __webpack_require__(/*! ./actions/heatsink_actions */ 235);
+	var _actionsHeatsink_actions = __webpack_require__(/*! ./actions/heatsink_actions */ 237);
 	
 	var _actionsHeatsink_actions2 = _interopRequireDefault(_actionsHeatsink_actions);
 	
-	var _app_dispatcher = __webpack_require__(/*! ./app_dispatcher */ 193);
+	var _app_dispatcher = __webpack_require__(/*! ./app_dispatcher */ 191);
 	
 	var _app_dispatcher2 = _interopRequireDefault(_app_dispatcher);
 	
-	var _storesHeatsink_store = __webpack_require__(/*! ./stores/heatsink_store */ 210);
+	var _storesHeatsink_store = __webpack_require__(/*! ./stores/heatsink_store */ 212);
 	
 	var _storesHeatsink_store2 = _interopRequireDefault(_storesHeatsink_store);
 	
-	var _actionsHeat_actions = __webpack_require__(/*! ./actions/heat_actions */ 215);
+	var _actionsHeat_actions = __webpack_require__(/*! ./actions/heat_actions */ 217);
 	
 	var _actionsHeat_actions2 = _interopRequireDefault(_actionsHeat_actions);
 	
-	var _actionsCooldown_actions = __webpack_require__(/*! ./actions/cooldown_actions */ 216);
+	var _actionsCooldown_actions = __webpack_require__(/*! ./actions/cooldown_actions */ 218);
 	
 	var _actionsCooldown_actions2 = _interopRequireDefault(_actionsCooldown_actions);
 	
@@ -24315,7 +25220,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 235 */
+/* 237 */
 /*!********************************************************************!*\
   !*** ./source/javascripts/components/actions/heatsink_actions.jsx ***!
   \********************************************************************/
@@ -24329,23 +25234,23 @@
 	  value: true
 	});
 	
-	var _app_dispatcherEs6 = __webpack_require__(/*! ../app_dispatcher.es6 */ 193);
+	var _app_dispatcherEs6 = __webpack_require__(/*! ../app_dispatcher.es6 */ 191);
 	
 	var _app_dispatcherEs62 = _interopRequireDefault(_app_dispatcherEs6);
 	
-	var _constantsHeatsink_constantsEs6 = __webpack_require__(/*! ../constants/heatsink_constants.es6 */ 211);
+	var _constantsHeatsink_constantsEs6 = __webpack_require__(/*! ../constants/heatsink_constants.es6 */ 213);
 	
 	var _constantsHeatsink_constantsEs62 = _interopRequireDefault(_constantsHeatsink_constantsEs6);
 	
-	var _heatsink = __webpack_require__(/*! ../heatsink */ 234);
+	var _heatsink = __webpack_require__(/*! ../heatsink */ 236);
 	
 	var _heatsink2 = _interopRequireDefault(_heatsink);
 	
-	var _storesHeatsink_store = __webpack_require__(/*! ../stores/heatsink_store */ 210);
+	var _storesHeatsink_store = __webpack_require__(/*! ../stores/heatsink_store */ 212);
 	
 	var _storesHeatsink_store2 = _interopRequireDefault(_storesHeatsink_store);
 	
-	var _actionsCooldown_actionsJsx = __webpack_require__(/*! ../actions/cooldown_actions.jsx */ 216);
+	var _actionsCooldown_actionsJsx = __webpack_require__(/*! ../actions/cooldown_actions.jsx */ 218);
 	
 	var _actionsCooldown_actionsJsx2 = _interopRequireDefault(_actionsCooldown_actionsJsx);
 	
@@ -24386,21 +25291,378 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 236 */
-/*!********************************************************!*\
-  !*** ./source/javascripts/components/weapons_list.jsx ***!
-  \********************************************************/
+/* 238 */
+/*!*************************************************!*\
+  !*** ./~/babel-runtime/core-js/get-iterator.js ***!
+  \*************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = { "default": __webpack_require__(/*! core-js/library/fn/get-iterator */ 239), __esModule: true };
+
+/***/ },
+/* 239 */
+/*!**************************************************************!*\
+  !*** ./~/babel-runtime/~/core-js/library/fn/get-iterator.js ***!
+  \**************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	__webpack_require__(/*! ../modules/web.dom.iterable */ 240);
+	__webpack_require__(/*! ../modules/es6.string.iterator */ 251);
+	__webpack_require__(/*! ../modules/core.iter-helpers */ 253);
+	module.exports = __webpack_require__(/*! ../modules/$ */ 160).core.getIterator;
+
+/***/ },
+/* 240 */
+/*!***********************************************************************!*\
+  !*** ./~/babel-runtime/~/core-js/library/modules/web.dom.iterable.js ***!
+  \***********************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	__webpack_require__(/*! ./es6.array.iterator */ 241);
+	var $           = __webpack_require__(/*! ./$ */ 160)
+	  , Iterators   = __webpack_require__(/*! ./$.iter */ 244).Iterators
+	  , ITERATOR    = __webpack_require__(/*! ./$.wks */ 246)('iterator')
+	  , ArrayValues = Iterators.Array
+	  , NL          = $.g.NodeList
+	  , HTC         = $.g.HTMLCollection
+	  , NLProto     = NL && NL.prototype
+	  , HTCProto    = HTC && HTC.prototype;
+	if($.FW){
+	  if(NL && !(ITERATOR in NLProto))$.hide(NLProto, ITERATOR, ArrayValues);
+	  if(HTC && !(ITERATOR in HTCProto))$.hide(HTCProto, ITERATOR, ArrayValues);
+	}
+	Iterators.NodeList = Iterators.HTMLCollection = ArrayValues;
+
+/***/ },
+/* 241 */
+/*!*************************************************************************!*\
+  !*** ./~/babel-runtime/~/core-js/library/modules/es6.array.iterator.js ***!
+  \*************************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	var $          = __webpack_require__(/*! ./$ */ 160)
+	  , setUnscope = __webpack_require__(/*! ./$.unscope */ 242)
+	  , ITER       = __webpack_require__(/*! ./$.uid */ 243).safe('iter')
+	  , $iter      = __webpack_require__(/*! ./$.iter */ 244)
+	  , step       = $iter.step
+	  , Iterators  = $iter.Iterators;
+	
+	// 22.1.3.4 Array.prototype.entries()
+	// 22.1.3.13 Array.prototype.keys()
+	// 22.1.3.29 Array.prototype.values()
+	// 22.1.3.30 Array.prototype[@@iterator]()
+	__webpack_require__(/*! ./$.iter-define */ 249)(Array, 'Array', function(iterated, kind){
+	  $.set(this, ITER, {o: $.toObject(iterated), i: 0, k: kind});
+	// 22.1.5.2.1 %ArrayIteratorPrototype%.next()
+	}, function(){
+	  var iter  = this[ITER]
+	    , O     = iter.o
+	    , kind  = iter.k
+	    , index = iter.i++;
+	  if(!O || index >= O.length){
+	    iter.o = undefined;
+	    return step(1);
+	  }
+	  if(kind == 'keys'  )return step(0, index);
+	  if(kind == 'values')return step(0, O[index]);
+	  return step(0, [index, O[index]]);
+	}, 'values');
+	
+	// argumentsList[@@iterator] is %ArrayProto_values% (9.4.4.6, 9.4.4.7)
+	Iterators.Arguments = Iterators.Array;
+	
+	setUnscope('keys');
+	setUnscope('values');
+	setUnscope('entries');
+
+/***/ },
+/* 242 */
+/*!****************************************************************!*\
+  !*** ./~/babel-runtime/~/core-js/library/modules/$.unscope.js ***!
+  \****************************************************************/
 /***/ function(module, exports) {
 
+	module.exports = function(){ /* empty */ };
+
+/***/ },
+/* 243 */
+/*!************************************************************!*\
+  !*** ./~/babel-runtime/~/core-js/library/modules/$.uid.js ***!
+  \************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	var sid = 0;
+	function uid(key){
+	  return 'Symbol('.concat(key === undefined ? '' : key, ')_', (++sid + Math.random()).toString(36));
+	}
+	uid.safe = __webpack_require__(/*! ./$ */ 160).g.Symbol || uid;
+	module.exports = uid;
+
+/***/ },
+/* 244 */
+/*!*************************************************************!*\
+  !*** ./~/babel-runtime/~/core-js/library/modules/$.iter.js ***!
+  \*************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
 	'use strict';
+	var $                 = __webpack_require__(/*! ./$ */ 160)
+	  , cof               = __webpack_require__(/*! ./$.cof */ 245)
+	  , classof           = cof.classof
+	  , assert            = __webpack_require__(/*! ./$.assert */ 248)
+	  , assertObject      = assert.obj
+	  , SYMBOL_ITERATOR   = __webpack_require__(/*! ./$.wks */ 246)('iterator')
+	  , FF_ITERATOR       = '@@iterator'
+	  , Iterators         = __webpack_require__(/*! ./$.shared */ 247)('iterators')
+	  , IteratorPrototype = {};
+	// 25.1.2.1.1 %IteratorPrototype%[@@iterator]()
+	setIterator(IteratorPrototype, $.that);
+	function setIterator(O, value){
+	  $.hide(O, SYMBOL_ITERATOR, value);
+	  // Add iterator for FF iterator protocol
+	  if(FF_ITERATOR in [])$.hide(O, FF_ITERATOR, value);
+	}
 	
-	var weapons_list = {
-	  innersphere: [{ weapon_id: 123, ghost_limit: 0, type: 'las', name: 'SMALL LASER', cooldown_time: 2.25, heat: 3, damage: 3 }, { weapon_id: 123, ghost_limit: 0, type: 'las', name: 'SMALL PULSE LASER', cooldown_time: 2.25, heat: 3, damage: 4 }, { weapon_id: 123, ghost_limit: 6, type: 'las', name: 'MEDIUM LASER', cooldown_time: 3, heat: 4, damage: 5, ghost_heat_group: 'mlas' }, { weapon_id: 123, ghost_limit: 0, type: 'las', name: 'MEDIUM PULSE LASER', cooldown_time: 3, heat: 4, damage: 6 }, { weapon_id: 123, ghost_limit: 3, type: 'las', name: 'LARGE LASER', cooldown_time: 3.25, heat: 7, damage: 9, ghost_heat_group: 'llas' }, { weapon_id: 123, ghost_limit: 3, type: 'las', name: 'LARGE PULSE LASER', cooldown_time: 3.25, heat: 7, damage: 11, ghost_heat_group: 'llas' }, { weapon_id: 123, ghost_limit: 0, type: 'las', name: 'FLAMER', cooldown_time: 1, heat: 1, damage: 0.7 }, { weapon_id: 123, ghost_limit: 2, type: 'las', name: 'PPC', cooldown_time: 4, heat: 10, damage: 11, ghost_heat_group: 'ppc' }, { weapon_id: 123, ghost_limit: 2, type: 'las', name: 'ER PPC', cooldown_time: 4, heat: 15, damage: 11, ghost_heat_group: 'ppc' }, { weapon_id: 123, ghost_limit: 0, type: 'bal', name: 'AC 5', cooldown_time: 1.66, heat: 1, damage: 5 }, { weapon_id: 123, ghost_limit: 0, type: 'bal', name: 'UAC 5', cooldown_time: 1.66, heat: 1, damage: 5 }, { weapon_id: 123, ghost_limit: 0, type: 'bal', name: 'AC 10', cooldown_time: 2.5, heat: 3, damage: 10 }, { weapon_id: 123, ghost_limit: 1, type: 'bal', name: 'AC 20', cooldown_time: 4, heat: 6, damage: 20, ghost_heat_group: 'ac20' }, { weapon_id: 123, ghost_limit: 0, type: 'bal', name: 'MACHINE GUN', cooldown_time: .1, heat: 0, damage: 0.08 }, { weapon_id: 123, ghost_limit: 0, type: 'bal', name: 'LB 10X', cooldown_time: 2.5, heat: 2, damage: 10 }, { weapon_id: 123, ghost_limit: 0, type: 'bal', name: 'GAUSS RIFLE', cooldown_time: 4, heat: 1, damage: 15 }, { weapon_id: 123, ghost_limit: 4, type: 'mis', name: 'SRM 2', cooldown_time: 2, heat: 2, damage: 4, ghost_heat_group: 'srm' }, { weapon_id: 123, ghost_limit: 3, type: 'mis', name: 'SRM 4', cooldown_time: 3, heat: 2, damage: 8, ghost_heat_group: 'srm' }, { weapon_id: 123, ghost_limit: 3, type: 'mis', name: 'SRM 6', cooldown_time: 4, heat: 4, damage: 12, ghost_heat_group: 'srm' }, { weapon_id: 123, ghost_limit: 4, type: 'mis', name: 'STREAK SRM 2', cooldown_time: 3.5, heat: 2, damage: 4, ghost_heat_group: 'ssrm' }, { weapon_id: 123, ghost_limit: 3, type: 'mis', name: 'LRM 5', cooldown_time: 3.5, heat: 2, damage: 5, ghost_heat_group: 'lrm' }, { weapon_id: 123, ghost_limit: 2, type: 'mis', name: 'LRM 10', cooldown_time: 4, heat: 4, damage: 10, ghost_heat_group: 'lrm' }, { weapon_id: 123, ghost_limit: 2, type: 'mis', name: 'LRM 15', cooldown_time: 4.5, heat: 5, damage: 15, ghost_heat_group: 'lrm' }, { weapon_id: 123, ghost_limit: 2, type: 'mis', name: 'LRM 20', cooldown_time: 6, heat: 6, damage: 20, ghost_heat_group: 'lrm' }],
-	
-	  clan: [{ weapon_id: 123, ghost_limit: 6, type: 'las', name: 'C-ER SMALL LASER', cooldown_time: 2.25, heat: 3, damage: 5, ghost_heat_group: 'clas' }, { weapon_id: 123, ghost_limit: 6, type: 'las', name: 'C-SMALL PULSE LASER', cooldown_time: 2.25, heat: 3, damage: 6, ghost_heat_group: 'clas' }, { weapon_id: 123, ghost_limit: 6, type: 'las', name: 'C-ER MEDIUM LASER', cooldown_time: 3, heat: 6, damage: 7, ghost_heat_group: 'clas' }, { weapon_id: 123, ghost_limit: 6, type: 'las', name: 'C-MEDIUM PULSE LASER', cooldown_time: 3, heat: 6, damage: 8, ghost_heat_group: 'clas' }, { weapon_id: 123, ghost_limit: 2, type: 'las', name: 'C-ER LARGE LASER', cooldown_time: 3.25, heat: 10, damage: 11, ghost_heat_group: 'llas' }, { weapon_id: 123, ghost_limit: 2, type: 'las', name: 'C-LARGE PULSE LASER', cooldown_time: 3.25, heat: 10, damage: 13, ghost_heat_group: 'llas' }, { weapon_id: 123, ghost_limit: 0, type: 'las', name: 'C-FLAMER', cooldown_time: 1, heat: 1, damage: 0.7 }, { weapon_id: 123, ghost_limit: 2, type: 'las', name: 'C-ER PPC', cooldown_time: 4, heat: 15, damage: 15, ghost_heat_group: 'ppc' }, { weapon_id: 123, ghost_limit: 0, type: 'bal', name: 'C-AC 5', cooldown_time: 1.66, heat: 1, damage: 5 }, { weapon_id: 123, ghost_limit: 0, type: 'bal', name: 'C-UAC 5', cooldown_time: 1.66, heat: 1, damage: 5 }, { weapon_id: 123, ghost_limit: 0, type: 'bal', name: 'C-AC 10', cooldown_time: 2.5, heat: 3, damage: 10 }, { weapon_id: 123, ghost_limit: 1, type: 'bal', name: 'C-AC 20', cooldown_time: 4, heat: 6, damage: 20, ghost_heat_group: 'ac20' }, { weapon_id: 123, ghost_limit: 4, type: 'mis', name: 'C-SRM 2', cooldown_time: 2, heat: 2, damage: 4, ghost_heat_group: 'srm' }, { weapon_id: 123, ghost_limit: 3, type: 'mis', name: 'C-SRM 4', cooldown_time: 3, heat: 2, damage: 8, ghost_heat_group: 'srm' }, { weapon_id: 123, ghost_limit: 3, type: 'mis', name: 'C-SRM 6', cooldown_time: 4, heat: 4, damage: 12, ghost_heat_group: 'srm' }, { weapon_id: 123, ghost_limit: 3, type: 'mis', name: 'C-LRM 5', cooldown_time: 3.5, heat: 2, damage: 5, ghost_heat_group: 'lrm' }, { weapon_id: 123, ghost_limit: 2, type: 'mis', name: 'C-LRM 10', cooldown_time: 4, heat: 4, damage: 10, ghost_heat_group: 'lrm' }, { weapon_id: 123, ghost_limit: 2, type: 'mis', name: 'C-LRM 15', cooldown_time: 4.5, heat: 5, damage: 15, ghost_heat_group: 'lrm' }, { weapon_id: 123, ghost_limit: 2, type: 'mis', name: 'C-LRM 20', cooldown_time: 6, heat: 6, damage: 20, ghost_heat_group: 'lrm' }]
+	module.exports = {
+	  // Safari has buggy iterators w/o `next`
+	  BUGGY: 'keys' in [] && !('next' in [].keys()),
+	  Iterators: Iterators,
+	  step: function(done, value){
+	    return {value: value, done: !!done};
+	  },
+	  is: function(it){
+	    var O      = Object(it)
+	      , Symbol = $.g.Symbol;
+	    return (Symbol && Symbol.iterator || FF_ITERATOR) in O
+	      || SYMBOL_ITERATOR in O
+	      || $.has(Iterators, classof(O));
+	  },
+	  get: function(it){
+	    var Symbol = $.g.Symbol
+	      , getIter;
+	    if(it != undefined){
+	      getIter = it[Symbol && Symbol.iterator || FF_ITERATOR]
+	        || it[SYMBOL_ITERATOR]
+	        || Iterators[classof(it)];
+	    }
+	    assert($.isFunction(getIter), it, ' is not iterable!');
+	    return assertObject(getIter.call(it));
+	  },
+	  set: setIterator,
+	  create: function(Constructor, NAME, next, proto){
+	    Constructor.prototype = $.create(proto || IteratorPrototype, {next: $.desc(1, next)});
+	    cof.set(Constructor, NAME + ' Iterator');
+	  }
 	};
+
+/***/ },
+/* 245 */
+/*!************************************************************!*\
+  !*** ./~/babel-runtime/~/core-js/library/modules/$.cof.js ***!
+  \************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	var $        = __webpack_require__(/*! ./$ */ 160)
+	  , TAG      = __webpack_require__(/*! ./$.wks */ 246)('toStringTag')
+	  , toString = {}.toString;
+	function cof(it){
+	  return toString.call(it).slice(8, -1);
+	}
+	cof.classof = function(it){
+	  var O, T;
+	  return it == undefined ? it === undefined ? 'Undefined' : 'Null'
+	    : typeof (T = (O = Object(it))[TAG]) == 'string' ? T : cof(O);
+	};
+	cof.set = function(it, tag, stat){
+	  if(it && !$.has(it = stat ? it : it.prototype, TAG))$.hide(it, TAG, tag);
+	};
+	module.exports = cof;
+
+/***/ },
+/* 246 */
+/*!************************************************************!*\
+  !*** ./~/babel-runtime/~/core-js/library/modules/$.wks.js ***!
+  \************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	var global = __webpack_require__(/*! ./$ */ 160).g
+	  , store  = __webpack_require__(/*! ./$.shared */ 247)('wks');
+	module.exports = function(name){
+	  return store[name] || (store[name] =
+	    global.Symbol && global.Symbol[name] || __webpack_require__(/*! ./$.uid */ 243).safe('Symbol.' + name));
+	};
+
+/***/ },
+/* 247 */
+/*!***************************************************************!*\
+  !*** ./~/babel-runtime/~/core-js/library/modules/$.shared.js ***!
+  \***************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	var $      = __webpack_require__(/*! ./$ */ 160)
+	  , SHARED = '__core-js_shared__'
+	  , store  = $.g[SHARED] || ($.g[SHARED] = {});
+	module.exports = function(key){
+	  return store[key] || (store[key] = {});
+	};
+
+/***/ },
+/* 248 */
+/*!***************************************************************!*\
+  !*** ./~/babel-runtime/~/core-js/library/modules/$.assert.js ***!
+  \***************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	var $ = __webpack_require__(/*! ./$ */ 160);
+	function assert(condition, msg1, msg2){
+	  if(!condition)throw TypeError(msg2 ? msg1 + msg2 : msg1);
+	}
+	assert.def = $.assertDefined;
+	assert.fn = function(it){
+	  if(!$.isFunction(it))throw TypeError(it + ' is not a function!');
+	  return it;
+	};
+	assert.obj = function(it){
+	  if(!$.isObject(it))throw TypeError(it + ' is not an object!');
+	  return it;
+	};
+	assert.inst = function(it, Constructor, name){
+	  if(!(it instanceof Constructor))throw TypeError(name + ": use the 'new' operator!");
+	  return it;
+	};
+	module.exports = assert;
+
+/***/ },
+/* 249 */
+/*!********************************************************************!*\
+  !*** ./~/babel-runtime/~/core-js/library/modules/$.iter-define.js ***!
+  \********************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	var $def            = __webpack_require__(/*! ./$.def */ 166)
+	  , $redef          = __webpack_require__(/*! ./$.redef */ 250)
+	  , $               = __webpack_require__(/*! ./$ */ 160)
+	  , cof             = __webpack_require__(/*! ./$.cof */ 245)
+	  , $iter           = __webpack_require__(/*! ./$.iter */ 244)
+	  , SYMBOL_ITERATOR = __webpack_require__(/*! ./$.wks */ 246)('iterator')
+	  , FF_ITERATOR     = '@@iterator'
+	  , KEYS            = 'keys'
+	  , VALUES          = 'values'
+	  , Iterators       = $iter.Iterators;
+	module.exports = function(Base, NAME, Constructor, next, DEFAULT, IS_SET, FORCE){
+	  $iter.create(Constructor, NAME, next);
+	  function createMethod(kind){
+	    function $$(that){
+	      return new Constructor(that, kind);
+	    }
+	    switch(kind){
+	      case KEYS: return function keys(){ return $$(this); };
+	      case VALUES: return function values(){ return $$(this); };
+	    } return function entries(){ return $$(this); };
+	  }
+	  var TAG      = NAME + ' Iterator'
+	    , proto    = Base.prototype
+	    , _native  = proto[SYMBOL_ITERATOR] || proto[FF_ITERATOR] || DEFAULT && proto[DEFAULT]
+	    , _default = _native || createMethod(DEFAULT)
+	    , methods, key;
+	  // Fix native
+	  if(_native){
+	    var IteratorPrototype = $.getProto(_default.call(new Base));
+	    // Set @@toStringTag to native iterators
+	    cof.set(IteratorPrototype, TAG, true);
+	    // FF fix
+	    if($.FW && $.has(proto, FF_ITERATOR))$iter.set(IteratorPrototype, $.that);
+	  }
+	  // Define iterator
+	  if($.FW || FORCE)$iter.set(proto, _default);
+	  // Plug for library
+	  Iterators[NAME] = _default;
+	  Iterators[TAG]  = $.that;
+	  if(DEFAULT){
+	    methods = {
+	      keys:    IS_SET            ? _default : createMethod(KEYS),
+	      values:  DEFAULT == VALUES ? _default : createMethod(VALUES),
+	      entries: DEFAULT != VALUES ? _default : createMethod('entries')
+	    };
+	    if(FORCE)for(key in methods){
+	      if(!(key in proto))$redef(proto, key, methods[key]);
+	    } else $def($def.P + $def.F * $iter.BUGGY, NAME, methods);
+	  }
+	};
+
+/***/ },
+/* 250 */
+/*!**************************************************************!*\
+  !*** ./~/babel-runtime/~/core-js/library/modules/$.redef.js ***!
+  \**************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = __webpack_require__(/*! ./$ */ 160).hide;
+
+/***/ },
+/* 251 */
+/*!**************************************************************************!*\
+  !*** ./~/babel-runtime/~/core-js/library/modules/es6.string.iterator.js ***!
+  \**************************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	var set   = __webpack_require__(/*! ./$ */ 160).set
+	  , $at   = __webpack_require__(/*! ./$.string-at */ 252)(true)
+	  , ITER  = __webpack_require__(/*! ./$.uid */ 243).safe('iter')
+	  , $iter = __webpack_require__(/*! ./$.iter */ 244)
+	  , step  = $iter.step;
 	
-	module.exports = weapons_list;
+	// 21.1.3.27 String.prototype[@@iterator]()
+	__webpack_require__(/*! ./$.iter-define */ 249)(String, 'String', function(iterated){
+	  set(this, ITER, {o: String(iterated), i: 0});
+	// 21.1.5.2.1 %StringIteratorPrototype%.next()
+	}, function(){
+	  var iter  = this[ITER]
+	    , O     = iter.o
+	    , index = iter.i
+	    , point;
+	  if(index >= O.length)return step(1);
+	  point = $at(O, index);
+	  iter.i += point.length;
+	  return step(0, point);
+	});
+
+/***/ },
+/* 252 */
+/*!******************************************************************!*\
+  !*** ./~/babel-runtime/~/core-js/library/modules/$.string-at.js ***!
+  \******************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	// true  -> String#at
+	// false -> String#codePointAt
+	var $ = __webpack_require__(/*! ./$ */ 160);
+	module.exports = function(TO_STRING){
+	  return function(that, pos){
+	    var s = String($.assertDefined(that))
+	      , i = $.toInteger(pos)
+	      , l = s.length
+	      , a, b;
+	    if(i < 0 || i >= l)return TO_STRING ? '' : undefined;
+	    a = s.charCodeAt(i);
+	    return a < 0xd800 || a > 0xdbff || i + 1 === l
+	      || (b = s.charCodeAt(i + 1)) < 0xdc00 || b > 0xdfff
+	        ? TO_STRING ? s.charAt(i) : a
+	        : TO_STRING ? s.slice(i, i + 2) : (a - 0xd800 << 10) + (b - 0xdc00) + 0x10000;
+	  };
+	};
+
+/***/ },
+/* 253 */
+/*!************************************************************************!*\
+  !*** ./~/babel-runtime/~/core-js/library/modules/core.iter-helpers.js ***!
+  \************************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	var core  = __webpack_require__(/*! ./$ */ 160).core
+	  , $iter = __webpack_require__(/*! ./$.iter */ 244);
+	core.isIterable  = $iter.is;
+	core.getIterator = $iter.get;
 
 /***/ }
 /******/ ]);

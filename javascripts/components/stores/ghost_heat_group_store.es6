@@ -1,8 +1,10 @@
 import AppDispatcher from '../app_dispatcher'
 import {EventEmitter} from 'events'
 import HeatConstants from '../constants/heat_constants'
+import WeaponConstants from '../constants/weapon_constants'
 import HeatStore from '../stores/heat_store'
 import HeatActions from '../actions/heat_actions'
+import WeaponStore from '../stores/weapon_store'
 
 /**
  * Store data format
@@ -13,23 +15,39 @@ import HeatActions from '../actions/heat_actions'
  *                                            heat group without triggering ghost heat
  *        {integer} current                 - number of times a weapon has been fired within the `trigger_time`
  *         {object} timer=undefined         - The 'setInterval' object for the weapon group that reduces trigger_time by a unit per tick
- *          {float} multiplier              - Ghost heat multiplier for each weapon fired beyond the limit
  *
  *
  */
 var data = {
-  mlas:    {trigger_time: 0, current: 0, timer: undefined, multiplier: 1 },
-  llas:    {trigger_time: 0, current: 0, timer: undefined, multiplier: 2.8 },
-  ppc:     {trigger_time: 0, current: 0, timer: undefined, multiplier: 7.0 },
-  erppc:   {trigger_time: 0, current: 0, timer: undefined, multiplier: 4.5 },
-  lrm:     {trigger_time: 0, current: 0, timer: undefined, multiplier: 2.8 },
-  ac2:     {trigger_time: 0, current: 0, timer: undefined, multiplier: 1 },
-  ac20:    {trigger_time: 0, current: 0, timer: undefined, multiplier: 24 },
-  srm:     {trigger_time: 0, current: 0, timer: undefined, multiplier: 1 },
-  ssrm:    {trigger_time: 0, current: 0, timer: undefined, multiplier: 1 },
+  // mlas:    {trigger_time: 0, current: 0, timer: undefined, multiplier: 1 },
+  // llas:    {trigger_time: 0, current: 0, timer: undefined, multiplier: 2.8 },
+  // ppc:     {trigger_time: 0, current: 0, timer: undefined, multiplier: 7.0 },
+  // erppc:   {trigger_time: 0, current: 0, timer: undefined, multiplier: 4.5 },
+  // lrm:     {trigger_time: 0, current: 0, timer: undefined, multiplier: 2.8 },
+  // ac2:     {trigger_time: 0, current: 0, timer: undefined, multiplier: 1 },
+  // ac20:    {trigger_time: 0, current: 0, timer: undefined, multiplier: 24 },
+  // srm:     {trigger_time: 0, current: 0, timer: undefined, multiplier: 1 },
+  // ssrm:    {trigger_time: 0, current: 0, timer: undefined, multiplier: 1 },
+  // clas:    {trigger_time: 0, current: 0, timer: undefined, multiplier: 1 },
+  // cuac5:   {trigger_time: 0, current: 0, timer: undefined, multiplier: 1},
+  // cac5:   {trigger_time: 0, current: 0, timer: undefined, multiplier: 1},
+  // cac10:   {trigger_time: 0, current: 0, timer: undefined, multiplier: 1},
+  // cac20:   {trigger_time: 0, current: 0, timer: undefined, multiplier: 1},
 }
 
 var CHANGE = 'GHOST_HEAT_GROUP_UPDATED'
+
+/**
+ * Register a weapon's ghost heat group
+ * @param {string} id
+ */
+var register = function(ghost_heat_group_id) {
+  // Only register once
+  if(typeof(data[ghost_heat_group_id]) == 'undefined'){
+    data[ghost_heat_group_id] = {trigger_time: 0, current: 0, timer: undefined}
+  }
+}
+
 
 /**
  *
@@ -107,7 +125,7 @@ var include_ghost_heat = function(weapon) {
 
   if(ghost_heat_group.current > weapon.ghost_limit){
 
-    var ghost_heat_amount = weapon.heat *  ghost_heat_group.multiplier * heat_scale(ghost_heat_group.current)
+    var ghost_heat_amount = weapon.heat *  weapon.multiplier * heat_scale(ghost_heat_group.current)
     var ghost_linked_fire_sequence_position = ghost_heat_group.current
 
     setTimeout(function(){
@@ -167,6 +185,7 @@ _GhostHeatGroupStore.dispatch_token = AppDispatcher.register((payload) => {
 
   var action_type = payload.action_type
   switch(action_type) {
+
     case HeatConstants.HEAT_APPLY:
       AppDispatcher.waitFor([HeatStore.dispatch_token])
       if(payload.weapon.ghost_limit !== 0) {
@@ -174,6 +193,12 @@ _GhostHeatGroupStore.dispatch_token = AppDispatcher.register((payload) => {
         _GhostHeatGroupStore.emit(CHANGE)
       }
       break
+
+    case WeaponConstants.WEAPON_EQUIP:
+      AppDispatcher.waitFor([WeaponStore.dispatch_token])
+      register(payload.weapon_props.ghost_heat_group)
+      break
+
   }
 })
 

@@ -13,13 +13,14 @@ triggers {
   -webkit-flex-direction: row;
       -ms-flex-direction: row;
           flex-direction: row;
-  max-width: 420px;
+  margin-left: auto;
+  margin-right: 25%;
   -webkit-box-align: center;
   -webkit-align-items: center;
       -ms-flex-align: center;
           align-items: center; }
 
-/* line 10, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/weapon_group_trigger.sass */
+/* line 12, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/weapon_group_trigger.sass */
 group_trigger_wrapper {
   display: -webkit-box;
   display: -webkit-flex;
@@ -35,10 +36,13 @@ group_trigger_wrapper {
           flex-wrap: nowrap;
   -webkit-justify-content: space-around;
       -ms-flex-pack: distribute;
-          justify-content: space-around;
-  width: 120px; }
+          justify-content: space-around; }
+  /* line 18, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/weapon_group_trigger.sass */
+  group_trigger_wrapper span {
+    color: gray;
+    margin-right: 3px; }
 
-/* line 17, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/weapon_group_trigger.sass */
+/* line 23, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/weapon_group_trigger.sass */
 weapon_group_trigger {
   border: 1px solid #ce3b3b;
   border-radius: 3px;
@@ -51,4 +55,5 @@ weapon_group_trigger {
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
-          user-select: none; }
+          user-select: none;
+  margin-right: 3px; }

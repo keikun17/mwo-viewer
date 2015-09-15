@@ -24426,6 +24426,11 @@
 	          React.createElement(
 	            'group_trigger_wrapper',
 	            null,
+	            React.createElement(
+	              'span',
+	              null,
+	              'Use the num row on your Keyboard'
+	            ),
 	            React.createElement(_group_trigger2['default'], { group_id: '1' }),
 	            React.createElement(_group_trigger2['default'], { group_id: '2' }),
 	            React.createElement(_group_trigger2['default'], { group_id: '3' }),

@@ -31,6 +31,7 @@ class Equipment extends React.Component {
       <triggers>
         <alpha_strike onClick={this.fireAllWeapons.bind(this)} >Alpha Strike</alpha_strike>
         <group_trigger_wrapper>
+          <span>Use the num row on your Keyboard</span>
           <GroupTrigger group_id="1" />
           <GroupTrigger group_id="2" />
           <GroupTrigger group_id="3" />

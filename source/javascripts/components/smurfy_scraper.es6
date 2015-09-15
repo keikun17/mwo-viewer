@@ -8,6 +8,7 @@ export default class SmurfyScraper extends React.Component {
   constructor(props) {
     super(props)
     this.scrape = this.scrape.bind(this)
+    this.state = {}
   }
 
   componentDidMount() {
@@ -27,29 +28,37 @@ export default class SmurfyScraper extends React.Component {
 
     var oReq= new XMLHttpRequest();
 
-    var updateProgress = function() {
-      // console.log("1")
-    }
-    var transferFailed = function() {
-      // console.log("3")
-    }
-    var transferCanceled = function() {
-      // console.log("4")
-    }
-
-    oReq.addEventListener("progress", updateProgress, false);
+    oReq.addEventListener("progress", this.updateProgress.bind(this), false);
+    oReq.addEventListener("error", this.transferFailed.bind(this), false);
+    oReq.addEventListener("abort", this.transferCanceled.bind(this), false);
     oReq.addEventListener("load", this.transferComplete.bind(this), false);
-    oReq.addEventListener("error", transferFailed, false);
-    oReq.addEventListener("abort", transferCanceled, false);
+
 
     oReq.open("GET", yql_url, true)
     oReq.send()
   }
 
 
+  updateProgress(data) {
+    this.setState({className: 'loading'})
+  }
+
+  transferFailed(data) {
+    this.setState({className: 'errored'})
+  }
+
+  transferCanceled() {
+    console.log("transfer cancelled")
+  }
+
+
   transferComplete(data) {
     var responseText = JSON.parse(data.currentTarget.responseText)
-    var result_body = JSON.parse(responseText.query.results.body)
+    try {
+      var result_body = JSON.parse(responseText.query.results.body)
+    } catch (err) {
+      this.setState({className: 'errored'})
+    }
 
     // console.log("Result body is ")
     // console.log(result_body)
@@ -85,6 +94,8 @@ export default class SmurfyScraper extends React.Component {
         WeaponActions.equip({props: {weapon: weapon}})
     }
 
+    this.setState({className: 'loaded'})
+
   }
 
   render() {
@@ -93,7 +104,7 @@ export default class SmurfyScraper extends React.Component {
       <form onSubmit={this.scrape}>
       <div className="input-group">
       <label htmlFor="smurfy_url">Import from Smurfy</label>
-      <input id="smurfy_url" ref="smurfy_urler"/>
+      <input className={this.state.className} id="smurfy_url" ref="smurfy_urler"/>
       </div>
       </form>
       </smurfy_scraper>

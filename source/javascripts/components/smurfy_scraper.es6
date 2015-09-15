@@ -65,6 +65,7 @@ export default class SmurfyScraper extends React.Component {
       }
     }
 
+
     // console.log("item ids are ")
     // console.log(item_ids)
 
@@ -87,11 +88,15 @@ export default class SmurfyScraper extends React.Component {
   }
 
   render() {
-    return <smurfy_scraper>
-    <form onSubmit={this.scrape}>
+    return (
+      <smurfy_scraper>
+      <form onSubmit={this.scrape}>
+      <div className="input-group">
       <label htmlFor="smurfy_url">Import from Smurfy</label>
       <input id="smurfy_url" ref="smurfy_urler"/>
-    </form>
-    </smurfy_scraper>
+      </div>
+      </form>
+      </smurfy_scraper>
+    )
   }
 }

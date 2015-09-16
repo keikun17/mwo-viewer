@@ -13,7 +13,7 @@ import CooldownActions from '../actions/cooldown_actions'
  */
 var data = {
   value: 0,
-  capacity: '---',
+  capacity: 0,
 }
 
 /**
@@ -68,7 +68,7 @@ var recalculate_capacity = function() {
   var internal_capacity = heatsink_store_data.internal_heatsinks * internal_heatsink_capacity_modifier
   var external_capacity = heatsink_store_data.external_heatsinks * external_heatsink_capacity_modifier
 
-  var capacity = (base_capacity + internal_capacity + external_capacity).toPrecision(2)
+  var capacity = +((base_capacity + internal_capacity + external_capacity))
 
   data.capacity = capacity
 }

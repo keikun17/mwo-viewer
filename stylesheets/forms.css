@@ -4,7 +4,7 @@
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  margin-bottom: 6px; }
+  margin-bottom: 10px; }
   /* line 5, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/forms.sass */
   .input-group label {
     -webkit-box-flex: 1;

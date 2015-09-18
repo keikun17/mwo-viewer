@@ -1,5 +1,6 @@
 /* line 1, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/armory.sass */
 armory {
+  margin-left: auto;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -10,8 +11,4 @@ armory {
       -ms-flex-direction: column;
           flex-direction: column;
   padding-left: 10px;
-  -webkit-box-flex: 1;
-  -webkit-flex: 1 0 0;
-      -ms-flex: 1 0 0;
-          flex: 1 0 0;
   min-width: 231px; }

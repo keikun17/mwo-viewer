@@ -22700,7 +22700,7 @@
 	      React.createElement(
 	        'h1',
 	        null,
-	        'Info'
+	        'Information'
 	      ),
 	      React.createElement(
 	        'info_wrapper',
@@ -22836,32 +22836,65 @@
 	    key: "render",
 	    value: function render() {
 	      return React.createElement(
-	        "current_heat",
-	        { className: "info" },
+	        "div",
+	        null,
 	        React.createElement(
-	          "span",
-	          { className: "info-title" },
-	          "Heat"
+	          "current_heat",
+	          { className: "info" },
+	          React.createElement(
+	            "span",
+	            { className: "info-title" },
+	            "Heat"
+	          ),
+	          React.createElement(
+	            "span",
+	            { className: "info-value" },
+	            this.state.value.toFixed(2)
+	          ),
+	          React.createElement(
+	            "span",
+	            { className: "info-value-divider" },
+	            "|"
+	          ),
+	          React.createElement(
+	            "span",
+	            { className: "info-value" },
+	            this.state.capacity
+	          ),
+	          React.createElement(
+	            "span",
+	            { className: "info-label" },
+	            "Current / Capacity"
+	          )
 	        ),
 	        React.createElement(
-	          "span",
-	          { className: "info-value" },
-	          this.state.value.toFixed(2)
-	        ),
-	        React.createElement(
-	          "span",
-	          { className: "info-value-divider" },
-	          "/"
-	        ),
-	        React.createElement(
-	          "span",
-	          { className: "info-value" },
-	          this.state.capacity
-	        ),
-	        React.createElement(
-	          "span",
-	          { className: "info-label" },
-	          "Current / Capacity"
+	          "x_cont",
+	          null,
+	          React.createElement(
+	            "x_left",
+	            null,
+	            this.state.value.toFixed(2),
+	            React.createElement(
+	              "label",
+	              null,
+	              "Current"
+	            )
+	          ),
+	          React.createElement(
+	            "x_div",
+	            null,
+	            "/"
+	          ),
+	          React.createElement(
+	            "x_right",
+	            null,
+	            this.state.capacity.toFixed(2),
+	            React.createElement(
+	              "label",
+	              null,
+	              "Capacity"
+	            )
+	          )
 	        )
 	      );
 	    }
@@ -23063,7 +23096,7 @@
 	 */
 	var data = {
 	  value: 0,
-	  capacity: '---'
+	  capacity: 0
 	};
 	
 	/**
@@ -23117,7 +23150,7 @@
 	  var internal_capacity = heatsink_store_data.internal_heatsinks * internal_heatsink_capacity_modifier;
 	  var external_capacity = heatsink_store_data.external_heatsinks * external_heatsink_capacity_modifier;
 	
-	  var capacity = (base_capacity + internal_capacity + external_capacity).toPrecision(2);
+	  var capacity = +(base_capacity + internal_capacity + external_capacity);
 	
 	  data.capacity = capacity;
 	};

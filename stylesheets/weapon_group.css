@@ -7,9 +7,9 @@ weapon_group_wrapper {
 weapon_group {
   padding: 2px;
   margin-right: 2px;
-  border: 1px solid green;
+  border: 1px solid #259325;
   font-size: 0.8em; }
   /* line 11, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/weapon_group.sass */
   weapon_group.selected {
     color: black;
-    background-color: green; }
+    background-color: #33cc33; }

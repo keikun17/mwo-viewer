@@ -22199,13 +22199,17 @@
 	          { onSubmit: this.scrape },
 	          _react2['default'].createElement(
 	            'div',
-	            { className: 'input-group' },
+	            { className: 'input-group scraper_form' },
 	            _react2['default'].createElement(
 	              'label',
 	              { htmlFor: 'smurfy_url' },
 	              'Import from Smurfy'
 	            ),
-	            _react2['default'].createElement('input', { className: this.state.className, id: 'smurfy_url', ref: 'smurfy_urler' })
+	            _react2['default'].createElement(
+	              'div',
+	              null,
+	              _react2['default'].createElement('input', { className: this.state.className, id: 'smurfy_url', ref: 'smurfy_urler' })
+	            )
 	          )
 	        )
 	      );

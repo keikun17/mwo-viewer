@@ -37,7 +37,8 @@ armory {
       -ms-flex-direction: column;
           flex-direction: column;
   padding-left: 10px;
-  min-width: 231px; }
+  min-width: 231px;
+  padding-right: 70px; }
 /* line 1, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/cooldown_timer.sass */
 cooldown_timer {
   width: 3em;
@@ -169,16 +170,17 @@ faction {
             flex: 1; }
 /* line 1, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/info.sass */
 info {
-  padding-left: 10px;
   background-color: #202020;
-  max-width: 255px;
-  min-width: 255px; }
-  /* line 8, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/info.sass */
+  width: 255px;
+  width: 255px;
+  padding-left: 40px;
+  padding-right: 40px; }
+  /* line 9, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/info.sass */
   info h1 {
     margin-left: 20px;
     color: #f3e016; }
 
-/* line 12, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/info.sass */
+/* line 13, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/info.sass */
 info_wrapper {
   display: -webkit-box;
   display: -webkit-flex;
@@ -188,7 +190,7 @@ info_wrapper {
       -ms-flex-wrap: wrap;
           flex-wrap: wrap; }
 
-/* line 16, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/info.sass */
+/* line 17, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/info.sass */
 .info {
   display: inline-block;
   -webkit-box-flex: 1;
@@ -201,29 +203,29 @@ info_wrapper {
   padding: 5px 10px;
   margin: 20px 20px; }
 
-/* line 25, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/info.sass */
+/* line 26, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/info.sass */
 .info-title {
   display: block;
   color: #AFCEEC; }
 
-/* line 29, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/info.sass */
+/* line 30, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/info.sass */
 .info-value {
   font-size: 2em; }
 
-/* line 32, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/info.sass */
+/* line 33, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/info.sass */
 .info-value-divider {
   display: inline;
   color: #939393;
   font-size: 2.4em;
   padding-left: 7px; }
 
-/* line 38, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/info.sass */
+/* line 39, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/info.sass */
 .info-label {
   color: #AFCEEC;
   display: block;
   font-size: 0.8em; }
 
-/* line 44, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/info.sass */
+/* line 45, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/info.sass */
 x_cont {
   display: -webkit-box;
   display: -webkit-flex;
@@ -238,29 +240,29 @@ x_cont {
           justify-content: center;
   width: 215px;
   margin: 20px; }
-  /* line 54, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/info.sass */
+  /* line 55, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/info.sass */
   x_cont x_left {
     font-size: 1.4em;
     width: 45%;
     text-align: right; }
-    /* line 59, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/info.sass */
+    /* line 60, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/info.sass */
     x_cont x_left label {
       display: block;
       font-size: 0.8em;
       color: #AFCEEC; }
-  /* line 63, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/info.sass */
+  /* line 65, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/info.sass */
   x_cont x_div {
     font-size: 1.4em;
     padding: 0 8px;
     width: 10%;
     text-align: center;
     color: #939393; }
-  /* line 69, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/info.sass */
+  /* line 71, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/info.sass */
   x_cont x_right {
     font-size: 1.4em;
     width: 45%;
     text-align: left; }
-    /* line 74, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/info.sass */
+    /* line 76, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/info.sass */
     x_cont x_right label {
       display: block;
       font-size: 0.8em;
@@ -676,20 +678,28 @@ strip_all {
           user-select: none;
   font-weight: 100; }
 /* line 2, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/smurfy_scraper.sass */
+smurfy_scraper label {
+  display: block; }
+/* line 4, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/smurfy_scraper.sass */
 smurfy_scraper input {
+  display: block;
   background-color: gray; }
-  /* line 4, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/smurfy_scraper.sass */
+  /* line 7, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/smurfy_scraper.sass */
   smurfy_scraper input.loading {
     background-color: orange;
     color: #fff; }
-  /* line 7, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/smurfy_scraper.sass */
+  /* line 10, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/smurfy_scraper.sass */
   smurfy_scraper input.loaded {
     background-color: green;
     color: #fff; }
-  /* line 10, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/smurfy_scraper.sass */
+  /* line 13, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/smurfy_scraper.sass */
   smurfy_scraper input.errored {
     background-color: red;
     color: #fff; }
+
+/* line 18, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/smurfy_scraper.sass */
+.scraper_form {
+  display: block !important; }
 /* line 3, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/weapon.sass */
 weapon {
   font-size: 1em;
@@ -728,12 +738,12 @@ weapon_group_wrapper {
 weapon_group {
   padding: 2px;
   margin-right: 2px;
-  border: 1px solid green;
+  border: 1px solid #259325;
   font-size: 0.8em; }
   /* line 11, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/weapon_group.sass */
   weapon_group.selected {
     color: black;
-    background-color: green; }
+    background-color: #33cc33; }
 /* line 3, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/weapon_group_trigger.sass */
 triggers {
   display: -webkit-box;
@@ -821,7 +831,9 @@ html {
 
 /* line 7, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/all.sass */
 body {
-  background-color: #000;
+  background: -webkit-radial-gradient(0px 0px, ellipse farthest-corner, #2d2b2f 0%, #191919 100%) fixed;
+  background: radial-gradient(ellipse farthest-corner at 0px 0px, #2d2b2f 0%, #191919 100%) fixed;
+  background-repeat: no-repeat;
   color: #FFF;
   height: 100%;
   margin: 0;
@@ -829,15 +841,15 @@ body {
   font-family: Roboto, sans-serif;
   font-size: 16px; }
 
-/* line 17, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/all.sass */
+/* line 20, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/all.sass */
 h1, h2, h3, h4, h5 {
   font-family: "Oswald", sans-serif !important;
   font-weight: normal; }
 
-/* line 21, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/all.sass */
+/* line 24, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/all.sass */
 .content {
   height: 100%; }
 
-/* line 24, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/all.sass */
+/* line 28, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/all.sass */
 #app {
   height: 100%; }

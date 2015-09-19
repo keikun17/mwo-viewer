@@ -50,15 +50,17 @@ class CurrentHeat extends React.Component {
       </current_heat>
 
       <x_cont>
-        <x_left>
+        <div className="info_item left">
           {this.state.value.toFixed(2)}
-          <label className="left">Current</label>
-        </x_left>
+          <span className="label">Current</span>
+        </div>
+
         <x_div>/</x_div>
-        <x_right>
+
+        <div className="info_item right">
           {this.state.capacity.toFixed(2)}
-          <label className="right">Capacity</label>
-        </x_right>
+          <span className="label">Capacity</span>
+        </div>
       </x_cont>
     </div>
 

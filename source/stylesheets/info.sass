@@ -44,12 +44,20 @@ info_wrapper
 
 .info_item
   display: flex
-  height: 50px
+  flex-direction: column
+  height: 80px
   font-family: monospace
   border: 1px solid #424242
   justify-content: center
   width: 215px
   margin: 20px
+
+  .title
+    font-size: 1.4em
+    font-weight: bold
+    color: #AFCEEC
+    text-align: center
+
 
 
   span.label
@@ -65,14 +73,18 @@ info_wrapper
     text-align: center
     color: #939393
 
-  .reading
-    height: 2em
-    font-size: 1.4em
-    width: 45%
-    border: none
+  .readings
+    display: flex
+    flex-direction: row
 
-    &.left
-      text-align: right
+    .reading
+      height: 2em
+      font-size: 1.4em
+      width: 45%
+      border: none
 
-    &.right
-      text-align: left
+      &.left
+        text-align: right
+
+      &.right
+        text-align: left

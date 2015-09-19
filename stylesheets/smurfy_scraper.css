@@ -4,20 +4,22 @@ smurfy_scraper label {
 /* line 4, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/smurfy_scraper.sass */
 smurfy_scraper input {
   display: block;
-  background-color: gray; }
-  /* line 7, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/smurfy_scraper.sass */
+  border: none;
+  padding-left: 5px;
+  border-radius: 4px; }
+  /* line 10, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/smurfy_scraper.sass */
   smurfy_scraper input.loading {
     background-color: orange;
     color: #fff; }
-  /* line 10, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/smurfy_scraper.sass */
+  /* line 13, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/smurfy_scraper.sass */
   smurfy_scraper input.loaded {
     background-color: green;
     color: #fff; }
-  /* line 13, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/smurfy_scraper.sass */
+  /* line 16, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/smurfy_scraper.sass */
   smurfy_scraper input.errored {
     background-color: red;
     color: #fff; }
 
-/* line 18, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/smurfy_scraper.sass */
+/* line 21, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/smurfy_scraper.sass */
 .scraper_form {
   display: block !important; }

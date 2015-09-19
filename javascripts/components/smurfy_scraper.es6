@@ -105,7 +105,7 @@ export default class SmurfyScraper extends React.Component {
       <div className="input-group scraper_form">
       <label htmlFor="smurfy_url">Import from Smurfy</label>
       <div>
-      <input className={this.state.className} id="smurfy_url" ref="smurfy_urler"/>
+      <input placeholder="Paste Smurfy URL" className={this.state.className} id="smurfy_url" ref="smurfy_urler"/>
       </div>
       </div>
       </form>

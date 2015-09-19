@@ -22208,7 +22208,7 @@
 	            _react2['default'].createElement(
 	              'div',
 	              null,
-	              _react2['default'].createElement('input', { className: this.state.className, id: 'smurfy_url', ref: 'smurfy_urler' })
+	              _react2['default'].createElement('input', { placeholder: 'Paste Smurfy URL', className: this.state.className, id: 'smurfy_url', ref: 'smurfy_urler' })
 	            )
 	          )
 	        )
@@ -22840,62 +22840,38 @@
 	    key: "render",
 	    value: function render() {
 	      return React.createElement(
-	        "div",
-	        null,
+	        "current_heat",
+	        { className: "info_item" },
 	        React.createElement(
-	          "current_heat",
-	          { className: "info" },
-	          React.createElement(
-	            "span",
-	            { className: "info-title" },
-	            "Heat"
-	          ),
-	          React.createElement(
-	            "span",
-	            { className: "info-value" },
-	            this.state.value.toFixed(2)
-	          ),
-	          React.createElement(
-	            "span",
-	            { className: "info-value-divider" },
-	            "|"
-	          ),
-	          React.createElement(
-	            "span",
-	            { className: "info-value" },
-	            this.state.capacity
-	          ),
-	          React.createElement(
-	            "span",
-	            { className: "info-label" },
-	            "Current / Capacity"
-	          )
+	          "div",
+	          { className: "title" },
+	          "Heat"
 	        ),
 	        React.createElement(
-	          "x_cont",
-	          null,
+	          "div",
+	          { className: "readings" },
 	          React.createElement(
-	            "x_left",
-	            null,
+	            "div",
+	            { className: "reading left" },
 	            this.state.value.toFixed(2),
 	            React.createElement(
-	              "label",
-	              null,
+	              "span",
+	              { className: "label" },
 	              "Current"
 	            )
 	          ),
 	          React.createElement(
-	            "x_div",
-	            null,
-	            "/"
+	            "div",
+	            { className: "divider" },
+	            ":"
 	          ),
 	          React.createElement(
-	            "x_right",
-	            null,
+	            "div",
+	            { className: "reading right" },
 	            this.state.capacity.toFixed(2),
 	            React.createElement(
-	              "label",
-	              null,
+	              "span",
+	              { className: "label" },
 	              "Capacity"
 	            )
 	          )

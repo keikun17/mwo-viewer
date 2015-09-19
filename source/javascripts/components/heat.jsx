@@ -49,19 +49,19 @@ class CurrentHeat extends React.Component {
           <span className="info-label">Current / Capacity</span>
       </current_heat>
 
-      <x_cont>
-        <div className="info_item left">
+      <current_heat className="info_item">
+        <div className="reading left">
           {this.state.value.toFixed(2)}
           <span className="label">Current</span>
         </div>
 
-        <x_div>:</x_div>
+        <div className="divider">:</div>
 
-        <div className="info_item right">
+        <div className="reading right">
           {this.state.capacity.toFixed(2)}
           <span className="label">Capacity</span>
         </div>
-      </x_cont>
+      </current_heat>
     </div>
 
 

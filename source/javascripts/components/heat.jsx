@@ -40,31 +40,22 @@ class CurrentHeat extends React.Component {
 
   render() {
     return (
-      <div>
-      <current_heat className="info">
-          <span className="info-title">Heat</span>
-          <span className="info-value">{this.state.value.toFixed(2)}</span>
-          <span className="info-value-divider">|</span>
-          <span className="info-value">{this.state.capacity}</span>
-          <span className="info-label">Current / Capacity</span>
-      </current_heat>
-
       <current_heat className="info_item">
-        <div className="reading left">
-          {this.state.value.toFixed(2)}
-          <span className="label">Current</span>
-        </div>
+        <div className="title">Heat</div>
+        <div className="readings">
+          <div className="reading left">
+            {this.state.value.toFixed(2)}
+            <span className="label">Current</span>
+          </div>
 
-        <div className="divider">:</div>
+          <div className="divider">:</div>
 
-        <div className="reading right">
-          {this.state.capacity.toFixed(2)}
-          <span className="label">Capacity</span>
+          <div className="reading right">
+            {this.state.capacity.toFixed(2)}
+            <span className="label">Capacity</span>
+          </div>
         </div>
       </current_heat>
-    </div>
-
-
     );
   }
 }

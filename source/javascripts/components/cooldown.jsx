@@ -25,7 +25,7 @@ class Cooldown extends React.Component {
 
   render() {
     return (
-      <current_heat className="info_item">
+      <cooldown className="info_item">
         <div className="title">Cooldown</div>
         <div className="readings">
           <div className="reading left">
@@ -40,7 +40,7 @@ class Cooldown extends React.Component {
             <span className="label">Rate(/s)</span>
           </div>
         </div>
-      </current_heat>
+      </cooldown>
     );
   }
 }

@@ -29,15 +29,15 @@ class Cooldown extends React.Component {
         <div className="title">Cooldown</div>
         <div className="readings">
           <div className="reading left">
-            {this.state.time_to_zero}s
-            <span className="label">Time</span>
+            {this.state.time_to_zero.toFixed(2)}
+            <span className="label">Time(s)</span>
           </div>
 
           <div className="divider">@</div>
 
           <div className="reading right">
-            {this.state.cool_rate}/s
-            <span className="label">Rate</span>
+            {this.state.cool_rate.toFixed(2)}
+            <span className="label">Rate(/s)</span>
           </div>
         </div>
       </current_heat>

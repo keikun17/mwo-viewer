@@ -235,7 +235,7 @@ info_wrapper {
       -ms-flex-direction: column;
           flex-direction: column;
   height: 80px;
-  font-family: monospace;
+  font-family: Roboto mono;
   border: 1px solid #424242;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
@@ -247,14 +247,14 @@ info_wrapper {
   .info_item .title {
     font-size: 1.4em;
     font-weight: bold;
-    color: #AFCEEC;
+    color: #3b85ce;
     text-align: center; }
   /* line 63, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/info.sass */
   .info_item span.label {
     font-size: 1.4em;
     display: block;
     font-size: 0.5em;
-    color: #AFCEEC; }
+    color: #3b87ce; }
   /* line 69, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/info.sass */
   .info_item div.divider {
     font-size: 1.4em;

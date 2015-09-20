@@ -25,14 +25,22 @@ class DamageMeter extends React.Component {
 
   render() {
     return(
-       <damage_meter className="info">
-         <span className="info-title">Damage</span>
-         <span className="info-value">{+(this.state.last.toFixed(2))}</span>
-         <span className="info-value-divider">/</span>
-         <span className="info-value">{+(this.state.total.toFixed(2))}</span>
-         <span className="info-label">Previous / Total</span>
-       </damage_meter>
+      <damage_meter className="info_item">
+        <div className="title">Damage</div>
+        <div className="readings">
+          <div className="reading left">
+            {+(this.state.last.toFixed(2))}
+            <span className="label">Last</span>
+          </div>
 
+          <div className="divider">:</div>
+
+          <div className="reading right">
+            {+(this.state.total.toFixed(2))}
+            <span className="label">Total</span>
+          </div>
+        </div>
+      </damage_meter>
     )
   }
 

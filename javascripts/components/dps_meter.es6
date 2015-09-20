@@ -19,13 +19,9 @@ class DPSMeter extends React.Component {
 
   render() {
     return(
-       <dps_meter className="info">
-         <span className="info-title">DPS</span>
-         <span className="info-value">{this.state.dps}</span>
-         <span className="info-value-divider">/</span>
-         <span className="info-value">{this.state.elapsed_time}s</span>
-         <span className="info-label">DPS / Elapsed</span>
-       </dps_meter>
+      <damage_meter className="info_item">
+        <div className="title">DPS</div>
+      </damage_meter>
     )
   }
 

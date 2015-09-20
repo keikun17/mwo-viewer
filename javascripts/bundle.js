@@ -19374,11 +19374,11 @@
 	
 	var _armory2 = _interopRequireDefault(_armory);
 	
-	var _info = __webpack_require__(/*! ./info */ 209);
+	var _info = __webpack_require__(/*! ./info */ 225);
 	
 	var _info2 = _interopRequireDefault(_info);
 	
-	var _equipment = __webpack_require__(/*! ./equipment */ 228);
+	var _equipment = __webpack_require__(/*! ./equipment */ 244);
 	
 	var _equipment2 = _interopRequireDefault(_equipment);
 	
@@ -20356,7 +20356,7 @@
 	var _smurfy_scraper2 = _interopRequireDefault(_smurfy_scraper);
 	
 	var React = __webpack_require__(/*! react */ 1);
-	var Weapon = __webpack_require__(/*! ./weapon */ 200);
+	var Weapon = __webpack_require__(/*! ./weapon */ 224);
 	
 	var Armory = (function (_React$Component) {
 	  function Armory(props) {
@@ -21979,7 +21979,7 @@
 	
 	var _classCallCheck = __webpack_require__(/*! babel-runtime/helpers/class-call-check */ 171)['default'];
 	
-	var _getIterator = __webpack_require__(/*! babel-runtime/core-js/get-iterator */ 238)['default'];
+	var _getIterator = __webpack_require__(/*! babel-runtime/core-js/get-iterator */ 200)['default'];
 	
 	var _interopRequireDefault = __webpack_require__(/*! babel-runtime/helpers/interop-require-default */ 172)['default'];
 	
@@ -21999,7 +21999,7 @@
 	
 	var _storesArmory_store2 = _interopRequireDefault(_storesArmory_store);
 	
-	var _actionsWeapon_actions = __webpack_require__(/*! ./actions/weapon_actions */ 201);
+	var _actionsWeapon_actions = __webpack_require__(/*! ./actions/weapon_actions */ 216);
 	
 	var _actionsWeapon_actions2 = _interopRequireDefault(_actionsWeapon_actions);
 	
@@ -22224,49 +22224,380 @@
 
 /***/ },
 /* 200 */
-/*!**************************************************!*\
-  !*** ./source/javascripts/components/weapon.jsx ***!
-  \**************************************************/
+/*!*************************************************!*\
+  !*** ./~/babel-runtime/core-js/get-iterator.js ***!
+  \*************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
-	
-	var React = __webpack_require__(/*! react */ 1);
-	var WeaponActions = __webpack_require__(/*! ./actions/weapon_actions */ 201);
-	
-	var Weapon = React.createClass({
-	  displayName: 'Weapon',
-	
-	  render: function render() {
-	    switch (this.props.weapon.type) {
-	      case 'mis':
-	        var weapon_class = 'missile';
-	        break;
-	      case 'las':
-	        var weapon_class = 'laser';
-	        break;
-	      case 'bal':
-	        var weapon_class = 'ballistic';
-	        break;
-	    }
-	
-	    return React.createElement(
-	      'weapon',
-	      { onClick: this._onClick, className: weapon_class },
-	      this.props.weapon.name
-	    );
-	  },
-	
-	  _onClick: function _onClick() {
-	    WeaponActions.equip(this);
-	  }
-	
-	});
-	
-	module.exports = Weapon;
+	module.exports = { "default": __webpack_require__(/*! core-js/library/fn/get-iterator */ 201), __esModule: true };
 
 /***/ },
 /* 201 */
+/*!**************************************************************!*\
+  !*** ./~/babel-runtime/~/core-js/library/fn/get-iterator.js ***!
+  \**************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	__webpack_require__(/*! ../modules/web.dom.iterable */ 202);
+	__webpack_require__(/*! ../modules/es6.string.iterator */ 213);
+	__webpack_require__(/*! ../modules/core.iter-helpers */ 215);
+	module.exports = __webpack_require__(/*! ../modules/$ */ 160).core.getIterator;
+
+/***/ },
+/* 202 */
+/*!***********************************************************************!*\
+  !*** ./~/babel-runtime/~/core-js/library/modules/web.dom.iterable.js ***!
+  \***********************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	__webpack_require__(/*! ./es6.array.iterator */ 203);
+	var $           = __webpack_require__(/*! ./$ */ 160)
+	  , Iterators   = __webpack_require__(/*! ./$.iter */ 206).Iterators
+	  , ITERATOR    = __webpack_require__(/*! ./$.wks */ 208)('iterator')
+	  , ArrayValues = Iterators.Array
+	  , NL          = $.g.NodeList
+	  , HTC         = $.g.HTMLCollection
+	  , NLProto     = NL && NL.prototype
+	  , HTCProto    = HTC && HTC.prototype;
+	if($.FW){
+	  if(NL && !(ITERATOR in NLProto))$.hide(NLProto, ITERATOR, ArrayValues);
+	  if(HTC && !(ITERATOR in HTCProto))$.hide(HTCProto, ITERATOR, ArrayValues);
+	}
+	Iterators.NodeList = Iterators.HTMLCollection = ArrayValues;
+
+/***/ },
+/* 203 */
+/*!*************************************************************************!*\
+  !*** ./~/babel-runtime/~/core-js/library/modules/es6.array.iterator.js ***!
+  \*************************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	var $          = __webpack_require__(/*! ./$ */ 160)
+	  , setUnscope = __webpack_require__(/*! ./$.unscope */ 204)
+	  , ITER       = __webpack_require__(/*! ./$.uid */ 205).safe('iter')
+	  , $iter      = __webpack_require__(/*! ./$.iter */ 206)
+	  , step       = $iter.step
+	  , Iterators  = $iter.Iterators;
+	
+	// 22.1.3.4 Array.prototype.entries()
+	// 22.1.3.13 Array.prototype.keys()
+	// 22.1.3.29 Array.prototype.values()
+	// 22.1.3.30 Array.prototype[@@iterator]()
+	__webpack_require__(/*! ./$.iter-define */ 211)(Array, 'Array', function(iterated, kind){
+	  $.set(this, ITER, {o: $.toObject(iterated), i: 0, k: kind});
+	// 22.1.5.2.1 %ArrayIteratorPrototype%.next()
+	}, function(){
+	  var iter  = this[ITER]
+	    , O     = iter.o
+	    , kind  = iter.k
+	    , index = iter.i++;
+	  if(!O || index >= O.length){
+	    iter.o = undefined;
+	    return step(1);
+	  }
+	  if(kind == 'keys'  )return step(0, index);
+	  if(kind == 'values')return step(0, O[index]);
+	  return step(0, [index, O[index]]);
+	}, 'values');
+	
+	// argumentsList[@@iterator] is %ArrayProto_values% (9.4.4.6, 9.4.4.7)
+	Iterators.Arguments = Iterators.Array;
+	
+	setUnscope('keys');
+	setUnscope('values');
+	setUnscope('entries');
+
+/***/ },
+/* 204 */
+/*!****************************************************************!*\
+  !*** ./~/babel-runtime/~/core-js/library/modules/$.unscope.js ***!
+  \****************************************************************/
+/***/ function(module, exports) {
+
+	module.exports = function(){ /* empty */ };
+
+/***/ },
+/* 205 */
+/*!************************************************************!*\
+  !*** ./~/babel-runtime/~/core-js/library/modules/$.uid.js ***!
+  \************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	var sid = 0;
+	function uid(key){
+	  return 'Symbol('.concat(key === undefined ? '' : key, ')_', (++sid + Math.random()).toString(36));
+	}
+	uid.safe = __webpack_require__(/*! ./$ */ 160).g.Symbol || uid;
+	module.exports = uid;
+
+/***/ },
+/* 206 */
+/*!*************************************************************!*\
+  !*** ./~/babel-runtime/~/core-js/library/modules/$.iter.js ***!
+  \*************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	var $                 = __webpack_require__(/*! ./$ */ 160)
+	  , cof               = __webpack_require__(/*! ./$.cof */ 207)
+	  , classof           = cof.classof
+	  , assert            = __webpack_require__(/*! ./$.assert */ 210)
+	  , assertObject      = assert.obj
+	  , SYMBOL_ITERATOR   = __webpack_require__(/*! ./$.wks */ 208)('iterator')
+	  , FF_ITERATOR       = '@@iterator'
+	  , Iterators         = __webpack_require__(/*! ./$.shared */ 209)('iterators')
+	  , IteratorPrototype = {};
+	// 25.1.2.1.1 %IteratorPrototype%[@@iterator]()
+	setIterator(IteratorPrototype, $.that);
+	function setIterator(O, value){
+	  $.hide(O, SYMBOL_ITERATOR, value);
+	  // Add iterator for FF iterator protocol
+	  if(FF_ITERATOR in [])$.hide(O, FF_ITERATOR, value);
+	}
+	
+	module.exports = {
+	  // Safari has buggy iterators w/o `next`
+	  BUGGY: 'keys' in [] && !('next' in [].keys()),
+	  Iterators: Iterators,
+	  step: function(done, value){
+	    return {value: value, done: !!done};
+	  },
+	  is: function(it){
+	    var O      = Object(it)
+	      , Symbol = $.g.Symbol;
+	    return (Symbol && Symbol.iterator || FF_ITERATOR) in O
+	      || SYMBOL_ITERATOR in O
+	      || $.has(Iterators, classof(O));
+	  },
+	  get: function(it){
+	    var Symbol = $.g.Symbol
+	      , getIter;
+	    if(it != undefined){
+	      getIter = it[Symbol && Symbol.iterator || FF_ITERATOR]
+	        || it[SYMBOL_ITERATOR]
+	        || Iterators[classof(it)];
+	    }
+	    assert($.isFunction(getIter), it, ' is not iterable!');
+	    return assertObject(getIter.call(it));
+	  },
+	  set: setIterator,
+	  create: function(Constructor, NAME, next, proto){
+	    Constructor.prototype = $.create(proto || IteratorPrototype, {next: $.desc(1, next)});
+	    cof.set(Constructor, NAME + ' Iterator');
+	  }
+	};
+
+/***/ },
+/* 207 */
+/*!************************************************************!*\
+  !*** ./~/babel-runtime/~/core-js/library/modules/$.cof.js ***!
+  \************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	var $        = __webpack_require__(/*! ./$ */ 160)
+	  , TAG      = __webpack_require__(/*! ./$.wks */ 208)('toStringTag')
+	  , toString = {}.toString;
+	function cof(it){
+	  return toString.call(it).slice(8, -1);
+	}
+	cof.classof = function(it){
+	  var O, T;
+	  return it == undefined ? it === undefined ? 'Undefined' : 'Null'
+	    : typeof (T = (O = Object(it))[TAG]) == 'string' ? T : cof(O);
+	};
+	cof.set = function(it, tag, stat){
+	  if(it && !$.has(it = stat ? it : it.prototype, TAG))$.hide(it, TAG, tag);
+	};
+	module.exports = cof;
+
+/***/ },
+/* 208 */
+/*!************************************************************!*\
+  !*** ./~/babel-runtime/~/core-js/library/modules/$.wks.js ***!
+  \************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	var global = __webpack_require__(/*! ./$ */ 160).g
+	  , store  = __webpack_require__(/*! ./$.shared */ 209)('wks');
+	module.exports = function(name){
+	  return store[name] || (store[name] =
+	    global.Symbol && global.Symbol[name] || __webpack_require__(/*! ./$.uid */ 205).safe('Symbol.' + name));
+	};
+
+/***/ },
+/* 209 */
+/*!***************************************************************!*\
+  !*** ./~/babel-runtime/~/core-js/library/modules/$.shared.js ***!
+  \***************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	var $      = __webpack_require__(/*! ./$ */ 160)
+	  , SHARED = '__core-js_shared__'
+	  , store  = $.g[SHARED] || ($.g[SHARED] = {});
+	module.exports = function(key){
+	  return store[key] || (store[key] = {});
+	};
+
+/***/ },
+/* 210 */
+/*!***************************************************************!*\
+  !*** ./~/babel-runtime/~/core-js/library/modules/$.assert.js ***!
+  \***************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	var $ = __webpack_require__(/*! ./$ */ 160);
+	function assert(condition, msg1, msg2){
+	  if(!condition)throw TypeError(msg2 ? msg1 + msg2 : msg1);
+	}
+	assert.def = $.assertDefined;
+	assert.fn = function(it){
+	  if(!$.isFunction(it))throw TypeError(it + ' is not a function!');
+	  return it;
+	};
+	assert.obj = function(it){
+	  if(!$.isObject(it))throw TypeError(it + ' is not an object!');
+	  return it;
+	};
+	assert.inst = function(it, Constructor, name){
+	  if(!(it instanceof Constructor))throw TypeError(name + ": use the 'new' operator!");
+	  return it;
+	};
+	module.exports = assert;
+
+/***/ },
+/* 211 */
+/*!********************************************************************!*\
+  !*** ./~/babel-runtime/~/core-js/library/modules/$.iter-define.js ***!
+  \********************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	var $def            = __webpack_require__(/*! ./$.def */ 166)
+	  , $redef          = __webpack_require__(/*! ./$.redef */ 212)
+	  , $               = __webpack_require__(/*! ./$ */ 160)
+	  , cof             = __webpack_require__(/*! ./$.cof */ 207)
+	  , $iter           = __webpack_require__(/*! ./$.iter */ 206)
+	  , SYMBOL_ITERATOR = __webpack_require__(/*! ./$.wks */ 208)('iterator')
+	  , FF_ITERATOR     = '@@iterator'
+	  , KEYS            = 'keys'
+	  , VALUES          = 'values'
+	  , Iterators       = $iter.Iterators;
+	module.exports = function(Base, NAME, Constructor, next, DEFAULT, IS_SET, FORCE){
+	  $iter.create(Constructor, NAME, next);
+	  function createMethod(kind){
+	    function $$(that){
+	      return new Constructor(that, kind);
+	    }
+	    switch(kind){
+	      case KEYS: return function keys(){ return $$(this); };
+	      case VALUES: return function values(){ return $$(this); };
+	    } return function entries(){ return $$(this); };
+	  }
+	  var TAG      = NAME + ' Iterator'
+	    , proto    = Base.prototype
+	    , _native  = proto[SYMBOL_ITERATOR] || proto[FF_ITERATOR] || DEFAULT && proto[DEFAULT]
+	    , _default = _native || createMethod(DEFAULT)
+	    , methods, key;
+	  // Fix native
+	  if(_native){
+	    var IteratorPrototype = $.getProto(_default.call(new Base));
+	    // Set @@toStringTag to native iterators
+	    cof.set(IteratorPrototype, TAG, true);
+	    // FF fix
+	    if($.FW && $.has(proto, FF_ITERATOR))$iter.set(IteratorPrototype, $.that);
+	  }
+	  // Define iterator
+	  if($.FW || FORCE)$iter.set(proto, _default);
+	  // Plug for library
+	  Iterators[NAME] = _default;
+	  Iterators[TAG]  = $.that;
+	  if(DEFAULT){
+	    methods = {
+	      keys:    IS_SET            ? _default : createMethod(KEYS),
+	      values:  DEFAULT == VALUES ? _default : createMethod(VALUES),
+	      entries: DEFAULT != VALUES ? _default : createMethod('entries')
+	    };
+	    if(FORCE)for(key in methods){
+	      if(!(key in proto))$redef(proto, key, methods[key]);
+	    } else $def($def.P + $def.F * $iter.BUGGY, NAME, methods);
+	  }
+	};
+
+/***/ },
+/* 212 */
+/*!**************************************************************!*\
+  !*** ./~/babel-runtime/~/core-js/library/modules/$.redef.js ***!
+  \**************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = __webpack_require__(/*! ./$ */ 160).hide;
+
+/***/ },
+/* 213 */
+/*!**************************************************************************!*\
+  !*** ./~/babel-runtime/~/core-js/library/modules/es6.string.iterator.js ***!
+  \**************************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	var set   = __webpack_require__(/*! ./$ */ 160).set
+	  , $at   = __webpack_require__(/*! ./$.string-at */ 214)(true)
+	  , ITER  = __webpack_require__(/*! ./$.uid */ 205).safe('iter')
+	  , $iter = __webpack_require__(/*! ./$.iter */ 206)
+	  , step  = $iter.step;
+	
+	// 21.1.3.27 String.prototype[@@iterator]()
+	__webpack_require__(/*! ./$.iter-define */ 211)(String, 'String', function(iterated){
+	  set(this, ITER, {o: String(iterated), i: 0});
+	// 21.1.5.2.1 %StringIteratorPrototype%.next()
+	}, function(){
+	  var iter  = this[ITER]
+	    , O     = iter.o
+	    , index = iter.i
+	    , point;
+	  if(index >= O.length)return step(1);
+	  point = $at(O, index);
+	  iter.i += point.length;
+	  return step(0, point);
+	});
+
+/***/ },
+/* 214 */
+/*!******************************************************************!*\
+  !*** ./~/babel-runtime/~/core-js/library/modules/$.string-at.js ***!
+  \******************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	// true  -> String#at
+	// false -> String#codePointAt
+	var $ = __webpack_require__(/*! ./$ */ 160);
+	module.exports = function(TO_STRING){
+	  return function(that, pos){
+	    var s = String($.assertDefined(that))
+	      , i = $.toInteger(pos)
+	      , l = s.length
+	      , a, b;
+	    if(i < 0 || i >= l)return TO_STRING ? '' : undefined;
+	    a = s.charCodeAt(i);
+	    return a < 0xd800 || a > 0xdbff || i + 1 === l
+	      || (b = s.charCodeAt(i + 1)) < 0xdc00 || b > 0xdfff
+	        ? TO_STRING ? s.charAt(i) : a
+	        : TO_STRING ? s.slice(i, i + 2) : (a - 0xd800 << 10) + (b - 0xdc00) + 0x10000;
+	  };
+	};
+
+/***/ },
+/* 215 */
+/*!************************************************************************!*\
+  !*** ./~/babel-runtime/~/core-js/library/modules/core.iter-helpers.js ***!
+  \************************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	var core  = __webpack_require__(/*! ./$ */ 160).core
+	  , $iter = __webpack_require__(/*! ./$.iter */ 206);
+	core.isIterable  = $iter.is;
+	core.getIterator = $iter.get;
+
+/***/ },
+/* 216 */
 /*!******************************************************************!*\
   !*** ./source/javascripts/components/actions/weapon_actions.jsx ***!
   \******************************************************************/
@@ -22284,11 +22615,11 @@
 	
 	var _app_dispatcherEs62 = _interopRequireDefault(_app_dispatcherEs6);
 	
-	var _constantsWeapon_constants = __webpack_require__(/*! ../constants/weapon_constants */ 202);
+	var _constantsWeapon_constants = __webpack_require__(/*! ../constants/weapon_constants */ 217);
 	
 	var _constantsWeapon_constants2 = _interopRequireDefault(_constantsWeapon_constants);
 	
-	var _storesWeapon_store = __webpack_require__(/*! ../stores/weapon_store */ 203);
+	var _storesWeapon_store = __webpack_require__(/*! ../stores/weapon_store */ 218);
 	
 	var _storesWeapon_store2 = _interopRequireDefault(_storesWeapon_store);
 	
@@ -22354,7 +22685,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 202 */
+/* 217 */
 /*!**********************************************************************!*\
   !*** ./source/javascripts/components/constants/weapon_constants.jsx ***!
   \**********************************************************************/
@@ -22380,7 +22711,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 203 */
+/* 218 */
 /*!***************************************************************!*\
   !*** ./source/javascripts/components/stores/weapon_store.jsx ***!
   \***************************************************************/
@@ -22396,7 +22727,7 @@
 	
 	var _classCallCheck = __webpack_require__(/*! babel-runtime/helpers/class-call-check */ 171)['default'];
 	
-	var _Object$assign = __webpack_require__(/*! babel-runtime/core-js/object/assign */ 204)['default'];
+	var _Object$assign = __webpack_require__(/*! babel-runtime/core-js/object/assign */ 219)['default'];
 	
 	var _interopRequireDefault = __webpack_require__(/*! babel-runtime/helpers/interop-require-default */ 172)['default'];
 	
@@ -22410,7 +22741,7 @@
 	
 	var _app_dispatcher2 = _interopRequireDefault(_app_dispatcher);
 	
-	var _constantsWeapon_constants = __webpack_require__(/*! ../constants/weapon_constants */ 202);
+	var _constantsWeapon_constants = __webpack_require__(/*! ../constants/weapon_constants */ 217);
 	
 	var _constantsWeapon_constants2 = _interopRequireDefault(_constantsWeapon_constants);
 	
@@ -22603,26 +22934,26 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 204 */
+/* 219 */
 /*!**************************************************!*\
   !*** ./~/babel-runtime/core-js/object/assign.js ***!
   \**************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = { "default": __webpack_require__(/*! core-js/library/fn/object/assign */ 205), __esModule: true };
+	module.exports = { "default": __webpack_require__(/*! core-js/library/fn/object/assign */ 220), __esModule: true };
 
 /***/ },
-/* 205 */
+/* 220 */
 /*!***************************************************************!*\
   !*** ./~/babel-runtime/~/core-js/library/fn/object/assign.js ***!
   \***************************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(/*! ../../modules/es6.object.assign */ 206);
+	__webpack_require__(/*! ../../modules/es6.object.assign */ 221);
 	module.exports = __webpack_require__(/*! ../../modules/$ */ 160).core.Object.assign;
 
 /***/ },
-/* 206 */
+/* 221 */
 /*!************************************************************************!*\
   !*** ./~/babel-runtime/~/core-js/library/modules/es6.object.assign.js ***!
   \************************************************************************/
@@ -22630,17 +22961,17 @@
 
 	// 19.1.3.1 Object.assign(target, source)
 	var $def = __webpack_require__(/*! ./$.def */ 166);
-	$def($def.S, 'Object', {assign: __webpack_require__(/*! ./$.assign */ 207)});
+	$def($def.S, 'Object', {assign: __webpack_require__(/*! ./$.assign */ 222)});
 
 /***/ },
-/* 207 */
+/* 222 */
 /*!***************************************************************!*\
   !*** ./~/babel-runtime/~/core-js/library/modules/$.assign.js ***!
   \***************************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	var $        = __webpack_require__(/*! ./$ */ 160)
-	  , enumKeys = __webpack_require__(/*! ./$.enum-keys */ 208);
+	  , enumKeys = __webpack_require__(/*! ./$.enum-keys */ 223);
 	// 19.1.2.1 Object.assign(target, source, ...)
 	/* eslint-disable no-unused-vars */
 	module.exports = Object.assign || function assign(target, source){
@@ -22660,7 +22991,7 @@
 	};
 
 /***/ },
-/* 208 */
+/* 223 */
 /*!******************************************************************!*\
   !*** ./~/babel-runtime/~/core-js/library/modules/$.enum-keys.js ***!
   \******************************************************************/
@@ -22678,7 +23009,50 @@
 	};
 
 /***/ },
-/* 209 */
+/* 224 */
+/*!**************************************************!*\
+  !*** ./source/javascripts/components/weapon.jsx ***!
+  \**************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var React = __webpack_require__(/*! react */ 1);
+	var WeaponActions = __webpack_require__(/*! ./actions/weapon_actions */ 216);
+	
+	var Weapon = React.createClass({
+	  displayName: 'Weapon',
+	
+	  render: function render() {
+	    switch (this.props.weapon.type) {
+	      case 'mis':
+	        var weapon_class = 'missile';
+	        break;
+	      case 'las':
+	        var weapon_class = 'laser';
+	        break;
+	      case 'bal':
+	        var weapon_class = 'ballistic';
+	        break;
+	    }
+	
+	    return React.createElement(
+	      'weapon',
+	      { onClick: this._onClick, className: weapon_class },
+	      this.props.weapon.name
+	    );
+	  },
+	
+	  _onClick: function _onClick() {
+	    WeaponActions.equip(this);
+	  }
+	
+	});
+	
+	module.exports = Weapon;
+
+/***/ },
+/* 225 */
 /*!************************************************!*\
   !*** ./source/javascripts/components/info.jsx ***!
   \************************************************/
@@ -22687,12 +23061,12 @@
 	'use strict';
 	
 	var React = __webpack_require__(/*! react */ 1);
-	var MapInfo = __webpack_require__(/*! ./map_info */ 210);
-	var Heat = __webpack_require__(/*! ./heat */ 211);
-	var DamageMeter = __webpack_require__(/*! ./damage_meter */ 221);
-	var Cooldown = __webpack_require__(/*! ./cooldown */ 225);
-	var EventLog = __webpack_require__(/*! ./event_log */ 226);
-	var DPSMeter = __webpack_require__(/*! ./dps_meter */ 227);
+	var MapInfo = __webpack_require__(/*! ./map_info */ 226);
+	var Heat = __webpack_require__(/*! ./heat */ 227);
+	var DamageMeter = __webpack_require__(/*! ./damage_meter */ 237);
+	var Cooldown = __webpack_require__(/*! ./cooldown */ 241);
+	var EventLog = __webpack_require__(/*! ./event_log */ 242);
+	var DPSMeter = __webpack_require__(/*! ./dps_meter */ 243);
 	
 	var Info = React.createClass({
 	  displayName: 'Info',
@@ -22722,7 +23096,7 @@
 	module.exports = Info;
 
 /***/ },
-/* 210 */
+/* 226 */
 /*!****************************************************!*\
   !*** ./source/javascripts/components/map_info.jsx ***!
   \****************************************************/
@@ -22756,7 +23130,7 @@
 	module.exports = MapInfo;
 
 /***/ },
-/* 211 */
+/* 227 */
 /*!************************************************!*\
   !*** ./source/javascripts/components/heat.jsx ***!
   \************************************************/
@@ -22778,19 +23152,19 @@
 	  value: true
 	});
 	
-	var _storesHeatsink_store = __webpack_require__(/*! ./stores/heatsink_store */ 212);
+	var _storesHeatsink_store = __webpack_require__(/*! ./stores/heatsink_store */ 228);
 	
 	var _storesHeatsink_store2 = _interopRequireDefault(_storesHeatsink_store);
 	
-	var _storesHeat_store = __webpack_require__(/*! ./stores/heat_store */ 214);
+	var _storesHeat_store = __webpack_require__(/*! ./stores/heat_store */ 230);
 	
 	var _storesHeat_store2 = _interopRequireDefault(_storesHeat_store);
 	
-	var _actionsHeat_actions = __webpack_require__(/*! ./actions/heat_actions */ 217);
+	var _actionsHeat_actions = __webpack_require__(/*! ./actions/heat_actions */ 233);
 	
 	var _actionsHeat_actions2 = _interopRequireDefault(_actionsHeat_actions);
 	
-	var _storesCooldown_store = __webpack_require__(/*! ./stores/cooldown_store */ 220);
+	var _storesCooldown_store = __webpack_require__(/*! ./stores/cooldown_store */ 236);
 	
 	var _storesCooldown_store2 = _interopRequireDefault(_storesCooldown_store);
 	
@@ -22887,7 +23261,7 @@
 	module.exports = exports["default"];
 
 /***/ },
-/* 212 */
+/* 228 */
 /*!*****************************************************************!*\
   !*** ./source/javascripts/components/stores/heatsink_store.jsx ***!
   \*****************************************************************/
@@ -22904,7 +23278,7 @@
 	
 	var _classCallCheck = __webpack_require__(/*! babel-runtime/helpers/class-call-check */ 171)['default'];
 	
-	var _Object$assign = __webpack_require__(/*! babel-runtime/core-js/object/assign */ 204)['default'];
+	var _Object$assign = __webpack_require__(/*! babel-runtime/core-js/object/assign */ 219)['default'];
 	
 	var _interopRequireDefault = __webpack_require__(/*! babel-runtime/helpers/interop-require-default */ 172)['default'];
 	
@@ -22918,7 +23292,7 @@
 	
 	var _app_dispatcher2 = _interopRequireDefault(_app_dispatcher);
 	
-	var _constantsHeatsink_constants = __webpack_require__(/*! ../constants/heatsink_constants */ 213);
+	var _constantsHeatsink_constants = __webpack_require__(/*! ../constants/heatsink_constants */ 229);
 	
 	var _constantsHeatsink_constants2 = _interopRequireDefault(_constantsHeatsink_constants);
 	
@@ -23003,7 +23377,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 213 */
+/* 229 */
 /*!************************************************************************!*\
   !*** ./source/javascripts/components/constants/heatsink_constants.es6 ***!
   \************************************************************************/
@@ -23021,7 +23395,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 214 */
+/* 230 */
 /*!*************************************************************!*\
   !*** ./source/javascripts/components/stores/heat_store.jsx ***!
   \*************************************************************/
@@ -23049,23 +23423,23 @@
 	
 	var _app_dispatcher2 = _interopRequireDefault(_app_dispatcher);
 	
-	var _constantsHeat_constants = __webpack_require__(/*! ../constants/heat_constants */ 215);
+	var _constantsHeat_constants = __webpack_require__(/*! ../constants/heat_constants */ 231);
 	
 	var _constantsHeat_constants2 = _interopRequireDefault(_constantsHeat_constants);
 	
-	var _storesHeatsink_store = __webpack_require__(/*! ../stores/heatsink_store */ 212);
+	var _storesHeatsink_store = __webpack_require__(/*! ../stores/heatsink_store */ 228);
 	
 	var _storesHeatsink_store2 = _interopRequireDefault(_storesHeatsink_store);
 	
-	var _storesGhost_heat_group_store = __webpack_require__(/*! ../stores/ghost_heat_group_store */ 216);
+	var _storesGhost_heat_group_store = __webpack_require__(/*! ../stores/ghost_heat_group_store */ 232);
 	
 	var _storesGhost_heat_group_store2 = _interopRequireDefault(_storesGhost_heat_group_store);
 	
-	var _actionsHeat_actions = __webpack_require__(/*! ../actions/heat_actions */ 217);
+	var _actionsHeat_actions = __webpack_require__(/*! ../actions/heat_actions */ 233);
 	
 	var _actionsHeat_actions2 = _interopRequireDefault(_actionsHeat_actions);
 	
-	var _actionsCooldown_actions = __webpack_require__(/*! ../actions/cooldown_actions */ 218);
+	var _actionsCooldown_actions = __webpack_require__(/*! ../actions/cooldown_actions */ 234);
 	
 	var _actionsCooldown_actions2 = _interopRequireDefault(_actionsCooldown_actions);
 	
@@ -23221,7 +23595,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 215 */
+/* 231 */
 /*!********************************************************************!*\
   !*** ./source/javascripts/components/constants/heat_constants.es6 ***!
   \********************************************************************/
@@ -23241,7 +23615,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 216 */
+/* 232 */
 /*!*************************************************************************!*\
   !*** ./source/javascripts/components/stores/ghost_heat_group_store.es6 ***!
   \*************************************************************************/
@@ -23269,23 +23643,23 @@
 	
 	var _events = __webpack_require__(/*! events */ 197);
 	
-	var _constantsHeat_constants = __webpack_require__(/*! ../constants/heat_constants */ 215);
+	var _constantsHeat_constants = __webpack_require__(/*! ../constants/heat_constants */ 231);
 	
 	var _constantsHeat_constants2 = _interopRequireDefault(_constantsHeat_constants);
 	
-	var _constantsWeapon_constants = __webpack_require__(/*! ../constants/weapon_constants */ 202);
+	var _constantsWeapon_constants = __webpack_require__(/*! ../constants/weapon_constants */ 217);
 	
 	var _constantsWeapon_constants2 = _interopRequireDefault(_constantsWeapon_constants);
 	
-	var _storesHeat_store = __webpack_require__(/*! ../stores/heat_store */ 214);
+	var _storesHeat_store = __webpack_require__(/*! ../stores/heat_store */ 230);
 	
 	var _storesHeat_store2 = _interopRequireDefault(_storesHeat_store);
 	
-	var _actionsHeat_actions = __webpack_require__(/*! ../actions/heat_actions */ 217);
+	var _actionsHeat_actions = __webpack_require__(/*! ../actions/heat_actions */ 233);
 	
 	var _actionsHeat_actions2 = _interopRequireDefault(_actionsHeat_actions);
 	
-	var _storesWeapon_store = __webpack_require__(/*! ../stores/weapon_store */ 203);
+	var _storesWeapon_store = __webpack_require__(/*! ../stores/weapon_store */ 218);
 	
 	var _storesWeapon_store2 = _interopRequireDefault(_storesWeapon_store);
 	
@@ -23501,7 +23875,7 @@
 	// Apply ghost heat
 
 /***/ },
-/* 217 */
+/* 233 */
 /*!****************************************************************!*\
   !*** ./source/javascripts/components/actions/heat_actions.es6 ***!
   \****************************************************************/
@@ -23519,11 +23893,11 @@
 	
 	var _app_dispatcher2 = _interopRequireDefault(_app_dispatcher);
 	
-	var _constantsHeat_constants = __webpack_require__(/*! ../constants/heat_constants */ 215);
+	var _constantsHeat_constants = __webpack_require__(/*! ../constants/heat_constants */ 231);
 	
 	var _constantsHeat_constants2 = _interopRequireDefault(_constantsHeat_constants);
 	
-	var _storesHeat_store = __webpack_require__(/*! ../stores/heat_store */ 214);
+	var _storesHeat_store = __webpack_require__(/*! ../stores/heat_store */ 230);
 	
 	var _storesHeat_store2 = _interopRequireDefault(_storesHeat_store);
 	
@@ -23562,7 +23936,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 218 */
+/* 234 */
 /*!********************************************************************!*\
   !*** ./source/javascripts/components/actions/cooldown_actions.jsx ***!
   \********************************************************************/
@@ -23580,19 +23954,19 @@
 	
 	var _app_dispatcher2 = _interopRequireDefault(_app_dispatcher);
 	
-	var _constantsHeatsink_constants = __webpack_require__(/*! ../constants/heatsink_constants */ 213);
+	var _constantsHeatsink_constants = __webpack_require__(/*! ../constants/heatsink_constants */ 229);
 	
 	var _constantsHeatsink_constants2 = _interopRequireDefault(_constantsHeatsink_constants);
 	
-	var _constantsCooldown_constants = __webpack_require__(/*! ../constants/cooldown_constants */ 219);
+	var _constantsCooldown_constants = __webpack_require__(/*! ../constants/cooldown_constants */ 235);
 	
 	var _constantsCooldown_constants2 = _interopRequireDefault(_constantsCooldown_constants);
 	
-	var _storesHeatsink_store = __webpack_require__(/*! ../stores/heatsink_store */ 212);
+	var _storesHeatsink_store = __webpack_require__(/*! ../stores/heatsink_store */ 228);
 	
 	var _storesHeatsink_store2 = _interopRequireDefault(_storesHeatsink_store);
 	
-	var _storesCooldown_store = __webpack_require__(/*! ../stores/cooldown_store */ 220);
+	var _storesCooldown_store = __webpack_require__(/*! ../stores/cooldown_store */ 236);
 	
 	var _storesCooldown_store2 = _interopRequireDefault(_storesCooldown_store);
 	
@@ -23636,7 +24010,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 219 */
+/* 235 */
 /*!************************************************************************!*\
   !*** ./source/javascripts/components/constants/cooldown_constants.jsx ***!
   \************************************************************************/
@@ -23654,7 +24028,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 220 */
+/* 236 */
 /*!*****************************************************************!*\
   !*** ./source/javascripts/components/stores/cooldown_store.jsx ***!
   \*****************************************************************/
@@ -23670,7 +24044,7 @@
 	
 	var _classCallCheck = __webpack_require__(/*! babel-runtime/helpers/class-call-check */ 171)['default'];
 	
-	var _Object$assign = __webpack_require__(/*! babel-runtime/core-js/object/assign */ 204)['default'];
+	var _Object$assign = __webpack_require__(/*! babel-runtime/core-js/object/assign */ 219)['default'];
 	
 	var _interopRequireDefault = __webpack_require__(/*! babel-runtime/helpers/interop-require-default */ 172)['default'];
 	
@@ -23684,11 +24058,11 @@
 	
 	var _app_dispatcher2 = _interopRequireDefault(_app_dispatcher);
 	
-	var _constantsCooldown_constants = __webpack_require__(/*! ../constants/cooldown_constants */ 219);
+	var _constantsCooldown_constants = __webpack_require__(/*! ../constants/cooldown_constants */ 235);
 	
 	var _constantsCooldown_constants2 = _interopRequireDefault(_constantsCooldown_constants);
 	
-	var _storesHeat_store = __webpack_require__(/*! ../stores/heat_store */ 214);
+	var _storesHeat_store = __webpack_require__(/*! ../stores/heat_store */ 230);
 	
 	var _storesHeat_store2 = _interopRequireDefault(_storesHeat_store);
 	
@@ -23769,7 +24143,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 221 */
+/* 237 */
 /*!********************************************************!*\
   !*** ./source/javascripts/components/damage_meter.es6 ***!
   \********************************************************/
@@ -23791,19 +24165,19 @@
 	  value: true
 	});
 	
-	var _storesDamage_store = __webpack_require__(/*! ./stores/damage_store */ 222);
+	var _storesDamage_store = __webpack_require__(/*! ./stores/damage_store */ 238);
 	
 	var _storesDamage_store2 = _interopRequireDefault(_storesDamage_store);
 	
-	var _actionsDamage_actions = __webpack_require__(/*! ./actions/damage_actions */ 224);
+	var _actionsDamage_actions = __webpack_require__(/*! ./actions/damage_actions */ 240);
 	
 	var _actionsDamage_actions2 = _interopRequireDefault(_actionsDamage_actions);
 	
-	var _storesWeapon_store = __webpack_require__(/*! ./stores/weapon_store */ 203);
+	var _storesWeapon_store = __webpack_require__(/*! ./stores/weapon_store */ 218);
 	
 	var _storesWeapon_store2 = _interopRequireDefault(_storesWeapon_store);
 	
-	var _constantsWeapon_constants = __webpack_require__(/*! ./constants/weapon_constants */ 202);
+	var _constantsWeapon_constants = __webpack_require__(/*! ./constants/weapon_constants */ 217);
 	
 	var _constantsWeapon_constants2 = _interopRequireDefault(_constantsWeapon_constants);
 	
@@ -23839,31 +24213,40 @@
 	    value: function render() {
 	      return React.createElement(
 	        'damage_meter',
-	        { className: 'info' },
+	        { className: 'info_item' },
 	        React.createElement(
-	          'span',
-	          { className: 'info-title' },
+	          'div',
+	          { className: 'title' },
 	          'Damage'
 	        ),
 	        React.createElement(
-	          'span',
-	          { className: 'info-value' },
-	          +this.state.last.toFixed(2)
-	        ),
-	        React.createElement(
-	          'span',
-	          { className: 'info-value-divider' },
-	          '/'
-	        ),
-	        React.createElement(
-	          'span',
-	          { className: 'info-value' },
-	          +this.state.total.toFixed(2)
-	        ),
-	        React.createElement(
-	          'span',
-	          { className: 'info-label' },
-	          'Previous / Total'
+	          'div',
+	          { className: 'readings' },
+	          React.createElement(
+	            'div',
+	            { className: 'reading left' },
+	            +this.state.last.toFixed(2),
+	            React.createElement(
+	              'span',
+	              { className: 'label' },
+	              'Last'
+	            )
+	          ),
+	          React.createElement(
+	            'div',
+	            { className: 'divider' },
+	            ':'
+	          ),
+	          React.createElement(
+	            'div',
+	            { className: 'reading right' },
+	            +this.state.total.toFixed(2),
+	            React.createElement(
+	              'span',
+	              { className: 'label' },
+	              'Total'
+	            )
+	          )
 	        )
 	      );
 	    }
@@ -23876,7 +24259,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 222 */
+/* 238 */
 /*!***************************************************************!*\
   !*** ./source/javascripts/components/stores/damage_store.es6 ***!
   \***************************************************************/
@@ -23904,7 +24287,7 @@
 	
 	var _app_dispatcher2 = _interopRequireDefault(_app_dispatcher);
 	
-	var _constantsDamage_constants = __webpack_require__(/*! ../constants/damage_constants */ 223);
+	var _constantsDamage_constants = __webpack_require__(/*! ../constants/damage_constants */ 239);
 	
 	var _constantsDamage_constants2 = _interopRequireDefault(_constantsDamage_constants);
 	
@@ -24019,7 +24402,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 223 */
+/* 239 */
 /*!**********************************************************************!*\
   !*** ./source/javascripts/components/constants/damage_constants.es6 ***!
   \**********************************************************************/
@@ -24037,7 +24420,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 224 */
+/* 240 */
 /*!******************************************************************!*\
   !*** ./source/javascripts/components/actions/damage_actions.es6 ***!
   \******************************************************************/
@@ -24055,7 +24438,7 @@
 	
 	var _app_dispatcher2 = _interopRequireDefault(_app_dispatcher);
 	
-	var _constantsDamage_constants = __webpack_require__(/*! ../constants/damage_constants */ 223);
+	var _constantsDamage_constants = __webpack_require__(/*! ../constants/damage_constants */ 239);
 	
 	var _constantsDamage_constants2 = _interopRequireDefault(_constantsDamage_constants);
 	
@@ -24080,7 +24463,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 225 */
+/* 241 */
 /*!****************************************************!*\
   !*** ./source/javascripts/components/cooldown.jsx ***!
   \****************************************************/
@@ -24102,19 +24485,19 @@
 	  value: true
 	});
 	
-	var _storesHeatsink_store = __webpack_require__(/*! ./stores/heatsink_store */ 212);
+	var _storesHeatsink_store = __webpack_require__(/*! ./stores/heatsink_store */ 228);
 	
 	var _storesHeatsink_store2 = _interopRequireDefault(_storesHeatsink_store);
 	
-	var _storesHeat_store = __webpack_require__(/*! ./stores/heat_store */ 214);
+	var _storesHeat_store = __webpack_require__(/*! ./stores/heat_store */ 230);
 	
 	var _storesHeat_store2 = _interopRequireDefault(_storesHeat_store);
 	
-	var _storesCooldown_store = __webpack_require__(/*! ./stores/cooldown_store */ 220);
+	var _storesCooldown_store = __webpack_require__(/*! ./stores/cooldown_store */ 236);
 	
 	var _storesCooldown_store2 = _interopRequireDefault(_storesCooldown_store);
 	
-	var _actionsCooldown_actions = __webpack_require__(/*! ./actions/cooldown_actions */ 218);
+	var _actionsCooldown_actions = __webpack_require__(/*! ./actions/cooldown_actions */ 234);
 	
 	var _actionsCooldown_actions2 = _interopRequireDefault(_actionsCooldown_actions);
 	
@@ -24150,32 +24533,40 @@
 	    value: function render() {
 	      return React.createElement(
 	        "cooldown",
-	        { className: "info" },
+	        { className: "info_item" },
 	        React.createElement(
-	          "span",
-	          { className: "info-title" },
+	          "div",
+	          { className: "title" },
 	          "Cooldown"
 	        ),
 	        React.createElement(
-	          "span",
-	          { className: "info-value" },
-	          this.state.time_to_zero,
-	          "s"
-	        ),
-	        React.createElement(
-	          "span",
-	          { className: "info-value-divider" },
-	          "/"
-	        ),
-	        React.createElement(
-	          "span",
-	          { className: "info-value" },
-	          this.state.cool_rate
-	        ),
-	        React.createElement(
-	          "span",
-	          { className: "info-label" },
-	          "Time / Rate"
+	          "div",
+	          { className: "readings" },
+	          React.createElement(
+	            "div",
+	            { className: "reading left" },
+	            this.state.time_to_zero.toFixed(2),
+	            React.createElement(
+	              "span",
+	              { className: "label" },
+	              "Time(s)"
+	            )
+	          ),
+	          React.createElement(
+	            "div",
+	            { className: "divider" },
+	            "@"
+	          ),
+	          React.createElement(
+	            "div",
+	            { className: "reading right" },
+	            this.state.cool_rate.toFixed(2),
+	            React.createElement(
+	              "span",
+	              { className: "label" },
+	              "Rate(/s)"
+	            )
+	          )
 	        )
 	      );
 	    }
@@ -24188,7 +24579,7 @@
 	module.exports = exports["default"];
 
 /***/ },
-/* 226 */
+/* 242 */
 /*!*****************************************************!*\
   !*** ./source/javascripts/components/event_log.es6 ***!
   \*****************************************************/
@@ -24210,7 +24601,7 @@
 	  value: true
 	});
 	
-	var _storesGhost_heat_group_store = __webpack_require__(/*! ./stores/ghost_heat_group_store */ 216);
+	var _storesGhost_heat_group_store = __webpack_require__(/*! ./stores/ghost_heat_group_store */ 232);
 	
 	var _storesGhost_heat_group_store2 = _interopRequireDefault(_storesGhost_heat_group_store);
 	
@@ -24253,7 +24644,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 227 */
+/* 243 */
 /*!*****************************************************!*\
   !*** ./source/javascripts/components/dps_meter.es6 ***!
   \*****************************************************/
@@ -24275,19 +24666,19 @@
 	  value: true
 	});
 	
-	var _storesDamage_store = __webpack_require__(/*! ./stores/damage_store */ 222);
+	var _storesDamage_store = __webpack_require__(/*! ./stores/damage_store */ 238);
 	
 	var _storesDamage_store2 = _interopRequireDefault(_storesDamage_store);
 	
-	var _actionsDamage_actions = __webpack_require__(/*! ./actions/damage_actions */ 224);
+	var _actionsDamage_actions = __webpack_require__(/*! ./actions/damage_actions */ 240);
 	
 	var _actionsDamage_actions2 = _interopRequireDefault(_actionsDamage_actions);
 	
-	var _storesWeapon_store = __webpack_require__(/*! ./stores/weapon_store */ 203);
+	var _storesWeapon_store = __webpack_require__(/*! ./stores/weapon_store */ 218);
 	
 	var _storesWeapon_store2 = _interopRequireDefault(_storesWeapon_store);
 	
-	var _constantsWeapon_constants = __webpack_require__(/*! ./constants/weapon_constants */ 202);
+	var _constantsWeapon_constants = __webpack_require__(/*! ./constants/weapon_constants */ 217);
 	
 	var _constantsWeapon_constants2 = _interopRequireDefault(_constantsWeapon_constants);
 	
@@ -24313,33 +24704,12 @@
 	    key: 'render',
 	    value: function render() {
 	      return React.createElement(
-	        'dps_meter',
-	        { className: 'info' },
+	        'damage_meter',
+	        { className: 'info_item' },
 	        React.createElement(
-	          'span',
-	          { className: 'info-title' },
+	          'div',
+	          { className: 'title' },
 	          'DPS'
-	        ),
-	        React.createElement(
-	          'span',
-	          { className: 'info-value' },
-	          this.state.dps
-	        ),
-	        React.createElement(
-	          'span',
-	          { className: 'info-value-divider' },
-	          '/'
-	        ),
-	        React.createElement(
-	          'span',
-	          { className: 'info-value' },
-	          this.state.elapsed_time,
-	          's'
-	        ),
-	        React.createElement(
-	          'span',
-	          { className: 'info-label' },
-	          'DPS / Elapsed'
 	        )
 	      );
 	    }
@@ -24352,7 +24722,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 228 */
+/* 244 */
 /*!*****************************************************!*\
   !*** ./source/javascripts/components/equipment.jsx ***!
   \*****************************************************/
@@ -24374,20 +24744,20 @@
 	  value: true
 	});
 	
-	var _actionsWeapon_actions = __webpack_require__(/*! ./actions/weapon_actions */ 201);
+	var _actionsWeapon_actions = __webpack_require__(/*! ./actions/weapon_actions */ 216);
 	
 	var _actionsWeapon_actions2 = _interopRequireDefault(_actionsWeapon_actions);
 	
-	var _equipped_weapons_wrapper = __webpack_require__(/*! ./equipped_weapons_wrapper */ 229);
+	var _equipped_weapons_wrapper = __webpack_require__(/*! ./equipped_weapons_wrapper */ 245);
 	
 	var _equipped_weapons_wrapper2 = _interopRequireDefault(_equipped_weapons_wrapper);
 	
-	var _group_trigger = __webpack_require__(/*! ./group_trigger */ 232);
+	var _group_trigger = __webpack_require__(/*! ./group_trigger */ 248);
 	
 	var _group_trigger2 = _interopRequireDefault(_group_trigger);
 	
 	var React = __webpack_require__(/*! react */ 1);
-	var Heatsink = __webpack_require__(/*! ./heatsink */ 236);
+	var Heatsink = __webpack_require__(/*! ./heatsink */ 252);
 	
 	var Equipment = (function (_React$Component) {
 	  function Equipment(props) {
@@ -24464,7 +24834,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 229 */
+/* 245 */
 /*!********************************************************************!*\
   !*** ./source/javascripts/components/equipped_weapons_wrapper.es6 ***!
   \********************************************************************/
@@ -24490,15 +24860,15 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _storesWeapon_store = __webpack_require__(/*! ./stores/weapon_store */ 203);
+	var _storesWeapon_store = __webpack_require__(/*! ./stores/weapon_store */ 218);
 	
 	var _storesWeapon_store2 = _interopRequireDefault(_storesWeapon_store);
 	
-	var _actionsWeapon_actions = __webpack_require__(/*! ./actions/weapon_actions */ 201);
+	var _actionsWeapon_actions = __webpack_require__(/*! ./actions/weapon_actions */ 216);
 	
 	var _actionsWeapon_actions2 = _interopRequireDefault(_actionsWeapon_actions);
 	
-	var _equipped_weapon = __webpack_require__(/*! ./equipped_weapon */ 230);
+	var _equipped_weapon = __webpack_require__(/*! ./equipped_weapon */ 246);
 	
 	var _equipped_weapon2 = _interopRequireDefault(_equipped_weapon);
 	
@@ -24578,7 +24948,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 230 */
+/* 246 */
 /*!***********************************************************!*\
   !*** ./source/javascripts/components/equipped_weapon.es6 ***!
   \***********************************************************/
@@ -24604,31 +24974,31 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _actionsWeapon_actions = __webpack_require__(/*! ./actions/weapon_actions */ 201);
+	var _actionsWeapon_actions = __webpack_require__(/*! ./actions/weapon_actions */ 216);
 	
 	var _actionsWeapon_actions2 = _interopRequireDefault(_actionsWeapon_actions);
 	
-	var _actionsHeat_actions = __webpack_require__(/*! ./actions/heat_actions */ 217);
+	var _actionsHeat_actions = __webpack_require__(/*! ./actions/heat_actions */ 233);
 	
 	var _actionsHeat_actions2 = _interopRequireDefault(_actionsHeat_actions);
 	
-	var _actionsDamage_actions = __webpack_require__(/*! ./actions/damage_actions */ 224);
+	var _actionsDamage_actions = __webpack_require__(/*! ./actions/damage_actions */ 240);
 	
 	var _actionsDamage_actions2 = _interopRequireDefault(_actionsDamage_actions);
 	
-	var _storesWeapon_store = __webpack_require__(/*! ./stores/weapon_store */ 203);
+	var _storesWeapon_store = __webpack_require__(/*! ./stores/weapon_store */ 218);
 	
 	var _storesWeapon_store2 = _interopRequireDefault(_storesWeapon_store);
 	
-	var _storesGhost_heat_group_store = __webpack_require__(/*! ./stores/ghost_heat_group_store */ 216);
+	var _storesGhost_heat_group_store = __webpack_require__(/*! ./stores/ghost_heat_group_store */ 232);
 	
 	var _storesGhost_heat_group_store2 = _interopRequireDefault(_storesGhost_heat_group_store);
 	
-	var _constantsWeapon_constants = __webpack_require__(/*! ./constants/weapon_constants */ 202);
+	var _constantsWeapon_constants = __webpack_require__(/*! ./constants/weapon_constants */ 217);
 	
 	var _constantsWeapon_constants2 = _interopRequireDefault(_constantsWeapon_constants);
 	
-	var _weapon_group = __webpack_require__(/*! ./weapon_group */ 231);
+	var _weapon_group = __webpack_require__(/*! ./weapon_group */ 247);
 	
 	var _weapon_group2 = _interopRequireDefault(_weapon_group);
 	
@@ -24749,7 +25119,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 231 */
+/* 247 */
 /*!********************************************************!*\
   !*** ./source/javascripts/components/weapon_group.es6 ***!
   \********************************************************/
@@ -24775,7 +25145,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _actionsWeapon_actions = __webpack_require__(/*! ./actions/weapon_actions */ 201);
+	var _actionsWeapon_actions = __webpack_require__(/*! ./actions/weapon_actions */ 216);
 	
 	var _actionsWeapon_actions2 = _interopRequireDefault(_actionsWeapon_actions);
 	
@@ -24826,7 +25196,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 232 */
+/* 248 */
 /*!*********************************************************!*\
   !*** ./source/javascripts/components/group_trigger.es6 ***!
   \*********************************************************/
@@ -24848,15 +25218,15 @@
 	  value: true
 	});
 	
-	var _actionsWeapon_actions = __webpack_require__(/*! ./actions/weapon_actions */ 201);
+	var _actionsWeapon_actions = __webpack_require__(/*! ./actions/weapon_actions */ 216);
 	
 	var _actionsWeapon_actions2 = _interopRequireDefault(_actionsWeapon_actions);
 	
-	var _storesKeybindings_store = __webpack_require__(/*! ./stores/keybindings_store */ 233);
+	var _storesKeybindings_store = __webpack_require__(/*! ./stores/keybindings_store */ 249);
 	
 	var _storesKeybindings_store2 = _interopRequireDefault(_storesKeybindings_store);
 	
-	var _actionsKeybinding_actions = __webpack_require__(/*! ./actions/keybinding_actions */ 235);
+	var _actionsKeybinding_actions = __webpack_require__(/*! ./actions/keybinding_actions */ 251);
 	
 	var _actionsKeybinding_actions2 = _interopRequireDefault(_actionsKeybinding_actions);
 	
@@ -24901,7 +25271,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 233 */
+/* 249 */
 /*!********************************************************************!*\
   !*** ./source/javascripts/components/stores/keybindings_store.es6 ***!
   \********************************************************************/
@@ -24929,7 +25299,7 @@
 	
 	var _app_dispatcher2 = _interopRequireDefault(_app_dispatcher);
 	
-	var _constantsKeybinding_constants = __webpack_require__(/*! ../constants/keybinding_constants */ 234);
+	var _constantsKeybinding_constants = __webpack_require__(/*! ../constants/keybinding_constants */ 250);
 	
 	var _constantsKeybinding_constants2 = _interopRequireDefault(_constantsKeybinding_constants);
 	
@@ -24990,7 +25360,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 234 */
+/* 250 */
 /*!**************************************************************************!*\
   !*** ./source/javascripts/components/constants/keybinding_constants.es6 ***!
   \**************************************************************************/
@@ -25007,7 +25377,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 235 */
+/* 251 */
 /*!**********************************************************************!*\
   !*** ./source/javascripts/components/actions/keybinding_actions.es6 ***!
   \**********************************************************************/
@@ -25025,7 +25395,7 @@
 	
 	var _app_dispatcherEs62 = _interopRequireDefault(_app_dispatcherEs6);
 	
-	var _constantsKeybinding_constants = __webpack_require__(/*! ../constants/keybinding_constants */ 234);
+	var _constantsKeybinding_constants = __webpack_require__(/*! ../constants/keybinding_constants */ 250);
 	
 	var _constantsKeybinding_constants2 = _interopRequireDefault(_constantsKeybinding_constants);
 	
@@ -25043,7 +25413,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 236 */
+/* 252 */
 /*!****************************************************!*\
   !*** ./source/javascripts/components/heatsink.jsx ***!
   \****************************************************/
@@ -25065,7 +25435,7 @@
 	  value: true
 	});
 	
-	var _actionsHeatsink_actions = __webpack_require__(/*! ./actions/heatsink_actions */ 237);
+	var _actionsHeatsink_actions = __webpack_require__(/*! ./actions/heatsink_actions */ 253);
 	
 	var _actionsHeatsink_actions2 = _interopRequireDefault(_actionsHeatsink_actions);
 	
@@ -25073,15 +25443,15 @@
 	
 	var _app_dispatcher2 = _interopRequireDefault(_app_dispatcher);
 	
-	var _storesHeatsink_store = __webpack_require__(/*! ./stores/heatsink_store */ 212);
+	var _storesHeatsink_store = __webpack_require__(/*! ./stores/heatsink_store */ 228);
 	
 	var _storesHeatsink_store2 = _interopRequireDefault(_storesHeatsink_store);
 	
-	var _actionsHeat_actions = __webpack_require__(/*! ./actions/heat_actions */ 217);
+	var _actionsHeat_actions = __webpack_require__(/*! ./actions/heat_actions */ 233);
 	
 	var _actionsHeat_actions2 = _interopRequireDefault(_actionsHeat_actions);
 	
-	var _actionsCooldown_actions = __webpack_require__(/*! ./actions/cooldown_actions */ 218);
+	var _actionsCooldown_actions = __webpack_require__(/*! ./actions/cooldown_actions */ 234);
 	
 	var _actionsCooldown_actions2 = _interopRequireDefault(_actionsCooldown_actions);
 	
@@ -25238,7 +25608,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 237 */
+/* 253 */
 /*!********************************************************************!*\
   !*** ./source/javascripts/components/actions/heatsink_actions.jsx ***!
   \********************************************************************/
@@ -25256,19 +25626,19 @@
 	
 	var _app_dispatcherEs62 = _interopRequireDefault(_app_dispatcherEs6);
 	
-	var _constantsHeatsink_constantsEs6 = __webpack_require__(/*! ../constants/heatsink_constants.es6 */ 213);
+	var _constantsHeatsink_constantsEs6 = __webpack_require__(/*! ../constants/heatsink_constants.es6 */ 229);
 	
 	var _constantsHeatsink_constantsEs62 = _interopRequireDefault(_constantsHeatsink_constantsEs6);
 	
-	var _heatsink = __webpack_require__(/*! ../heatsink */ 236);
+	var _heatsink = __webpack_require__(/*! ../heatsink */ 252);
 	
 	var _heatsink2 = _interopRequireDefault(_heatsink);
 	
-	var _storesHeatsink_store = __webpack_require__(/*! ../stores/heatsink_store */ 212);
+	var _storesHeatsink_store = __webpack_require__(/*! ../stores/heatsink_store */ 228);
 	
 	var _storesHeatsink_store2 = _interopRequireDefault(_storesHeatsink_store);
 	
-	var _actionsCooldown_actionsJsx = __webpack_require__(/*! ../actions/cooldown_actions.jsx */ 218);
+	var _actionsCooldown_actionsJsx = __webpack_require__(/*! ../actions/cooldown_actions.jsx */ 234);
 	
 	var _actionsCooldown_actionsJsx2 = _interopRequireDefault(_actionsCooldown_actionsJsx);
 	
@@ -25307,380 +25677,6 @@
 	
 	exports['default'] = HeatsinkActions;
 	module.exports = exports['default'];
-
-/***/ },
-/* 238 */
-/*!*************************************************!*\
-  !*** ./~/babel-runtime/core-js/get-iterator.js ***!
-  \*************************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	module.exports = { "default": __webpack_require__(/*! core-js/library/fn/get-iterator */ 239), __esModule: true };
-
-/***/ },
-/* 239 */
-/*!**************************************************************!*\
-  !*** ./~/babel-runtime/~/core-js/library/fn/get-iterator.js ***!
-  \**************************************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	__webpack_require__(/*! ../modules/web.dom.iterable */ 240);
-	__webpack_require__(/*! ../modules/es6.string.iterator */ 251);
-	__webpack_require__(/*! ../modules/core.iter-helpers */ 253);
-	module.exports = __webpack_require__(/*! ../modules/$ */ 160).core.getIterator;
-
-/***/ },
-/* 240 */
-/*!***********************************************************************!*\
-  !*** ./~/babel-runtime/~/core-js/library/modules/web.dom.iterable.js ***!
-  \***********************************************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	__webpack_require__(/*! ./es6.array.iterator */ 241);
-	var $           = __webpack_require__(/*! ./$ */ 160)
-	  , Iterators   = __webpack_require__(/*! ./$.iter */ 244).Iterators
-	  , ITERATOR    = __webpack_require__(/*! ./$.wks */ 246)('iterator')
-	  , ArrayValues = Iterators.Array
-	  , NL          = $.g.NodeList
-	  , HTC         = $.g.HTMLCollection
-	  , NLProto     = NL && NL.prototype
-	  , HTCProto    = HTC && HTC.prototype;
-	if($.FW){
-	  if(NL && !(ITERATOR in NLProto))$.hide(NLProto, ITERATOR, ArrayValues);
-	  if(HTC && !(ITERATOR in HTCProto))$.hide(HTCProto, ITERATOR, ArrayValues);
-	}
-	Iterators.NodeList = Iterators.HTMLCollection = ArrayValues;
-
-/***/ },
-/* 241 */
-/*!*************************************************************************!*\
-  !*** ./~/babel-runtime/~/core-js/library/modules/es6.array.iterator.js ***!
-  \*************************************************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	var $          = __webpack_require__(/*! ./$ */ 160)
-	  , setUnscope = __webpack_require__(/*! ./$.unscope */ 242)
-	  , ITER       = __webpack_require__(/*! ./$.uid */ 243).safe('iter')
-	  , $iter      = __webpack_require__(/*! ./$.iter */ 244)
-	  , step       = $iter.step
-	  , Iterators  = $iter.Iterators;
-	
-	// 22.1.3.4 Array.prototype.entries()
-	// 22.1.3.13 Array.prototype.keys()
-	// 22.1.3.29 Array.prototype.values()
-	// 22.1.3.30 Array.prototype[@@iterator]()
-	__webpack_require__(/*! ./$.iter-define */ 249)(Array, 'Array', function(iterated, kind){
-	  $.set(this, ITER, {o: $.toObject(iterated), i: 0, k: kind});
-	// 22.1.5.2.1 %ArrayIteratorPrototype%.next()
-	}, function(){
-	  var iter  = this[ITER]
-	    , O     = iter.o
-	    , kind  = iter.k
-	    , index = iter.i++;
-	  if(!O || index >= O.length){
-	    iter.o = undefined;
-	    return step(1);
-	  }
-	  if(kind == 'keys'  )return step(0, index);
-	  if(kind == 'values')return step(0, O[index]);
-	  return step(0, [index, O[index]]);
-	}, 'values');
-	
-	// argumentsList[@@iterator] is %ArrayProto_values% (9.4.4.6, 9.4.4.7)
-	Iterators.Arguments = Iterators.Array;
-	
-	setUnscope('keys');
-	setUnscope('values');
-	setUnscope('entries');
-
-/***/ },
-/* 242 */
-/*!****************************************************************!*\
-  !*** ./~/babel-runtime/~/core-js/library/modules/$.unscope.js ***!
-  \****************************************************************/
-/***/ function(module, exports) {
-
-	module.exports = function(){ /* empty */ };
-
-/***/ },
-/* 243 */
-/*!************************************************************!*\
-  !*** ./~/babel-runtime/~/core-js/library/modules/$.uid.js ***!
-  \************************************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	var sid = 0;
-	function uid(key){
-	  return 'Symbol('.concat(key === undefined ? '' : key, ')_', (++sid + Math.random()).toString(36));
-	}
-	uid.safe = __webpack_require__(/*! ./$ */ 160).g.Symbol || uid;
-	module.exports = uid;
-
-/***/ },
-/* 244 */
-/*!*************************************************************!*\
-  !*** ./~/babel-runtime/~/core-js/library/modules/$.iter.js ***!
-  \*************************************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	var $                 = __webpack_require__(/*! ./$ */ 160)
-	  , cof               = __webpack_require__(/*! ./$.cof */ 245)
-	  , classof           = cof.classof
-	  , assert            = __webpack_require__(/*! ./$.assert */ 248)
-	  , assertObject      = assert.obj
-	  , SYMBOL_ITERATOR   = __webpack_require__(/*! ./$.wks */ 246)('iterator')
-	  , FF_ITERATOR       = '@@iterator'
-	  , Iterators         = __webpack_require__(/*! ./$.shared */ 247)('iterators')
-	  , IteratorPrototype = {};
-	// 25.1.2.1.1 %IteratorPrototype%[@@iterator]()
-	setIterator(IteratorPrototype, $.that);
-	function setIterator(O, value){
-	  $.hide(O, SYMBOL_ITERATOR, value);
-	  // Add iterator for FF iterator protocol
-	  if(FF_ITERATOR in [])$.hide(O, FF_ITERATOR, value);
-	}
-	
-	module.exports = {
-	  // Safari has buggy iterators w/o `next`
-	  BUGGY: 'keys' in [] && !('next' in [].keys()),
-	  Iterators: Iterators,
-	  step: function(done, value){
-	    return {value: value, done: !!done};
-	  },
-	  is: function(it){
-	    var O      = Object(it)
-	      , Symbol = $.g.Symbol;
-	    return (Symbol && Symbol.iterator || FF_ITERATOR) in O
-	      || SYMBOL_ITERATOR in O
-	      || $.has(Iterators, classof(O));
-	  },
-	  get: function(it){
-	    var Symbol = $.g.Symbol
-	      , getIter;
-	    if(it != undefined){
-	      getIter = it[Symbol && Symbol.iterator || FF_ITERATOR]
-	        || it[SYMBOL_ITERATOR]
-	        || Iterators[classof(it)];
-	    }
-	    assert($.isFunction(getIter), it, ' is not iterable!');
-	    return assertObject(getIter.call(it));
-	  },
-	  set: setIterator,
-	  create: function(Constructor, NAME, next, proto){
-	    Constructor.prototype = $.create(proto || IteratorPrototype, {next: $.desc(1, next)});
-	    cof.set(Constructor, NAME + ' Iterator');
-	  }
-	};
-
-/***/ },
-/* 245 */
-/*!************************************************************!*\
-  !*** ./~/babel-runtime/~/core-js/library/modules/$.cof.js ***!
-  \************************************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	var $        = __webpack_require__(/*! ./$ */ 160)
-	  , TAG      = __webpack_require__(/*! ./$.wks */ 246)('toStringTag')
-	  , toString = {}.toString;
-	function cof(it){
-	  return toString.call(it).slice(8, -1);
-	}
-	cof.classof = function(it){
-	  var O, T;
-	  return it == undefined ? it === undefined ? 'Undefined' : 'Null'
-	    : typeof (T = (O = Object(it))[TAG]) == 'string' ? T : cof(O);
-	};
-	cof.set = function(it, tag, stat){
-	  if(it && !$.has(it = stat ? it : it.prototype, TAG))$.hide(it, TAG, tag);
-	};
-	module.exports = cof;
-
-/***/ },
-/* 246 */
-/*!************************************************************!*\
-  !*** ./~/babel-runtime/~/core-js/library/modules/$.wks.js ***!
-  \************************************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	var global = __webpack_require__(/*! ./$ */ 160).g
-	  , store  = __webpack_require__(/*! ./$.shared */ 247)('wks');
-	module.exports = function(name){
-	  return store[name] || (store[name] =
-	    global.Symbol && global.Symbol[name] || __webpack_require__(/*! ./$.uid */ 243).safe('Symbol.' + name));
-	};
-
-/***/ },
-/* 247 */
-/*!***************************************************************!*\
-  !*** ./~/babel-runtime/~/core-js/library/modules/$.shared.js ***!
-  \***************************************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	var $      = __webpack_require__(/*! ./$ */ 160)
-	  , SHARED = '__core-js_shared__'
-	  , store  = $.g[SHARED] || ($.g[SHARED] = {});
-	module.exports = function(key){
-	  return store[key] || (store[key] = {});
-	};
-
-/***/ },
-/* 248 */
-/*!***************************************************************!*\
-  !*** ./~/babel-runtime/~/core-js/library/modules/$.assert.js ***!
-  \***************************************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	var $ = __webpack_require__(/*! ./$ */ 160);
-	function assert(condition, msg1, msg2){
-	  if(!condition)throw TypeError(msg2 ? msg1 + msg2 : msg1);
-	}
-	assert.def = $.assertDefined;
-	assert.fn = function(it){
-	  if(!$.isFunction(it))throw TypeError(it + ' is not a function!');
-	  return it;
-	};
-	assert.obj = function(it){
-	  if(!$.isObject(it))throw TypeError(it + ' is not an object!');
-	  return it;
-	};
-	assert.inst = function(it, Constructor, name){
-	  if(!(it instanceof Constructor))throw TypeError(name + ": use the 'new' operator!");
-	  return it;
-	};
-	module.exports = assert;
-
-/***/ },
-/* 249 */
-/*!********************************************************************!*\
-  !*** ./~/babel-runtime/~/core-js/library/modules/$.iter-define.js ***!
-  \********************************************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	var $def            = __webpack_require__(/*! ./$.def */ 166)
-	  , $redef          = __webpack_require__(/*! ./$.redef */ 250)
-	  , $               = __webpack_require__(/*! ./$ */ 160)
-	  , cof             = __webpack_require__(/*! ./$.cof */ 245)
-	  , $iter           = __webpack_require__(/*! ./$.iter */ 244)
-	  , SYMBOL_ITERATOR = __webpack_require__(/*! ./$.wks */ 246)('iterator')
-	  , FF_ITERATOR     = '@@iterator'
-	  , KEYS            = 'keys'
-	  , VALUES          = 'values'
-	  , Iterators       = $iter.Iterators;
-	module.exports = function(Base, NAME, Constructor, next, DEFAULT, IS_SET, FORCE){
-	  $iter.create(Constructor, NAME, next);
-	  function createMethod(kind){
-	    function $$(that){
-	      return new Constructor(that, kind);
-	    }
-	    switch(kind){
-	      case KEYS: return function keys(){ return $$(this); };
-	      case VALUES: return function values(){ return $$(this); };
-	    } return function entries(){ return $$(this); };
-	  }
-	  var TAG      = NAME + ' Iterator'
-	    , proto    = Base.prototype
-	    , _native  = proto[SYMBOL_ITERATOR] || proto[FF_ITERATOR] || DEFAULT && proto[DEFAULT]
-	    , _default = _native || createMethod(DEFAULT)
-	    , methods, key;
-	  // Fix native
-	  if(_native){
-	    var IteratorPrototype = $.getProto(_default.call(new Base));
-	    // Set @@toStringTag to native iterators
-	    cof.set(IteratorPrototype, TAG, true);
-	    // FF fix
-	    if($.FW && $.has(proto, FF_ITERATOR))$iter.set(IteratorPrototype, $.that);
-	  }
-	  // Define iterator
-	  if($.FW || FORCE)$iter.set(proto, _default);
-	  // Plug for library
-	  Iterators[NAME] = _default;
-	  Iterators[TAG]  = $.that;
-	  if(DEFAULT){
-	    methods = {
-	      keys:    IS_SET            ? _default : createMethod(KEYS),
-	      values:  DEFAULT == VALUES ? _default : createMethod(VALUES),
-	      entries: DEFAULT != VALUES ? _default : createMethod('entries')
-	    };
-	    if(FORCE)for(key in methods){
-	      if(!(key in proto))$redef(proto, key, methods[key]);
-	    } else $def($def.P + $def.F * $iter.BUGGY, NAME, methods);
-	  }
-	};
-
-/***/ },
-/* 250 */
-/*!**************************************************************!*\
-  !*** ./~/babel-runtime/~/core-js/library/modules/$.redef.js ***!
-  \**************************************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	module.exports = __webpack_require__(/*! ./$ */ 160).hide;
-
-/***/ },
-/* 251 */
-/*!**************************************************************************!*\
-  !*** ./~/babel-runtime/~/core-js/library/modules/es6.string.iterator.js ***!
-  \**************************************************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	var set   = __webpack_require__(/*! ./$ */ 160).set
-	  , $at   = __webpack_require__(/*! ./$.string-at */ 252)(true)
-	  , ITER  = __webpack_require__(/*! ./$.uid */ 243).safe('iter')
-	  , $iter = __webpack_require__(/*! ./$.iter */ 244)
-	  , step  = $iter.step;
-	
-	// 21.1.3.27 String.prototype[@@iterator]()
-	__webpack_require__(/*! ./$.iter-define */ 249)(String, 'String', function(iterated){
-	  set(this, ITER, {o: String(iterated), i: 0});
-	// 21.1.5.2.1 %StringIteratorPrototype%.next()
-	}, function(){
-	  var iter  = this[ITER]
-	    , O     = iter.o
-	    , index = iter.i
-	    , point;
-	  if(index >= O.length)return step(1);
-	  point = $at(O, index);
-	  iter.i += point.length;
-	  return step(0, point);
-	});
-
-/***/ },
-/* 252 */
-/*!******************************************************************!*\
-  !*** ./~/babel-runtime/~/core-js/library/modules/$.string-at.js ***!
-  \******************************************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	// true  -> String#at
-	// false -> String#codePointAt
-	var $ = __webpack_require__(/*! ./$ */ 160);
-	module.exports = function(TO_STRING){
-	  return function(that, pos){
-	    var s = String($.assertDefined(that))
-	      , i = $.toInteger(pos)
-	      , l = s.length
-	      , a, b;
-	    if(i < 0 || i >= l)return TO_STRING ? '' : undefined;
-	    a = s.charCodeAt(i);
-	    return a < 0xd800 || a > 0xdbff || i + 1 === l
-	      || (b = s.charCodeAt(i + 1)) < 0xdc00 || b > 0xdfff
-	        ? TO_STRING ? s.charAt(i) : a
-	        : TO_STRING ? s.slice(i, i + 2) : (a - 0xd800 << 10) + (b - 0xdc00) + 0x10000;
-	  };
-	};
-
-/***/ },
-/* 253 */
-/*!************************************************************************!*\
-  !*** ./~/babel-runtime/~/core-js/library/modules/core.iter-helpers.js ***!
-  \************************************************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	var core  = __webpack_require__(/*! ./$ */ 160).core
-	  , $iter = __webpack_require__(/*! ./$.iter */ 244);
-	core.isIterable  = $iter.is;
-	core.getIterator = $iter.get;
 
 /***/ }
 /******/ ]);

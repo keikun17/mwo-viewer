@@ -30,7 +30,7 @@ class DamageMeter extends React.Component {
         <div className="readings">
           <div className="reading left">
             {+(this.state.last.toFixed(2))}
-            <span className="label">Previous</span>
+            <span className="label">Last</span>
           </div>
 
           <div className="divider">@</div>

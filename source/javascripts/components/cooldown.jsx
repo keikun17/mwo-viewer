@@ -25,13 +25,22 @@ class Cooldown extends React.Component {
 
   render() {
     return (
-      <cooldown className="info">
-          <span className="info-title">Cooldown</span>
-          <span className="info-value">{this.state.time_to_zero}s</span>
-          <span className="info-value-divider">/</span>
-          <span className="info-value">{this.state.cool_rate}</span>
-          <span className="info-label">Time / Rate</span>
-      </cooldown>
+      <current_heat className="info_item">
+        <div className="title">Cooldown</div>
+        <div className="readings">
+          <div className="reading left">
+            {this.state.time_to_zero}s
+            <span className="label">Time</span>
+          </div>
+
+          <div className="divider">@</div>
+
+          <div className="reading right">
+            {this.state.cool_rate}/s
+            <span className="label">Rate</span>
+          </div>
+        </div>
+      </current_heat>
     );
   }
 }

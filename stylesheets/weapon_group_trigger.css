@@ -22,6 +22,10 @@ triggers {
 
 /* line 12, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/weapon_group_trigger.sass */
 group_trigger_wrapper {
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -37,12 +41,12 @@ group_trigger_wrapper {
   -webkit-justify-content: space-around;
       -ms-flex-pack: distribute;
           justify-content: space-around; }
-  /* line 18, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/weapon_group_trigger.sass */
+  /* line 19, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/weapon_group_trigger.sass */
   group_trigger_wrapper span {
     color: gray;
-    margin-right: 3px; }
+    margin-right: 5px; }
 
-/* line 23, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/weapon_group_trigger.sass */
+/* line 24, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/weapon_group_trigger.sass */
 weapon_group_trigger {
   border: 1px solid #ce3b3b;
   border-radius: 3px;

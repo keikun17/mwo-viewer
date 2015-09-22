@@ -62,14 +62,14 @@ info_wrapper {
       -ms-flex-direction: column;
           flex-direction: column;
   height: 80px;
-  font-family: Roboto mono;
+  font-family: Roboto mono, monospace;
   border: 1px solid #424242;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
       -ms-flex-pack: center;
           justify-content: center;
   width: 215px;
-  margin: 20px; }
+  margin: 10px 20px; }
   /* line 55, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/info.sass */
   .info_item .title {
     font-size: 1.4em;

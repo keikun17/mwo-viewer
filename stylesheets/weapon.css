@@ -2,10 +2,10 @@
 weapon {
   font-size: 1em;
   display: block;
-  border-radius: 4px;
+  border-radius: 8px;
   cursor: pointer;
   font-family: Roboto, sans-serif;
-  padding: 10px 5px;
+  padding: 3px 5px;
   margin-top: 3px;
   min-width: 100px;
   max-width: 174px;
@@ -14,7 +14,7 @@ weapon {
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
-  font-weight: 100; }
+  font-weight: 105; }
   /* line 19, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/weapon.sass */
   weapon.laser {
     border: 1px solid #ce6c3b;

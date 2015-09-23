@@ -3,6 +3,7 @@ import HeatsinkStore from "./stores/heatsink_store"
 import HeatStore from "./stores/heat_store"
 import HeatActions from './actions/heat_actions'
 import CooldownStore from './stores/cooldown_store'
+import Gauge from './gauge'
 
 class CurrentHeat extends React.Component {
 
@@ -65,9 +66,7 @@ class CurrentHeat extends React.Component {
 
         </div>
 
-        <gauge>
-          <gauge_level style={{width: `${this.gauge_level()}%`}}/>
-        </gauge>
+        <Gauge gauge_level={this.gauge_level()} color="red" />
       </current_heat>
     );
   }

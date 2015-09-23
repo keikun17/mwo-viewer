@@ -15,14 +15,31 @@ class MechViewer extends React.Component {
       alignItems: 'stretch',
       flexDirection: 'row',
       flexWrap: 'wrap',
+      paddingBottom: '30px'
     }
   }
 
   render() {
-    return <mechviewer style={this.getStyle()}>
-      <Info/>
-      <Equipment/>
-      <Armory weapons_list={weapons_list}/>
+    return <mechviewer style={{display: 'flex', flexDirection: 'column'}}>
+      <div style={this.getStyle()}>
+        <Info/>
+        <Equipment/>
+        <Armory weapons_list={weapons_list}/>
+      </div>
+      <footer>
+        <p>
+          This Thing © 2015
+          •
+          @keikun17
+          •
+          'Marthe Pryde' in-game
+          •
+          <a href="http://mwomercs.com/forums/topic/135725-mechwarrior-online-heat-simulator-ghost-heat-ambience-temp-effects/">Discuss here</a>
+        </p>
+        <p>
+          MechWarrior: Online Copyright © 2012-2015 Piranha Games Inc.
+        </p>
+      </footer>
     </mechviewer>
   }
 }

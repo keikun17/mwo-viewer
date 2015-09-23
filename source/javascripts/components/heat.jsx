@@ -38,10 +38,21 @@ class CurrentHeat extends React.Component {
     }
   }
 
+  gauge_level() {
+    var level = this.state.value / this.state.capacity
+    level = level * 100
+    return level
+  }
+
   render() {
     return (
       <current_heat className="info_item">
         <div className="title">Heat</div>
+
+        <gauge>
+          <gauge_level style={{width: `${this.gauge_level()}%`}}/>
+        </gauge>
+
         <div className="readings">
           <div className="reading left">
             {this.state.value.toFixed(2)}

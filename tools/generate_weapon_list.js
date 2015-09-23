@@ -81,11 +81,16 @@ request(url, function(error, response, body ){
         var ghost_heat_group = item_id
       }
 
+      // Add spaces to camelized name
+      item.name = item.name.replace(/([a-z])([A-Z])/g, '$1 $2')
+
+      // Push to weapon stack
       json[faction].push({
         weapon_id: item_id,
         ghost_limit: ghost_limit,
         type: weapon_type,
         name: item.name,
+
         cooldown_time: item.stats.cooldown,
         heat: item.stats.heat,
         damage: damage,

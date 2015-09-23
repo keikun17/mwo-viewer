@@ -28,7 +28,7 @@ export default class EquippedWeaponsWrapper extends React.Component {
 
   render() {
     var equipped_weapons = []
-      for (var key in this.state.equipped_weapons){
+    for (var key in this.state.equipped_weapons){
       let _weapon = this.state.equipped_weapons[key]
 
       equipped_weapons.push(

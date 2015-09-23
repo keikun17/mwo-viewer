@@ -1,4 +1,13 @@
 /* line 1, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/event-log.sass */
-textarea.event-log {
+event_log {
   font-size: 0.8em;
-  margin: 10px; }
+  margin: 10px;
+  background-color: white;
+  color: black;
+  height: 400px;
+  width: 250px;
+  overflow: scroll; }
+  /* line 11, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/event-log.sass */
+  event_log > ghost_heat {
+    color: red;
+    display: block; }

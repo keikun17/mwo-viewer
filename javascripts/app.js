@@ -23168,6 +23168,10 @@
 	
 	var _storesCooldown_store2 = _interopRequireDefault(_storesCooldown_store);
 	
+	var _gauge = __webpack_require__(/*! ./gauge */ 254);
+	
+	var _gauge2 = _interopRequireDefault(_gauge);
+	
 	var React = __webpack_require__(/*! react */ 1);
 	
 	var CurrentHeat = (function (_React$Component) {
@@ -23211,6 +23215,13 @@
 	      }
 	    }
 	  }, {
+	    key: "gauge_level",
+	    value: function gauge_level() {
+	      var level = this.state.value / this.state.capacity;
+	      level = level * 100;
+	      return level;
+	    }
+	  }, {
 	    key: "render",
 	    value: function render() {
 	      return React.createElement(
@@ -23249,7 +23260,8 @@
 	              "Capacity"
 	            )
 	          )
-	        )
+	        ),
+	        React.createElement(_gauge2["default"], { gauge_level: this.gauge_level(), color: "red" })
 	      );
 	    }
 	  }]);
@@ -24612,7 +24624,9 @@
 	    _classCallCheck(this, EventLog);
 	
 	    _get(Object.getPrototypeOf(EventLog.prototype), 'constructor', this).call(this, props);
-	    this.state = { contents: 'Mech loaded...' };
+	    this.state = {
+	      messages: ['Mech loaded...']
+	    };
 	  }
 	
 	  _inherits(EventLog, _React$Component);
@@ -24625,15 +24639,24 @@
 	  }, {
 	    key: 'append_content',
 	    value: function append_content(message) {
-	      var new_content = this.state.contents + '\n' + message;
-	      this.setState({ contents: new_content });
+	      var messages = this.state.messages;
+	      messages.push(React.createElement(
+	        'ghost_heat',
+	        null,
+	        message
+	      ));
+	      this.setState({ messages: messages });
 	    }
 	  }, {
 	    key: 'render',
 	    value: function render() {
-	      var contents = this.state.contents;
-	
-	      return React.createElement('textarea', { className: 'event-log', cols: '80', rows: '10', value: contents });
+	      return React.createElement(
+	        'event_log',
+	        null,
+	        ' ',
+	        this.state.messages,
+	        ' '
+	      );
 	    }
 	  }]);
 	
@@ -24752,12 +24775,12 @@
 	
 	var _equipped_weapons_wrapper2 = _interopRequireDefault(_equipped_weapons_wrapper);
 	
-	var _group_trigger = __webpack_require__(/*! ./group_trigger */ 248);
+	var _group_trigger = __webpack_require__(/*! ./group_trigger */ 247);
 	
 	var _group_trigger2 = _interopRequireDefault(_group_trigger);
 	
 	var React = __webpack_require__(/*! react */ 1);
-	var Heatsink = __webpack_require__(/*! ./heatsink */ 252);
+	var Heatsink = __webpack_require__(/*! ./heatsink */ 251);
 	
 	var Equipment = (function (_React$Component) {
 	  function Equipment(props) {
@@ -24998,9 +25021,13 @@
 	
 	var _constantsWeapon_constants2 = _interopRequireDefault(_constantsWeapon_constants);
 	
-	var _weapon_group = __webpack_require__(/*! ./weapon_group */ 247);
+	var _weapon_group = __webpack_require__(/*! ./weapon_group */ 253);
 	
 	var _weapon_group2 = _interopRequireDefault(_weapon_group);
+	
+	var _gauge = __webpack_require__(/*! ./gauge */ 254);
+	
+	var _gauge2 = _interopRequireDefault(_gauge);
 	
 	var EquippedWeapon = (function (_React$Component) {
 	  function EquippedWeapon(props) {
@@ -25081,14 +25108,25 @@
 	
 	      className = className + weapon_class;
 	
+	      var gauge_level = (this.props.cooldown_time - this.props.cooldown_time_remaining) / this.props.cooldown_time;
+	      gauge_level = gauge_level * 100;
+	
+	      var gauge_color = 'green';
+	      if (gauge_level < 100) gauge_color = 'red';
+	
 	      return _react2['default'].createElement(
 	        'equipped_weapon',
 	        { className: className, id: this.props.id, key: this.props.key, style: this.styles },
 	        _react2['default'].createElement(
 	          'cooldown_timer',
 	          null,
-	          this.props.cooldown_time_remaining,
-	          's'
+	          _react2['default'].createElement(
+	            'div',
+	            { style: { height: '90%' } },
+	            this.props.cooldown_time_remaining,
+	            's'
+	          ),
+	          _react2['default'].createElement(_gauge2['default'], { gauge_level: gauge_level, color: gauge_color })
 	        ),
 	        _react2['default'].createElement('weapon_trigger', { className: className, onClick: this.fire_weapon.bind(this) }),
 	        _react2['default'].createElement('remove_weapon_button', { onClick: this._remove.bind(this) }),
@@ -25120,83 +25158,6 @@
 
 /***/ },
 /* 247 */
-/*!********************************************************!*\
-  !*** ./source/javascripts/components/weapon_group.es6 ***!
-  \********************************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	var _inherits = __webpack_require__(/*! babel-runtime/helpers/inherits */ 157)['default'];
-	
-	var _get = __webpack_require__(/*! babel-runtime/helpers/get */ 162)['default'];
-	
-	var _createClass = __webpack_require__(/*! babel-runtime/helpers/create-class */ 168)['default'];
-	
-	var _classCallCheck = __webpack_require__(/*! babel-runtime/helpers/class-call-check */ 171)['default'];
-	
-	var _interopRequireDefault = __webpack_require__(/*! babel-runtime/helpers/interop-require-default */ 172)['default'];
-	
-	Object.defineProperty(exports, '__esModule', {
-	  value: true
-	});
-	
-	var _react = __webpack_require__(/*! react */ 1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _actionsWeapon_actions = __webpack_require__(/*! ./actions/weapon_actions */ 216);
-	
-	var _actionsWeapon_actions2 = _interopRequireDefault(_actionsWeapon_actions);
-	
-	var WeaponGroup = (function (_React$Component) {
-	  function WeaponGroup(props) {
-	    _classCallCheck(this, WeaponGroup);
-	
-	    _get(Object.getPrototypeOf(WeaponGroup.prototype), 'constructor', this).call(this, props);
-	    this.state = {
-	      enabled: this.is_enabled()
-	    };
-	  }
-	
-	  _inherits(WeaponGroup, _React$Component);
-	
-	  _createClass(WeaponGroup, [{
-	    key: 'is_enabled',
-	    value: function is_enabled() {
-	      return this.props.selected === true;
-	    }
-	  }, {
-	    key: 'class_names',
-	    value: function class_names() {
-	      if (this.is_enabled()) {
-	        return 'selected';
-	      }
-	    }
-	  }, {
-	    key: 'toggleWeaponGroup',
-	    value: function toggleWeaponGroup() {
-	      _actionsWeapon_actions2['default'].toggleWeaponGroup(this.props.equipped_weapon_id, this.props.group_id);
-	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
-	      return _react2['default'].createElement(
-	        'weapon_group',
-	        { className: this.class_names(), onClick: this.toggleWeaponGroup.bind(this) },
-	        this.props.group_id
-	      );
-	    }
-	  }]);
-	
-	  return WeaponGroup;
-	})(_react2['default'].Component);
-	
-	exports['default'] = WeaponGroup;
-	module.exports = exports['default'];
-
-/***/ },
-/* 248 */
 /*!*********************************************************!*\
   !*** ./source/javascripts/components/group_trigger.es6 ***!
   \*********************************************************/
@@ -25222,11 +25183,11 @@
 	
 	var _actionsWeapon_actions2 = _interopRequireDefault(_actionsWeapon_actions);
 	
-	var _storesKeybindings_store = __webpack_require__(/*! ./stores/keybindings_store */ 249);
+	var _storesKeybindings_store = __webpack_require__(/*! ./stores/keybindings_store */ 248);
 	
 	var _storesKeybindings_store2 = _interopRequireDefault(_storesKeybindings_store);
 	
-	var _actionsKeybinding_actions = __webpack_require__(/*! ./actions/keybinding_actions */ 251);
+	var _actionsKeybinding_actions = __webpack_require__(/*! ./actions/keybinding_actions */ 250);
 	
 	var _actionsKeybinding_actions2 = _interopRequireDefault(_actionsKeybinding_actions);
 	
@@ -25271,7 +25232,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 249 */
+/* 248 */
 /*!********************************************************************!*\
   !*** ./source/javascripts/components/stores/keybindings_store.es6 ***!
   \********************************************************************/
@@ -25299,7 +25260,7 @@
 	
 	var _app_dispatcher2 = _interopRequireDefault(_app_dispatcher);
 	
-	var _constantsKeybinding_constants = __webpack_require__(/*! ../constants/keybinding_constants */ 250);
+	var _constantsKeybinding_constants = __webpack_require__(/*! ../constants/keybinding_constants */ 249);
 	
 	var _constantsKeybinding_constants2 = _interopRequireDefault(_constantsKeybinding_constants);
 	
@@ -25360,7 +25321,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 250 */
+/* 249 */
 /*!**************************************************************************!*\
   !*** ./source/javascripts/components/constants/keybinding_constants.es6 ***!
   \**************************************************************************/
@@ -25377,7 +25338,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 251 */
+/* 250 */
 /*!**********************************************************************!*\
   !*** ./source/javascripts/components/actions/keybinding_actions.es6 ***!
   \**********************************************************************/
@@ -25395,7 +25356,7 @@
 	
 	var _app_dispatcherEs62 = _interopRequireDefault(_app_dispatcherEs6);
 	
-	var _constantsKeybinding_constants = __webpack_require__(/*! ../constants/keybinding_constants */ 250);
+	var _constantsKeybinding_constants = __webpack_require__(/*! ../constants/keybinding_constants */ 249);
 	
 	var _constantsKeybinding_constants2 = _interopRequireDefault(_constantsKeybinding_constants);
 	
@@ -25413,7 +25374,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 252 */
+/* 251 */
 /*!****************************************************!*\
   !*** ./source/javascripts/components/heatsink.jsx ***!
   \****************************************************/
@@ -25435,7 +25396,7 @@
 	  value: true
 	});
 	
-	var _actionsHeatsink_actions = __webpack_require__(/*! ./actions/heatsink_actions */ 253);
+	var _actionsHeatsink_actions = __webpack_require__(/*! ./actions/heatsink_actions */ 252);
 	
 	var _actionsHeatsink_actions2 = _interopRequireDefault(_actionsHeatsink_actions);
 	
@@ -25608,7 +25569,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 253 */
+/* 252 */
 /*!********************************************************************!*\
   !*** ./source/javascripts/components/actions/heatsink_actions.jsx ***!
   \********************************************************************/
@@ -25630,7 +25591,7 @@
 	
 	var _constantsHeatsink_constantsEs62 = _interopRequireDefault(_constantsHeatsink_constantsEs6);
 	
-	var _heatsink = __webpack_require__(/*! ../heatsink */ 252);
+	var _heatsink = __webpack_require__(/*! ../heatsink */ 251);
 	
 	var _heatsink2 = _interopRequireDefault(_heatsink);
 	
@@ -25676,6 +25637,131 @@
 	};
 	
 	exports['default'] = HeatsinkActions;
+	module.exports = exports['default'];
+
+/***/ },
+/* 253 */
+/*!********************************************************!*\
+  !*** ./source/javascripts/components/weapon_group.es6 ***!
+  \********************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var _inherits = __webpack_require__(/*! babel-runtime/helpers/inherits */ 157)['default'];
+	
+	var _get = __webpack_require__(/*! babel-runtime/helpers/get */ 162)['default'];
+	
+	var _createClass = __webpack_require__(/*! babel-runtime/helpers/create-class */ 168)['default'];
+	
+	var _classCallCheck = __webpack_require__(/*! babel-runtime/helpers/class-call-check */ 171)['default'];
+	
+	var _interopRequireDefault = __webpack_require__(/*! babel-runtime/helpers/interop-require-default */ 172)['default'];
+	
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _actionsWeapon_actions = __webpack_require__(/*! ./actions/weapon_actions */ 216);
+	
+	var _actionsWeapon_actions2 = _interopRequireDefault(_actionsWeapon_actions);
+	
+	var WeaponGroup = (function (_React$Component) {
+	  function WeaponGroup(props) {
+	    _classCallCheck(this, WeaponGroup);
+	
+	    _get(Object.getPrototypeOf(WeaponGroup.prototype), 'constructor', this).call(this, props);
+	    this.state = {
+	      enabled: this.is_enabled()
+	    };
+	  }
+	
+	  _inherits(WeaponGroup, _React$Component);
+	
+	  _createClass(WeaponGroup, [{
+	    key: 'is_enabled',
+	    value: function is_enabled() {
+	      return this.props.selected === true;
+	    }
+	  }, {
+	    key: 'class_names',
+	    value: function class_names() {
+	      if (this.is_enabled()) {
+	        return 'selected';
+	      }
+	    }
+	  }, {
+	    key: 'toggleWeaponGroup',
+	    value: function toggleWeaponGroup() {
+	      _actionsWeapon_actions2['default'].toggleWeaponGroup(this.props.equipped_weapon_id, this.props.group_id);
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      return _react2['default'].createElement(
+	        'weapon_group',
+	        { className: this.class_names(), onClick: this.toggleWeaponGroup.bind(this) },
+	        this.props.group_id
+	      );
+	    }
+	  }]);
+	
+	  return WeaponGroup;
+	})(_react2['default'].Component);
+	
+	exports['default'] = WeaponGroup;
+	module.exports = exports['default'];
+
+/***/ },
+/* 254 */
+/*!*************************************************!*\
+  !*** ./source/javascripts/components/gauge.es6 ***!
+  \*************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var _inherits = __webpack_require__(/*! babel-runtime/helpers/inherits */ 157)['default'];
+	
+	var _get = __webpack_require__(/*! babel-runtime/helpers/get */ 162)['default'];
+	
+	var _createClass = __webpack_require__(/*! babel-runtime/helpers/create-class */ 168)['default'];
+	
+	var _classCallCheck = __webpack_require__(/*! babel-runtime/helpers/class-call-check */ 171)['default'];
+	
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+	var React = __webpack_require__(/*! react */ 1);
+	
+	var Gauge = (function (_React$Component) {
+	  function Gauge(props) {
+	    _classCallCheck(this, Gauge);
+	
+	    _get(Object.getPrototypeOf(Gauge.prototype), 'constructor', this).call(this, props);
+	  }
+	
+	  _inherits(Gauge, _React$Component);
+	
+	  _createClass(Gauge, [{
+	    key: 'render',
+	    value: function render() {
+	      return React.createElement(
+	        'gauge',
+	        null,
+	        React.createElement('gauge_level', { style: { width: this.props.gauge_level + '%', backgroundColor: this.props.color } })
+	      );
+	    }
+	  }]);
+	
+	  return Gauge;
+	})(React.Component);
+	
+	exports['default'] = Gauge;
 	module.exports = exports['default'];
 
 /***/ }

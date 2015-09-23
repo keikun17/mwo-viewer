@@ -40,12 +40,36 @@ armory {
   padding-right: 70px; }
 /* line 1, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/cooldown_timer.sass */
 cooldown_timer {
-  width: 3em;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 50px;
+  height: 20px;
   margin-right: 3px;
-  display: inline-block;
   text-align: right;
   border: 1px solid #666666;
   padding: 4px; }
+/* line 1, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/current_heat.sass */
+current_heat {
+  height: 90px !important; }
+
+/* line 4, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/current_heat.sass */
+gauge {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  height: 100%; }
+  /* line 10, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/current_heat.sass */
+  gauge > gauge_level {
+    background-color: red; }
 /* line 1, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/equipment.sass */
 equipments {
   min-width: 645px;
@@ -74,9 +98,18 @@ equipped_weapon {
   equipped_weapon.missile {
     color: #3b87ce; }
 /* line 1, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/event-log.sass */
-textarea.event-log {
+event_log {
   font-size: 0.8em;
-  margin: 10px; }
+  margin: 10px;
+  background-color: white;
+  color: black;
+  height: 400px;
+  width: 250px;
+  overflow: scroll; }
+  /* line 11, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/event-log.sass */
+  event_log > ghost_heat {
+    color: red;
+    display: block; }
 /* line 1, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/faction_select.sass */
 faction_select {
   display: -webkit-box;

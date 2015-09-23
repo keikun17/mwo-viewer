@@ -6,6 +6,7 @@ import WeaponStore from './stores/weapon_store'
 import GhostHeatGroupStore from './stores/ghost_heat_group_store'
 import WeaponConstants from './constants/weapon_constants'
 import WeaponGroup from './weapon_group'
+import Gauge from './gauge'
 
 class EquippedWeapon extends React.Component {
 
@@ -71,8 +72,20 @@ class EquippedWeapon extends React.Component {
 
     className = className + weapon_class
 
+    var gauge_level =  (this.props.cooldown_time - this.props.cooldown_time_remaining) / this.props.cooldown_time
+    gauge_level = gauge_level * 100
+
+    var gauge_color = 'green'
+    if (gauge_level < 100)
+      gauge_color = 'red'
+
+
     return <equipped_weapon className={className} id={this.props.id} key={this.props.key} style={this.styles}>
-      <cooldown_timer>{ this.props.cooldown_time_remaining }s</cooldown_timer>
+      <cooldown_timer>
+        <div style={{height: '90%'}}>{ this.props.cooldown_time_remaining }s</div>
+        <Gauge gauge_level={gauge_level} color={gauge_color} />
+      </cooldown_timer>
+
       <weapon_trigger className={className} onClick={ this.fire_weapon.bind(this) } />
       <remove_weapon_button onClick={this._remove.bind(this)}/>
       <span>

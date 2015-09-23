@@ -3,6 +3,7 @@ import HeatsinkStore from "./stores/heatsink_store"
 import HeatStore from "./stores/heat_store"
 import HeatActions from './actions/heat_actions'
 import CooldownStore from './stores/cooldown_store'
+import Gauge from './gauge'
 
 class CurrentHeat extends React.Component {
 
@@ -38,10 +39,18 @@ class CurrentHeat extends React.Component {
     }
   }
 
+  gauge_level() {
+    var level = this.state.value / this.state.capacity
+    level = level * 100
+    return level
+  }
+
   render() {
     return (
       <current_heat className="info_item">
         <div className="title">Heat</div>
+
+
         <div className="readings">
           <div className="reading left">
             {this.state.value.toFixed(2)}
@@ -54,7 +63,10 @@ class CurrentHeat extends React.Component {
             {this.state.capacity.toFixed(2)}
             <span className="label">Capacity</span>
           </div>
+
         </div>
+
+        <Gauge gauge_level={this.gauge_level()} color="red" />
       </current_heat>
     );
   }

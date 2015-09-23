@@ -23075,18 +23075,13 @@
 	    return React.createElement(
 	      'info',
 	      null,
-	      React.createElement(
-	        'h1',
-	        null,
-	        'Information'
-	      ),
+	      React.createElement('h1', null),
 	      React.createElement(
 	        'info_wrapper',
 	        null,
 	        React.createElement(Heat, { className: 'info' }),
 	        React.createElement(Cooldown, { className: 'info' }),
 	        React.createElement(DamageMeter, null),
-	        React.createElement(DPSMeter, null),
 	        React.createElement(EventLog, null)
 	      )
 	    );

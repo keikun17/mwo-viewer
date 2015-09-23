@@ -6,8 +6,9 @@ event_log {
   color: black;
   height: 400px;
   width: 250px;
+  padding: 3px;
   overflow: scroll; }
-  /* line 11, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/event-log.sass */
+  /* line 12, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/event-log.sass */
   event_log > ghost_heat {
     color: red;
     display: block; }

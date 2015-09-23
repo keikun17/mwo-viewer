@@ -10,12 +10,11 @@ var Info = React.createClass({
 
   render: function(){
     return <info>
-      <h1>Information</h1>
+      <h1></h1>
       <info_wrapper>
         <Heat className='info'/>
         <Cooldown className='info'/>
         <DamageMeter />
-        <DPSMeter />
         <EventLog/>
       </info_wrapper>
     </info>

@@ -74,7 +74,7 @@ var recalculate_capacity = function() {
 }
 
 /* Broadcast string that notifies 'listeners' that the HeatStore's data has changed */
-var CHANGE = 'HEATSTORE_UPDATED'
+var CHANGE = HeatConstants.HEATSTORE_UPDATED
 
 class HeatStore extends EventEmitter {
 

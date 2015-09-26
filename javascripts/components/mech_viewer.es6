@@ -1,31 +1,54 @@
 import React from 'react'
 import EventEmitter from 'event-emitter'
-
 import Armory from './armory'
 import Info from './info'
 import Equipment from './equipment'
 import weapons_list from './weapons_list'
 import appDispatcher from './app_dispatcher'
+import MechStore from './stores/mech_store'
+import MechConstants from './constants/mech_constants'
 
 class MechViewer extends React.Component {
 
-  getStyle() {
-    return {
-      display: 'flex',
-      alignItems: 'stretch',
-      flexDirection: 'row',
-      flexWrap: 'wrap',
-      paddingBottom: '30px'
+  constructor(props) {
+    super(props);
+    this.state = MechStore.get_new_data()
+  }
+
+  componentDidMount() {
+    MechStore.on(MechConstants.MECH_UPDATED, this.update_component.bind(this) )
+  }
+
+  update_component() {
+    this.setState(MechStore.get_new_data())
+  }
+
+
+  emergency_lights_on() {
+    console.log("SUNOG")
+  }
+
+  emergency_lights_off() {
+    console.log("WALA NA SUNOG")
+  }
+
+
+  getClassNames() {
+    if(this.state.overheating == true){
+      return 'overheating'
+    } else {
+      return 'cool'
     }
+
   }
 
   render() {
-    return <mechviewer style={{display: 'flex', flexDirection: 'column'}}>
-      <div style={this.getStyle()}>
+    return <mechviewer className={this.getClassNames()}>
+      <mechviewer_content>
         <Info/>
         <Equipment/>
         <Armory weapons_list={weapons_list}/>
-      </div>
+      </mechviewer_content>
       <footer>
         <p>
           This Thing © 2015

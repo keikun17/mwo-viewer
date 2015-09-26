@@ -19378,7 +19378,7 @@
 	
 	var _info2 = _interopRequireDefault(_info);
 	
-	var _equipment = __webpack_require__(/*! ./equipment */ 244);
+	var _equipment = __webpack_require__(/*! ./equipment */ 245);
 	
 	var _equipment2 = _interopRequireDefault(_equipment);
 	
@@ -19390,35 +19390,62 @@
 	
 	var _app_dispatcher2 = _interopRequireDefault(_app_dispatcher);
 	
+	var _storesMech_store = __webpack_require__(/*! ./stores/mech_store */ 252);
+	
+	var _storesMech_store2 = _interopRequireDefault(_storesMech_store);
+	
+	var _constantsMech_constants = __webpack_require__(/*! ./constants/mech_constants */ 256);
+	
+	var _constantsMech_constants2 = _interopRequireDefault(_constantsMech_constants);
+	
 	var MechViewer = (function (_React$Component) {
-	  function MechViewer() {
+	  function MechViewer(props) {
 	    _classCallCheck(this, MechViewer);
 	
-	    _get(Object.getPrototypeOf(MechViewer.prototype), 'constructor', this).apply(this, arguments);
+	    _get(Object.getPrototypeOf(MechViewer.prototype), 'constructor', this).call(this, props);
+	    this.state = _storesMech_store2['default'].get_new_data();
 	  }
 	
 	  _inherits(MechViewer, _React$Component);
 	
 	  _createClass(MechViewer, [{
-	    key: 'getStyle',
-	    value: function getStyle() {
-	      return {
-	        display: 'flex',
-	        alignItems: 'stretch',
-	        flexDirection: 'row',
-	        flexWrap: 'wrap',
-	        paddingBottom: '30px'
-	      };
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      _storesMech_store2['default'].on(_constantsMech_constants2['default'].MECH_UPDATED, this.update_component.bind(this));
+	    }
+	  }, {
+	    key: 'update_component',
+	    value: function update_component() {
+	      this.setState(_storesMech_store2['default'].get_new_data());
+	    }
+	  }, {
+	    key: 'emergency_lights_on',
+	    value: function emergency_lights_on() {
+	      console.log('SUNOG');
+	    }
+	  }, {
+	    key: 'emergency_lights_off',
+	    value: function emergency_lights_off() {
+	      console.log('WALA NA SUNOG');
+	    }
+	  }, {
+	    key: 'getClassNames',
+	    value: function getClassNames() {
+	      if (this.state.overheating == true) {
+	        return 'overheating';
+	      } else {
+	        return 'cool';
+	      }
 	    }
 	  }, {
 	    key: 'render',
 	    value: function render() {
 	      return _react2['default'].createElement(
 	        'mechviewer',
-	        { style: { display: 'flex', flexDirection: 'column' } },
+	        { className: this.getClassNames() },
 	        _react2['default'].createElement(
-	          'div',
-	          { style: this.getStyle() },
+	          'mechviewer_content',
+	          null,
 	          _react2['default'].createElement(_info2['default'], null),
 	          _react2['default'].createElement(_equipment2['default'], null),
 	          _react2['default'].createElement(_armory2['default'], { weapons_list: _weapons_list2['default'] })
@@ -23087,10 +23114,10 @@
 	var React = __webpack_require__(/*! react */ 1);
 	var MapInfo = __webpack_require__(/*! ./map_info */ 226);
 	var Heat = __webpack_require__(/*! ./heat */ 227);
-	var DamageMeter = __webpack_require__(/*! ./damage_meter */ 237);
-	var Cooldown = __webpack_require__(/*! ./cooldown */ 241);
-	var EventLog = __webpack_require__(/*! ./event_log */ 242);
-	var DPSMeter = __webpack_require__(/*! ./dps_meter */ 243);
+	var DamageMeter = __webpack_require__(/*! ./damage_meter */ 238);
+	var Cooldown = __webpack_require__(/*! ./cooldown */ 242);
+	var EventLog = __webpack_require__(/*! ./event_log */ 243);
+	var DPSMeter = __webpack_require__(/*! ./dps_meter */ 244);
 	
 	var Info = React.createClass({
 	  displayName: 'Info',
@@ -23187,7 +23214,7 @@
 	
 	var _storesCooldown_store2 = _interopRequireDefault(_storesCooldown_store);
 	
-	var _gauge = __webpack_require__(/*! ./gauge */ 254);
+	var _gauge = __webpack_require__(/*! ./gauge */ 237);
 	
 	var _gauge2 = _interopRequireDefault(_gauge);
 	
@@ -23541,7 +23568,7 @@
 	};
 	
 	/* Broadcast string that notifies 'listeners' that the HeatStore's data has changed */
-	var CHANGE = 'HEATSTORE_UPDATED';
+	var CHANGE = _constantsHeat_constants2['default'].HEATSTORE_UPDATED;
 	
 	var HeatStore = (function (_EventEmitter) {
 	  function HeatStore() {
@@ -23641,6 +23668,7 @@
 	  HEAT_APPLY: 'HEAT_APPLY',
 	  HEAT_CAPACITY_UPDATE: 'HEAT_CAPACITY_UPDATE',
 	  HEAT_RELEASE: 'HEAT_RELEASE',
+	  HEATSTORE_UPDATED: 'HEATSTORE_UPDATED',
 	  GHOST_HEAT_APPLY: 'GHOST_HEAT_APPLY'
 	};
 	module.exports = exports['default'];
@@ -24175,6 +24203,54 @@
 
 /***/ },
 /* 237 */
+/*!*************************************************!*\
+  !*** ./source/javascripts/components/gauge.es6 ***!
+  \*************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var _inherits = __webpack_require__(/*! babel-runtime/helpers/inherits */ 157)['default'];
+	
+	var _get = __webpack_require__(/*! babel-runtime/helpers/get */ 162)['default'];
+	
+	var _createClass = __webpack_require__(/*! babel-runtime/helpers/create-class */ 168)['default'];
+	
+	var _classCallCheck = __webpack_require__(/*! babel-runtime/helpers/class-call-check */ 171)['default'];
+	
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+	var React = __webpack_require__(/*! react */ 1);
+	
+	var Gauge = (function (_React$Component) {
+	  function Gauge(props) {
+	    _classCallCheck(this, Gauge);
+	
+	    _get(Object.getPrototypeOf(Gauge.prototype), 'constructor', this).call(this, props);
+	  }
+	
+	  _inherits(Gauge, _React$Component);
+	
+	  _createClass(Gauge, [{
+	    key: 'render',
+	    value: function render() {
+	      return React.createElement(
+	        'gauge',
+	        null,
+	        React.createElement('gauge_level', { style: { width: this.props.gauge_level + '%', backgroundColor: this.props.color } })
+	      );
+	    }
+	  }]);
+	
+	  return Gauge;
+	})(React.Component);
+	
+	exports['default'] = Gauge;
+	module.exports = exports['default'];
+
+/***/ },
+/* 238 */
 /*!********************************************************!*\
   !*** ./source/javascripts/components/damage_meter.es6 ***!
   \********************************************************/
@@ -24196,11 +24272,11 @@
 	  value: true
 	});
 	
-	var _storesDamage_store = __webpack_require__(/*! ./stores/damage_store */ 238);
+	var _storesDamage_store = __webpack_require__(/*! ./stores/damage_store */ 239);
 	
 	var _storesDamage_store2 = _interopRequireDefault(_storesDamage_store);
 	
-	var _actionsDamage_actions = __webpack_require__(/*! ./actions/damage_actions */ 240);
+	var _actionsDamage_actions = __webpack_require__(/*! ./actions/damage_actions */ 241);
 	
 	var _actionsDamage_actions2 = _interopRequireDefault(_actionsDamage_actions);
 	
@@ -24290,7 +24366,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 238 */
+/* 239 */
 /*!***************************************************************!*\
   !*** ./source/javascripts/components/stores/damage_store.es6 ***!
   \***************************************************************/
@@ -24318,7 +24394,7 @@
 	
 	var _app_dispatcher2 = _interopRequireDefault(_app_dispatcher);
 	
-	var _constantsDamage_constants = __webpack_require__(/*! ../constants/damage_constants */ 239);
+	var _constantsDamage_constants = __webpack_require__(/*! ../constants/damage_constants */ 240);
 	
 	var _constantsDamage_constants2 = _interopRequireDefault(_constantsDamage_constants);
 	
@@ -24433,7 +24509,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 239 */
+/* 240 */
 /*!**********************************************************************!*\
   !*** ./source/javascripts/components/constants/damage_constants.es6 ***!
   \**********************************************************************/
@@ -24451,7 +24527,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 240 */
+/* 241 */
 /*!******************************************************************!*\
   !*** ./source/javascripts/components/actions/damage_actions.es6 ***!
   \******************************************************************/
@@ -24469,7 +24545,7 @@
 	
 	var _app_dispatcher2 = _interopRequireDefault(_app_dispatcher);
 	
-	var _constantsDamage_constants = __webpack_require__(/*! ../constants/damage_constants */ 239);
+	var _constantsDamage_constants = __webpack_require__(/*! ../constants/damage_constants */ 240);
 	
 	var _constantsDamage_constants2 = _interopRequireDefault(_constantsDamage_constants);
 	
@@ -24494,7 +24570,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 241 */
+/* 242 */
 /*!****************************************************!*\
   !*** ./source/javascripts/components/cooldown.jsx ***!
   \****************************************************/
@@ -24610,7 +24686,7 @@
 	module.exports = exports["default"];
 
 /***/ },
-/* 242 */
+/* 243 */
 /*!*****************************************************!*\
   !*** ./source/javascripts/components/event_log.es6 ***!
   \*****************************************************/
@@ -24686,7 +24762,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 243 */
+/* 244 */
 /*!*****************************************************!*\
   !*** ./source/javascripts/components/dps_meter.es6 ***!
   \*****************************************************/
@@ -24708,11 +24784,11 @@
 	  value: true
 	});
 	
-	var _storesDamage_store = __webpack_require__(/*! ./stores/damage_store */ 238);
+	var _storesDamage_store = __webpack_require__(/*! ./stores/damage_store */ 239);
 	
 	var _storesDamage_store2 = _interopRequireDefault(_storesDamage_store);
 	
-	var _actionsDamage_actions = __webpack_require__(/*! ./actions/damage_actions */ 240);
+	var _actionsDamage_actions = __webpack_require__(/*! ./actions/damage_actions */ 241);
 	
 	var _actionsDamage_actions2 = _interopRequireDefault(_actionsDamage_actions);
 	
@@ -24764,7 +24840,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 244 */
+/* 245 */
 /*!*****************************************************!*\
   !*** ./source/javascripts/components/equipment.jsx ***!
   \*****************************************************/
@@ -24790,16 +24866,16 @@
 	
 	var _actionsWeapon_actions2 = _interopRequireDefault(_actionsWeapon_actions);
 	
-	var _equipped_weapons_wrapper = __webpack_require__(/*! ./equipped_weapons_wrapper */ 245);
+	var _equipped_weapons_wrapper = __webpack_require__(/*! ./equipped_weapons_wrapper */ 246);
 	
 	var _equipped_weapons_wrapper2 = _interopRequireDefault(_equipped_weapons_wrapper);
 	
-	var _group_trigger = __webpack_require__(/*! ./group_trigger */ 247);
+	var _group_trigger = __webpack_require__(/*! ./group_trigger */ 249);
 	
 	var _group_trigger2 = _interopRequireDefault(_group_trigger);
 	
 	var React = __webpack_require__(/*! react */ 1);
-	var Heatsink = __webpack_require__(/*! ./heatsink */ 251);
+	var Heatsink = __webpack_require__(/*! ./heatsink */ 254);
 	
 	var Equipment = (function (_React$Component) {
 	  function Equipment(props) {
@@ -24876,7 +24952,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 245 */
+/* 246 */
 /*!********************************************************************!*\
   !*** ./source/javascripts/components/equipped_weapons_wrapper.es6 ***!
   \********************************************************************/
@@ -24910,7 +24986,7 @@
 	
 	var _actionsWeapon_actions2 = _interopRequireDefault(_actionsWeapon_actions);
 	
-	var _equipped_weapon = __webpack_require__(/*! ./equipped_weapon */ 246);
+	var _equipped_weapon = __webpack_require__(/*! ./equipped_weapon */ 247);
 	
 	var _equipped_weapon2 = _interopRequireDefault(_equipped_weapon);
 	
@@ -24990,7 +25066,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 246 */
+/* 247 */
 /*!***********************************************************!*\
   !*** ./source/javascripts/components/equipped_weapon.es6 ***!
   \***********************************************************/
@@ -25024,7 +25100,7 @@
 	
 	var _actionsHeat_actions2 = _interopRequireDefault(_actionsHeat_actions);
 	
-	var _actionsDamage_actions = __webpack_require__(/*! ./actions/damage_actions */ 240);
+	var _actionsDamage_actions = __webpack_require__(/*! ./actions/damage_actions */ 241);
 	
 	var _actionsDamage_actions2 = _interopRequireDefault(_actionsDamage_actions);
 	
@@ -25040,11 +25116,11 @@
 	
 	var _constantsWeapon_constants2 = _interopRequireDefault(_constantsWeapon_constants);
 	
-	var _weapon_group = __webpack_require__(/*! ./weapon_group */ 253);
+	var _weapon_group = __webpack_require__(/*! ./weapon_group */ 248);
 	
 	var _weapon_group2 = _interopRequireDefault(_weapon_group);
 	
-	var _gauge = __webpack_require__(/*! ./gauge */ 254);
+	var _gauge = __webpack_require__(/*! ./gauge */ 237);
 	
 	var _gauge2 = _interopRequireDefault(_gauge);
 	
@@ -25176,7 +25252,84 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 247 */
+/* 248 */
+/*!********************************************************!*\
+  !*** ./source/javascripts/components/weapon_group.es6 ***!
+  \********************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var _inherits = __webpack_require__(/*! babel-runtime/helpers/inherits */ 157)['default'];
+	
+	var _get = __webpack_require__(/*! babel-runtime/helpers/get */ 162)['default'];
+	
+	var _createClass = __webpack_require__(/*! babel-runtime/helpers/create-class */ 168)['default'];
+	
+	var _classCallCheck = __webpack_require__(/*! babel-runtime/helpers/class-call-check */ 171)['default'];
+	
+	var _interopRequireDefault = __webpack_require__(/*! babel-runtime/helpers/interop-require-default */ 172)['default'];
+	
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _actionsWeapon_actions = __webpack_require__(/*! ./actions/weapon_actions */ 216);
+	
+	var _actionsWeapon_actions2 = _interopRequireDefault(_actionsWeapon_actions);
+	
+	var WeaponGroup = (function (_React$Component) {
+	  function WeaponGroup(props) {
+	    _classCallCheck(this, WeaponGroup);
+	
+	    _get(Object.getPrototypeOf(WeaponGroup.prototype), 'constructor', this).call(this, props);
+	    this.state = {
+	      enabled: this.is_enabled()
+	    };
+	  }
+	
+	  _inherits(WeaponGroup, _React$Component);
+	
+	  _createClass(WeaponGroup, [{
+	    key: 'is_enabled',
+	    value: function is_enabled() {
+	      return this.props.selected === true;
+	    }
+	  }, {
+	    key: 'class_names',
+	    value: function class_names() {
+	      if (this.is_enabled()) {
+	        return 'selected';
+	      }
+	    }
+	  }, {
+	    key: 'toggleWeaponGroup',
+	    value: function toggleWeaponGroup() {
+	      _actionsWeapon_actions2['default'].toggleWeaponGroup(this.props.equipped_weapon_id, this.props.group_id);
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      return _react2['default'].createElement(
+	        'weapon_group',
+	        { className: this.class_names(), onClick: this.toggleWeaponGroup.bind(this) },
+	        this.props.group_id
+	      );
+	    }
+	  }]);
+	
+	  return WeaponGroup;
+	})(_react2['default'].Component);
+	
+	exports['default'] = WeaponGroup;
+	module.exports = exports['default'];
+
+/***/ },
+/* 249 */
 /*!*********************************************************!*\
   !*** ./source/javascripts/components/group_trigger.es6 ***!
   \*********************************************************/
@@ -25202,11 +25355,11 @@
 	
 	var _actionsWeapon_actions2 = _interopRequireDefault(_actionsWeapon_actions);
 	
-	var _storesKeybindings_store = __webpack_require__(/*! ./stores/keybindings_store */ 248);
+	var _storesKeybindings_store = __webpack_require__(/*! ./stores/keybindings_store */ 250);
 	
 	var _storesKeybindings_store2 = _interopRequireDefault(_storesKeybindings_store);
 	
-	var _actionsKeybinding_actions = __webpack_require__(/*! ./actions/keybinding_actions */ 250);
+	var _actionsKeybinding_actions = __webpack_require__(/*! ./actions/keybinding_actions */ 253);
 	
 	var _actionsKeybinding_actions2 = _interopRequireDefault(_actionsKeybinding_actions);
 	
@@ -25251,7 +25404,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 248 */
+/* 250 */
 /*!********************************************************************!*\
   !*** ./source/javascripts/components/stores/keybindings_store.es6 ***!
   \********************************************************************/
@@ -25279,7 +25432,7 @@
 	
 	var _app_dispatcher2 = _interopRequireDefault(_app_dispatcher);
 	
-	var _constantsKeybinding_constants = __webpack_require__(/*! ../constants/keybinding_constants */ 249);
+	var _constantsKeybinding_constants = __webpack_require__(/*! ../constants/keybinding_constants */ 251);
 	
 	var _constantsKeybinding_constants2 = _interopRequireDefault(_constantsKeybinding_constants);
 	
@@ -25340,7 +25493,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 249 */
+/* 251 */
 /*!**************************************************************************!*\
   !*** ./source/javascripts/components/constants/keybinding_constants.es6 ***!
   \**************************************************************************/
@@ -25357,7 +25510,151 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 250 */
+/* 252 */
+/*!*************************************************************!*\
+  !*** ./source/javascripts/components/stores/mech_store.es6 ***!
+  \*************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var _inherits = __webpack_require__(/*! babel-runtime/helpers/inherits */ 157)['default'];
+	
+	var _get = __webpack_require__(/*! babel-runtime/helpers/get */ 162)['default'];
+	
+	var _createClass = __webpack_require__(/*! babel-runtime/helpers/create-class */ 168)['default'];
+	
+	var _classCallCheck = __webpack_require__(/*! babel-runtime/helpers/class-call-check */ 171)['default'];
+	
+	var _interopRequireDefault = __webpack_require__(/*! babel-runtime/helpers/interop-require-default */ 172)['default'];
+	
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+	
+	var _events = __webpack_require__(/*! events */ 197);
+	
+	var _app_dispatcher = __webpack_require__(/*! ../app_dispatcher */ 191);
+	
+	var _app_dispatcher2 = _interopRequireDefault(_app_dispatcher);
+	
+	var _heat_store = __webpack_require__(/*! ./heat_store */ 230);
+	
+	var _heat_store2 = _interopRequireDefault(_heat_store);
+	
+	var _constantsMech_constants = __webpack_require__(/*! ../constants/mech_constants */ 256);
+	
+	var _constantsMech_constants2 = _interopRequireDefault(_constantsMech_constants);
+	
+	var _constantsHeat_constants = __webpack_require__(/*! ../constants/heat_constants */ 231);
+	
+	var _constantsHeat_constants2 = _interopRequireDefault(_constantsHeat_constants);
+	
+	var _actionsMech_actions = __webpack_require__(/*! ../actions/mech_actions */ 257);
+	
+	var _actionsMech_actions2 = _interopRequireDefault(_actionsMech_actions);
+	
+	var data = {
+	  overheating: false
+	};
+	
+	var overheat_check = function overheat_check() {
+	  var heatsink_store_data = _heat_store2['default'].get_new_data();
+	  var current_heat = heatsink_store_data.value;
+	  var heat_capacity = heatsink_store_data.capacity;
+	
+	  if (current_heat >= heat_capacity && data.overheating === false) {
+	    console.log('TRUE BECAUSE current heat is ' + current_heat + ' vs ' + heat_capacity);
+	    setTimeout(_actionsMech_actions2['default'].enter_overheat);
+	  }
+	  if (current_heat < heat_capacity && data.overheating === true) {
+	    console.log('FALSE BECAUSE current heat is ' + current_heat + ' vs ' + heat_capacity);
+	    setTimeout(_actionsMech_actions2['default'].exit_overheat);
+	  }
+	};
+	
+	var CHANGE = _constantsMech_constants2['default'].MECH_UPDATED;
+	
+	var MechStore = (function (_EventEmitter) {
+	  function MechStore() {
+	    _classCallCheck(this, MechStore);
+	
+	    _get(Object.getPrototypeOf(MechStore.prototype), 'constructor', this).apply(this, arguments);
+	  }
+	
+	  _inherits(MechStore, _EventEmitter);
+	
+	  _createClass(MechStore, [{
+	    key: 'get_new_data',
+	
+	    /**
+	     * Return contents of stored data
+	     * TODO: Move to a store base class
+	     */
+	    value: function get_new_data() {
+	      return data;
+	    }
+	  }, {
+	    key: 'emitChange',
+	
+	    /**
+	     * Broadcast that the store has changed
+	     * TODO: Move to a store base class
+	     */
+	    value: function emitChange() {
+	      this.emit(CHANGE);
+	    }
+	  }, {
+	    key: 'addChangeListener',
+	
+	    /**
+	     * TODO: Move to a store base class
+	     */
+	    value: function addChangeListener(callback) {
+	      this.on(CHANGE, callback);
+	    }
+	  }, {
+	    key: 'removeChangeListener',
+	
+	    /**
+	     * TODO: Move to a store base class
+	     */
+	    value: function removeChangeListener(callback) {
+	      this.removeListener(CHANGE, callback);
+	    }
+	  }]);
+	
+	  return MechStore;
+	})(_events.EventEmitter);
+	
+	var _MechStore = new MechStore();
+	
+	_MechStore.dispatch_token = _app_dispatcher2['default'].register(function (payload) {
+	  var action_type = payload.action_type;
+	  switch (action_type) {
+	    case _constantsHeat_constants2['default'].HEAT_APPLY:
+	      overheat_check();
+	      break;
+	    case _constantsHeat_constants2['default'].HEAT_RELEASE:
+	      overheat_check();
+	      break;
+	
+	    case _constantsMech_constants2['default'].ENTER_OVERHEAT:
+	      data.overheating = true;
+	      _MechStore.emit(CHANGE);
+	      break;
+	    case _constantsMech_constants2['default'].EXIT_OVERHEAT:
+	      data.overheating = false;
+	      _MechStore.emit(CHANGE);
+	      break;
+	  }
+	});
+	
+	exports['default'] = _MechStore;
+	module.exports = exports['default'];
+
+/***/ },
+/* 253 */
 /*!**********************************************************************!*\
   !*** ./source/javascripts/components/actions/keybinding_actions.es6 ***!
   \**********************************************************************/
@@ -25375,7 +25672,7 @@
 	
 	var _app_dispatcherEs62 = _interopRequireDefault(_app_dispatcherEs6);
 	
-	var _constantsKeybinding_constants = __webpack_require__(/*! ../constants/keybinding_constants */ 249);
+	var _constantsKeybinding_constants = __webpack_require__(/*! ../constants/keybinding_constants */ 251);
 	
 	var _constantsKeybinding_constants2 = _interopRequireDefault(_constantsKeybinding_constants);
 	
@@ -25393,7 +25690,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 251 */
+/* 254 */
 /*!****************************************************!*\
   !*** ./source/javascripts/components/heatsink.jsx ***!
   \****************************************************/
@@ -25415,7 +25712,7 @@
 	  value: true
 	});
 	
-	var _actionsHeatsink_actions = __webpack_require__(/*! ./actions/heatsink_actions */ 252);
+	var _actionsHeatsink_actions = __webpack_require__(/*! ./actions/heatsink_actions */ 255);
 	
 	var _actionsHeatsink_actions2 = _interopRequireDefault(_actionsHeatsink_actions);
 	
@@ -25588,7 +25885,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 252 */
+/* 255 */
 /*!********************************************************************!*\
   !*** ./source/javascripts/components/actions/heatsink_actions.jsx ***!
   \********************************************************************/
@@ -25610,7 +25907,7 @@
 	
 	var _constantsHeatsink_constantsEs62 = _interopRequireDefault(_constantsHeatsink_constantsEs6);
 	
-	var _heatsink = __webpack_require__(/*! ../heatsink */ 251);
+	var _heatsink = __webpack_require__(/*! ../heatsink */ 254);
 	
 	var _heatsink2 = _interopRequireDefault(_heatsink);
 	
@@ -25659,21 +25956,32 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 253 */
-/*!********************************************************!*\
-  !*** ./source/javascripts/components/weapon_group.es6 ***!
-  \********************************************************/
+/* 256 */
+/*!********************************************************************!*\
+  !*** ./source/javascripts/components/constants/mech_constants.es6 ***!
+  \********************************************************************/
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports["default"] = {
+	  ENTER_OVERHEAT: "ENTER_OVERHEAT",
+	  EXIT_OVERHEAT: "EXIT_OVERHEAT",
+	  MECH_UPDATED: "MECH_UPDATED"
+	};
+	module.exports = exports["default"];
+
+/***/ },
+/* 257 */
+/*!****************************************************************!*\
+  !*** ./source/javascripts/components/actions/mech_actions.es6 ***!
+  \****************************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
-	
-	var _inherits = __webpack_require__(/*! babel-runtime/helpers/inherits */ 157)['default'];
-	
-	var _get = __webpack_require__(/*! babel-runtime/helpers/get */ 162)['default'];
-	
-	var _createClass = __webpack_require__(/*! babel-runtime/helpers/create-class */ 168)['default'];
-	
-	var _classCallCheck = __webpack_require__(/*! babel-runtime/helpers/class-call-check */ 171)['default'];
 	
 	var _interopRequireDefault = __webpack_require__(/*! babel-runtime/helpers/interop-require-default */ 172)['default'];
 	
@@ -25681,106 +25989,35 @@
 	  value: true
 	});
 	
-	var _react = __webpack_require__(/*! react */ 1);
+	var _app_dispatcher = __webpack_require__(/*! ../app_dispatcher */ 191);
 	
-	var _react2 = _interopRequireDefault(_react);
+	var _app_dispatcher2 = _interopRequireDefault(_app_dispatcher);
 	
-	var _actionsWeapon_actions = __webpack_require__(/*! ./actions/weapon_actions */ 216);
+	var _constantsHeat_constants = __webpack_require__(/*! ../constants/heat_constants */ 231);
 	
-	var _actionsWeapon_actions2 = _interopRequireDefault(_actionsWeapon_actions);
+	var _constantsHeat_constants2 = _interopRequireDefault(_constantsHeat_constants);
 	
-	var WeaponGroup = (function (_React$Component) {
-	  function WeaponGroup(props) {
-	    _classCallCheck(this, WeaponGroup);
+	var _constantsMech_constants = __webpack_require__(/*! ../constants/mech_constants */ 256);
 	
-	    _get(Object.getPrototypeOf(WeaponGroup.prototype), 'constructor', this).call(this, props);
-	    this.state = {
-	      enabled: this.is_enabled()
-	    };
+	var _constantsMech_constants2 = _interopRequireDefault(_constantsMech_constants);
+	
+	var _storesHeat_store = __webpack_require__(/*! ../stores/heat_store */ 230);
+	
+	var _storesHeat_store2 = _interopRequireDefault(_storesHeat_store);
+	
+	exports['default'] = {
+	  enter_overheat: function enter_overheat() {
+	    _app_dispatcher2['default'].dispatch({
+	      action_type: _constantsMech_constants2['default'].ENTER_OVERHEAT
+	    });
+	  },
+	
+	  exit_overheat: function exit_overheat() {
+	    _app_dispatcher2['default'].dispatch({
+	      action_type: _constantsMech_constants2['default'].EXIT_OVERHEAT
+	    });
 	  }
-	
-	  _inherits(WeaponGroup, _React$Component);
-	
-	  _createClass(WeaponGroup, [{
-	    key: 'is_enabled',
-	    value: function is_enabled() {
-	      return this.props.selected === true;
-	    }
-	  }, {
-	    key: 'class_names',
-	    value: function class_names() {
-	      if (this.is_enabled()) {
-	        return 'selected';
-	      }
-	    }
-	  }, {
-	    key: 'toggleWeaponGroup',
-	    value: function toggleWeaponGroup() {
-	      _actionsWeapon_actions2['default'].toggleWeaponGroup(this.props.equipped_weapon_id, this.props.group_id);
-	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
-	      return _react2['default'].createElement(
-	        'weapon_group',
-	        { className: this.class_names(), onClick: this.toggleWeaponGroup.bind(this) },
-	        this.props.group_id
-	      );
-	    }
-	  }]);
-	
-	  return WeaponGroup;
-	})(_react2['default'].Component);
-	
-	exports['default'] = WeaponGroup;
-	module.exports = exports['default'];
-
-/***/ },
-/* 254 */
-/*!*************************************************!*\
-  !*** ./source/javascripts/components/gauge.es6 ***!
-  \*************************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	var _inherits = __webpack_require__(/*! babel-runtime/helpers/inherits */ 157)['default'];
-	
-	var _get = __webpack_require__(/*! babel-runtime/helpers/get */ 162)['default'];
-	
-	var _createClass = __webpack_require__(/*! babel-runtime/helpers/create-class */ 168)['default'];
-	
-	var _classCallCheck = __webpack_require__(/*! babel-runtime/helpers/class-call-check */ 171)['default'];
-	
-	Object.defineProperty(exports, '__esModule', {
-	  value: true
-	});
-	var React = __webpack_require__(/*! react */ 1);
-	
-	var Gauge = (function (_React$Component) {
-	  function Gauge(props) {
-	    _classCallCheck(this, Gauge);
-	
-	    _get(Object.getPrototypeOf(Gauge.prototype), 'constructor', this).call(this, props);
-	  }
-	
-	  _inherits(Gauge, _React$Component);
-	
-	  _createClass(Gauge, [{
-	    key: 'render',
-	    value: function render() {
-	      return React.createElement(
-	        'gauge',
-	        null,
-	        React.createElement('gauge_level', { style: { width: this.props.gauge_level + '%', backgroundColor: this.props.color } })
-	      );
-	    }
-	  }]);
-	
-	  return Gauge;
-	})(React.Component);
-	
-	exports['default'] = Gauge;
+	};
 	module.exports = exports['default'];
 
 /***/ }

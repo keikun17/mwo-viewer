@@ -8,4 +8,6 @@ gauge {
   height: 100%; }
   /* line 7, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/gauge.sass */
   gauge > gauge_level {
-    background-color: red; }
+    background-color: red;
+    -webkit-transition: width 0.5s ease-out;
+            transition: width 0.5s ease-out; }

@@ -1,0 +1,44 @@
+/* line 1, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/mech_viewer.sass */
+mechviewer {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-transition: all, 1s;
+          transition: all, 1s; }
+  /* line 6, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/mech_viewer.sass */
+  mechviewer_content {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: stretch;
+    -webkit-align-items: stretch;
+        -ms-flex-align: stretch;
+            align-items: stretch;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: row;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+    padding-bottom: 30px; }
+  /* line 13, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/mech_viewer.sass */
+  mechviewer.overheating {
+    -webkit-transition: all, 1s;
+            transition: all, 1s;
+    -webkit-filter: sepia(100%);
+            filter: sepia(100%); }
+  /* line 17, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/mech_viewer.sass */
+  mechviewer.cool {
+    -webkit-transition: all, 1s;
+            transition: all, 1s;
+    -webkit-filter: sepia(0%);
+            filter: sepia(0%); }

@@ -1,6 +1,7 @@
 mechviewer
   display: flex
   flex-direction: column
+  transition: all, 1s
 
   &_content
     display: flex
@@ -9,4 +10,11 @@ mechviewer
     flex-wrap: wrap
     padding-bottom: 30px
 
+  &.overheating
+    transition: all, 1s
+    filter: sepia(100%)
+
+  &.cool
+    transition: all, 1s
+    filter: sepia(0%)
 

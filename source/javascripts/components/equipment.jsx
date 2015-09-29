@@ -1,8 +1,9 @@
-var React = require('react');
+var React = require('react')
 var Heatsink = require('./heatsink')
 import WeaponActions from './actions/weapon_actions'
 import EquippedWeaponsWrapper from './equipped_weapons_wrapper'
 import GroupTrigger from './group_trigger'
+import Map from "./map"
 
 class Equipment extends React.Component {
   getStyle() {
@@ -28,6 +29,7 @@ class Equipment extends React.Component {
     return <equipments style={this.getStyle()}>
       <h1>Equipments</h1>
       <Heatsink/>
+      <Map />
       <triggers>
         <alpha_strike onClick={this.fireAllWeapons.bind(this)} >Alpha Strike</alpha_strike>
         <group_trigger_wrapper>

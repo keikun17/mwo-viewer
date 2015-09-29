@@ -4,31 +4,30 @@ import MapActions from "../actions/map_actions"
 import MapConstants from "../constants/map_constants"
 
 var data = {
-  selected_map: null
-}
+  selected_map: null,
+  game_maps: {
+    "Forest Colony":           { dissipation: 1    , capacity: 1}    ,
+    "Canyon Network":          { dissipation: 1    , capacity: 1}    ,
+    "River City":              { dissipation: 1    , capacity: 1}    ,
+    "Crimson Strait":          { dissipation: 1    , capacity: 1}    ,
 
-var game_maps = {
-  "Forest Colony":           { dissipation: 1    , capacity: 1}    ,
-  "Canyon Network":          { dissipation: 1    , capacity: 1}    ,
-  "River City":              { dissipation: 1    , capacity: 1}    ,
-  "Crimson Strait":          { dissipation: 1    , capacity: 1}    ,
+    "Forest Colony Snow":      { dissipation: 1.25  , capacity: 1.25}  ,
+    "Alpine Peaks":            { dissipation: 1.25  , capacity: 1.25}  ,
+    "Frozen City":             { dissipation: 1.25  , capacity: 1.25}  ,
 
-  "Forest Colony Snow":      { dissipation: 1.25  , capacity: 1.25}  ,
-  "Alpine Peaks":            { dissipation: 1.25  , capacity: 1.25}  ,
-  "Frozen City":             { dissipation: 1.25  , capacity: 1.25}  ,
+    "Caustic Valley":          { dissipation: .85 , capacity: .90} ,
+    "Terra Therma":            { dissipation: .75 , capacity: .80} ,
+    "Tourmaline Desert":       { dissipation: .85 , capacity: .90} ,
 
-  "Caustic Valley":          { dissipation: .85 , capacity: .90} ,
-  "Terra Therma":            { dissipation: .75 , capacity: .80} ,
-  "Tourmaline Desert":       { dissipation: .85 , capacity: .90} ,
-
-  "Caustic Valley [Crater]": { dissipation: 1    , capacity: 1}    ,
-  "Terra Therma [Caldera]":  { dissipation: 1    , capacity: 1}    ,
+    "Caustic Valley [Crater]": { dissipation: 1    , capacity: 1}    ,
+    "Terra Therma [Caldera]":  { dissipation: 1    , capacity: 1}    
+  }
 }
 
 var CHANGE = MapConstants.MAP_CHANGED
 
 var change_map = function(game_map) {
-  data.selected_map = game_maps[game_map]
+  data.selected_map = data.game_maps[game_map]
   console.log(data.selected_map)
 }
 

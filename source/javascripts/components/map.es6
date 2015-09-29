@@ -1,4 +1,6 @@
 import React from "react"
+import MapStore from "./stores/map_store"
+import MapActions from "./actions/map_actions"
 
 export default class Map extends React.Component {
 
@@ -35,10 +37,14 @@ export default class Map extends React.Component {
 
     return  <div className="input-group">
       <label>Map</label>
-      <select>
+      <select ref="map_select" onChange={this.onChange.bind(this)} >
         {{map_options}}
       </select>
     </div>
+  }
+
+  onChange() {
+    MapActions.change_map(this.refs.map_select.value)
   }
 
 }

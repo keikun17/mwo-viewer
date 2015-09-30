@@ -1,10 +1,11 @@
 import {EventEmitter} from 'events'
-import AppDispatcher from '../app_dispatcher';
+import AppDispatcher from '../app_dispatcher'
 import MapActions from "../actions/map_actions"
 import MapConstants from "../constants/map_constants"
+import HeatActions from "../actions/heat_actions"
 
 var data = {
-  selected_map: null,
+  selected_map: undefined,
   game_maps: {
     "Forest Colony":           { dissipation: 1    , capacity: 1}    ,
     "Canyon Network":          { dissipation: 1    , capacity: 1}    ,
@@ -28,7 +29,6 @@ var CHANGE = MapConstants.MAP_CHANGED
 
 var change_map = function(game_map) {
   data.selected_map = data.game_maps[game_map]
-  console.log(data.selected_map)
 }
 
 class MapStore extends EventEmitter {

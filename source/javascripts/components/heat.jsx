@@ -2,6 +2,8 @@ var React = require('react');
 import HeatsinkStore from "./stores/heatsink_store"
 import HeatStore from "./stores/heat_store"
 import HeatActions from './actions/heat_actions'
+import MapStore from './stores/map_store'
+import MapConstants from "./constants/map_constants"
 import CooldownStore from './stores/cooldown_store'
 import Gauge from './gauge'
 
@@ -17,6 +19,7 @@ class CurrentHeat extends React.Component {
     // this.calculate_capacity_and_draw()
     // HeatsinkStore.addChangeListener(this.calculate_capacity_and_draw.bind(this))
     HeatStore.addChangeListener(this.update_heat.bind(this))
+    // MapStore.on(MapConstants.MAP_CHANGED, HeatActions.update_capacity)
     HeatActions.update_capacity()
     this.update_heat()
 

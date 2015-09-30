@@ -73,6 +73,14 @@ var recalculate_capacity = function() {
 
   var capacity = +((base_capacity + internal_capacity + external_capacity))
 
+  // Map-specific modifier
+  var mapstore_data = MapStore.get_new_data()
+  console.log('kekeke')
+  if(typeof(mapstore_data.selected_map) != 'undefined') {
+    console.log("map changed")
+    capacity = capacity * mapstore_data.capacity
+  }
+
   data.capacity = capacity
 }
 
@@ -126,7 +134,11 @@ _HeatStore.dispatch_token = AppDispatcher.register((payload) => {
       recalculate_capacity()
       _HeatStore.emit(CHANGE)
       break
-
+    case MapConstants.CHANGE_MAP:
+      AppDispatcher.waitFor([MapStore.dispatch_token])
+      recalculate_capacity()
+      _HeatStore.emit(CHANGE)
+      break
     case HeatConstants.HEAT_APPLY:
       add_base_heat(payload.weapon.heat)
       _HeatStore.emit(CHANGE)
@@ -137,11 +149,6 @@ _HeatStore.dispatch_token = AppDispatcher.register((payload) => {
       break
     case HeatConstants.GHOST_HEAT_APPLY:
       add_base_heat(payload.amount)
-      _HeatStore.emit(CHANGE)
-      break
-    case MapConstants.MAP_CHANGED:
-      AppDispatcher.waitFor([MapStore])
-      recalculate_capacity()
       _HeatStore.emit(CHANGE)
       break
   }

@@ -75,10 +75,9 @@ var recalculate_capacity = function() {
 
   // Map-specific modifier
   var mapstore_data = MapStore.get_new_data()
-  console.log('kekeke')
   if(typeof(mapstore_data.selected_map) != 'undefined') {
-    console.log("map changed")
-    capacity = capacity * mapstore_data.capacity
+    console.log(mapstore_data.selected_map.capacity)
+    capacity = capacity * mapstore_data.selected_map.capacity
   }
 
   data.capacity = capacity

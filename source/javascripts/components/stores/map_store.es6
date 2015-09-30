@@ -20,8 +20,8 @@ var data = {
     "Terra Therma":            { dissipation: .75 , capacity: .80} ,
     "Tourmaline Desert":       { dissipation: .85 , capacity: .90} ,
 
-    "Caustic Valley [Crater]": { dissipation: 1    , capacity: 1}    ,
-    "Terra Therma [Caldera]":  { dissipation: 1    , capacity: 1}    
+    "Caustic Valley [Crater]": { dissipation: .6    , capacity: .7}    ,
+    "Terra Therma [Caldera]":  { dissipation: .4    , capacity: .88}
   }
 }
 

@@ -1,7 +1,9 @@
 import {EventEmitter} from 'events';
 import AppDispatcher from '../app_dispatcher';
 import CooldownConstants from '../constants/cooldown_constants'
+import MapConstants from "../constants/map_constants"
 import HeatStore from '../stores/heat_store'
+import MapStore from './map_store'
 import HeatsinkStore from './heatsink_store'
 
 var data = {
@@ -14,7 +16,6 @@ var CHANGE = 'COOLDOWN_STORE_UPDATED'
 function update(new_data) {
   data = Object.assign(data, new_data)
 }
-
 
 function recalculate_coolrate() {
     var heatsink_store_data = HeatsinkStore.get_new_data()
@@ -34,6 +35,12 @@ function recalculate_coolrate() {
     var external_cooldown = (external_heatsink_cooldown_modifier * heatsink_store_data.external_heatsinks)
 
     var cool_rate = +((internal_cooldown + external_cooldown).toFixed(2))
+
+    // Map-specific modifier
+    var mapstore_data = MapStore.get_new_data()
+    if(typeof(mapstore_data.selected_map) != 'undefined') {
+      cool_rate = cool_rate * mapstore_data.selected_map.dissipation
+    }
 
     data.cool_rate = cool_rate
 }
@@ -80,6 +87,11 @@ _CooldownStore.dispatch_token = AppDispatcher.register((payload) => {
     case CooldownConstants.COOLDOWN_ETA_UPDATE:
       update_time_to_zero()
       _CooldownStore.emitChange()
+      break
+    case MapConstants.CHANGE_MAP:
+      AppDispatcher.waitFor([MapStore.dispatch_token])
+      recalculate_coolrate()
+      _CooldownStore.emit(CHANGE)
       break
   }
 

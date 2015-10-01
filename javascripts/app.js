@@ -19378,7 +19378,7 @@
 	
 	var _info2 = _interopRequireDefault(_info);
 	
-	var _equipment = __webpack_require__(/*! ./equipment */ 245);
+	var _equipment = __webpack_require__(/*! ./equipment */ 248);
 	
 	var _equipment2 = _interopRequireDefault(_equipment);
 	
@@ -19390,11 +19390,11 @@
 	
 	var _app_dispatcher2 = _interopRequireDefault(_app_dispatcher);
 	
-	var _storesMech_store = __webpack_require__(/*! ./stores/mech_store */ 252);
+	var _storesMech_store = __webpack_require__(/*! ./stores/mech_store */ 259);
 	
 	var _storesMech_store2 = _interopRequireDefault(_storesMech_store);
 	
-	var _constantsMech_constants = __webpack_require__(/*! ./constants/mech_constants */ 256);
+	var _constantsMech_constants = __webpack_require__(/*! ./constants/mech_constants */ 260);
 	
 	var _constantsMech_constants2 = _interopRequireDefault(_constantsMech_constants);
 	
@@ -23114,10 +23114,10 @@
 	var React = __webpack_require__(/*! react */ 1);
 	var MapInfo = __webpack_require__(/*! ./map_info */ 226);
 	var Heat = __webpack_require__(/*! ./heat */ 227);
-	var DamageMeter = __webpack_require__(/*! ./damage_meter */ 238);
-	var Cooldown = __webpack_require__(/*! ./cooldown */ 242);
-	var EventLog = __webpack_require__(/*! ./event_log */ 243);
-	var DPSMeter = __webpack_require__(/*! ./dps_meter */ 244);
+	var DamageMeter = __webpack_require__(/*! ./damage_meter */ 241);
+	var Cooldown = __webpack_require__(/*! ./cooldown */ 245);
+	var EventLog = __webpack_require__(/*! ./event_log */ 246);
+	var DPSMeter = __webpack_require__(/*! ./dps_meter */ 247);
 	
 	var Info = React.createClass({
 	  displayName: 'Info',
@@ -23210,11 +23210,19 @@
 	
 	var _actionsHeat_actions2 = _interopRequireDefault(_actionsHeat_actions);
 	
+	var _storesMap_store = __webpack_require__(/*! ./stores/map_store */ 237);
+	
+	var _storesMap_store2 = _interopRequireDefault(_storesMap_store);
+	
+	var _constantsMap_constants = __webpack_require__(/*! ./constants/map_constants */ 239);
+	
+	var _constantsMap_constants2 = _interopRequireDefault(_constantsMap_constants);
+	
 	var _storesCooldown_store = __webpack_require__(/*! ./stores/cooldown_store */ 236);
 	
 	var _storesCooldown_store2 = _interopRequireDefault(_storesCooldown_store);
 	
-	var _gauge = __webpack_require__(/*! ./gauge */ 237);
+	var _gauge = __webpack_require__(/*! ./gauge */ 240);
 	
 	var _gauge2 = _interopRequireDefault(_gauge);
 	
@@ -23237,6 +23245,7 @@
 	      // this.calculate_capacity_and_draw()
 	      // HeatsinkStore.addChangeListener(this.calculate_capacity_and_draw.bind(this))
 	      _storesHeat_store2["default"].addChangeListener(this.update_heat.bind(this));
+	      // MapStore.on(MapConstants.MAP_CHANGED, HeatActions.update_capacity)
 	      _actionsHeat_actions2["default"].update_capacity();
 	      this.update_heat();
 	
@@ -23501,6 +23510,14 @@
 	
 	var _actionsCooldown_actions2 = _interopRequireDefault(_actionsCooldown_actions);
 	
+	var _map_store = __webpack_require__(/*! ./map_store */ 237);
+	
+	var _map_store2 = _interopRequireDefault(_map_store);
+	
+	var _constantsMap_constants = __webpack_require__(/*! ../constants/map_constants */ 239);
+	
+	var _constantsMap_constants2 = _interopRequireDefault(_constantsMap_constants);
+	
 	/**
 	 * Store data
 	 *   {float} value               - the amount of heat in the mech
@@ -23548,6 +23565,7 @@
 	  // Any [DHS] manually added to the engine count as Visible
 	
 	  var base_capacity = 30;
+	
 	  var internal_heatsink_capacity_modifier = 0;
 	  var external_heatsink_capacity_modifier = 0;
 	
@@ -23563,6 +23581,12 @@
 	  var external_capacity = heatsink_store_data.external_heatsinks * external_heatsink_capacity_modifier;
 	
 	  var capacity = +(base_capacity + internal_capacity + external_capacity);
+	
+	  // Map-specific modifier
+	  var mapstore_data = _map_store2['default'].get_new_data();
+	  if (typeof mapstore_data.selected_map != 'undefined') {
+	    capacity = capacity * mapstore_data.selected_map.capacity;
+	  }
 	
 	  data.capacity = capacity;
 	};
@@ -23635,7 +23659,11 @@
 	      recalculate_capacity();
 	      _HeatStore.emit(CHANGE);
 	      break;
-	
+	    case _constantsMap_constants2['default'].CHANGE_MAP:
+	      _app_dispatcher2['default'].waitFor([_map_store2['default'].dispatch_token]);
+	      recalculate_capacity();
+	      _HeatStore.emit(CHANGE);
+	      break;
 	    case _constantsHeat_constants2['default'].HEAT_APPLY:
 	      add_base_heat(payload.weapon.heat);
 	      _HeatStore.emit(CHANGE);
@@ -24032,28 +24060,8 @@
 	var CooldownActions = {
 	
 	  update_store: function update_store() {
-	    var heatsink_store_data = _storesHeatsink_store2['default'].get_new_data();
-	
-	    var internal_heatsink_cooldown_modifier;
-	    var external_heatsink_cooldown_modifier;
-	
-	    if (heatsink_store_data.double_heatsinks) {
-	      internal_heatsink_cooldown_modifier = .2;
-	      external_heatsink_cooldown_modifier = .14;
-	    } else {
-	      internal_heatsink_cooldown_modifier = .1;
-	      external_heatsink_cooldown_modifier = .1;
-	    }
-	
-	    var internal_cooldown = internal_heatsink_cooldown_modifier * heatsink_store_data.internal_heatsinks;
-	    var external_cooldown = external_heatsink_cooldown_modifier * heatsink_store_data.external_heatsinks;
-	
-	    var cool_rate = +(internal_cooldown + external_cooldown).toFixed(2);
-	    // var time_to_zero = (HeatsinkStore.get_new_data().value / cool_rate).toFixed(2)
-	
 	    _app_dispatcher2['default'].dispatch({
-	      action_type: _constantsCooldown_constants2['default'].COOLDOWN_UPDATE,
-	      new_data: { cool_rate: cool_rate }
+	      action_type: _constantsCooldown_constants2['default'].COOLDOWN_UPDATE
 	    });
 	  },
 	
@@ -24121,9 +24129,21 @@
 	
 	var _constantsCooldown_constants2 = _interopRequireDefault(_constantsCooldown_constants);
 	
+	var _constantsMap_constants = __webpack_require__(/*! ../constants/map_constants */ 239);
+	
+	var _constantsMap_constants2 = _interopRequireDefault(_constantsMap_constants);
+	
 	var _storesHeat_store = __webpack_require__(/*! ../stores/heat_store */ 230);
 	
 	var _storesHeat_store2 = _interopRequireDefault(_storesHeat_store);
+	
+	var _map_store = __webpack_require__(/*! ./map_store */ 237);
+	
+	var _map_store2 = _interopRequireDefault(_map_store);
+	
+	var _heatsink_store = __webpack_require__(/*! ./heatsink_store */ 228);
+	
+	var _heatsink_store2 = _interopRequireDefault(_heatsink_store);
 	
 	var data = {
 	  time_to_zero: 0,
@@ -24134,6 +24154,34 @@
 	
 	function update(new_data) {
 	  data = _Object$assign(data, new_data);
+	}
+	
+	function recalculate_coolrate() {
+	  var heatsink_store_data = _heatsink_store2['default'].get_new_data();
+	
+	  var internal_heatsink_cooldown_modifier;
+	  var external_heatsink_cooldown_modifier;
+	
+	  if (heatsink_store_data.double_heatsinks) {
+	    internal_heatsink_cooldown_modifier = .2;
+	    external_heatsink_cooldown_modifier = .14;
+	  } else {
+	    internal_heatsink_cooldown_modifier = .1;
+	    external_heatsink_cooldown_modifier = .1;
+	  }
+	
+	  var internal_cooldown = internal_heatsink_cooldown_modifier * heatsink_store_data.internal_heatsinks;
+	  var external_cooldown = external_heatsink_cooldown_modifier * heatsink_store_data.external_heatsinks;
+	
+	  var cool_rate = +(internal_cooldown + external_cooldown).toFixed(2);
+	
+	  // Map-specific modifier
+	  var mapstore_data = _map_store2['default'].get_new_data();
+	  if (typeof mapstore_data.selected_map != 'undefined') {
+	    cool_rate = cool_rate * mapstore_data.selected_map.dissipation;
+	  }
+	
+	  data.cool_rate = cool_rate;
 	}
 	
 	function update_time_to_zero() {
@@ -24190,12 +24238,17 @@
 	
 	  switch (action_type) {
 	    case _constantsCooldown_constants2['default'].COOLDOWN_UPDATE:
-	      update(payload.new_data);
+	      recalculate_coolrate();
 	      _CooldownStore.emitChange();
 	      break;
 	    case _constantsCooldown_constants2['default'].COOLDOWN_ETA_UPDATE:
 	      update_time_to_zero();
 	      _CooldownStore.emitChange();
+	      break;
+	    case _constantsMap_constants2['default'].CHANGE_MAP:
+	      _app_dispatcher2['default'].waitFor([_map_store2['default'].dispatch_token]);
+	      recalculate_coolrate();
+	      _CooldownStore.emit(CHANGE);
 	      break;
 	  }
 	});
@@ -24203,6 +24256,195 @@
 
 /***/ },
 /* 237 */
+/*!************************************************************!*\
+  !*** ./source/javascripts/components/stores/map_store.es6 ***!
+  \************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var _inherits = __webpack_require__(/*! babel-runtime/helpers/inherits */ 157)['default'];
+	
+	var _get = __webpack_require__(/*! babel-runtime/helpers/get */ 162)['default'];
+	
+	var _createClass = __webpack_require__(/*! babel-runtime/helpers/create-class */ 168)['default'];
+	
+	var _classCallCheck = __webpack_require__(/*! babel-runtime/helpers/class-call-check */ 171)['default'];
+	
+	var _interopRequireDefault = __webpack_require__(/*! babel-runtime/helpers/interop-require-default */ 172)['default'];
+	
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+	
+	var _events = __webpack_require__(/*! events */ 197);
+	
+	var _app_dispatcher = __webpack_require__(/*! ../app_dispatcher */ 191);
+	
+	var _app_dispatcher2 = _interopRequireDefault(_app_dispatcher);
+	
+	var _actionsMap_actions = __webpack_require__(/*! ../actions/map_actions */ 238);
+	
+	var _actionsMap_actions2 = _interopRequireDefault(_actionsMap_actions);
+	
+	var _constantsMap_constants = __webpack_require__(/*! ../constants/map_constants */ 239);
+	
+	var _constantsMap_constants2 = _interopRequireDefault(_constantsMap_constants);
+	
+	var _actionsHeat_actions = __webpack_require__(/*! ../actions/heat_actions */ 233);
+	
+	var _actionsHeat_actions2 = _interopRequireDefault(_actionsHeat_actions);
+	
+	var data = {
+	  selected_map: undefined,
+	  game_maps: {
+	    'Forest Colony': { dissipation: 1, capacity: 1 },
+	    'Canyon Network': { dissipation: 1, capacity: 1 },
+	    'River City': { dissipation: 1, capacity: 1 },
+	    'Crimson Strait': { dissipation: 1, capacity: 1 },
+	
+	    'Forest Colony Snow': { dissipation: 1.25, capacity: 1.25 },
+	    'Alpine Peaks': { dissipation: 1.25, capacity: 1.25 },
+	    'Frozen City': { dissipation: 1.25, capacity: 1.25 },
+	
+	    'Caustic Valley': { dissipation: .85, capacity: .90 },
+	    'Terra Therma': { dissipation: .75, capacity: .80 },
+	    'Tourmaline Desert': { dissipation: .85, capacity: .90 },
+	
+	    'Caustic Valley [Crater]': { dissipation: .6, capacity: .7 },
+	    'Terra Therma [Caldera]': { dissipation: .4, capacity: .88 }
+	  }
+	};
+	
+	var CHANGE = _constantsMap_constants2['default'].MAP_CHANGED;
+	
+	var change_map = function change_map(game_map) {
+	  data.selected_map = data.game_maps[game_map];
+	};
+	
+	var MapStore = (function (_EventEmitter) {
+	  function MapStore() {
+	    _classCallCheck(this, MapStore);
+	
+	    _get(Object.getPrototypeOf(MapStore.prototype), 'constructor', this).apply(this, arguments);
+	  }
+	
+	  _inherits(MapStore, _EventEmitter);
+	
+	  _createClass(MapStore, [{
+	    key: 'get_new_data',
+	
+	    /**
+	     * Return contents of stored data
+	     * TODO: Move to a store base class
+	     */
+	    value: function get_new_data() {
+	      return data;
+	    }
+	  }, {
+	    key: 'emitChange',
+	
+	    /**
+	     * Broadcast that the store has changed
+	     * TODO: Move to a store base class
+	     */
+	    value: function emitChange() {
+	      this.emit(CHANGE);
+	    }
+	  }, {
+	    key: 'addChangeListener',
+	
+	    /**
+	     * TODO: Move to a store base class
+	     */
+	    value: function addChangeListener(callback) {
+	      this.on(CHANGE, callback);
+	    }
+	  }, {
+	    key: 'removeChangeListener',
+	
+	    /**
+	     * TODO: Move to a store base class
+	     */
+	    value: function removeChangeListener(callback) {
+	      this.removeListener(CHANGE, callback);
+	    }
+	  }]);
+	
+	  return MapStore;
+	})(_events.EventEmitter);
+	
+	var _MapStore = new MapStore();
+	
+	_MapStore.dispatch_token = _app_dispatcher2['default'].register(function (payload) {
+	  var action_type = payload.action_type;
+	
+	  switch (action_type) {
+	    case _constantsMap_constants2['default'].CHANGE_MAP:
+	      change_map(payload.game_map);
+	      _MapStore.emit(CHANGE);
+	      break;
+	  }
+	});
+	
+	exports['default'] = _MapStore;
+	module.exports = exports['default'];
+
+/***/ },
+/* 238 */
+/*!***************************************************************!*\
+  !*** ./source/javascripts/components/actions/map_actions.es6 ***!
+  \***************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	var _interopRequireDefault = __webpack_require__(/*! babel-runtime/helpers/interop-require-default */ 172)["default"];
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _app_dispatcher = __webpack_require__(/*! ../app_dispatcher */ 191);
+	
+	var _app_dispatcher2 = _interopRequireDefault(_app_dispatcher);
+	
+	var _constantsMap_constants = __webpack_require__(/*! ../constants/map_constants */ 239);
+	
+	var _constantsMap_constants2 = _interopRequireDefault(_constantsMap_constants);
+	
+	exports["default"] = {
+	
+	  change_map: function change_map(game_map) {
+	    _app_dispatcher2["default"].dispatch({
+	      action_type: _constantsMap_constants2["default"].CHANGE_MAP,
+	      game_map: game_map
+	    });
+	  }
+	
+	};
+	module.exports = exports["default"];
+
+/***/ },
+/* 239 */
+/*!*******************************************************************!*\
+  !*** ./source/javascripts/components/constants/map_constants.es6 ***!
+  \*******************************************************************/
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports["default"] = {
+	  CHANGE_MAP: "CHANGE_MAP", // map will change
+	  MAP_CHANGED: "MAP_CHANGED" // map changed
+	};
+	module.exports = exports["default"];
+
+/***/ },
+/* 240 */
 /*!*************************************************!*\
   !*** ./source/javascripts/components/gauge.es6 ***!
   \*************************************************/
@@ -24250,7 +24492,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 238 */
+/* 241 */
 /*!********************************************************!*\
   !*** ./source/javascripts/components/damage_meter.es6 ***!
   \********************************************************/
@@ -24272,11 +24514,11 @@
 	  value: true
 	});
 	
-	var _storesDamage_store = __webpack_require__(/*! ./stores/damage_store */ 239);
+	var _storesDamage_store = __webpack_require__(/*! ./stores/damage_store */ 242);
 	
 	var _storesDamage_store2 = _interopRequireDefault(_storesDamage_store);
 	
-	var _actionsDamage_actions = __webpack_require__(/*! ./actions/damage_actions */ 241);
+	var _actionsDamage_actions = __webpack_require__(/*! ./actions/damage_actions */ 244);
 	
 	var _actionsDamage_actions2 = _interopRequireDefault(_actionsDamage_actions);
 	
@@ -24366,7 +24608,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 239 */
+/* 242 */
 /*!***************************************************************!*\
   !*** ./source/javascripts/components/stores/damage_store.es6 ***!
   \***************************************************************/
@@ -24394,7 +24636,7 @@
 	
 	var _app_dispatcher2 = _interopRequireDefault(_app_dispatcher);
 	
-	var _constantsDamage_constants = __webpack_require__(/*! ../constants/damage_constants */ 240);
+	var _constantsDamage_constants = __webpack_require__(/*! ../constants/damage_constants */ 243);
 	
 	var _constantsDamage_constants2 = _interopRequireDefault(_constantsDamage_constants);
 	
@@ -24509,7 +24751,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 240 */
+/* 243 */
 /*!**********************************************************************!*\
   !*** ./source/javascripts/components/constants/damage_constants.es6 ***!
   \**********************************************************************/
@@ -24527,7 +24769,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 241 */
+/* 244 */
 /*!******************************************************************!*\
   !*** ./source/javascripts/components/actions/damage_actions.es6 ***!
   \******************************************************************/
@@ -24545,7 +24787,7 @@
 	
 	var _app_dispatcher2 = _interopRequireDefault(_app_dispatcher);
 	
-	var _constantsDamage_constants = __webpack_require__(/*! ../constants/damage_constants */ 240);
+	var _constantsDamage_constants = __webpack_require__(/*! ../constants/damage_constants */ 243);
 	
 	var _constantsDamage_constants2 = _interopRequireDefault(_constantsDamage_constants);
 	
@@ -24570,7 +24812,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 242 */
+/* 245 */
 /*!****************************************************!*\
   !*** ./source/javascripts/components/cooldown.jsx ***!
   \****************************************************/
@@ -24686,7 +24928,7 @@
 	module.exports = exports["default"];
 
 /***/ },
-/* 243 */
+/* 246 */
 /*!*****************************************************!*\
   !*** ./source/javascripts/components/event_log.es6 ***!
   \*****************************************************/
@@ -24762,7 +25004,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 244 */
+/* 247 */
 /*!*****************************************************!*\
   !*** ./source/javascripts/components/dps_meter.es6 ***!
   \*****************************************************/
@@ -24784,11 +25026,11 @@
 	  value: true
 	});
 	
-	var _storesDamage_store = __webpack_require__(/*! ./stores/damage_store */ 239);
+	var _storesDamage_store = __webpack_require__(/*! ./stores/damage_store */ 242);
 	
 	var _storesDamage_store2 = _interopRequireDefault(_storesDamage_store);
 	
-	var _actionsDamage_actions = __webpack_require__(/*! ./actions/damage_actions */ 241);
+	var _actionsDamage_actions = __webpack_require__(/*! ./actions/damage_actions */ 244);
 	
 	var _actionsDamage_actions2 = _interopRequireDefault(_actionsDamage_actions);
 	
@@ -24840,7 +25082,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 245 */
+/* 248 */
 /*!*****************************************************!*\
   !*** ./source/javascripts/components/equipment.jsx ***!
   \*****************************************************/
@@ -24866,16 +25108,20 @@
 	
 	var _actionsWeapon_actions2 = _interopRequireDefault(_actionsWeapon_actions);
 	
-	var _equipped_weapons_wrapper = __webpack_require__(/*! ./equipped_weapons_wrapper */ 246);
+	var _equipped_weapons_wrapper = __webpack_require__(/*! ./equipped_weapons_wrapper */ 249);
 	
 	var _equipped_weapons_wrapper2 = _interopRequireDefault(_equipped_weapons_wrapper);
 	
-	var _group_trigger = __webpack_require__(/*! ./group_trigger */ 249);
+	var _group_trigger = __webpack_require__(/*! ./group_trigger */ 252);
 	
 	var _group_trigger2 = _interopRequireDefault(_group_trigger);
 	
+	var _map = __webpack_require__(/*! ./map */ 256);
+	
+	var _map2 = _interopRequireDefault(_map);
+	
 	var React = __webpack_require__(/*! react */ 1);
-	var Heatsink = __webpack_require__(/*! ./heatsink */ 254);
+	var Heatsink = __webpack_require__(/*! ./heatsink */ 257);
 	
 	var Equipment = (function (_React$Component) {
 	  function Equipment(props) {
@@ -24916,6 +25162,7 @@
 	          'Equipments'
 	        ),
 	        React.createElement(Heatsink, null),
+	        React.createElement(_map2['default'], null),
 	        React.createElement(
 	          'triggers',
 	          null,
@@ -24952,7 +25199,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 246 */
+/* 249 */
 /*!********************************************************************!*\
   !*** ./source/javascripts/components/equipped_weapons_wrapper.es6 ***!
   \********************************************************************/
@@ -24986,7 +25233,7 @@
 	
 	var _actionsWeapon_actions2 = _interopRequireDefault(_actionsWeapon_actions);
 	
-	var _equipped_weapon = __webpack_require__(/*! ./equipped_weapon */ 247);
+	var _equipped_weapon = __webpack_require__(/*! ./equipped_weapon */ 250);
 	
 	var _equipped_weapon2 = _interopRequireDefault(_equipped_weapon);
 	
@@ -25066,7 +25313,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 247 */
+/* 250 */
 /*!***********************************************************!*\
   !*** ./source/javascripts/components/equipped_weapon.es6 ***!
   \***********************************************************/
@@ -25100,7 +25347,7 @@
 	
 	var _actionsHeat_actions2 = _interopRequireDefault(_actionsHeat_actions);
 	
-	var _actionsDamage_actions = __webpack_require__(/*! ./actions/damage_actions */ 241);
+	var _actionsDamage_actions = __webpack_require__(/*! ./actions/damage_actions */ 244);
 	
 	var _actionsDamage_actions2 = _interopRequireDefault(_actionsDamage_actions);
 	
@@ -25116,11 +25363,11 @@
 	
 	var _constantsWeapon_constants2 = _interopRequireDefault(_constantsWeapon_constants);
 	
-	var _weapon_group = __webpack_require__(/*! ./weapon_group */ 248);
+	var _weapon_group = __webpack_require__(/*! ./weapon_group */ 251);
 	
 	var _weapon_group2 = _interopRequireDefault(_weapon_group);
 	
-	var _gauge = __webpack_require__(/*! ./gauge */ 237);
+	var _gauge = __webpack_require__(/*! ./gauge */ 240);
 	
 	var _gauge2 = _interopRequireDefault(_gauge);
 	
@@ -25252,7 +25499,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 248 */
+/* 251 */
 /*!********************************************************!*\
   !*** ./source/javascripts/components/weapon_group.es6 ***!
   \********************************************************/
@@ -25329,7 +25576,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 249 */
+/* 252 */
 /*!*********************************************************!*\
   !*** ./source/javascripts/components/group_trigger.es6 ***!
   \*********************************************************/
@@ -25355,11 +25602,11 @@
 	
 	var _actionsWeapon_actions2 = _interopRequireDefault(_actionsWeapon_actions);
 	
-	var _storesKeybindings_store = __webpack_require__(/*! ./stores/keybindings_store */ 250);
+	var _storesKeybindings_store = __webpack_require__(/*! ./stores/keybindings_store */ 253);
 	
 	var _storesKeybindings_store2 = _interopRequireDefault(_storesKeybindings_store);
 	
-	var _actionsKeybinding_actions = __webpack_require__(/*! ./actions/keybinding_actions */ 253);
+	var _actionsKeybinding_actions = __webpack_require__(/*! ./actions/keybinding_actions */ 255);
 	
 	var _actionsKeybinding_actions2 = _interopRequireDefault(_actionsKeybinding_actions);
 	
@@ -25404,7 +25651,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 250 */
+/* 253 */
 /*!********************************************************************!*\
   !*** ./source/javascripts/components/stores/keybindings_store.es6 ***!
   \********************************************************************/
@@ -25432,7 +25679,7 @@
 	
 	var _app_dispatcher2 = _interopRequireDefault(_app_dispatcher);
 	
-	var _constantsKeybinding_constants = __webpack_require__(/*! ../constants/keybinding_constants */ 251);
+	var _constantsKeybinding_constants = __webpack_require__(/*! ../constants/keybinding_constants */ 254);
 	
 	var _constantsKeybinding_constants2 = _interopRequireDefault(_constantsKeybinding_constants);
 	
@@ -25493,7 +25740,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 251 */
+/* 254 */
 /*!**************************************************************************!*\
   !*** ./source/javascripts/components/constants/keybinding_constants.es6 ***!
   \**************************************************************************/
@@ -25510,151 +25757,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 252 */
-/*!*************************************************************!*\
-  !*** ./source/javascripts/components/stores/mech_store.es6 ***!
-  \*************************************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	var _inherits = __webpack_require__(/*! babel-runtime/helpers/inherits */ 157)['default'];
-	
-	var _get = __webpack_require__(/*! babel-runtime/helpers/get */ 162)['default'];
-	
-	var _createClass = __webpack_require__(/*! babel-runtime/helpers/create-class */ 168)['default'];
-	
-	var _classCallCheck = __webpack_require__(/*! babel-runtime/helpers/class-call-check */ 171)['default'];
-	
-	var _interopRequireDefault = __webpack_require__(/*! babel-runtime/helpers/interop-require-default */ 172)['default'];
-	
-	Object.defineProperty(exports, '__esModule', {
-	  value: true
-	});
-	
-	var _events = __webpack_require__(/*! events */ 197);
-	
-	var _app_dispatcher = __webpack_require__(/*! ../app_dispatcher */ 191);
-	
-	var _app_dispatcher2 = _interopRequireDefault(_app_dispatcher);
-	
-	var _heat_store = __webpack_require__(/*! ./heat_store */ 230);
-	
-	var _heat_store2 = _interopRequireDefault(_heat_store);
-	
-	var _constantsMech_constants = __webpack_require__(/*! ../constants/mech_constants */ 256);
-	
-	var _constantsMech_constants2 = _interopRequireDefault(_constantsMech_constants);
-	
-	var _constantsHeat_constants = __webpack_require__(/*! ../constants/heat_constants */ 231);
-	
-	var _constantsHeat_constants2 = _interopRequireDefault(_constantsHeat_constants);
-	
-	var _actionsMech_actions = __webpack_require__(/*! ../actions/mech_actions */ 257);
-	
-	var _actionsMech_actions2 = _interopRequireDefault(_actionsMech_actions);
-	
-	var data = {
-	  overheating: false
-	};
-	
-	var overheat_check = function overheat_check() {
-	  var heatsink_store_data = _heat_store2['default'].get_new_data();
-	  var current_heat = heatsink_store_data.value;
-	  var heat_capacity = heatsink_store_data.capacity;
-	
-	  if (current_heat >= heat_capacity && data.overheating === false) {
-	    console.log('TRUE BECAUSE current heat is ' + current_heat + ' vs ' + heat_capacity);
-	    setTimeout(_actionsMech_actions2['default'].enter_overheat);
-	  }
-	  if (current_heat < heat_capacity && data.overheating === true) {
-	    console.log('FALSE BECAUSE current heat is ' + current_heat + ' vs ' + heat_capacity);
-	    setTimeout(_actionsMech_actions2['default'].exit_overheat);
-	  }
-	};
-	
-	var CHANGE = _constantsMech_constants2['default'].MECH_UPDATED;
-	
-	var MechStore = (function (_EventEmitter) {
-	  function MechStore() {
-	    _classCallCheck(this, MechStore);
-	
-	    _get(Object.getPrototypeOf(MechStore.prototype), 'constructor', this).apply(this, arguments);
-	  }
-	
-	  _inherits(MechStore, _EventEmitter);
-	
-	  _createClass(MechStore, [{
-	    key: 'get_new_data',
-	
-	    /**
-	     * Return contents of stored data
-	     * TODO: Move to a store base class
-	     */
-	    value: function get_new_data() {
-	      return data;
-	    }
-	  }, {
-	    key: 'emitChange',
-	
-	    /**
-	     * Broadcast that the store has changed
-	     * TODO: Move to a store base class
-	     */
-	    value: function emitChange() {
-	      this.emit(CHANGE);
-	    }
-	  }, {
-	    key: 'addChangeListener',
-	
-	    /**
-	     * TODO: Move to a store base class
-	     */
-	    value: function addChangeListener(callback) {
-	      this.on(CHANGE, callback);
-	    }
-	  }, {
-	    key: 'removeChangeListener',
-	
-	    /**
-	     * TODO: Move to a store base class
-	     */
-	    value: function removeChangeListener(callback) {
-	      this.removeListener(CHANGE, callback);
-	    }
-	  }]);
-	
-	  return MechStore;
-	})(_events.EventEmitter);
-	
-	var _MechStore = new MechStore();
-	
-	_MechStore.dispatch_token = _app_dispatcher2['default'].register(function (payload) {
-	  var action_type = payload.action_type;
-	  switch (action_type) {
-	    case _constantsHeat_constants2['default'].HEAT_APPLY:
-	      overheat_check();
-	      break;
-	    case _constantsHeat_constants2['default'].HEAT_RELEASE:
-	      overheat_check();
-	      break;
-	
-	    case _constantsMech_constants2['default'].ENTER_OVERHEAT:
-	      data.overheating = true;
-	      _MechStore.emit(CHANGE);
-	      break;
-	    case _constantsMech_constants2['default'].EXIT_OVERHEAT:
-	      data.overheating = false;
-	      _MechStore.emit(CHANGE);
-	      break;
-	  }
-	});
-	
-	exports['default'] = _MechStore;
-	module.exports = exports['default'];
-
-/***/ },
-/* 253 */
+/* 255 */
 /*!**********************************************************************!*\
   !*** ./source/javascripts/components/actions/keybinding_actions.es6 ***!
   \**********************************************************************/
@@ -25672,7 +25775,7 @@
 	
 	var _app_dispatcherEs62 = _interopRequireDefault(_app_dispatcherEs6);
 	
-	var _constantsKeybinding_constants = __webpack_require__(/*! ../constants/keybinding_constants */ 251);
+	var _constantsKeybinding_constants = __webpack_require__(/*! ../constants/keybinding_constants */ 254);
 	
 	var _constantsKeybinding_constants2 = _interopRequireDefault(_constantsKeybinding_constants);
 	
@@ -25690,7 +25793,95 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 254 */
+/* 256 */
+/*!***********************************************!*\
+  !*** ./source/javascripts/components/map.es6 ***!
+  \***********************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	var _inherits = __webpack_require__(/*! babel-runtime/helpers/inherits */ 157)["default"];
+	
+	var _get = __webpack_require__(/*! babel-runtime/helpers/get */ 162)["default"];
+	
+	var _createClass = __webpack_require__(/*! babel-runtime/helpers/create-class */ 168)["default"];
+	
+	var _classCallCheck = __webpack_require__(/*! babel-runtime/helpers/class-call-check */ 171)["default"];
+	
+	var _interopRequireDefault = __webpack_require__(/*! babel-runtime/helpers/interop-require-default */ 172)["default"];
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _storesMap_store = __webpack_require__(/*! ./stores/map_store */ 237);
+	
+	var _storesMap_store2 = _interopRequireDefault(_storesMap_store);
+	
+	var _actionsMap_actions = __webpack_require__(/*! ./actions/map_actions */ 238);
+	
+	var _actionsMap_actions2 = _interopRequireDefault(_actionsMap_actions);
+	
+	var Map = (function (_React$Component) {
+	  function Map(arg) {
+	    _classCallCheck(this, Map);
+	
+	    // init
+	    _get(Object.getPrototypeOf(Map.prototype), "constructor", this).call(this, arg);
+	  }
+	
+	  _inherits(Map, _React$Component);
+	
+	  _createClass(Map, [{
+	    key: "render",
+	    value: function render() {
+	
+	      var game_maps = _storesMap_store2["default"].get_new_data().game_maps;
+	      var map_options = [];
+	
+	      for (var map_name in game_maps) {
+	        map_options.push(_react2["default"].createElement(
+	          "option",
+	          { dissipation: game_maps[map_name].dissipation, capacity: game_maps[map_name].capacity },
+	          map_name
+	        ));
+	      }
+	
+	      return _react2["default"].createElement(
+	        "div",
+	        { className: "input-group" },
+	        _react2["default"].createElement(
+	          "label",
+	          null,
+	          "Map"
+	        ),
+	        _react2["default"].createElement(
+	          "select",
+	          { ref: "map_select", onChange: this.onChange.bind(this) },
+	          { map_options: map_options }
+	        )
+	      );
+	    }
+	  }, {
+	    key: "onChange",
+	    value: function onChange() {
+	      _actionsMap_actions2["default"].change_map(this.refs.map_select.value);
+	    }
+	  }]);
+	
+	  return Map;
+	})(_react2["default"].Component);
+	
+	exports["default"] = Map;
+	module.exports = exports["default"];
+
+/***/ },
+/* 257 */
 /*!****************************************************!*\
   !*** ./source/javascripts/components/heatsink.jsx ***!
   \****************************************************/
@@ -25712,7 +25903,7 @@
 	  value: true
 	});
 	
-	var _actionsHeatsink_actions = __webpack_require__(/*! ./actions/heatsink_actions */ 255);
+	var _actionsHeatsink_actions = __webpack_require__(/*! ./actions/heatsink_actions */ 258);
 	
 	var _actionsHeatsink_actions2 = _interopRequireDefault(_actionsHeatsink_actions);
 	
@@ -25885,7 +26076,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 255 */
+/* 258 */
 /*!********************************************************************!*\
   !*** ./source/javascripts/components/actions/heatsink_actions.jsx ***!
   \********************************************************************/
@@ -25907,7 +26098,7 @@
 	
 	var _constantsHeatsink_constantsEs62 = _interopRequireDefault(_constantsHeatsink_constantsEs6);
 	
-	var _heatsink = __webpack_require__(/*! ../heatsink */ 254);
+	var _heatsink = __webpack_require__(/*! ../heatsink */ 257);
 	
 	var _heatsink2 = _interopRequireDefault(_heatsink);
 	
@@ -25956,7 +26147,151 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 256 */
+/* 259 */
+/*!*************************************************************!*\
+  !*** ./source/javascripts/components/stores/mech_store.es6 ***!
+  \*************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var _inherits = __webpack_require__(/*! babel-runtime/helpers/inherits */ 157)['default'];
+	
+	var _get = __webpack_require__(/*! babel-runtime/helpers/get */ 162)['default'];
+	
+	var _createClass = __webpack_require__(/*! babel-runtime/helpers/create-class */ 168)['default'];
+	
+	var _classCallCheck = __webpack_require__(/*! babel-runtime/helpers/class-call-check */ 171)['default'];
+	
+	var _interopRequireDefault = __webpack_require__(/*! babel-runtime/helpers/interop-require-default */ 172)['default'];
+	
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+	
+	var _events = __webpack_require__(/*! events */ 197);
+	
+	var _app_dispatcher = __webpack_require__(/*! ../app_dispatcher */ 191);
+	
+	var _app_dispatcher2 = _interopRequireDefault(_app_dispatcher);
+	
+	var _heat_store = __webpack_require__(/*! ./heat_store */ 230);
+	
+	var _heat_store2 = _interopRequireDefault(_heat_store);
+	
+	var _constantsMech_constants = __webpack_require__(/*! ../constants/mech_constants */ 260);
+	
+	var _constantsMech_constants2 = _interopRequireDefault(_constantsMech_constants);
+	
+	var _constantsHeat_constants = __webpack_require__(/*! ../constants/heat_constants */ 231);
+	
+	var _constantsHeat_constants2 = _interopRequireDefault(_constantsHeat_constants);
+	
+	var _actionsMech_actions = __webpack_require__(/*! ../actions/mech_actions */ 261);
+	
+	var _actionsMech_actions2 = _interopRequireDefault(_actionsMech_actions);
+	
+	var data = {
+	  overheating: false
+	};
+	
+	var overheat_check = function overheat_check() {
+	  var heatsink_store_data = _heat_store2['default'].get_new_data();
+	  var current_heat = heatsink_store_data.value;
+	  var heat_capacity = heatsink_store_data.capacity;
+	
+	  if (current_heat >= heat_capacity && data.overheating === false) {
+	    console.log('TRUE BECAUSE current heat is ' + current_heat + ' vs ' + heat_capacity);
+	    setTimeout(_actionsMech_actions2['default'].enter_overheat);
+	  }
+	  if (current_heat < heat_capacity && data.overheating === true) {
+	    console.log('FALSE BECAUSE current heat is ' + current_heat + ' vs ' + heat_capacity);
+	    setTimeout(_actionsMech_actions2['default'].exit_overheat);
+	  }
+	};
+	
+	var CHANGE = _constantsMech_constants2['default'].MECH_UPDATED;
+	
+	var MechStore = (function (_EventEmitter) {
+	  function MechStore() {
+	    _classCallCheck(this, MechStore);
+	
+	    _get(Object.getPrototypeOf(MechStore.prototype), 'constructor', this).apply(this, arguments);
+	  }
+	
+	  _inherits(MechStore, _EventEmitter);
+	
+	  _createClass(MechStore, [{
+	    key: 'get_new_data',
+	
+	    /**
+	     * Return contents of stored data
+	     * TODO: Move to a store base class
+	     */
+	    value: function get_new_data() {
+	      return data;
+	    }
+	  }, {
+	    key: 'emitChange',
+	
+	    /**
+	     * Broadcast that the store has changed
+	     * TODO: Move to a store base class
+	     */
+	    value: function emitChange() {
+	      this.emit(CHANGE);
+	    }
+	  }, {
+	    key: 'addChangeListener',
+	
+	    /**
+	     * TODO: Move to a store base class
+	     */
+	    value: function addChangeListener(callback) {
+	      this.on(CHANGE, callback);
+	    }
+	  }, {
+	    key: 'removeChangeListener',
+	
+	    /**
+	     * TODO: Move to a store base class
+	     */
+	    value: function removeChangeListener(callback) {
+	      this.removeListener(CHANGE, callback);
+	    }
+	  }]);
+	
+	  return MechStore;
+	})(_events.EventEmitter);
+	
+	var _MechStore = new MechStore();
+	
+	_MechStore.dispatch_token = _app_dispatcher2['default'].register(function (payload) {
+	  var action_type = payload.action_type;
+	  switch (action_type) {
+	    case _constantsHeat_constants2['default'].HEAT_APPLY:
+	      overheat_check();
+	      break;
+	    case _constantsHeat_constants2['default'].HEAT_RELEASE:
+	      overheat_check();
+	      break;
+	
+	    case _constantsMech_constants2['default'].ENTER_OVERHEAT:
+	      data.overheating = true;
+	      _MechStore.emit(CHANGE);
+	      break;
+	    case _constantsMech_constants2['default'].EXIT_OVERHEAT:
+	      data.overheating = false;
+	      _MechStore.emit(CHANGE);
+	      break;
+	  }
+	});
+	
+	exports['default'] = _MechStore;
+	module.exports = exports['default'];
+
+/***/ },
+/* 260 */
 /*!********************************************************************!*\
   !*** ./source/javascripts/components/constants/mech_constants.es6 ***!
   \********************************************************************/
@@ -25975,7 +26310,7 @@
 	module.exports = exports["default"];
 
 /***/ },
-/* 257 */
+/* 261 */
 /*!****************************************************************!*\
   !*** ./source/javascripts/components/actions/mech_actions.es6 ***!
   \****************************************************************/
@@ -25997,7 +26332,7 @@
 	
 	var _constantsHeat_constants2 = _interopRequireDefault(_constantsHeat_constants);
 	
-	var _constantsMech_constants = __webpack_require__(/*! ../constants/mech_constants */ 256);
+	var _constantsMech_constants = __webpack_require__(/*! ../constants/mech_constants */ 260);
 	
 	var _constantsMech_constants2 = _interopRequireDefault(_constantsMech_constants);
 	

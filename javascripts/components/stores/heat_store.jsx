@@ -5,6 +5,8 @@ import HeatsinkStore from '../stores/heatsink_store'
 import GhostHeatGroupStore from '../stores/ghost_heat_group_store'
 import HeatActions from '../actions/heat_actions'
 import CooldownActions from '../actions/cooldown_actions'
+import MapStore from './map_store'
+import MapConstants from "../constants/map_constants"
 
 /**
  * Store data
@@ -54,6 +56,7 @@ var recalculate_capacity = function() {
   // Any [DHS] manually added to the engine count as Visible
 
   var base_capacity = 30
+
   var internal_heatsink_capacity_modifier = 0
   var external_heatsink_capacity_modifier = 0
 
@@ -69,6 +72,12 @@ var recalculate_capacity = function() {
   var external_capacity = heatsink_store_data.external_heatsinks * external_heatsink_capacity_modifier
 
   var capacity = +((base_capacity + internal_capacity + external_capacity))
+
+  // Map-specific modifier
+  var mapstore_data = MapStore.get_new_data()
+  if(typeof(mapstore_data.selected_map) != 'undefined') {
+    capacity = capacity * mapstore_data.selected_map.capacity
+  }
 
   data.capacity = capacity
 }
@@ -123,7 +132,11 @@ _HeatStore.dispatch_token = AppDispatcher.register((payload) => {
       recalculate_capacity()
       _HeatStore.emit(CHANGE)
       break
-
+    case MapConstants.CHANGE_MAP:
+      AppDispatcher.waitFor([MapStore.dispatch_token])
+      recalculate_capacity()
+      _HeatStore.emit(CHANGE)
+      break
     case HeatConstants.HEAT_APPLY:
       add_base_heat(payload.weapon.heat)
       _HeatStore.emit(CHANGE)

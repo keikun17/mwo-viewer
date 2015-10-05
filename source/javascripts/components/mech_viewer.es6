@@ -24,15 +24,6 @@ class MechViewer extends React.Component {
   }
 
 
-  emergency_lights_on() {
-    console.log("SUNOG")
-  }
-
-  emergency_lights_off() {
-    console.log("WALA NA SUNOG")
-  }
-
-
   getClassNames() {
     if(this.state.overheating == true){
       return 'overheating'

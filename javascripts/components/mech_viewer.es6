@@ -24,15 +24,6 @@ class MechViewer extends React.Component {
   }
 
 
-  emergency_lights_on() {
-    console.log("SUNOG")
-  }
-
-  emergency_lights_off() {
-    console.log("WALA NA SUNOG")
-  }
-
-
   getClassNames() {
     if(this.state.overheating == true){
       return 'overheating'
@@ -44,6 +35,10 @@ class MechViewer extends React.Component {
 
   render() {
     return <mechviewer className={this.getClassNames()}>
+    <header>
+      <h2>Mechwarrior Online Heat Simulator 2.0</h2>
+    </header>
+
       <mechviewer_content>
         <Info/>
         <Equipment/>

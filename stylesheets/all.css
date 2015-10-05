@@ -36,7 +36,8 @@ armory {
       -ms-flex-direction: column;
           flex-direction: column;
   padding-left: 10px;
-  min-width: 231px; }
+  min-width: 231px;
+  padding-bottom: 30px; }
 /* line 1, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/cooldown_timer.sass */
 cooldown_timer {
   display: -webkit-box;
@@ -205,6 +206,16 @@ gauge {
     background-color: red;
     -webkit-transition: width 0.5s ease-out;
             transition: width 0.5s ease-out; }
+/* line 1, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/header.sass */
+header {
+  padding: 0px 35px;
+  background: -webkit-radial-gradient(0px 0px, ellipse farthest-corner, #ff4c00 0%, #ffa500 100%) fixed;
+  background: radial-gradient(ellipse farthest-corner at 0px 0px, #ff4c00 0%, #ffa500 100%) fixed; }
+  /* line 6, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/header.sass */
+  header h1, header h2, header h3, header h4 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    color: #FFF; }
 /* line 1, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/info.sass */
 info {
   background-color: #202020;
@@ -349,15 +360,14 @@ mechviewer {
             flex-direction: row;
     -webkit-flex-wrap: wrap;
         -ms-flex-wrap: wrap;
-            flex-wrap: wrap;
-    padding-bottom: 30px; }
-  /* line 13, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/mech_viewer.sass */
+            flex-wrap: wrap; }
+  /* line 12, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/mech_viewer.sass */
   mechviewer.overheating {
     -webkit-transition: all, 1s;
             transition: all, 1s;
     -webkit-filter: sepia(100%);
             filter: sepia(100%); }
-  /* line 17, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/mech_viewer.sass */
+  /* line 16, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/mech_viewer.sass */
   mechviewer.cool {
     -webkit-transition: all, 1s;
             transition: all, 1s;
@@ -938,8 +948,8 @@ html {
 
 /* line 7, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/all.sass */
 body {
-  background: -webkit-radial-gradient(0px 0px, ellipse farthest-corner, #2d2b2f 0%, #191919 100%) fixed;
-  background: radial-gradient(ellipse farthest-corner at 0px 0px, #2d2b2f 0%, #191919 100%) fixed;
+  background: -webkit-radial-gradient(0px 0px, ellipse farthest-corner, #3a3737 0%, #191919 100%) fixed;
+  background: radial-gradient(ellipse farthest-corner at 0px 0px, #3a3737 0%, #191919 100%) fixed;
   background-repeat: no-repeat;
   color: #FFF;
   height: 100%;
@@ -951,23 +961,24 @@ body {
 /* line 20, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/all.sass */
 h1, h2, h3, h4, h5 {
   font-family: "Oswald", sans-serif !important;
-  font-weight: normal; }
+  font-weight: normal;
+  color: #FF8040; }
 
-/* line 24, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/all.sass */
+/* line 25, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/all.sass */
 .content {
   height: 100%; }
 
-/* line 27, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/all.sass */
+/* line 28, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/all.sass */
 footer {
   background-color: black;
   color: white;
   font-family: Roboto, sans-serif;
   text-align: center; }
-  /* line 33, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/all.sass */
+  /* line 34, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/all.sass */
   footer a {
     color: #3b87ce;
     padding-left: 3px; }
 
-/* line 37, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/all.sass */
+/* line 38, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/all.sass */
 #app {
   height: 100%; }

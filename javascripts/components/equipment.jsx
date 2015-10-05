@@ -27,7 +27,7 @@ class Equipment extends React.Component {
   render() {
 
     return <equipments style={this.getStyle()}>
-      <h1>Equipments</h1>
+      <h2>Equipments</h2>
       <Heatsink/>
       <Map />
       <triggers>

@@ -19419,16 +19419,6 @@
 	      this.setState(_storesMech_store2['default'].get_new_data());
 	    }
 	  }, {
-	    key: 'emergency_lights_on',
-	    value: function emergency_lights_on() {
-	      console.log('SUNOG');
-	    }
-	  }, {
-	    key: 'emergency_lights_off',
-	    value: function emergency_lights_off() {
-	      console.log('WALA NA SUNOG');
-	    }
-	  }, {
 	    key: 'getClassNames',
 	    value: function getClassNames() {
 	      if (this.state.overheating == true) {
@@ -19443,6 +19433,15 @@
 	      return _react2['default'].createElement(
 	        'mechviewer',
 	        { className: this.getClassNames() },
+	        _react2['default'].createElement(
+	          'header',
+	          null,
+	          _react2['default'].createElement(
+	            'h2',
+	            null,
+	            'Mechwarrior Online Heat Simulator 2.0'
+	          )
+	        ),
 	        _react2['default'].createElement(
 	          'mechviewer_content',
 	          null,
@@ -20452,7 +20451,7 @@
 	        'armory',
 	        null,
 	        React.createElement(
-	          'h1',
+	          'h2',
 	          null,
 	          'Armory'
 	        ),
@@ -25157,7 +25156,7 @@
 	        'equipments',
 	        { style: this.getStyle() },
 	        React.createElement(
-	          'h1',
+	          'h2',
 	          null,
 	          'Equipments'
 	        ),
@@ -26201,11 +26200,9 @@
 	  var heat_capacity = heatsink_store_data.capacity;
 	
 	  if (current_heat >= heat_capacity && data.overheating === false) {
-	    console.log('TRUE BECAUSE current heat is ' + current_heat + ' vs ' + heat_capacity);
 	    setTimeout(_actionsMech_actions2['default'].enter_overheat);
 	  }
 	  if (current_heat < heat_capacity && data.overheating === true) {
-	    console.log('FALSE BECAUSE current heat is ' + current_heat + ' vs ' + heat_capacity);
 	    setTimeout(_actionsMech_actions2['default'].exit_overheat);
 	  }
 	};

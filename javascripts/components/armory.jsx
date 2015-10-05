@@ -38,9 +38,9 @@ class Armory extends React.Component {
     var laser_weapons = weapons.select
 
     return <armory>
-      <h1>
+      <h2>
         Armory
-      </h1>
+      </h2>
       <SmurfyScraper/>
       <FactionSelect/>
       {weapons}

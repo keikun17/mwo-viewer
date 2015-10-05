@@ -16,11 +16,9 @@ var overheat_check = function(){
 
 
   if((current_heat >= heat_capacity) && data.overheating === false){
-    console.log(`TRUE BECAUSE current heat is ${current_heat} vs ${heat_capacity}`)
     setTimeout(MechActions.enter_overheat)
   }
   if((current_heat < heat_capacity) && data.overheating === true){
-    console.log(`FALSE BECAUSE current heat is ${current_heat} vs ${heat_capacity}`)
     setTimeout(MechActions.exit_overheat)
   }
 

@@ -1,0 +1,10 @@
+/* line 1, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/header.sass */
+header {
+  padding: 0px 35px;
+  background: -webkit-radial-gradient(0px 0px, ellipse farthest-corner, #ff4c00 0%, #ffa500 100%) fixed;
+  background: radial-gradient(ellipse farthest-corner at 0px 0px, #ff4c00 0%, #ffa500 100%) fixed; }
+  /* line 6, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/header.sass */
+  header h1, header h2, header h3, header h4 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    color: #FFF; }

@@ -10,4 +10,5 @@ armory {
       -ms-flex-direction: column;
           flex-direction: column;
   padding-left: 10px;
-  min-width: 231px; }
+  min-width: 231px;
+  padding-bottom: 30px; }

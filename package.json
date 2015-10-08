@@ -21,7 +21,7 @@
     "request": "^2.61.0"
   },
   "scripts": {
-    "test": "jest"
+    "test": "BABEL_JEST_STAGE=0 jest"
   },
   "jest": {
     "scriptPreprocessor": "<rootDir>/node_modules/babel-jest",

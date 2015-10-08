@@ -8,8 +8,8 @@
     "coffee-script": "^1.9.3",
     "node-libs-browser": "^0.5.2",
     "optimist": ">= 0.1.0",
-    "react": "^0.14.0-beta1",
-    "react-dom": "^0.14.0-beta1",
+    "react": "^0.14.0",
+    "react-dom": "^0.14.0",
     "webpack": "^1.11.0"
   },
   "devDependencies": {

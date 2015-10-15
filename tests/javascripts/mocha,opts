@@ -1,0 +1,2 @@
+--require ./test/javascripts/mocha_init.js
+--full-trace

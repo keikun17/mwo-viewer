@@ -13,13 +13,20 @@
     "webpack": "^1.11.0"
   },
   "devDependencies": {
+    "babel": "^5.8.23",
     "babel-jest": "^5.3.0",
+    "chai": "^3.3.0",
     "event-emitter": "^0.3.3",
     "flux": "^2.0.3",
     "jest-cli": "^0.5.10",
+    "mocha": "^2.3.3",
+    "mocha-babel": "^3.0.0",
+    "node-jsdom": "^3.1.5",
     "react": "^0.14.0",
     "react-dispatcher": "^0.2.1",
-    "request": "^2.61.0"
+    "request": "^2.61.0",
+    "sinon": "^1.17.1",
+    "sinon-chai": "^2.8.0"
   },
   "scripts": {
     "test": "BABEL_JEST_STAGE=0 jest"
@@ -27,7 +34,8 @@
   "jest": {
     "scriptPreprocessor": "<rootDir>/node_modules/babel-jest",
     "unmockedModulePathPatterns": [
-      "<rootDir>/node_modules/react", "<rootDir>/source/javascripts/components"
+      "<rootDir>/node_modules/react",
+      "<rootDir>/source/javascripts/components"
     ],
     "moduleFileExtensions": [
       "js",

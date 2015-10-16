@@ -13,7 +13,7 @@ class Heatsink extends React.Component {
     this.state = {
       internal_heatsinks: this.store_data.internal_heatsinks,
       external_heatsinks: this.store_data.external_heatsinks,
-      double_heatsinks: this.store_data.heatsink_type
+      double_heatsinks: this.store_data.double_heatsinks
     }
   }
 

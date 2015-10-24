@@ -21,8 +21,8 @@ weapon {
     background-color: #ce6c3b; }
   /* line 23, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/weapon.sass */
   weapon.ballistic {
-    border: 1px solid #a73bce;
-    background-color: #a73bce; }
+    border: 1px solid #9c5ab5;
+    background-color: #9c5ab5; }
   /* line 27, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/weapon.sass */
   weapon.missile {
     border: 1px solid #3b87ce;

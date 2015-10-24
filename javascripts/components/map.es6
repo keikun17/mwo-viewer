@@ -26,7 +26,7 @@ export default class Map extends React.Component {
     return  <div className="input-group">
       <label>Map</label>
       <select ref="map_select" onChange={this.onChange.bind(this)} >
-        {{map_options}}
+        {map_options}
       </select>
     </div>
   }

@@ -7,8 +7,7 @@ var mountnode = document.getElementById('app');
 
 var run = function(){
   ReactDom.render(
-    <MechViewer>
-    </MechViewer>, mountnode
+    <MechViewer /> , mountnode
   );
 
 };

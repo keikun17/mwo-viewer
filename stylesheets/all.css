@@ -81,7 +81,7 @@ equipped_weapon {
     color: #ce6c3b; }
   /* line 14, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/equipped_weapon.sass */
   equipped_weapon.ballistic {
-    color: #a73bce; }
+    color: #9c5ab5; }
   /* line 17, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/equipped_weapon.sass */
   equipped_weapon.missile {
     color: #3b87ce; }
@@ -94,8 +94,9 @@ event_log {
   height: 400px;
   width: 250px;
   padding: 3px;
-  overflow: scroll; }
-  /* line 12, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/event-log.sass */
+  overflow-y: scroll;
+  overflow-x: hidden; }
+  /* line 13, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/event-log.sass */
   event_log > ghost_heat {
     color: red;
     display: block; }
@@ -835,8 +836,8 @@ weapon {
     background-color: #ce6c3b; }
   /* line 23, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/weapon.sass */
   weapon.ballistic {
-    border: 1px solid #a73bce;
-    background-color: #a73bce; }
+    border: 1px solid #9c5ab5;
+    background-color: #9c5ab5; }
   /* line 27, /Users/Valerian/Projects/mwo-viewer/source/stylesheets/weapon.sass */
   weapon.missile {
     border: 1px solid #3b87ce;

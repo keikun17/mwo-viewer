@@ -12,7 +12,11 @@ var CHANGE = "KEYBINDING_CHANGED"
 window.onkeypress = function(e) {
   if(document.activeElement.tagName === "INPUT") {return}
   var value = String.fromCharCode(e.charCode)
-  _KeybindingStore.get_key_mappings()[value]()
+
+  var mapping = _KeybindingStore.get_key_mappings()[value]
+  if(mapping){
+    mapping()
+  }
 }
 
 /**

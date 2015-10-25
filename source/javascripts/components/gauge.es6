@@ -8,7 +8,9 @@ export default class Gauge extends React.Component {
 
   render() {
     return <gauge>
-      <gauge_level style={{width: `${this.props.gauge_level}%`, backgroundColor: this.props.color}}/>
+      <gauge_level style={{width: `${this.props.gauge_level}%`, backgroundColor: this.props.color}}>
+        { this.props.html }
+      </gauge_level>
     </gauge>
   }
 

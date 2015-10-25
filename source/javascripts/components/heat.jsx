@@ -69,7 +69,8 @@ class CurrentHeat extends React.Component {
 
         </div>
 
-        <Gauge gauge_level={this.gauge_level()} color="red" />
+        <Gauge gauge_level={this.gauge_level()} color="red" html="Reset" >
+        </Gauge>
       </current_heat>
     );
   }

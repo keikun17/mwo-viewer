@@ -18,6 +18,12 @@ var HeatActions = {
     })
   },
 
+  reset_heat: function() {
+    AppDispatcher.dispatch({
+      action_type: HeatConstants.HEAT_RESET,
+    })
+  },
+
   update_capacity: function() {
     AppDispatcher.dispatch({
       action_type: HeatConstants.HEAT_CAPACITY_UPDATE

@@ -6,6 +6,7 @@ import MapStore from './stores/map_store'
 import MapConstants from "./constants/map_constants"
 import CooldownStore from './stores/cooldown_store'
 import Gauge from './gauge'
+import FlushCoolant from './flush_coolant'
 
 class CurrentHeat extends React.Component {
 
@@ -48,7 +49,10 @@ class CurrentHeat extends React.Component {
     return level
   }
 
+
   render() {
+    var reset = <FlushCoolant />
+
     return (
       <current_heat className="info_item">
         <div className="title">Heat</div>
@@ -69,7 +73,7 @@ class CurrentHeat extends React.Component {
 
         </div>
 
-        <Gauge gauge_level={this.gauge_level()} color="red" html="Reset" >
+        <Gauge gauge_level={this.gauge_level()} color="red" html={reset} >
         </Gauge>
       </current_heat>
     );

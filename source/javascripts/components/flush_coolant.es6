@@ -9,7 +9,7 @@ class FlushCoolant extends React.Component {
 
   render() {
     return <flush_coolant onClick={this._onClick}>
-      &nbsp;Reset
+      Reset
     </flush_coolant>
   }
 }

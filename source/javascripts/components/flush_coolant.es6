@@ -5,7 +5,6 @@ class FlushCoolant extends React.Component {
 
   _onClick() {
     HeatActions.reset_heat()
-    MechActions.exit_overheat()
   }
 
   render() {

@@ -10,4 +10,6 @@ gauge {
   gauge > gauge_level {
     background-color: red;
     -webkit-transition: width 0.5s ease-out;
-            transition: width 0.5s ease-out; }
+            transition: width 0.5s ease-out;
+    text-align: center;
+    overflow: hidden; }

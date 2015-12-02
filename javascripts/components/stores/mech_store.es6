@@ -79,6 +79,10 @@ _MechStore.dispatch_token = AppDispatcher.register((payload) => {
       data.overheating = false
       _MechStore.emit(CHANGE)
       break
+    case HeatConstants.HEAT_RESET:
+      AppDispatcher.waitFor([HeatStore.dispatch_token])
+      overheat_check()
+      break
   }
 
 })

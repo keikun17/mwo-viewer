@@ -23969,6 +23969,10 @@
 	
 	var _gauge2 = _interopRequireDefault(_gauge);
 	
+	var _flush_coolant = __webpack_require__(/*! ./flush_coolant */ 264);
+	
+	var _flush_coolant2 = _interopRequireDefault(_flush_coolant);
+	
 	var React = __webpack_require__(/*! react */ 1);
 	
 	var CurrentHeat = (function (_React$Component) {
@@ -24022,6 +24026,8 @@
 	  }, {
 	    key: "render",
 	    value: function render() {
+	      var reset = React.createElement(_flush_coolant2["default"], null);
+	
 	      return React.createElement(
 	        "current_heat",
 	        { className: "info_item" },
@@ -24059,7 +24065,7 @@
 	            )
 	          )
 	        ),
-	        React.createElement(_gauge2["default"], { gauge_level: this.gauge_level(), color: "red" })
+	        React.createElement(_gauge2["default"], { gauge_level: this.gauge_level(), color: "red", html: reset })
 	      );
 	    }
 	  }]);
@@ -24155,6 +24161,13 @@
 	  if (data.value < 0) {
 	    data.value = 0;
 	  }
+	};
+	
+	/**
+	 * Resets the heat to 0
+	 */
+	var reset_heat = function reset_heat() {
+	  data.value = 0;
 	};
 	
 	// TODO : Move this computation logic to heat store and just return do `this.setState(HeatStore.get_new_data())
@@ -24285,6 +24298,10 @@
 	      add_base_heat(payload.amount);
 	      _HeatStore.emit(CHANGE);
 	      break;
+	    case _constantsHeat_constants2['default'].HEAT_RESET:
+	      reset_heat();
+	      _HeatStore.emit(CHANGE);
+	      break;
 	  }
 	});
 	module.exports = exports['default'];
@@ -24305,6 +24322,7 @@
 	  HEAT_APPLY: 'HEAT_APPLY',
 	  HEAT_CAPACITY_UPDATE: 'HEAT_CAPACITY_UPDATE',
 	  HEAT_RELEASE: 'HEAT_RELEASE',
+	  HEAT_RESET: 'HEAT_RESET',
 	  HEATSTORE_UPDATED: 'HEATSTORE_UPDATED',
 	  GHOST_HEAT_APPLY: 'GHOST_HEAT_APPLY'
 	};
@@ -24744,6 +24762,12 @@
 	    _app_dispatcher2['default'].dispatch({
 	      action_type: _constantsHeat_constants2['default'].HEAT_RELEASE,
 	      amount: amount
+	    });
+	  },
+	
+	  reset_heat: function reset_heat() {
+	    _app_dispatcher2['default'].dispatch({
+	      action_type: _constantsHeat_constants2['default'].HEAT_RESET
 	    });
 	  },
 	
@@ -25223,7 +25247,11 @@
 	      return React.createElement(
 	        'gauge',
 	        null,
-	        React.createElement('gauge_level', { style: { width: this.props.gauge_level + '%', backgroundColor: this.props.color } })
+	        React.createElement(
+	          'gauge_level',
+	          { style: { width: this.props.gauge_level + '%', backgroundColor: this.props.color } },
+	          this.props.html
+	        )
 	      );
 	    }
 	  }]);
@@ -26438,7 +26466,11 @@
 	    return;
 	  }
 	  var value = String.fromCharCode(e.charCode);
-	  _KeybindingStore.get_key_mappings()[value]();
+	
+	  var mapping = _KeybindingStore.get_key_mappings()[value];
+	  if (mapping) {
+	    mapping();
+	  }
 	};
 	
 	/**
@@ -27025,6 +27057,10 @@
 	      data.overheating = false;
 	      _MechStore.emit(CHANGE);
 	      break;
+	    case _constantsHeat_constants2['default'].HEAT_RESET:
+	      _app_dispatcher2['default'].waitFor([_heat_store2['default'].dispatch_token]);
+	      overheat_check();
+	      break;
 	  }
 	});
 	
@@ -27095,6 +27131,68 @@
 	  }
 	};
 	module.exports = exports['default'];
+
+/***/ },
+/* 264 */
+/*!*********************************************************!*\
+  !*** ./source/javascripts/components/flush_coolant.es6 ***!
+  \*********************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	var _inherits = __webpack_require__(/*! babel-runtime/helpers/inherits */ 159)["default"];
+	
+	var _get = __webpack_require__(/*! babel-runtime/helpers/get */ 164)["default"];
+	
+	var _createClass = __webpack_require__(/*! babel-runtime/helpers/create-class */ 170)["default"];
+	
+	var _classCallCheck = __webpack_require__(/*! babel-runtime/helpers/class-call-check */ 173)["default"];
+	
+	var _interopRequireDefault = __webpack_require__(/*! babel-runtime/helpers/interop-require-default */ 174)["default"];
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _actionsHeat_actions = __webpack_require__(/*! ./actions/heat_actions */ 235);
+	
+	var _actionsHeat_actions2 = _interopRequireDefault(_actionsHeat_actions);
+	
+	var FlushCoolant = (function (_React$Component) {
+	  function FlushCoolant() {
+	    _classCallCheck(this, FlushCoolant);
+	
+	    _get(Object.getPrototypeOf(FlushCoolant.prototype), "constructor", this).apply(this, arguments);
+	  }
+	
+	  _inherits(FlushCoolant, _React$Component);
+	
+	  _createClass(FlushCoolant, [{
+	    key: "_onClick",
+	    value: function _onClick() {
+	      _actionsHeat_actions2["default"].reset_heat();
+	    }
+	  }, {
+	    key: "render",
+	    value: function render() {
+	      return _react2["default"].createElement(
+	        "flush_coolant",
+	        { onClick: this._onClick },
+	        "Reset"
+	      );
+	    }
+	  }]);
+	
+	  return FlushCoolant;
+	})(_react2["default"].Component);
+	
+	exports["default"] = FlushCoolant;
+	module.exports = exports["default"];
 
 /***/ }
 /******/ ]);

@@ -38,6 +38,13 @@ var release_heat = function(amount){
   }
 }
 
+/**
+ * Resets the heat to 0
+ */
+var reset_heat = function() {
+  data.value = 0
+}
+
 
 // TODO : Move this computation logic to heat store and just return do `this.setState(HeatStore.get_new_data())
 var recalculate_capacity = function() {
@@ -147,6 +154,10 @@ _HeatStore.dispatch_token = AppDispatcher.register((payload) => {
       break
     case HeatConstants.GHOST_HEAT_APPLY:
       add_base_heat(payload.amount)
+      _HeatStore.emit(CHANGE)
+      break
+    case HeatConstants.HEAT_RESET:
+      reset_heat()
       _HeatStore.emit(CHANGE)
       break
   }

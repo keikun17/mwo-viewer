@@ -69,10 +69,10 @@ var recalculate_capacity = function() {
 
   if(heatsink_store_data.double_heatsinks) {
     internal_heatsink_capacity_modifier = 2
-    external_heatsink_capacity_modifier = 1.4
+    external_heatsink_capacity_modifier = 1.5
   } else {
-    internal_heatsink_capacity_modifier = 1
-    external_heatsink_capacity_modifier = 1
+    internal_heatsink_capacity_modifier = 1.2
+    external_heatsink_capacity_modifier = 1.2
   }
 
   var internal_capacity = heatsink_store_data.internal_heatsinks * internal_heatsink_capacity_modifier

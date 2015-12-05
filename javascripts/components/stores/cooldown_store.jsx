@@ -27,8 +27,8 @@ function recalculate_coolrate() {
       internal_heatsink_cooldown_modifier = .2
       external_heatsink_cooldown_modifier = .14
     } else {
-      internal_heatsink_cooldown_modifier = .1
-      external_heatsink_cooldown_modifier = .1
+      internal_heatsink_cooldown_modifier = .12
+      external_heatsink_cooldown_modifier = .11
     }
 
     var internal_cooldown = (internal_heatsink_cooldown_modifier * heatsink_store_data.internal_heatsinks)

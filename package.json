@@ -30,7 +30,8 @@
     "sinon-chai": "^2.8.0"
   },
   "scripts": {
-    "test": "mocha --opts ./tests/javascript/mocha.opts --compilers js:babel/register --recursive tests/javascripts"
+    "test": "mocha --opts ./tests/javascript/mocha.opts --compilers js:babel/register --recursive tests/javascripts",
+    "update_weapons": "node ./tools/generate_weapon_list"
   },
   "oldscripts": {
     "test": "BABEL_JEST_STAGE=0 jest"

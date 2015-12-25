@@ -14,7 +14,7 @@ request(url, function(error, response, body ){
     var raw_json = JSON.parse(body)
     var timestamp = Date.now()
     // var filename = `../source/javascripts/components/weapons_list_${timestamp}.js`
-    var filename = `../source/javascripts/components/weapons_list.es6`
+    var filename = `./source/javascripts/components/weapons_list.es6`
 
     var json = {
       innersphere: [],

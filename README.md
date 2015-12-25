@@ -4,3 +4,7 @@ Development
 ----
 
 run with `middleman server -p 4567`
+
+When Weapons server updates, refresh weapons list with
+
+   npm run update_weapons

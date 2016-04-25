@@ -37,6 +37,7 @@ class MechViewer extends React.Component {
     return <mechviewer className={this.getClassNames()}>
     <header>
       <h2>Mechwarrior Online Heat Simulator 2.0</h2>
+      <h4>As of Community Warfare Phase 3 support for this has been dropped.h4>
     </header>
 
       <mechviewer_content>
